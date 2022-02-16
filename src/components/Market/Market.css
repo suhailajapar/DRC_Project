@@ -28,6 +28,21 @@ body {
 .buy-sell {
   background-color: darkgoldenrod;
   width: 20%;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 20px;
+  width: 80%;
+  border-radius: 6px;
+}
+
+button {
+  padding: 20px;
+  width: 92%;
+  border-radius: 6px;
 }
 
 .listNgainers {

@@ -17,7 +17,14 @@ function Market() {
           </div>
           <div className="chartNpurchase">
             <div className="chart">chart</div>
-            <div className="buy-sell"></div>
+            <div className="buy-sell">
+              <input className="amount" placeholder="Amount"></input>
+              <input className="price" placeholder="Price"></input>
+              <input className="total" placeholder="Total"></input>
+              <button className="buy" type="submit">
+                Buy
+              </button>
+            </div>
           </div>
         </div>
         <div className="listNgainers">
