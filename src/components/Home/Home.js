@@ -4,8 +4,10 @@ import "./Home.css";
 import { ReactComponent as Logo } from "./../../assets/Hikers Logo Asset/Hikers big (Dark mode)-shrink.svg";
 
 function Home() {
+  // const [scroll, setScroll] = useState(false)
   return (
     <>
+<<<<<<< HEAD
       <Navbar
         className="py-1 px-3 row justify-content-between"
         bg="dark"
@@ -43,6 +45,41 @@ function Home() {
           </Button>
         </Nav>
       </Navbar>
+=======
+      {/* <Navbar className="nav-bar" bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">Hikers</Navbar.Brand>
+          <Nav className="nav-name">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar> */}
+
+      <div className="landingPage">
+        <section className="lpage" id="four">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="three">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="two">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="one">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+      </div>
+>>>>>>> 9bcba881000119686a4686760a6a363ee2a7e8b0
     </>
   );
 }
