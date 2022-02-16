@@ -26,3 +26,74 @@
   margin-left: 5px;
   align-self: center;
 }
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+.landingPage {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+/* Fourth page for Home page */
+#four {
+  background-image: url("./../Media/Home/first.svg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Third page for Home page */
+#three {
+  background-image: url("./../Media/Home/second.svg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Second page for Home page */
+#two {
+  background-image: url("./../Media/Home/third.svg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* First page for Home page */
+#one {
+  background-image: url("./../Media/Home/fourth.svg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.panelCon {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.panel {
+  width: 100%;
+}
