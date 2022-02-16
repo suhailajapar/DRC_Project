@@ -3,9 +3,10 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Home.css";
 
 function Home() {
+  // const [scroll, setScroll] = useState(false)
   return (
     <>
-      <Navbar className="nav-bar" bg="dark" variant="dark">
+      {/* <Navbar className="nav-bar" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Hikers</Navbar.Brand>
           <Nav className="nav-name">
@@ -14,7 +15,30 @@ function Home() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
+      </Navbar> */}
+
+      <div className="landingPage">
+        <section className="lpage" id="four">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="three">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="two">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+        <section className="lpage" id="one">
+          <div>
+            <h1>Hello</h1>
+          </div>
+        </section>
+      </div>
     </>
   );
 }
