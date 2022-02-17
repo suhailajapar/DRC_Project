@@ -7,12 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Home />
-=======
-      
-      <Market></Market>
->>>>>>> 187acfbf3eb41eb8b6d056bbc1d1b53e2e14bcaf
+      <Market />
     </div>
   );
 }

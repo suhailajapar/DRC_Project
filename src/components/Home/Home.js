@@ -7,7 +7,6 @@ import { ReactComponent as Logo } from "./../../assets/Hikers Logo Asset/Hikers 
 function Home() {
   return (
     <>
-<<<<<<< HEAD
       <div className="landingPage">
         <Navbar
           className="py-1 px-3 row justify-content-between"
@@ -29,28 +28,6 @@ function Home() {
               Market
             </Nav.Link>
           </Nav>
-=======
-
-      <Navbar
-        className="py-1 px-3 row justify-content-between"
-        bg="dark"
-        variant="dark"
-      >
-        <Nav className="col align-items-center">
-          <a href="#home">
-            <Logo className="logo-size" />
-          </a>
-          <Navbar.Brand className="pb-2 nav-title" href="#home">
-            Hikers
-          </Navbar.Brand>
-          <Nav.Link
-            className="px-0 text-white nav-text nav-subtitle"
-            href="#home"
-          >
-            Market
-          </Nav.Link>
-        </Nav>
->>>>>>> 187acfbf3eb41eb8b6d056bbc1d1b53e2e14bcaf
 
           <Nav className=" col justify-content-end">
             <Nav.Link
