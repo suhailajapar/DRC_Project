@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from "./../../assets/Hikers Logo Asset/Hikers 
 function Home() {
   return (
     <>
+
       <Navbar
         className="py-1 px-3 row justify-content-between"
         bg="dark"

@@ -1,0 +1,64 @@
+body {
+  background-color: midnightblue;
+  height: 86vh;
+}
+
+.chartNmarket {
+  background-color: yellow;
+  height: 70%;
+}
+
+.infodisplay {
+  background-color: blueviolet;
+  height: 10%;
+}
+
+.chartNpurchase {
+  height: 90%;
+  background-color: coral;
+  display: inline-flex;
+  width: 100%;
+}
+
+.chart {
+  background-color: crimson;
+  width: 80%;
+}
+
+.buy-sell {
+  background-color: darkgoldenrod;
+  width: 20%;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 20px;
+  width: 80%;
+  border-radius: 6px;
+}
+
+button {
+  padding: 20px;
+  width: 92%;
+  border-radius: 6px;
+}
+
+.listNgainers {
+  width: 100%;
+  background-color: darkmagenta;
+
+  display: inline-flex;
+  height: 40%;
+}
+
+.list {
+  background-color: dodgerblue;
+  width: 60%;
+}
+
+.gainers {
+  background-color: fuchsia;
+  width: 40%;
+}
