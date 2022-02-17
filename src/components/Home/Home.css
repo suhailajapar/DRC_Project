@@ -7,29 +7,18 @@ font-family: 'Red Hat Display', sans-serif;
 
 body {
   background: linear-gradient(#d6e5ef, #ffe8c4);
-  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
 }
 
-.nav-text:hover {
-  font-weight: 900;
-  transform: scale(1.1);
-}
-
-.nav-title {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.nav-subtitle {
-  font-size: 1rem;
-}
-
-.logo-size {
-  width: 40px;
-  height: 40px;
-  margin: 0 5px 0 10px;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 30px);
+  height: fit-content;
 }
 
 .landingPage {
@@ -54,6 +43,7 @@ section {
   background-position-x: right;
   background-repeat: no-repeat;
   background-size: contain;
+  height: calc(100vh - 75px);
 }
 
 /* Third page for Home page */
@@ -81,29 +71,12 @@ section {
   background-position-x: right;
   background-repeat: no-repeat;
   background-size: contain;
+  height: calc(100vh - 75px);
 }
 
-.panelCon {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-.panel {
-  width: 100%;
-}
+/* Landing page sections ------------------------ */
 
-.fourth {
-  width: 70%;
-}
-
-.fourth-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 100px;
-  font-weight: bold;
-  font-style: italic;
-}
-
+/* Buttons */
 .lpage-btn {
   background-color: #498e2c;
   width: fit-content;
@@ -128,6 +101,48 @@ section {
   color: white;
 }
 
+/* Section by section ----------------- */
+.fourth,
+.third,
+.second,
+.first {
+  width: 70%;
+}
+
+.align {
+  margin-left: 5%;
+}
+
+/* TOP */
+.fourth-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 7rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* SECOND */
+.second,
+.third {
+  margin-top: 50px;
+}
+
+.second-subtitle {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+}
+
+.dboard-img {
+  width: 50%;
+  padding: 20px 0 20px 50px;
+}
+
+/* THIRD */
+
+/* BOTTOM */
 .lpage-one {
   display: flex;
   flex-direction: column;
@@ -135,37 +150,41 @@ section {
   justify-content: space-between;
 }
 
-.home-footer {
-  position: static;
-  bottom: 0;
-  background-color: #1f1f1f;
-  font-size: 1rem;
-  line-height: 75px;
-}
-
 .first {
   display: flex;
   height: calc(100% - 75px);
-  width: 70%;
   flex-direction: column;
   justify-content: center;
 }
 
-.first-title {
+.first-title,
+.second-title,
+.third-title {
   font-family: "Poppins", sans-serif;
-  font-size: 70px;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 108px;
 }
 
-.first-subtitle {
+.first-subtitle,
+.third-subtitle {
   font-family: "IBM Plex Sans", sans-serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 55px;
-  line-height: 65px;
+  font-size: 3.5rem;
+  line-height: 4.5rem;
 }
 
 .first-btn {
   margin-top: 30px;
+}
+
+/* FOOTER */
+
+.home-footer {
+  background-color: #1f1f1f;
+  font-size: 1rem;
+  position: static;
+  bottom: 0;
+  line-height: 75px;
 }

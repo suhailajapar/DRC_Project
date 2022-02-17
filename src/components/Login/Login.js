@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
 import "./Login.css";
 
 const Login = () => {
   return (
-    <>
+    <div className="login">
       <Menubar />
       <div className="login-container">
         <div className="inner-container">
@@ -17,12 +18,15 @@ const Login = () => {
           <input className="input" type="text" placeholder="Password" />
           <input type="submit" className="login-button" value="Login" />
           <div>
-            Not a Hikers? <span className="links">Register Now</span>
+            Not a Hikers?{" "}
+            <Link to="/signup" className="links">
+              Register Now
+            </Link>
           </div>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
