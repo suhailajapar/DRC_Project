@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./../Home/Navbar";
 import Footer from "./../Footer/Footer";
 import "./Home.css";
+// import Marketpage from "./../Market/Market";
 
 function Home() {
   return (
