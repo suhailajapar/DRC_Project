@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Market.css";
+//import "./calldata.js";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,14 +37,13 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
+const labels = ["January", "Febuary", "March"];
 export const data = {
   labels,
   datasets: [
     {
       label: "Dataset 1",
-      data: [65, 59, 80, 81, 56, 55, 40],
+      data: [65, 59, 80],
       borderColor: "rgb(255, 99, 132)",
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
