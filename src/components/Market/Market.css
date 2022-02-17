@@ -20,11 +20,6 @@ body {
   width: 100%;
 }
 
-.chart {
-  background-color: crimson;
-  width: 80%;
-}
-
 .buy-sell {
   background-color: darkgoldenrod;
   width: 20%;
@@ -53,12 +48,79 @@ button {
   height: 40%;
 }
 
+.gainers {
+  background-color: fuchsia;
+  width: 40%;
+}
+
 .list {
   background-color: dodgerblue;
   width: 60%;
 }
 
-.gainers {
-  background-color: fuchsia;
-  width: 40%;
+/* Search Function */
+
+.search-input {
+  height: 10px;
+  width: 25%;
+  margin-bottom: 2%;
+}
+
+/* Crypto Marketlist display */
+
+.chart {
+  background-color: wheat;
+  width: 80%;
+}
+
+.coin-container {
+  display: flex;
+  justify-content: center;
+}
+
+.coin-row {
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  align-items: center;
+  height: 40px;
+  border-bottom: 1px solid black;
+  width: 900px;
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+  padding-right: 24px;
+  width: 20%;
+  font-size: 15px;
+}
+
+.coin-data {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  font-size: 15px;
+  width: 20%;
+}
+
+.coin-symbol {
+  text-transform: uppercase;
+}
+
+.image {
+  height: 15px;
+  margin-left: 10%;
+}
+
+.cryptoName {
+  font-size: 15px;
+}
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #11d811;
 }
