@@ -3,8 +3,9 @@
 font-family: 'Red Hat Display', sans-serif;
 */
 
-.menulogo {
-  width: 10rem;
+.homebarlogo {
+  width: 75%;
+  padding-left: 20px;
 }
 
 .navbar {
@@ -16,7 +17,7 @@ font-family: 'Red Hat Display', sans-serif;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 30px;
+  padding: 10px;
 }
 
 .nav-list {

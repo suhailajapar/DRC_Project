@@ -7,18 +7,18 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <Link to="/">
-        <img src={MenuLogoDark} className="menulogo" alt="MenuLogo" />
+        <img src={MenuLogoDark} className="homebarlogo" alt="MenuLogo" />
       </Link>
       <div className="nav-list">
-        <Link to="/">
+        <Link to="/market">
           <div>Market</div>
         </Link>
         <div className="login-signup">
-          <Link to="/">
+          <Link to="/login">
             <div className="login-btn">Login</div>
           </Link>
           <div className="divider"></div>
-          <Link to="/about">
+          <Link to="/signup">
             <div className="signup-btn">Sign Up</div>
           </Link>
         </div>
