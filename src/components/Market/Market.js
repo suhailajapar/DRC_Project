@@ -1,7 +1,7 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Button, Nav } from "react-bootstrap";
 import "./Market.css";
-//import "./calldata.js";
+import Marketlist from "./Marketlist";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -63,6 +63,7 @@ function Market() {
             <div className="timeselect"></div>
             <div className="dateTime"></div>
           </div>
+
           <div className="chartNpurchase">
             <div className="chart">
               <div>
@@ -74,7 +75,19 @@ function Market() {
                   height={8.5}
                 ></Line>
               </div>
+
+              <div className="top-section">
+                <div>
+                  <h2>Cryptocurrency</h2>
+                  <Marketlist></Marketlist>
+                </div>
+              </div>
+
+              <div>
+                <h1 className="graph-section">Graph</h1>
+              </div>
             </div>
+
             <div className="buy-sell">
               <input className="amount" placeholder="Amount"></input>
               <input className="price" placeholder="Price"></input>
@@ -85,8 +98,9 @@ function Market() {
             </div>
           </div>
         </div>
+
         <div className="listNgainers">
-          <div className="list">list</div>
+          <div className="list"></div>
           <div className="gainers">gainers</div>
         </div>
       </body>
