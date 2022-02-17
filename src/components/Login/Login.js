@@ -1,6 +1,6 @@
 import React from "react";
 import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer"
+import Footer from "./../Footer/Footer";
 import "./Login.css";
 
 const Login = () => {
