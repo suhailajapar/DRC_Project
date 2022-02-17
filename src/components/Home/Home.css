@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&family=Red+Hat+Display&display=swap");
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Red Hat Display', sans-serif;
+*/
+
+body {
+  background: linear-gradient(#d6e5ef, #ffe8c4);
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 .nav-text:hover {
   font-weight: 900;
@@ -19,20 +32,6 @@
   margin: 0 5px 0 10px;
 }
 
-.divider {
-  height: 1rem;
-  border-left: 1px solid white;
-  padding: 0 7px;
-  margin-left: 5px;
-  align-self: center;
-}
-
-* {
-  margin: 0%;
-  padding: 0%;
-  box-sizing: border-box;
-}
-
 .landingPage {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
@@ -50,44 +49,40 @@ section {
 
 /* Fourth page for Home page */
 #four {
-  background-image: url("./../Media/Home/first.svg");
+  background-image: url("./Media/first.svg");
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position-x: right;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 /* Third page for Home page */
 #three {
-  background-image: url("./../Media/Home/second.svg");
+  background-image: url("./Media/second.svg");
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position-x: right;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 /* Second page for Home page */
 #two {
-  background-image: url("./../Media/Home/third.svg");
+  background-image: url("./Media/third.svg");
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position-x: right;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 /* First page for Home page */
 #one {
-  background-image: url("./../Media/Home/fourth.svg");
+  background-image: url("./Media/fourth.svg");
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position-x: right;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-}
 .panelCon {
   position: fixed;
   bottom: 0;
@@ -96,4 +91,81 @@ body {
 }
 .panel {
   width: 100%;
+}
+
+.fourth {
+  width: 70%;
+}
+
+.fourth-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.lpage-btn {
+  background-color: #498e2c;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 40px;
+  border-radius: 5px;
+}
+
+.lpage-btn:hover {
+  background-color: #3d7725;
+}
+
+.lpage-btn > a {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.lpage-btn > a:hover {
+  color: white;
+}
+
+.lpage-one {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.home-footer {
+  position: static;
+  bottom: 0;
+  background-color: #1f1f1f;
+  font-size: 1rem;
+  line-height: 75px;
+}
+
+.first {
+  display: flex;
+  height: calc(100% - 75px);
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 108px;
+}
+
+.first-subtitle {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 65px;
+}
+
+.first-btn {
+  margin-top: 30px;
 }
