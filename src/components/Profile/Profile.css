@@ -1,0 +1,130 @@
+.nav-bar {
+  align-items: center;
+}
+.main-wrapper {
+  background-image: url(./../../assets/Waves/wave_light.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.photo-box {
+  border: black;
+  display: grid;
+  width: 150px;
+  height: 150px;
+  border: black 1px solid;
+}
+.username {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: black;
+}
+.date-joined {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: black;
+}
+.house {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width:100%; */
+}
+.div1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+  align-items: center;
+}
+.name-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.mobile {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+}
+
+.mobile-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.email {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+}
+.email-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.pw {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+}
+.pw-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: #979797;
+}
+.Save-Button {
+  width: 133px;
+  height: 40px;
+  left: 792px;
+  top: 724px;
+  color: white;
+  background-color: green;
+}

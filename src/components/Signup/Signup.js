@@ -1,5 +1,7 @@
 import React from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
+import Footer from "./../Footer/Footer";
 
 const Signup = () => {
   return (
@@ -29,9 +31,13 @@ const Signup = () => {
         </form>
 
         <div>
-          Already registered? <span className="links">Log In</span>
+          Already registered?{" "}
+          <Link to="/login">
+            <span className="links">Log In</span>
+          </Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

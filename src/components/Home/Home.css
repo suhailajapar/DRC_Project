@@ -5,26 +5,31 @@ font-family: 'Poppins', sans-serif;
 font-family: 'Red Hat Display', sans-serif;
 */
 
-body {
+/* body {
   background: linear-gradient(#d6e5ef, #ffe8c4);
   background-repeat: no-repeat;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-}
-
+} */
+/* 
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: calc(100% - 30px);
   height: fit-content;
-}
+} */
 
 .landingPage {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
+  background: linear-gradient(#d6e5ef, #ffe8c4);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
 }
 
 section {
