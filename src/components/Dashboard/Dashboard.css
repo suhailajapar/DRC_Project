@@ -41,6 +41,7 @@
 }
 
 .IconText {
+  margin-top: 3px;
   padding: 2px 7px;
 }
 
@@ -51,12 +52,16 @@
   padding: 10px 20px 0 0;
 }
 
+.IconPads {
+  padding: 0 10px;
+}
+
 .Top {
   grid-column: 1/7;
   grid-row: 1;
   border: 3px black;
   border-radius: 7px;
-  columns: 2 auto;
+  columns: 2;
   align-self: center;
   justify-content: space-between;
 }
