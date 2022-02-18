@@ -12,7 +12,9 @@ import Logout from "../../assets/DashboardAsset/Logout.svg";
 const Sidebar = () => {
   return (
     <div class="sidebar">
-      <img src={HomeLogo} alt="Home Logo" id="logo" />
+      <a href="/">
+        <img src={HomeLogo} alt="Home Logo" id="logo" />
+      </a>
       <Tooltip
         title={<Typography fontSize={15}>User's Profile</Typography>}
         placement="right"
@@ -36,7 +38,7 @@ const Sidebar = () => {
         placement="right"
         arrow
       >
-        <a href="#contact">
+        <a href="/dashboard">
           <img src={DashLogo} alt="Dashboard Logo" id="Dashboard" />
         </a>
       </Tooltip>

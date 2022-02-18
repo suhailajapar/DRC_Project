@@ -5,6 +5,7 @@ import DashHead from "../../assets/DashboardAsset/Dashboard-header.svg";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Container } from "@mui/material";
 
 function Test() {
   return (
@@ -16,10 +17,11 @@ function Test() {
             <img src={DashHead} alt="Dashboard Logo" />
             <span className="DashHead">Dashboard</span>
           </div>
+
           <div className="IconsHead">
             <span className="IconText">Dark</span>
             <ToggleOnIcon fontSize="large" />
-            <NotificationsIcon fontSize="large" />
+            <NotificationsIcon fontSize="large" className="IconPads" />
             <MailIcon fontSize="large" />
           </div>
         </div>
