@@ -2,14 +2,32 @@
 /* 
 font-family: 'IBM Plex Sans', sans-serif;
 */
-* {
+/* * {
   box-sizing: border-box;
   min-height: 100%;
-}
+} */
 
-body {
+/* body {
   background-color: #1f1f1f;
-  background-image: url("/home/nurul/Desktop/DRC_Project/src/assets/Hikers Logo Asset/Wave_Dark.svg");
+  background-image: url("../../assets/Waves/wave_dark.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-family: "IBM Plex Sans", sans-serif;
+} */
+
+.signbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: -140px;
+}
+.signup-container {
+  height: 100vh;
+  background-color: #1f1f1f;
+  background-image: url("../../assets/Waves/wave_dark.svg");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,18 +35,10 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
-.signup-container {
-  display: block;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .main-title {
   text-align: left;
   font-size: 24px;
   margin-top: 126px;
-
   display: block;
   display: flex;
   flex-direction: column;
@@ -38,7 +48,6 @@ body {
   text-align: left;
   font-size: 16px;
   margin: 19px 0 4px 0;
-
   display: block;
   display: flex;
   flex-direction: column;
@@ -49,14 +58,13 @@ body {
   text-align: left;
   font-size: 20px;
   margin: 20px 0 10px 0;
-
   display: block;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
-.input {
+.signup-input {
   background-color: transparent;
   border-radius: 10px;
   border: solid 1px #979797;
@@ -92,9 +100,82 @@ body {
 }
 
 form {
-  display: block;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: left;
+}
+
+/* Responsive Design */
+/* Laptops & Small Screens ----------- */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+/* Ipads & Tablets ----------- */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .signbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -140px;
+  }
+  .signup-container {
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .main-title {
+    text-align: left;
+    font-size: 24px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  .sub-title {
+    text-align: left;
+    font-size: 16px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .input-title {
+    text-align: left;
+    font-size: 20px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .signup-input {
+    height: 48px;
+    width: 515px;
+    font-size: 16px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+  }
+
+  .signup-button {
+    height: 60px;
+    width: 515px;
+    font-size: 18px;
+  }
+
+  form {
+    height: 90;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+}
+
+/* Mobile Devices ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
 }

@@ -13,6 +13,10 @@ const Navbar = () => {
         <Link to="/market">
           <div>Market</div>
         </Link>
+        <Link to="/dashboard">
+          <div>Dashboard Sample</div>
+        </Link>
+
         <div className="login-signup">
           <Link to="/login">
             <div className="login-btn">Login</div>
