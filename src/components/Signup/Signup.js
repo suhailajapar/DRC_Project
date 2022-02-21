@@ -1,24 +1,28 @@
 import React from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
+import Footer from "./../Footer/Footer";
+import Menubar from "../Menubar/Menubar";
 
 const Signup = () => {
   return (
     <div className="signup-container">
-      <div>
+      <Menubar />
+      <div className="signbox">
         <div className="main-title">Create Hikers Account</div>
         <div className="sub-title">Be part of Hikers and start gaining!</div>
 
         <form>
           <label className="input-title">Username</label>
-          <input className="input" type="text" placeholder="Username" />
+          <input className="signup-input" type="text" placeholder="Username" />
           <label className="input-title">Full Name</label>
-          <input className="input" type="text" placeholder="Full Name" />
+          <input className="signup-input" type="text" placeholder="Full Name" />
           <label className="input-title">Email</label>
-          <input className="input" type="text" placeholder="Email" />
+          <input className="signup-input" type="text" placeholder="Email" />
           <label className="input-title">Password</label>
-          <input className="input" type="text" placeholder="Password" />
+          <input className="signup-input" type="text" placeholder="Password" />
           <label className="input-title">Confirm Password</label>
-          <input className="input" type="text" placeholder="Confirm Password" />
+          <input className="signup-input" type="text" placeholder="Confirm Password" />
           <div>
             <input
               type="submit"
@@ -29,9 +33,13 @@ const Signup = () => {
         </form>
 
         <div>
-          Already registered? <span className="links">Log In</span>
+          Already registered?{" "}
+          <Link to="/login">
+            <span className="links">Log In</span>
+          </Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
