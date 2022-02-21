@@ -10,7 +10,7 @@ font-family: 'Red Hat Display', sans-serif;
 
 .navbar {
   background-color: #1f1f1f;
-  height: 4rem;
+  height: fit-content;
   position: fixed;
   top: 0;
   left: 0;
