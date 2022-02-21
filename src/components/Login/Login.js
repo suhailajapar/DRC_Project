@@ -10,12 +10,12 @@ const Login = () => {
       <Menubar />
       <div className="login-container">
         <div className="inner-container">
-          <div className="main-title">Hikers Account Login</div>
-          <div className="sub-title">Welcome Back, Hikers!</div>
-          <div className="input-title">Email</div>
-          <input className="input" type="text" placeholder="Email" />
-          <div className="input-title">Password</div>
-          <input className="input" type="text" placeholder="Password" />
+          <div className="login-main-title">Hikers Account Login</div>
+          <div className="login-sub-title">Welcome Back, Hikers!</div>
+          <div className="login-input-title">Email</div>
+          <input className="login-input" type="text" placeholder="Email" />
+          <div className="login-input-title">Password</div>
+          <input className="login-input" type="text" placeholder="Password" />
           <input type="submit" className="login-button" value="Login" />
           <div>
             Not a Hikers?{" "}
