@@ -1,26 +1,28 @@
 import React from "react";
-// import Navbar from "../Menubar/Navbar";
 import Footer from "./../Footer/Footer";
 import "./Home.css";
-import CryptoLogo from "./../../assets/LandingPageAsset/Cryptos.svg";
 import Dboard from "./../../assets/LandingPageAsset/iMac.svg";
+import CoinBTC from "./../../assets/Logo/BTC.svg";
+import CoinXRP from "./../../assets/Logo/XRP.svg";
+import CoinETH from "./../../assets/Logo/ETH.svg";
 import { Link } from "react-router-dom";
 // import Marketpage from "./../Market/Market";
 
 function Home() {
   return (
-    <>
+    <div className="page-color">
       {/* <Navbar className="navbar" /> */}
       <div className="landingPage">
         <section className="lpage lpage-four" id="four">
           <div className="fourth">
             <div className="fourth-title">
-              CHOOSE HIKERS
-              <br />
-              GET RICHER
+              Hikers &mdash; The Revolution.
+              <div className="fourth-subtitle">
+                Start monitoring your investment with us.
+              </div>
             </div>
             <div className="lpage-btn">
-              <Link to="/signup">Register Now!</Link>
+              <Link to="/signup">Be a Hikers</Link>
             </div>
           </div>
         </section>
@@ -30,11 +32,20 @@ function Home() {
             <div className="third-subtitle align">
               The currency of the future
             </div>
-            <img
-              src={CryptoLogo}
-              className="align"
-              alt="cryptocurrencies logo"
-            />
+            <div className="coins">
+              <div className="coin">
+                <img className="coin-logo1" src={CoinBTC} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+              <div className="coin coin2">
+                <img className="coin-logo" src={CoinXRP} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+              <div className="coin coin3">
+                <img className="coin-logo1" src={CoinETH} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+            </div>
           </div>
         </section>
         <section className="lpage" id="two">
@@ -63,7 +74,7 @@ function Home() {
           <Footer className="home-footer" />
         </section>
       </div>
-    </>
+    </div>
   );
 }
 
