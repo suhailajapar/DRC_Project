@@ -1,10 +1,14 @@
 import React from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
+import Footer from "./../Footer/Footer";
+import Menubar from "../Menubar/Menubar";
 
 const Signup = () => {
   return (
     <div className="signup-container">
-      <div>
+      <Menubar />
+      <div className="signbox">
         <div className="main-title">Create Hikers Account</div>
         <div className="sub-title">Be part of Hikers and start gaining!</div>
 
@@ -29,9 +33,13 @@ const Signup = () => {
         </form>
 
         <div>
-          Already registered? <span className="links">Log In</span>
+          Already registered?{" "}
+          <Link to="/login">
+            <span className="links">Log In</span>
+          </Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

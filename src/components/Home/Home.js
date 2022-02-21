@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./../Home/Navbar";
+// import Navbar from "../Menubar/Navbar";
 import Footer from "./../Footer/Footer";
 import "./Home.css";
 import CryptoLogo from "./../../assets/LandingPageAsset/Cryptos.svg";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <Navbar className="navbar" />
+      {/* <Navbar className="navbar" /> */}
       <div className="landingPage">
         <section className="lpage lpage-four" id="four">
           <div className="fourth">
