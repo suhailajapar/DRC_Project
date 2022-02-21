@@ -286,6 +286,75 @@ section {
 }
 
 /* Responsive Design */
+/* Desktop & Large Screen ----------- */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  /* TOP */
+  .fourth-title {
+    font-size: 52px;
+  }
+
+  .fourth-subtitle {
+    font-size: 26px;
+    margin: 5px 0 30px 0;
+  }
+
+  /* SECOND */
+  .second-subtitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .first-title,
+  .second-title,
+  .third-title {
+    font-size: 42px;
+    line-height: 100px;
+  }
+
+  .first-subtitle,
+  .third-subtitle {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .coin-logo {
+    height: 120px;
+  }
+
+  .coin-logo1 {
+    width: 120px;
+  }
+
+  .coins {
+    margin-top: 80px;
+    height: 200px;
+  }
+
+  .coin {
+    padding: 0 10px;
+  }
+
+  .shadow {
+    left: 15px;
+    top: 20px;
+    height: 20px;
+    width: 95px;
+  }
+
+  .lpage-btn {
+    padding: 15px 40px;
+  }
+
+  .lpage-btn > a {
+    font-size: 26px;
+  }
+
+  .home-footer {
+    font-size: 16px;
+    line-height: 62px;
+  }
+}
+
 /* Laptops & Small Screens ----------- */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   /* TOP */
@@ -491,7 +560,7 @@ section {
 
   .first-subtitle,
   .third-subtitle {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
   }
 
@@ -525,15 +594,187 @@ section {
   }
 
   .lpage-btn {
-    padding: 20px 30px;
+    padding: 10px 20px;
   }
 
   .lpage-btn > a {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .home-footer {
     font-size: 12px;
     line-height: 50px;
+  }
+}
+
+@media only screen and (height: 1180px) and (width: 820px) {
+  #one,
+  #two,
+  #three,
+  #four {
+    background: none;
+  }
+
+  .page-color {
+    background: linear-gradient(#d6e5ef, #ffe8c4);
+  }
+
+  .landingPage {
+    background: url("./Media/mobile-tab-bg.svg");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 40%;
+  }
+
+  /* TOP */
+  .fourth-title {
+    font-size: 47px;
+  }
+
+  .fourth-subtitle {
+    font-size: 24px;
+    margin: 5px 0 30px 0;
+  }
+
+  /* SECOND */
+  .second-subtitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .first-title,
+  .second-title,
+  .third-title {
+    font-size: 42px;
+    line-height: 100px;
+  }
+
+  .first-subtitle,
+  .third-subtitle {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .coin-logo {
+    height: 120px;
+  }
+
+  .coin-logo1 {
+    width: 120px;
+  }
+
+  .coins {
+    margin-top: 80px;
+    height: 200px;
+  }
+
+  .coin {
+    padding: 0 10px;
+  }
+
+  .shadow {
+    left: 15px;
+    top: 20px;
+    height: 20px;
+    width: 95px;
+  }
+
+  .lpage-btn {
+    padding: 15px 40px;
+  }
+
+  .lpage-btn > a {
+    font-size: 26px;
+  }
+
+  .home-footer {
+    font-size: 16px;
+    line-height: 62px;
+  }
+}
+
+@media only screen and (height: 1368px) and (width: 912px) {
+  #one,
+  #two,
+  #three,
+  #four {
+    background: none;
+  }
+
+  .page-color {
+    background: linear-gradient(#d6e5ef, #ffe8c4);
+  }
+
+  .landingPage {
+    background: url("./Media/mobile-tab-bg.svg");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 40%;
+  }
+
+  /* TOP */
+  .fourth-title {
+    font-size: 47px;
+  }
+
+  .fourth-subtitle {
+    font-size: 24px;
+    margin: 5px 0 30px 0;
+  }
+
+  /* SECOND */
+  .second-subtitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .first-title,
+  .second-title,
+  .third-title {
+    font-size: 42px;
+    line-height: 100px;
+  }
+
+  .first-subtitle,
+  .third-subtitle {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .coin-logo {
+    height: 120px;
+  }
+
+  .coin-logo1 {
+    width: 120px;
+  }
+
+  .coins {
+    margin-top: 80px;
+    height: 200px;
+  }
+
+  .coin {
+    padding: 0 10px;
+  }
+
+  .shadow {
+    left: 15px;
+    top: 20px;
+    height: 20px;
+    width: 95px;
+  }
+
+  .lpage-btn {
+    padding: 15px 40px;
+  }
+
+  .lpage-btn > a {
+    font-size: 26px;
+  }
+
+  .home-footer {
+    font-size: 16px;
+    line-height: 62px;
   }
 }
