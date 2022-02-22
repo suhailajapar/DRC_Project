@@ -11,13 +11,17 @@
   align-items: center;
   height: 100vh;
 }
+
 .photo-box {
   border: black;
   display: grid;
   width: 150px;
   height: 150px;
   border: black 1px solid;
+  border-radius: 50%;
+  margin: 30px;
 }
+
 .username {
   font-family: sans-serif;
   font-style: normal;
@@ -25,7 +29,9 @@
   font-size: 20px;
   line-height: 26px;
   color: black;
+  margin-bottom: 17px;
 }
+
 .date-joined {
   font-family: sans-serif;
   font-style: normal;
@@ -33,19 +39,20 @@
   font-size: 20px;
   line-height: 26px;
   color: black;
+  margin-bottom: 50px;
 }
-.house {
+/* .house {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* width:100%; */
-}
+  width: 100%;
+} */
 .div1 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .name {
@@ -55,16 +62,12 @@
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
-  align-items: center;
 }
 .name-input {
-  width: 410px;
-  height: 48px;
-  left: 515px;
-  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
+  padding-left: 10px;
 }
 
 .mobile {
@@ -77,13 +80,10 @@
 }
 
 .mobile-input {
-  width: 410px;
-  height: 48px;
-  left: 515px;
-  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
+  padding-left: 10px;
 }
 .email {
   font-family: sans-serif;
@@ -94,13 +94,10 @@
   /* identical to box height */
 }
 .email-input {
-  width: 410px;
-  height: 48px;
-  left: 515px;
-  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
+  padding-left: 10px;
 }
 .pw {
   font-family: sans-serif;
@@ -111,20 +108,54 @@
   /* identical to box height */
 }
 .pw-input {
-  width: 410px;
-  height: 48px;
-  left: 515px;
-  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
   background-color: #979797;
+  padding-left: 10px;
 }
 .Save-Button {
   width: 133px;
   height: 40px;
-  left: 792px;
-  top: 724px;
   color: white;
   background-color: green;
+  align-self: flex-end;
+  justify-items: right;
+  margin-top: 26px;
+}
+
+form {
+  display: inline-flex;
+  padding: 25px;
+  flex-direction: column;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  width: 485px;
+  line-height: 26px;
+  margin-bottom: 27px;
+}
+
+input {
+  height: 48px;
+  flex: 0 0 350px;
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 500px) {
+}
+
+@media screen and (min-height: 771px) {
+  /* .main-wrapper {
+    height: max-content;
+  } */
+  form {
+    height: auto;
+    width: auto;
+  }
 }
