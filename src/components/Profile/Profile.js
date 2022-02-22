@@ -78,6 +78,27 @@ function Profile() {
           {errors?.MobileNumber?.type === "required" && (
             <p>This field is required</p>
           )}
+          <h1 className="headers">
+            Password
+            <input
+              type="password"
+              className="InputBox"
+              {...register("Password", {
+                required: true,
+                minlegth: 10,
+                maxlength: 16,
+                pattern: /^[a-zA-Z0-9_]*$/,
+              })}
+            />
+          </h1>
+          {errors?.Password?.type === "pattern" && (
+            <p>Only Alphanumeric and underscores are accepted</p>
+          )}
+          {errors.Password && <p>Min 10 digits</p>}
+          {errors?.Password?.type === "required" && (
+            <p>This field is required</p>
+          )}
+
           <button className="Save-Button">Save </button>
         </form>
       </div>
