@@ -9,12 +9,12 @@ const Signup = () => {
     <div className="signup-container">
       <Menubar />
       <div className="signbox">
-        <div className="signup-main-title">Create Hikers Account</div>
-        <div className="signup-sub-title">
-          Be part of Hikers and start gaining!
-        </div>
-
         <form>
+          <div className="signup-main-title">Create Hikers Account</div>
+          <div className="signup-sub-title">
+            Be part of Hikers and start gaining!
+          </div>
+
           <label className="signup-input-title">Username</label>
           <input className="signup-input" type="text" placeholder="Username" />
           <label className="signup-input-title">Full Name</label>
@@ -26,10 +26,10 @@ const Signup = () => {
           <label className="signup-input-title">Confirm Password</label>
           <input
             className="signup-input"
-            type="text"
+            type="password"
             placeholder="Confirm Password"
           />
-          <div>
+          <div className="s-btn">
             <input
               type="submit"
               className="signup-button"
@@ -38,7 +38,7 @@ const Signup = () => {
           </div>
         </form>
 
-        <div>
+        <div id="reg">
           Already registered?{" "}
           <Link to="/login">
             <span className="links">Log In</span>
