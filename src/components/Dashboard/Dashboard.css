@@ -63,6 +63,7 @@
   columns: 2;
   align-self: center;
   justify-content: space-between;
+  padding-top: 15px;
 }
 
 .BoughtAssets {
