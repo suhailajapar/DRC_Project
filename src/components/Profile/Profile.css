@@ -1,5 +1,5 @@
-.nav-bar {
-  align-items: center;
+.Profile {
+  font-family: "IBM Plex Sans", sans-serif;
 }
 .main-wrapper {
   background-image: url(./../../assets/Waves/wave_light.svg);
@@ -50,27 +50,58 @@
 }
 
 .div1 {
-  display: inline-flex;
-  flex-direction: column;
+  display: grid;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  justify-items: center;
+}
+.headers {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: black;
 }
 
 .name {
-  font-family: sans-serif;
+  /* font-family: ; */
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
 }
-.name-input {
+.InputBox {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
-  padding-left: 10px;
+  background-color: transparent;
+  color: black;
 }
-
+.pw-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: grey;
+  color: black;
+}
+input::placeholder {
+  color: #979797;
+  opacity: 1;
+}
 .mobile {
   font-family: sans-serif;
   font-style: normal;
@@ -78,13 +109,6 @@
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
-}
-
-.mobile-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  padding-left: 10px;
 }
 .email {
   font-family: sans-serif;
@@ -94,12 +118,7 @@
   line-height: 24px;
   /* identical to box height */
 }
-.email-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  padding-left: 10px;
-}
+
 .pw {
   font-family: sans-serif;
   font-style: normal;
@@ -107,13 +126,6 @@
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
-}
-.pw-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  background-color: #979797;
-  padding-left: 10px;
 }
 .Save-Button {
   width: 133px;
