@@ -9,20 +9,26 @@ const Signup = () => {
     <div className="signup-container">
       <Menubar />
       <div className="signbox">
-        <div className="main-title">Create Hikers Account</div>
-        <div className="sub-title">Be part of Hikers and start gaining!</div>
+        <div className="signup-main-title">Create Hikers Account</div>
+        <div className="signup-sub-title">
+          Be part of Hikers and start gaining!
+        </div>
 
         <form>
-          <label className="input-title">Username</label>
-          <input className="input" type="text" placeholder="Username" />
-          <label className="input-title">Full Name</label>
-          <input className="input" type="text" placeholder="Full Name" />
-          <label className="input-title">Email</label>
-          <input className="input" type="text" placeholder="Email" />
-          <label className="input-title">Password</label>
-          <input className="input" type="text" placeholder="Password" />
-          <label className="input-title">Confirm Password</label>
-          <input className="input" type="text" placeholder="Confirm Password" />
+          <label className="signup-input-title">Username</label>
+          <input className="signup-input" type="text" placeholder="Username" />
+          <label className="signup-input-title">Full Name</label>
+          <input className="signup-input" type="text" placeholder="Full Name" />
+          <label className="signup-input-title">Email</label>
+          <input className="signup-input" type="text" placeholder="Email" />
+          <label className="signup-input-title">Password</label>
+          <input className="signup-input" type="text" placeholder="Password" />
+          <label className="signup-input-title">Confirm Password</label>
+          <input
+            className="signup-input"
+            type="text"
+            placeholder="Confirm Password"
+          />
           <div>
             <input
               type="submit"

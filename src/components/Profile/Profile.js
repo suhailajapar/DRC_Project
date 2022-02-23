@@ -1,6 +1,7 @@
 import React from "react";
 // import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Profile.css";
+import EditIcon from "@mui/icons-material/Edit";
 
 function Profile() {
   return (
@@ -15,33 +16,33 @@ function Profile() {
           </Nav>
         </Container>
       </Navbar> */}
-      <div className="photo-box"></div>
-      <div className="container1">
-        {" "}
-        <div className="username">Username: </div>
-        <div className="date-joined">Date-Joined : </div>
-      </div>
-      <div>
-        <div className="div1">
-          <h1 className="name">Name: </h1>
-          <input className="name-input"></input>
+      <form className="div1">
+        <div className="photo-box"></div>
+        <div className="container1">
+          <div className="username">Username: </div>
+          <div className="date-joined">Date-Joined : </div>
         </div>
-        <div className="div1">
-          <h2 className="mobile">Mobile number :</h2>
-          <input className="mobile-input"></input>
+        <div id="profile">
+          <label className="name">
+            Name:
+            <input className="name-input" />
+          </label>
+          <label className="mobile">
+            Mobile number:
+            <input className="mobile-input" />
+          </label>
+          <label className="email">
+            Email:
+            <input className="email-input" type="text" />
+          </label>
+          <label className="pw">
+            Password: <input className="pw-input" />
+          </label>
         </div>
-        <div className="div1">
-          <h3 className="email">Email :</h3>
-          <input className="email-input" type="text" />
-        </div>
-        <div className="div1">
-          <h4 className="pw">Password :</h4>
-          <input className="pw-input"></input>
-        </div>
-      </div>
-      <div>
+
+        <EditIcon />
         <button className="Save-Button">Save</button>
-      </div>
+      </form>
     </div>
   );
 }
