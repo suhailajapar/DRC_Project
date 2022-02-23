@@ -22,22 +22,24 @@ function Profile() {
           <div className="username">Username: </div>
           <div className="date-joined">Date-Joined : </div>
         </div>
+        <div id="profile">
+          <label className="name">
+            Name:
+            <input className="name-input" />
+          </label>
+          <label className="mobile">
+            Mobile number:
+            <input className="mobile-input" />
+          </label>
+          <label className="email">
+            Email:
+            <input className="email-input" type="text" />
+          </label>
+          <label className="pw">
+            Password: <input className="pw-input" />
+          </label>
+        </div>
 
-        <label className="name">
-          Name:
-          <input className="name-input" />
-        </label>
-        <label className="mobile">
-          Mobile number:
-          <input className="mobile-input" />
-        </label>
-        <label className="email">
-          Email:
-          <input className="email-input" type="text" />
-        </label>
-        <label className="pw">
-          Password: <input className="pw-input" />
-        </label>
         <EditIcon />
         <button className="Save-Button">Save</button>
       </form>
