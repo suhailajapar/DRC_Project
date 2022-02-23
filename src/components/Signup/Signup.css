@@ -21,15 +21,10 @@ font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-top: -140px;
 }
+
 .signup-container {
-  /* 
-  display: block;
-  display: flex;
-  flex-direction: column;
-  align-items: center; */
   height: 100vh;
   background-color: #1f1f1f;
   background-image: url("../../assets/Waves/wave_dark.svg");
@@ -40,39 +35,36 @@ font-family: 'IBM Plex Sans', sans-serif;
   font-family: "IBM Plex Sans", sans-serif;
 }
 
-.main-title {
+.signup-main-title {
   text-align: left;
   font-size: 24px;
   margin-top: 126px;
-
   display: block;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
-.sub-title {
+.signup-sub-title {
   text-align: left;
   font-size: 16px;
   margin: 19px 0 4px 0;
-
   display: block;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
-.input-title {
+label.signup-input-title {
   text-align: left;
   font-size: 20px;
   margin: 20px 0 10px 0;
-
   display: block;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
-.input {
+.signup-input {
   background-color: transparent;
   border-radius: 10px;
   border: solid 1px #979797;
@@ -83,7 +75,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   padding: 0 24px;
 }
 
-.input::placeholder {
+.signup-input::placeholder {
   color: #979797;
   font-size: 16px;
 }
@@ -108,9 +100,83 @@ font-family: 'IBM Plex Sans', sans-serif;
 }
 
 form {
-  display: block;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: left;
+  /* align-content: flex-start; */
+}
+
+/* Responsive Design */
+/* Laptops & Small Screens ----------- */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+/* Ipads & Tablets ----------- */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .signbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -140px;
+  }
+  .signup-container {
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .signup-main-title {
+    text-align: left;
+    font-size: 24px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  .signup-sub-title {
+    text-align: left;
+    font-size: 16px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .signup-input-title {
+    text-align: left;
+    font-size: 20px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .signup-input {
+    height: 48px;
+    width: 515px;
+    font-size: 16px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 16px;
+  }
+
+  .signup-button {
+    height: 60px;
+    width: 515px;
+    font-size: 18px;
+  }
+
+  form {
+    height: 90;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+}
+
+/* Mobile Devices ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
 }
