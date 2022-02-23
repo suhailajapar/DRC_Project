@@ -40,7 +40,7 @@ function Profile() {
           </label>
         </div>
 
-        <EditIcon />
+        {/* <EditIcon /> */}
         <button className="Save-Button">Save</button>
       </form>
     </div>
