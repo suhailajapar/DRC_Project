@@ -1,15 +1,8 @@
 import "./App.css";
-import Market from "./components/Market/Market";
-
-import Home from "./components/Home/Home";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Navigation from "./components/Home/Navigation";
 
 function App() {
-  return (
-    <div className="App">
-      <Market />
-    </div>
-  );
+  return <Navigation></Navigation>;
 }
 
 export default App;

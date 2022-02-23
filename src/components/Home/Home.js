@@ -1,74 +1,80 @@
 import React from "react";
-import { Navbar, Button, Nav } from "react-bootstrap";
+import Footer from "./../Footer/Footer";
 import "./Home.css";
-import Marketpage from "./../Market/Market";
-import { ReactComponent as Logo } from "./../../assets/Hikers Logo Asset/Hikers big (Dark mode)-shrink.svg";
+import Dboard from "./../../assets/LandingPageAsset/iMac.svg";
+import CoinBTC from "./../../assets/Logo/BTC.svg";
+import CoinXRP from "./../../assets/Logo/XRP.svg";
+import CoinETH from "./../../assets/Logo/ETH.svg";
+import { Link } from "react-router-dom";
+// import Marketpage from "./../Market/Market";
 
 function Home() {
   return (
-    <>
+    <div className="page-color">
+      {/* <Navbar className="navbar" /> */}
       <div className="landingPage">
-        <Navbar
-          className="py-1 px-3 row justify-content-between"
-          id="nav-barFlow"
-          bg="dark"
-          variant="dark"
-        >
-          <Nav className="col align-items-center">
-            <a href="#home">
-              <Logo className="logo-size" />
-            </a>
-            <Navbar.Brand className="pb-2 nav-title" href="#home">
-              Hikers
-            </Navbar.Brand>
-            <Nav.Link
-              className="px-0 text-white nav-text nav-subtitle"
-              href="/Marketpage"
-            >
-              Market
-            </Nav.Link>
-          </Nav>
-
-          <Nav className=" col justify-content-end">
-            <Nav.Link
-              className="text-white nav-text nav-subtitle"
-              href="#features"
-            >
-              Login
-            </Nav.Link>
-            <div className="divider"></div>
-            <Button
-              variant="success"
-              className="h-50 mt-1 p-1 nav-text nav-subtitle"
-              href="#pricing"
-            >
-              Sign Up
-            </Button>
-          </Nav>
-        </Navbar>
-
-        <section className="lpage" id="four">
-          <div>
-            <h1>Hello</h1>
+        <section className="lpage lpage-four" id="four">
+          <div className="fourth">
+            <div className="fourth-title">
+              Hikers &mdash; The Revolution.
+              <div className="fourth-subtitle">
+                Start monitoring your investment with us.
+              </div>
+            </div>
+            <div className="lpage-btn">
+              <Link to="/signup">Be a Hikers</Link>
+            </div>
           </div>
         </section>
         <section className="lpage" id="three">
-          <div>
-            <h1>Hello</h1>
+          <div className="third">
+            <div className="third-title">Cryptocurrency,</div>
+            <div className="third-subtitle align">
+              The currency of the future
+            </div>
+            <div className="coins">
+              <div className="coin">
+                <img className="coin-logo1" src={CoinBTC} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+              <div className="coin coin2">
+                <img className="coin-logo" src={CoinXRP} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+              <div className="coin coin3">
+                <img className="coin-logo1" src={CoinETH} alt="coins" />
+                <div className="shadow"></div>
+              </div>
+            </div>
           </div>
         </section>
         <section className="lpage" id="two">
-          <div>
-            <h1>Hello</h1>
+          <div className="second">
+            <div className="second-title">Trade with Clarity</div>
+            <img src={Dboard} className="dboard-img" alt="dashboard demo" />
+            <div className="second-subtitle">
+              A systematic Dashboard to show your progress and
+              <br />
+              holdings which assists your portfolio handling.
+            </div>
           </div>
         </section>
-        <section className="lpage" id="one">
-          <div>
-            <h1>Hello</h1>
+        <section className="lpage lpage-one" id="one">
+          <div className="first">
+            <div className="first-title">Trade with Us</div>
+            <div className="first-subtitle align">
+              Every successful trader
+              <br />
+              has to start somewhere
+            </div>
+            <div className="lpage-btn first-btn align">
+              <Link to="/signup">Start Trading Now!</Link>
+            </div>
           </div>
+          <Footer className="home-footer" />
         </section>
       </div>
-    </>
+    </div>
   );
 }
 
