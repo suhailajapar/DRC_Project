@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap");
 
+.Amountbox {
+  display: "block";
+  direction: "column";
+  align-items: "center";
+  justify-content: "center";
+}
+
 .Walletbox {
   background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
   background-position: bottom;
