@@ -26,7 +26,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   background-size: cover;
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
-}
+} */
 
 .signbox {
   display: flex;
@@ -64,7 +64,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: left;
 }
 
-.signup-input {
+/* .signup-input {
   background-color: transparent;
   border-radius: 10px;
   border: solid 1px #979797;
@@ -73,14 +73,14 @@ font-family: 'IBM Plex Sans', sans-serif;
   width: 515px;
   font-size: 16px;
   padding: 0 24px;
-}
+} */
 
 .signup-input::placeholder {
   color: #979797;
   font-size: 16px;
 }
 
-.signup-button {
+/* .signup-button {
   background-color: #498e2c;
   height: 60px;
   width: 515px;
@@ -246,4 +246,39 @@ font-family: 'IBM Plex Sans', sans-serif;
   #reg {
     font-size: 13px;
   }
+}
+
+/* Light mode */
+
+.signup-container {
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url("../../assets/Waves/wave_light.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.signup-input {
+  background-color: transparent;
+  border-radius: 10px;
+  border: solid 1px #979797;
+  color: black;
+  height: 48px;
+  width: 515px;
+  font-size: 16px;
+  padding: 0 24px;
+}
+
+.signup-button {
+  background-color: #498e2c;
+  height: 60px;
+  width: 515px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 20px 0 10px 0;
 }

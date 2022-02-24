@@ -16,6 +16,15 @@ import { Chart, registerables } from "chart.js";
 import Slider from "./Slider";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Stack from "@mui/material/Stack";
+
 const useStyles = makeStyles({
   iconSelect: {
     color: "white",
@@ -24,7 +33,185 @@ const useStyles = makeStyles({
 
 Chart.register(...registerables);
 
+//Pop-up modal sty;e
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  height: 800,
+  width: 1200,
+  bgcolor: "black",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  display: "block",
+};
+
+//For deposit and withdrawal
+//Credit and Debit Card
+function CreditnDebitCard() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Credit and Debit card</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Card No.:
+            <input type="number" name="Card No." />
+            Expiration Date:
+            <input type="number" name="Expiration Date" />
+            Card Security Code:
+            <input type="number" name="Card Security Code" />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
+//Bank
+function Bank() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Bank</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Bank:
+            <input type="text" name="Bank" />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
+//Paypal
+function Paypal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Paypal</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Paypal Account No.:
+            <input type="number" name="Card No." />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
 function Test() {
+  //Open close function for the wallet button
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [doughnutType, setDoughnutType] = React.useState("");
 
   const classes = useStyles();
@@ -83,13 +270,77 @@ function Test() {
             <h1 id="wal-bal">USD 999999.99</h1>
           </div>
 
-          <div className="w-col w-icon">
+          <Button onClick={handleOpen} className="w-col w-icon">
             <Avatar
               alt="reload wallet"
               src={WalletIcon}
               sx={{ width: 50, height: 50 }}
             />
-          </div>
+          </Button>
+          {/* Modal starts here */}
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style} className="Walletbox">
+              <Box
+                sx={{ overflow: "auto", height: 350, margin: 6 }}
+                className="Deposit"
+              >
+                <p>Deposit</p>
+                <List>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Deposit through Credit & Debit card" />
+                      <CreditnDebitCard />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Deposit through Local Bank" />
+                      <Bank />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Deposit through Paypal" />
+                      <Paypal />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Box>
+
+              <Box
+                sx={{ overflow: "auto", height: 350, margin: 6 }}
+                className="Withdrawal"
+              >
+                <p>Withdrawal</p>
+                <List>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Withdraw through Credit & Debit card" />
+                      <CreditnDebitCard />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Withdraw through Local Bank" />
+                      <Bank />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Withdraw through Paypal" />
+                      <Paypal />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Box>
+            </Box>
+          </Modal>
+          {/* Modal ends here */}
         </div>
         <div className="Chart">
           <div className="c-top">

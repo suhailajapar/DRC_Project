@@ -23,7 +23,7 @@
   border: black 1px solid;
   border-radius: 50%;
   margin: 30px;
-}
+} 
 
 .username {
   font-family: sans-serif;
@@ -33,8 +33,8 @@
   line-height: 26px;
   color: black;
   margin-bottom: 17px;
-}
-
+}*/
+/* 
 .date-joined {
   font-family: sans-serif;
   font-style: normal;
@@ -43,7 +43,7 @@
   line-height: 26px;
   color: black;
   margin-bottom: 50px;
-}
+} */
 .house {
   display: flex;
   flex-direction: row;
@@ -142,7 +142,7 @@ input::placeholder {
   align-self: flex-end;
   justify-items: right;
   margin-top: 26px;
-}
+} */
 
 label.name {
   display: flex;
@@ -359,4 +359,86 @@ input.pw-input {
     justify-items: right;
     margin-top: 26px;
   }
+}
+
+/* Dark mode */
+
+.main-wrapper {
+  background-image: url("./../../assets/Waves/wave_dark.svg");
+  background-color: black;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.photo-box {
+  display: grid;
+  width: 150px;
+  height: 150px;
+  border: white 1px solid;
+  border-radius: 50%;
+  margin: 30px;
+}
+
+.username {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: white;
+  margin-bottom: 17px;
+}
+
+.date-joined {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.name-input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+
+.mobile-input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+
+.email-input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+
+.pw-input {
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: #979797;
+  padding-left: 10px;
+}
+.Save-Button {
+  width: 133px;
+  height: 40px;
+  color: white;
+  background-color: green;
+  align-self: flex-end;
+  justify-items: right;
+  margin-top: 26px;
 }
