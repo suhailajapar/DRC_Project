@@ -26,6 +26,15 @@ function Profile() {
       </div>
       <div className="div1">
         <form onSubmit={handleSubmit(onSubmit)}>
+          {errors?.fullname?.type === "required" && (
+            <p id="msg">This field is required</p>
+          )}
+          {errors?.fullname?.type === "maxLength" && (
+            <p id="msg">Full name cannot exceed 50 characters</p>
+          )}
+          {errors?.fullname?.type === "pattern" && (
+            <p id="msg">Alphabetical characters only</p>
+          )}
           <h1 className="headers">
             Full Name :
             <input
@@ -37,14 +46,12 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.fullname?.type === "required" && (
-            <p>This field is required</p>
+
+          {errors?.Email?.type === "pattern" && (
+            <p id="msg">Enter valid email only</p>
           )}
-          {errors?.fullname?.type === "maxLength" && (
-            <p>Full name cannot exceed 50 characters</p>
-          )}
-          {errors?.fullname?.type === "pattern" && (
-            <p>Alphabetical characters only</p>
+          {errors?.Email?.type === "required" && (
+            <p id="msg">This field is required</p>
           )}
           <h1 className="headers">
             Email :
@@ -55,11 +62,15 @@ function Profile() {
                 required: true,
               })}
             />
-            {errors?.Email?.type === "pattern" && <p>Enter valid email only</p>}
-            {errors?.Email?.type === "required" && (
-              <p>This field is required</p>
-            )}
           </h1>
+
+          {errors?.MobileNumber?.type === "pattern" && (
+            <p id="msg">Valid Mobile Number only</p>
+          )}
+          {errors.MobileNumber && <p id="msg">Min 10 digits</p>}
+          {errors?.MobileNumber?.type === "required" && (
+            <p id="msg">This field is required</p>
+          )}
           <h1 className="headers">
             Mobile Number :
             <input
@@ -72,12 +83,13 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.MobileNumber?.type === "pattern" && (
-            <p>Valid Mobile Number only</p>
+
+          {errors?.Password?.type === "pattern" && (
+            <p id="msg">Only Alphanumeric and underscores are accepted</p>
           )}
-          {errors.MobileNumber && <p>Min 10 digits</p>}
-          {errors?.MobileNumber?.type === "required" && (
-            <p>This field is required</p>
+          {errors.Password && <p id="msg">Min 10 digits</p>}
+          {errors?.Password?.type === "required" && (
+            <p id="msg">This field is required</p>
           )}
           <h1 className="headers">
             Password
@@ -92,13 +104,6 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.Password?.type === "pattern" && (
-            <p>Only Alphanumeric and underscores are accepted</p>
-          )}
-          {errors.Password && <p>Min 10 digits</p>}
-          {errors?.Password?.type === "required" && (
-            <p>This field is required</p>
-          )}
 
           <button className="Save-Button">Save </button>
         </form>
