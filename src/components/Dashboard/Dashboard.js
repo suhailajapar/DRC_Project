@@ -23,6 +23,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import Stack from "@mui/material/Stack";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -46,6 +47,164 @@ const style = {
   p: 4,
   display: "block",
 };
+
+//For deposit and withdrawal
+//Credit and Debit Card
+function CreditnDebitCard() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Credit and Debit card</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Card No.:
+            <input type="number" name="Card No." />
+            Expiration Date:
+            <input type="number" name="Expiration Date" />
+            Card Security Code:
+            <input type="number" name="Card Security Code" />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
+//Bank
+function Bank() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Bank</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Bank:
+            <input type="text" name="Bank" />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
+//Paypal
+function Paypal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Button onClick={handleOpen}>Paypal</Button>
+      <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          className="Amountbox"
+          sx={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: 300,
+            width: 800,
+            bgcolor: "black",
+            color: "white",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Stack spacing={2}>
+            Paypal Account No.:
+            <input type="number" name="Card No." />
+            Amount: $
+            <input type="number" name="Amount" />
+            <input type="submit" value="Submit" />
+          </Stack>
+
+          <Button onClick={handleClose}>Close Child Modal</Button>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
 
 function Test() {
   //Open close function for the wallet button
@@ -130,44 +289,51 @@ function Test() {
                 sx={{ overflow: "auto", height: 350, margin: 6 }}
                 className="Deposit"
               >
-                Deposit
+                <p>Deposit</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton onClick={handleOpen}>
-                      <ListItemText primary="Credit & Debit card" />
+                    <ListItemButton>
+                      <ListItemText primary="Deposit through Credit & Debit card" />
+                      <CreditnDebitCard />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Local Bank" />
+                      <ListItemText primary="Deposit through Local Bank" />
+                      <Bank />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Paypal" />
+                      <ListItemText primary="Deposit through Paypal" />
+                      <Paypal />
                     </ListItemButton>
                   </ListItem>
                 </List>
               </Box>
+
               <Box
                 sx={{ overflow: "auto", height: 350, margin: 6 }}
                 className="Withdrawal"
               >
-                Withdrawal
+                <p>Withdrawal</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton onClick={handleOpen}>
-                      <ListItemText primary="Credit & Debit card" />
+                    <ListItemButton>
+                      <ListItemText primary="Withdraw through Credit & Debit card" />
+                      <CreditnDebitCard />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Local Bank" />
+                      <ListItemText primary="Withdraw through Local Bank" />
+                      <Bank />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Paypal" />
+                      <ListItemText primary="Withdraw through Paypal" />
+                      <Paypal />
                     </ListItemButton>
                   </ListItem>
                 </List>
