@@ -11,11 +11,11 @@
 .Layout {
   color: white;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(11, 1fr);
   grid-auto-rows: minmax(100px, auto);
-  grid-gap: 10px;
-  margin-left: 60px;
+  grid-gap: 25px;
+  margin: 0 40px 0 100px;
   height: 100vh;
 }
 
@@ -41,8 +41,7 @@
 }
 
 .IconText {
-  margin-top: 3px;
-  padding: 2px 7px;
+  padding: 5px;
 }
 
 .IconsHead {
@@ -57,41 +56,171 @@
 }
 
 .Top {
-  grid-column: 1/7;
+  grid-column: 1/8;
   grid-row: 1;
   border: 3px black;
   border-radius: 7px;
   columns: 2;
   align-self: center;
   justify-content: space-between;
+  padding-top: 15px;
 }
 
 .BoughtAssets {
   grid-row: 2/4;
-  grid-column: 1/5;
+  grid-column: 1/6;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+  padding: 0px 30px 0px 30px;
+}
+
+.b-title {
+  /* background-color: green; */
+  font-size: 14px;
+  height: 20px;
+  margin: 0;
+  padding: 10px 0 5px 0;
+}
+
+.wrap {
+  object-fit: cover;
+  width: 100%;
+  /* height: 70%; */
+  /* background-color: red; */
 }
 
 .Profile {
-  grid-column: 5/7;
+  grid-column: 6/8;
   grid-row: 2/4;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+}
+
+#prof-bal {
+  font-size: 20px;
+}
+
+#prof-head {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.p-col {
+  float: left;
+}
+
+.profile-details-box {
+  height: 100%;
+  width: 75%;
+}
+
+.profile-details {
+  padding: 5px 0 0 30px;
+  line-height: 0.8;
+  color: white;
+  font-size: 12px;
+}
+
+.profile-avatar {
+  padding: 25px 0 0 25px;
+  width: 25%;
+  box-sizing: border-box;
 }
 
 .LiveCharts {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 4/9;
+  background-color: greenyellow;
 }
 
 .Wallet {
-  grid-column: 5/7;
+  grid-column: 6/8;
   grid-row: 4/5;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+  padding: 0px 0 0px 30px;
 }
 
-.Pie {
-  grid-column: 5/7;
+.w-col {
+  float: left;
+}
+
+.w-value {
+  width: 75%;
+  line-height: 0.8;
+  font-size: 14px;
+}
+
+#wal-bal {
+  margin-block-start: 0em;
+  margin-block-end: 0.67em;
+}
+
+.w-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+}
+
+.Chart {
+  grid-column: 6/8;
   grid-row: 5/9;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+  display: grid;
+  grid-template-rows: 60px auto 60px;
+  padding-left: 30px;
 }
 
+.c-col {
+  float: left;
+}
+
+.c-top-title {
+  padding-top: 5px;
+  line-height: 0.7;
+  width: 60%;
+}
+
+#c-title {
+  font-size: 14px;
+}
+#c-subtitle {
+  font-size: 10px;
+}
+.c-top-dropdown {
+  padding: 10px 0 0 15px;
+  width: 40%;
+  box-sizing: border-box;
+}
+.c-top {
+}
+
+.c-mid {
+  display: flex;
+  justify-content: center;
+}
+
+#donut {
+  width: 40%;
+  height: 100%;
+}
+
+.c-bot {
+  font-size: 12px;
+}
+
+#c-footer {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
 .Table {
-  grid-column: 1/7;
+  grid-column: 1/8;
   grid-row: 9/12;
 }

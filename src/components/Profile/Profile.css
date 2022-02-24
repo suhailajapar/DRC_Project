@@ -1,8 +1,8 @@
-.nav-bar {
-  align-items: center;
+.Profile {
+  font-family: "IBM Plex Sans", sans-serif;
 }
-/* .main-wrapper {
-  background-image: url("./../../assets/Waves/wave_light.svg");
+.main-wrapper {
+  background-image: url("../../assets/Waves/wave_light.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
@@ -10,6 +10,9 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-position: bottom;
+  /* color: white; */
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .photo-box {
@@ -50,27 +53,58 @@
 }
 
 .div1 {
-  display: inline-flex;
-  flex-direction: column;
+  display: grid;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  justify-items: center;
+}
+.headers {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: black;
 }
 
 .name {
-  font-family: sans-serif;
+  /* font-family: ; */
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   /* identical to box height */
 }
-/* .name-input {
+.InputBox {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
-  padding-left: 10px;
-} */
-
+  background-color: transparent;
+  color: black;
+}
+.pw-input {
+  width: 410px;
+  height: 48px;
+  left: 515px;
+  top: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: grey;
+  color: black;
+}
+input::placeholder {
+  color: #979797;
+  opacity: 1;
+}
 .mobile {
   font-family: sans-serif;
   font-style: normal;
@@ -79,13 +113,6 @@
   line-height: 24px;
   /* identical to box height */
 }
-
-/* .mobile-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  padding-left: 10px;
-} */
 .email {
   font-family: sans-serif;
   font-style: normal;
@@ -94,12 +121,7 @@
   line-height: 24px;
   /* identical to box height */
 }
-.email-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  padding-left: 10px;
-}
+
 .pw {
   font-family: sans-serif;
   font-style: normal;
@@ -108,18 +130,15 @@
   line-height: 24px;
   /* identical to box height */
 }
-/* .pw-input {
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 3px;
-  background-color: #979797;
-  padding-left: 10px;
-}
 .Save-Button {
   width: 133px;
   height: 40px;
   color: white;
   background-color: green;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  margin: 20px 0 10px 0;
   align-self: flex-end;
   justify-items: right;
   margin-top: 26px;
@@ -193,16 +212,152 @@ input.pw-input {
   margin-left: 10px;
 }
 
-@media screen and (min-width: 500px) {
+/* Responsive Design */
+/* Laptops & Small Screens ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .signup-input {
+    width: 100%;
+  }
+
+  .signup-main-title {
+    margin-top: 10px;
+    font-size: 30px;
+  }
+
+  .signup-sub-title {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+
+  .signup-input {
+    font-size: 22px;
+    height: 45px;
+    width: 500px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 20px;
+  }
+
+  #reg {
+    font-size: 18px;
+  }
 }
 
-@media screen and (min-height: 771px) {
-  /* .main-wrapper {
-    height: max-content;
-  } */
-  form {
+/* Ipads & Tablets ----------- */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .signup-input {
+    width: 100%;
+  }
+
+  .menubar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .signup-main-title {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .signup-sub-title {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .signup-input-title {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .signup-input {
+    font-size: 14px;
+    height: 35px;
+    width: 215px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 14px;
+  }
+
+  .signup-button {
+    width: 80%;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  #reg {
+    font-size: 13px;
+  }
+}
+
+/* Mobile Devices ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .main-wrapper {
     height: auto;
-    width: auto;
+  }
+
+  .div1 {
+    padding-top: 50px;
+  }
+
+  label.name {
+    width: 240px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  label.mobile {
+    width: 240px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  label.email {
+    width: 240px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  label.pw {
+    width: 240px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  input.name-input {
+    height: 35px;
+    flex: 0 0 30px;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+  input.mobile-input {
+    height: 35px;
+    flex: 0 0 30px;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+  input.email-input {
+    height: 35px;
+    flex: 0 0 30px;
+    font-size: 15px;
+  }
+
+  input.pw-input {
+    height: 35px;
+    flex: 0 0 30px;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .Save-Button {
+    width: 30%;
+    height: 35px;
+    font-size: 15px;
+    align-self: flex-end;
+    justify-items: right;
+    margin-top: 26px;
   }
 }
 
