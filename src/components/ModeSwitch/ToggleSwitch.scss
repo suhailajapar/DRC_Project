@@ -1,0 +1,99 @@
+.toggle-switch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  vertical-align: middle;
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  text-align: left;
+  margin: 0.5px 0px 1px 60px;
+
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    transform: scale(0.9);
+  }
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    transform: scale(0.825);
+  }
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    transform: scale(0.75);
+    margin-left: 25px;
+  }
+
+  &-checkbox {
+    display: none;
+  }
+  &-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    margin: 0;
+  }
+  &-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &:before,
+    &:after {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 34px;
+      padding: 0;
+      line-height: 34px;
+      font-size: 11px;
+      color: white;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+    &:before {
+      content: "🌙";
+      font-size: 18px;
+      padding-left: 12px;
+      background-color: #747474;
+      // box-shadow: inset 1px 1px 10px 1px #c4c4c4;
+      color: rgb(0, 0, 0);
+    }
+  }
+  &-disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    &:before {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+  &-inner:after {
+    content: "☀️";
+    font-size: 18px;
+    padding-right: 12px;
+    background-color: #747474;
+    color: #fff;
+    text-align: right;
+  }
+  &-switch {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 5px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &-checkbox:checked + &-label {
+    .toggle-switch-inner {
+      margin-left: 0;
+    }
+    .toggle-switch-switch {
+      right: 0px;
+    }
+  }
+}
