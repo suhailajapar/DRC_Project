@@ -5,7 +5,9 @@ import Footer from "./../Footer/Footer";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 
-function Login() {
+const Login = () => {
+  const [theme, setTheme] = React.useState("dark");
+
   const {
     register,
     handleSubmit,
@@ -18,7 +20,7 @@ function Login() {
 
   return (
     <div className="login">
-      <Menubar />
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="login-container">
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
@@ -81,6 +83,6 @@ function Login() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Login;
