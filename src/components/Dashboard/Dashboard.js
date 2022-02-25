@@ -1,5 +1,4 @@
 import React from "react";
-import SideBar from "../Menubar/SideBar";
 import "./Dashboard.css";
 import DashHead from "../../assets/DashboardAsset/Dashboard-header.svg";
 import ToggleOnIcon from "@mui/icons-material/ToggleOn";
@@ -13,7 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-import Slider from "./Slider";
+import Slider from "./DSlider";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Box from "@mui/material/Box";
@@ -222,7 +221,7 @@ function Paypal() {
   );
 }
 
-function Test() {
+function Dashboard() {
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -235,19 +234,19 @@ function Test() {
   const handleChange = (event) => {
     setDoughnutType(event.target.value);
   };
+
   return (
     <div className="DashBG">
-      <SideBar />
       <div className="Layout">
         <div className="Top">
           <div className="DashLogo">
             <img src={DashHead} alt="Dashboard Logo" />
             <span className="DashHead">Dashboard</span>
           </div>
-          <div className="IconsHead">
-            <span className="IconText">Dark</span>
+          <div className="dash-icon-head">
+            <span className="dash-icon-text">Dark</span>
             <ToggleOnIcon fontSize="large" />
-            <NotificationsIcon fontSize="large" className="IconPads" />
+            <NotificationsIcon fontSize="large" className="dash-icon-pads" />
             <MailIcon fontSize="large" />
           </div>
         </div>
@@ -443,4 +442,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Dashboard;

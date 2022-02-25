@@ -5,16 +5,17 @@ font-family: 'IBM Plex Sans', sans-serif;
 /* Light mode at below */
 
 /* Dark mode */
-/* 
+
 .login {
   background-color: #1f1f1f;
   background-image: url("./../../assets/Waves/wave_dark.svg");
   background-position: bottom;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
-} */
+}
 
 .login-container {
   display: flex;
@@ -40,6 +41,9 @@ font-family: 'IBM Plex Sans', sans-serif;
 .login-input-title {
   font-size: 20px;
   margin: 20px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 /* 
 .login-input {
@@ -81,6 +85,12 @@ font-family: 'IBM Plex Sans', sans-serif;
 
 .links:hover {
   font-weight: bold;
+}
+.error-message {
+  font-size: 11px;
+  display: flex;
+  align-items: flex-end;
+  color: red;
 }
 
 /* Responsive Design */
