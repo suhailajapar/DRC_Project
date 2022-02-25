@@ -5,9 +5,11 @@ import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 
 const Signup = () => {
+  const [theme, setTheme] = React.useState("dark");
+
   return (
     <div className="signup-container">
-      <Menubar />
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="main-title">Create Hikers Account</div>
         <div className="sub-title">Be part of Hikers and start gaining!</div>
@@ -22,7 +24,11 @@ const Signup = () => {
           <label className="input-title">Password</label>
           <input className="signup-input" type="text" placeholder="Password" />
           <label className="input-title">Confirm Password</label>
-          <input className="signup-input" type="text" placeholder="Confirm Password" />
+          <input
+            className="signup-input"
+            type="text"
+            placeholder="Confirm Password"
+          />
           <div>
             <input
               type="submit"
