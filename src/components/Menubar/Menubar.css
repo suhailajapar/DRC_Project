@@ -4,5 +4,9 @@
 }
 
 .menubar {
-  padding: 2rem 3rem;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
