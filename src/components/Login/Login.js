@@ -5,9 +5,11 @@ import Footer from "./../Footer/Footer";
 import "./Login.css";
 
 const Login = () => {
+  const [theme, setTheme] = React.useState("dark");
+
   return (
     <div className="login">
-      <Menubar />
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="login-container">
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
