@@ -24,6 +24,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -40,7 +41,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   height: 800,
-  width: 1200,
+  width: 400,
   bgcolor: "black",
   border: "2px solid #000",
   boxShadow: 24,
@@ -97,7 +98,7 @@ function CreditnDebitCard() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -112,6 +113,11 @@ function Bank() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const [bank, setBank] = React.useState("");
+
+  const handleChange = (event) => {
+    setBank(event.target.value);
   };
 
   return (
@@ -142,13 +148,23 @@ function Bank() {
         >
           <Stack spacing={2}>
             Bank:
-            <input type="text" name="Bank" />
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Bank"
+              onChange={handleChange}
+              sx={{ bgcolor: "white" }}
+            >
+              <MenuItem value={10}>Maybank</MenuItem>
+              <MenuItem value={20}>CIMB</MenuItem>
+              <MenuItem value={30}>Hong Leong</MenuItem>
+            </Select>
             Amount: $
             <input type="number" name="Amount" />
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -199,7 +215,7 @@ function Paypal() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -293,19 +309,16 @@ function Test() {
                 <List>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Deposit through Credit & Debit card" />
                       <CreditnDebitCard />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Deposit through Local Bank" />
                       <Bank />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Deposit through Paypal" />
                       <Paypal />
                     </ListItemButton>
                   </ListItem>
@@ -320,19 +333,16 @@ function Test() {
                 <List>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Withdraw through Credit & Debit card" />
                       <CreditnDebitCard />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Withdraw through Local Bank" />
                       <Bank />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton>
-                      <ListItemText primary="Withdraw through Paypal" />
                       <Paypal />
                     </ListItemButton>
                   </ListItem>
