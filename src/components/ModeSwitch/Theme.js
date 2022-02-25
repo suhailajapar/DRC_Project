@@ -16,7 +16,7 @@ export const lightTheme = {
 export const darkTheme = {
   body: "#1F1F1F",
   fontColor: "#fff",
-  backgroundImg: DarkWave,
+  backgroundImg: `url(${DarkWave})`,
   // banner: "#000",
   // title: "#c7d2fe",
   // searchBar: "#575757",
