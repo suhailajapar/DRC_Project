@@ -17,13 +17,6 @@ font-family: 'IBM Plex Sans', sans-serif;
   font-family: "IBM Plex Sans", sans-serif;
 } */
 
-.signbox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -140px;
-}
-
 .signup-container {
   height: 100vh;
   background-color: #1f1f1f;
@@ -33,16 +26,23 @@ font-family: 'IBM Plex Sans', sans-serif;
   background-size: cover;
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
+} */
+
+.signbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 150px);
 }
 
 .signup-main-title {
   text-align: left;
   font-size: 24px;
   margin-top: 126px;
-  display: block;
-  display: flex;
+  /* display: block; */
+  display: flexbox;
   flex-direction: column;
-  align-items: left;
+  align-content: flex-start;
 }
 .signup-sub-title {
   text-align: left;
@@ -54,7 +54,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: left;
 }
 
-label.signup-input-title {
+.signup-input-title {
   text-align: left;
   font-size: 20px;
   margin: 20px 0 10px 0;
@@ -64,7 +64,7 @@ label.signup-input-title {
   align-items: left;
 }
 
-.signup-input {
+/* .signup-input {
   background-color: transparent;
   border-radius: 10px;
   border: solid 1px #979797;
@@ -73,11 +73,203 @@ label.signup-input-title {
   width: 515px;
   font-size: 16px;
   padding: 0 24px;
-}
+} */
 
 .signup-input::placeholder {
   color: #979797;
   font-size: 16px;
+}
+
+/* .signup-button {
+  background-color: #498e2c;
+  height: 60px;
+  width: 515px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 20px 0 10px 0;
+  align-self: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.s-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-button:hover {
+  background-color: #237500;
+}
+
+.links {
+  color: #7ed957;
+}
+
+/* form {
+  padding: 5px;
+  display: flexbox;
+  flex-direction: column;
+  align-items: left;
+  height: 48px;
+  width: 515px;
+} */
+
+/* Responsive Design */
+/* Laptops & Small Screens ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .signup-input {
+    width: 100%;
+  }
+
+  .signup-main-title {
+    margin-top: 10px;
+    font-size: 30px;
+  }
+
+  .signup-sub-title {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+
+  .signup-input {
+    font-size: 22px;
+    height: 45px;
+    width: 500px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 20px;
+  }
+
+  #reg {
+    font-size: 18px;
+  }
+}
+
+/* Ipads & Tablets ----------- */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .signup-input {
+    width: 100%;
+  }
+
+  .menubar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .signup-main-title {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .signup-sub-title {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .signup-input-title {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .signup-input {
+    font-size: 14px;
+    height: 35px;
+    width: 215px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 14px;
+  }
+
+  .signup-button {
+    width: 80%;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  #reg {
+    font-size: 13px;
+  }
+}
+
+/* Mobile Devices ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .signbox {
+    height: auto;
+  }
+
+  .menubar {
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+
+  .signup-input {
+    width: 100%;
+  }
+
+  .signup-main-title {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .signup-sub-title {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .signup-input-title {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .signup-input {
+    font-size: 14px;
+    height: 35px;
+    width: 215px;
+  }
+
+  .signup-input::placeholder {
+    font-size: 14px;
+  }
+
+  .signup-button {
+    width: 80%;
+    height: 35px;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  #reg {
+    font-size: 13px;
+  }
+}
+
+/* Light mode */
+
+.signup-container {
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url("../../assets/Waves/wave_light.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.signup-input {
+  background-color: transparent;
+  border-radius: 10px;
+  border: solid 1px #979797;
+  color: black;
+  height: 48px;
+  width: 515px;
+  font-size: 16px;
+  padding: 0 24px;
 }
 
 .signup-button {
@@ -89,94 +281,4 @@ label.signup-input-title {
   color: white;
   font-size: 18px;
   margin: 20px 0 10px 0;
-}
-
-.signup-button:hover {
-  background-color: #237500;
-}
-
-.links {
-  color: #7ed957;
-}
-
-form {
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  /* align-content: flex-start; */
-}
-
-/* Responsive Design */
-/* Laptops & Small Screens ----------- */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-}
-
-/* Ipads & Tablets ----------- */
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-  .signbox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -140px;
-  }
-  .signup-container {
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .signup-main-title {
-    text-align: left;
-    font-size: 24px;
-    display: block;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-  .signup-sub-title {
-    text-align: left;
-    font-size: 16px;
-    display: block;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-
-  .signup-input-title {
-    text-align: left;
-    font-size: 20px;
-    display: block;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-
-  .signup-input {
-    height: 48px;
-    width: 515px;
-    font-size: 16px;
-  }
-
-  .signup-input::placeholder {
-    font-size: 16px;
-  }
-
-  .signup-button {
-    height: 60px;
-    width: 515px;
-    font-size: 18px;
-  }
-
-  form {
-    height: 90;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-}
-
-/* Mobile Devices ----------- */
-@media only screen and (min-width: 320px) and (max-width: 480px) {
 }
