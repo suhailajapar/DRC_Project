@@ -114,13 +114,13 @@
   justify-items: right;
 }
 
-#msg {
+/* #msg {
   display: flex;
-  font-size: 18px;
+  font-size: 15px;
   margin: 1px 0 1px 0;
-  color: whitesmoke;
+  color: red;
   font-style: italic;
-}
+} */
 
 /* Responsive Design */
 /* Laptops & Small Screens ----------- */
@@ -179,9 +179,9 @@
     margin-top: 7px;
   }
 
-  #msg {
-    font-size: 16px;
-  }
+  /* #msg {
+    font-size: 12px;
+  } */
 }
 
 /* Ipads & Tablets ----------- */
@@ -295,10 +295,10 @@
     font-size: 15px;
     align-self: flex-end;
     justify-items: right;
-    margin-top: 7px;
+    padding-top: 7px;
   }
 
-  #msg {
-    font-size: 12px;
-  }
+  /* #msg {
+    font-size: 10px;
+  } */
 }
