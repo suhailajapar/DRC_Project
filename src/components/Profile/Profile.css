@@ -2,7 +2,8 @@
   font-family: "IBM Plex Sans", sans-serif;
 }
 .main-wrapper {
-  background-image: url("../../assets/Waves/wave_light.svg");
+  background-color: #1f1f1f;
+  background-image: url("../../assets/Waves/wave_dark.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
@@ -16,11 +17,12 @@
 }
 
 .photo-box {
-  border: black;
+  /* border: white; */
   display: grid;
   width: 200px;
   height: 200px;
-  border: black 1px solid;
+  border: white 1px solid;
+  background-color: whitesmoke;
   border-radius: 50%;
   margin: 30px;
 }
@@ -31,7 +33,7 @@
   font-weight: normal;
   font-size: 25px;
   line-height: 26px;
-  color: black;
+  color: white;
   /* margin-bottom: 17px; */
   margin: 15px 0 15px 0;
 }
@@ -42,16 +44,10 @@
   font-weight: normal;
   font-size: 25px;
   line-height: 26px;
-  color: black;
+  color: white;
   margin: 15px 0 40px 0;
 }
-/* 
-.house {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-} */
+
 .div1 > form {
   display: flex;
   flex-direction: column;
@@ -65,7 +61,7 @@
   font-weight: normal;
   font-size: 22px;
   line-height: 24px;
-  color: black;
+  color: white;
   margin-top: 0;
   margin-bottom: 0;
 
@@ -82,20 +78,27 @@
 .InputBox {
   width: 700px;
   height: 55px;
-  /* left: 515px;
-  top: 500px; */
-  border: 1px solid black;
+  font-size: 25px;
+  border: 1px solid #979797;
   box-sizing: border-box;
   border-radius: 3px;
   background-color: transparent;
-  color: black;
-
+  color: whitesmoke;
   flex: 0 0 600px;
   margin-left: 10px;
 }
-input::placeholder {
-  color: #979797;
-  opacity: 1;
+
+.InputBox-p {
+  width: 700px;
+  height: 55px;
+  font-size: 30px;
+  border: 1px solid #979797;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: #979797;
+  color: whitesmoke;
+  flex: 0 0 600px;
+  margin-left: 10px;
 }
 
 .Save-Button {
@@ -115,6 +118,8 @@ input::placeholder {
   display: flex;
   font-size: 18px;
   margin: 1px 0 1px 0;
+  color: whitesmoke;
+  font-style: italic;
 }
 
 /* Responsive Design */
@@ -151,6 +156,14 @@ input::placeholder {
   }
 
   .InputBox {
+    height: 45px;
+    width: 600px;
+    flex: 0 0 440px;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  .InputBox-p {
     height: 45px;
     width: 600px;
     flex: 0 0 440px;
@@ -200,16 +213,25 @@ input::placeholder {
   .headers {
     width: 400px;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .InputBox {
     height: 45px;
     width: 300px;
     flex: 0 0 30px;
+    font-size: 17px;
+    margin-left: 10px;
+  }
+
+  .InputBox-p {
+    height: 45px;
+    width: 300px;
+    flex: 0 0 30px;
     font-size: 18px;
     margin-left: 10px;
   }
+
   .Save-Button {
     width: 30%;
     height: 35px;
@@ -258,6 +280,15 @@ input::placeholder {
     font-size: 14px;
     margin-left: 10px;
   }
+
+  .InputBox-p {
+    height: 35px;
+    width: 300px;
+    flex: 0 0 30px;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
   .Save-Button {
     width: 30%;
     height: 35px;

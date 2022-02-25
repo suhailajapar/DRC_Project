@@ -37,6 +37,9 @@ font-family: 'IBM Plex Sans', sans-serif;
 .login-input-title {
   font-size: 20px;
   margin: 20px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .login-input {
@@ -78,6 +81,12 @@ font-family: 'IBM Plex Sans', sans-serif;
 
 .links:hover {
   font-weight: bold;
+}
+.error-message {
+  font-size: 11px;
+  display: flex;
+  align-items: flex-end;
+  color: red;
 }
 
 /* Responsive Design */
