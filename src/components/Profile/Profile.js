@@ -1,9 +1,13 @@
 import React from "react";
 // import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Profile.css";
+import InputAdornment from "@mui/material/InputAdornment";
 import EditIcon from "@mui/icons-material/Edit";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
+import SideBar from "../Menubar/SideBar";
+import Box from "@mui/material/Box";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
 function Profile() {
   const {
@@ -18,6 +22,7 @@ function Profile() {
 
   return (
     <div className="main-wrapper">
+      <SideBar />
       <div className="photo-box"></div>
       <div className="container1">
         {" "}
@@ -95,19 +100,31 @@ function Profile() {
             Password
             <input
               type="password"
-              className="InputBox"
+              className="InputBox-p"
               {...register("Password", {
                 required: true,
                 minlegth: 10,
                 maxlength: 16,
                 pattern: /^[a-zA-Z0-9_]*$/,
               })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ModeEditOutlineIcon />
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
             />
           </h1>
 
           <button className="Save-Button">Save </button>
         </form>
       </div>
+
+      <Box>
+        <ModeEditOutlineIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+      </Box>
     </div>
   );
 }
