@@ -2,7 +2,10 @@
 /* 
 font-family: 'IBM Plex Sans', sans-serif;
 */
+/* Light mode at below */
 
+/* Dark mode */
+/* 
 .login {
   background-color: #1f1f1f;
   background-image: url("./../../assets/Waves/wave_dark.svg");
@@ -11,7 +14,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   background-size: cover;
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
-}
+} */
 
 .login-container {
   display: flex;
@@ -37,8 +40,11 @@ font-family: 'IBM Plex Sans', sans-serif;
 .login-input-title {
   font-size: 20px;
   margin: 20px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
+/* 
 .login-input {
   background-color: transparent;
   border-radius: 10px;
@@ -49,13 +55,13 @@ font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
   padding: 0 24px;
   box-sizing: border-box;
-}
+} */
 
 .login-input::placeholder {
   color: #979797;
   font-size: 16px;
 }
-
+/* 
 .login-button {
   background-color: #498e2c;
   height: 60px;
@@ -65,7 +71,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   color: white;
   font-size: 18px;
   margin: 20px 0 10px 0;
-}
+} */
 
 .login-button:hover {
   background-color: #237500;
@@ -78,6 +84,12 @@ font-family: 'IBM Plex Sans', sans-serif;
 
 .links:hover {
   font-weight: bold;
+}
+.error-message {
+  font-size: 11px;
+  display: flex;
+  align-items: flex-end;
+  color: red;
 }
 
 /* Responsive Design */
@@ -136,4 +148,42 @@ font-family: 'IBM Plex Sans', sans-serif;
     width: 100%;
     height: 50px;
   }
+}
+
+/* Light mode */
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+*/
+
+.login {
+  background-color: #ffffff;
+  background-image: url("./../../assets/Waves/wave_light.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.login-input {
+  background-color: transparent;
+  border-radius: 10px;
+  border: solid 1px #979797;
+  color: black;
+  height: 48px;
+  width: 515px;
+  font-size: 16px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  background-color: #498e2c;
+  height: 60px;
+  width: 515px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 20px 0 10px 0;
 }

@@ -29,7 +29,7 @@ const Sidebar = () => {
         placement="right"
         arrow
       >
-        <a href="#clients">
+        <a href="/market">
           <img src={MarketLogo} alt="Market Logo" id="Market" />
         </a>
       </Tooltip>

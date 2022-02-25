@@ -1,50 +1,53 @@
 import React from "react";
-import { Navbar, Button, Nav } from "react-bootstrap";
 import "./Market.css";
-import Marketlist from "./Marketlist";
+import MarketHead from "../../assets/Market Asset/Market-header.svg";
+import ToggleOnIcon from "@mui/icons-material/ToggleOn";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MGainSlider from "./MGainSlider";
+import MLossSlider from "./MLossSlider";
+import BuySellTabs from "./BuySellTabs";
 
 function Market() {
   return (
-    <>
-      <body>
-        <div className="chartNmarket">
-          <div className="infodisplay">
-            <div className="productname">
-              <div className="dropdown"></div>
-              <div className="displayname"></div>
-            </div>
-            <div className="timeselect"></div>
-            <div className="dateTime"></div>
+    <div className="marketBG">
+      <div className="market-layout">
+        <div className="header-section">
+          <div className="MarketLogo">
+            <img src={MarketHead} alt="Market Header Logo" />
+            <span className="MarketHead">Market</span>
           </div>
-          <div className="chartNpurchase">
-            <div className="chart">
-              <div className="top-section">
-                <div>
-                  <h2>Cryptocurrency</h2>
-                  <Marketlist />
-                </div>
-                <div></div>
-              </div>
-              <div>
-                <h1 className="graph-section">Graph</h1>
-              </div>
-            </div>
-            <div className="buy-sell">
-              <input className="amount" placeholder="Amount"></input>
-              <input className="price" placeholder="Price"></input>
-              <input className="total" placeholder="Total"></input>
-              <button className="buy" type="submit">
-                Buy
-              </button>
-            </div>
+          <div className="market-icon-head">
+            <span className="market-icon-text">Dark</span>
+            <ToggleOnIcon fontSize="large" />
+            <NotificationsIcon fontSize="large" className="market-icon-pads" />
+            <MailIcon fontSize="large" />
           </div>
         </div>
-        <div className="listNgainers">
-          <div className="list"></div>
-          <div className="gainers">gainers</div>
+        <div className="title-section box">2</div>
+        <div className="graph-section box">3</div>
+        <div className="buysell-section">
+          <BuySellTabs />
         </div>
-      </body>
-    </>
+
+        <div className="gain-section">
+          <div className="gain-title">
+            <span>Top Gainer</span>
+          </div>
+          <div className="gain-slider">
+            <MGainSlider />
+          </div>
+        </div>
+        <div className="loss-section">
+          <div className="loss-title">
+            <span>Top Loser</span>
+          </div>
+          <div className="loss-slider">
+            <MLossSlider />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

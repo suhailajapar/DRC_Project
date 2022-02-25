@@ -1,0 +1,54 @@
+.buy-spacing {
+  padding: 12px 0;
+}
+
+.buy-input-container {
+  padding: 10px 60px 0 60px;
+}
+
+.buy-input {
+  background-color: transparent;
+  border-radius: 10px;
+  border: solid 1px #979797;
+  color: white;
+  height: 48px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.buy-input::placeholder {
+  color: #979797;
+  font-size: 16px;
+}
+
+.buy-button {
+  background-color: #498e2c;
+  height: 54px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.buy-button:hover {
+  background-color: #237500;
+}
+
+.sell-button {
+  background-color: red;
+  height: 54px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.sell-button:hover {
+  background-color: #921010;
+}
