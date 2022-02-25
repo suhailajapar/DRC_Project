@@ -1,126 +1,120 @@
-body {
-  background-color: midnightblue;
-  height: 86vh;
+.marketBG {
+  background-color: #1f1f1f;
+  background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.chartNmarket {
-  background-color: yellow;
-  height: 70%;
+.market-layout {
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  grid-gap: 25px;
+  margin: 0 40px 0 100px;
+  height: 100vh;
 }
 
-.infodisplay {
-  background-color: blueviolet;
-  height: 10%;
+.box {
+  background-color: darkgray;
+  border: 5px black;
+  border-radius: 20px;
 }
 
-.chartNpurchase {
-  height: 90%;
-  background-color: coral;
-  display: inline-flex;
-  width: 100%;
-}
-
-.buy-sell {
-  background-color: darkgoldenrod;
-  width: 20%;
-  display: inline;
-  justify-content: center;
-  align-items: center;
-}
-
-input {
-  padding: 20px;
-  width: 80%;
-  border-radius: 6px;
-}
-
-button {
-  padding: 20px;
-  width: 92%;
-  border-radius: 6px;
-}
-
-.listNgainers {
-  width: 100%;
-  background-color: darkmagenta;
-
-  display: inline-flex;
-  height: 40%;
-}
-
-.gainers {
-  background-color: fuchsia;
-  width: 40%;
-}
-
-.list {
-  background-color: dodgerblue;
-  width: 60%;
-}
-
-/* Search Function */
-
-.search-input {
-  height: 10px;
-  width: 25%;
-  margin-bottom: 2%;
-}
-
-/* Crypto Marketlist display */
-
-.chart {
-  background-color: wheat;
-  width: 80%;
-}
-
-.coin-container {
-  display: flex;
-  justify-content: center;
-}
-
-.coin-row {
-  display: flex;
-  flex-direction: row;
-  justify-items: start;
-  align-items: center;
-  height: 40px;
-  border-bottom: 1px solid black;
-  width: 900px;
-}
-
-.coin {
-  display: flex;
-  align-items: center;
-  padding-right: 24px;
-  width: 20%;
-  font-size: 15px;
-}
-
-.coin-data {
-  display: flex;
-  text-align: center;
+.header-section {
+  grid-column: 1/7;
+  grid-row: 1;
+  border: 3px black;
+  border-radius: 7px;
+  columns: 2;
+  align-self: center;
   justify-content: space-between;
-  font-size: 15px;
-  width: 20%;
+  padding-top: 15px;
 }
 
-.coin-symbol {
-  text-transform: uppercase;
+.MarketLogo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 20px;
 }
 
-.image {
-  height: 15px;
-  margin-left: 10%;
+.MarketHead {
+  font-family: "Red Hat Display", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  padding: 5px 0 0 25px;
 }
 
-.cryptoName {
-  font-size: 15px;
+.market-icon-head {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px 0 0;
 }
 
-.red {
-  color: #f00606;
+.market-icon-text {
+  padding: 5px;
 }
 
-.green {
-  color: #11d811;
+.market-icon-pads {
+  padding: 0 10px;
+}
+
+.title-section {
+  grid-column: 1/7;
+  grid-row: 2;
+}
+
+.graph-section {
+  grid-column: 1/5;
+  grid-row: 3/8;
+}
+
+.buysell-section {
+  grid-column: 5/7;
+  grid-row: 3/7;
+}
+
+.gain-section {
+  grid-column: 2/6;
+  grid-row: 8/10;
+}
+
+.gain-title {
+  font-size: 18px;
+  margin: 0;
+  padding: 10px 0 5px 0;
+}
+
+.loss-section {
+  grid-column: 2/6;
+  grid-row: 10/12;
+}
+
+.loss-title {
+  font-size: 18px;
+  margin: 0;
+  padding: 10px 0 5px 0;
+}
+
+.slick-prev:before {
+  content: "";
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 6px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.slick-next:before {
+  content: "";
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 6px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
