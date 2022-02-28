@@ -73,6 +73,7 @@ export default function FullWidthTabs() {
               },
               fontSize: 18,
               color: "#C4C4C4",
+              backgroundColor: "#171717",
             },
           ]}
           label="BUY"
@@ -88,6 +89,7 @@ export default function FullWidthTabs() {
               },
               fontSize: 18,
               color: "#C4C4C4",
+              backgroundColor: "#171717",
             },
           ]}
           label="SELL"
@@ -102,22 +104,46 @@ export default function FullWidthTabs() {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <div className="buy-input-container">
-            <input className="buy-input" type="number" placeholder="Amount" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Amount"
+            />
             <div className="buy-spacing"></div>
-            <input className="buy-input" type="number" placeholder="Price" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Price"
+            />
             <div className="buy-spacing"></div>
-            <input className="buy-input" type="number" placeholder="Total" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Total"
+            />
             <div className="buy-spacing"></div>
             <input type="submit" className="buy-button" value="BUY" />
           </div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <div className="buy-input-container">
-            <input className="buy-input" type="number" placeholder="Amount" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Amount"
+            />
             <div className="buy-spacing"></div>
-            <input className="buy-input" type="number" placeholder="Price" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Price"
+            />
             <div className="buy-spacing"></div>
-            <input className="buy-input" type="number" placeholder="Total" />
+            <input
+              className="buy-sell-input"
+              type="number"
+              placeholder="Total"
+            />
             <div className="buy-spacing"></div>
             <input type="submit" className="sell-button" value="SELL" />
           </div>
