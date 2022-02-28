@@ -14,6 +14,8 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import { makeStyles } from "@material-ui/core/styles";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -23,7 +25,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -61,7 +62,9 @@ function CreditnDebitCard() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Credit and Debit card</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Credit and Debit card"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -77,7 +80,7 @@ function CreditnDebitCard() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -121,7 +124,9 @@ function Bank() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Bank</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Bank"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -137,7 +142,7 @@ function Bank() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -182,7 +187,9 @@ function Paypal() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Paypal</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Paypal"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -198,7 +205,7 @@ function Paypal() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -222,6 +229,7 @@ function Paypal() {
 }
 
 function Dashboard() {
+  const [theme, setTheme] = React.useState("dark");
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -237,19 +245,8 @@ function Dashboard() {
 
   return (
     <div className="DashBG">
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="Layout">
-        <div className="Top">
-          <div className="DashLogo">
-            <img src={DashHead} alt="Dashboard Logo" />
-            <span className="DashHead">Dashboard</span>
-          </div>
-          <div className="dash-icon-head">
-            <span className="dash-icon-text">Dark</span>
-            <ToggleOnIcon fontSize="large" />
-            <NotificationsIcon fontSize="large" className="dash-icon-pads" />
-            <MailIcon fontSize="large" />
-          </div>
-        </div>
         <div className="BoughtAssets" style={{ height: 175 }}>
           <div className="b-title">
             <span>Bought Assets</span>
@@ -307,19 +304,13 @@ function Dashboard() {
                 <p>Deposit</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -331,19 +322,13 @@ function Dashboard() {
                 <p>Withdrawal</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -438,6 +423,7 @@ function Dashboard() {
         </div>
         <div className="Table box">7</div>
       </div>
+      <Footer />
     </div>
   );
 }
