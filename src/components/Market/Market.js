@@ -9,10 +9,6 @@ import Footer from "./../Footer/Footer";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
-<<<<<<< HEAD
-=======
-
->>>>>>> farhan-besquare-main
   return (
     <div className="marketBG">
       <Menubar theme={theme} setTheme={setTheme} />
