@@ -5,8 +5,8 @@ import DarkWave from "./../../assets/Waves/wave_dark.svg";
 
 //object that references to the color properties
 export const lightTheme = {
-  body: "#fff",
-  fontColor: "#000",
+  body: "#ffffff",
+  fontColor: "#000000",
   backgroundImg: `url(${LightWave})`,
   // searchBar: "#c4c4c4",
   // box: "#312e81",
@@ -15,7 +15,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   body: "#1F1F1F",
-  fontColor: "#fff",
+  fontColor: "#ffffff",
   backgroundImg: `url(${DarkWave})`,
   // banner: "#000",
   // title: "#c7d2fe",
@@ -26,11 +26,11 @@ export const darkTheme = {
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container {
+.login, .signup-container{
   transition: background-color 0.5s ease;
 }
 
-.login, .signup-container{
+.login, .signup-container {
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};
@@ -53,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
   color: ${(props) => props.theme.fontColor}
 }
 
-.searchBar, .input{
+.searchBar, .input, {
   background-color: ${(props) => props.theme.searchBar}
 }
 

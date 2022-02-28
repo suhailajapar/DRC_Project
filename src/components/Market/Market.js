@@ -7,13 +7,17 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 function Market() {
+  const [theme, setTheme] = React.useState("dark");
   return (
     <div className="marketBG">
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="market-layout">
         <div className="header-section">
-          <div className="MarketLogo">
+          {/* <div className="MarketLogo">
             <img src={MarketHead} alt="Market Header Logo" />
             <span className="MarketHead">Market</span>
           </div>
@@ -22,7 +26,7 @@ function Market() {
             <ToggleOnIcon fontSize="large" />
             <NotificationsIcon fontSize="large" className="market-icon-pads" />
             <MailIcon fontSize="large" />
-          </div>
+          </div> */}
         </div>
         <div className="title-section box">2</div>
         <div className="graph-section box">3</div>
@@ -47,6 +51,7 @@ function Market() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
