@@ -1,12 +1,9 @@
 import React from "react";
 import "./Dashboard.css";
-import DashHead from "../../assets/DashboardAsset/Dashboard-header.svg";
-import ToggleOnIcon from "@mui/icons-material/ToggleOn";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Avatar } from "@mui/material";
 import ProfilePic from "../../assets/DashboardAsset/profile-placeholder.png";
-import WalletIcon from "../../assets/DashboardAsset/wallet-1.png";
+import WalletIconDark from "../../assets/DashboardAsset/WalletIconDark.svg";
+import WalletIconLight from "../../assets/DashboardAsset/WalletIconLight.svg";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -14,9 +11,12 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import { makeStyles } from "@material-ui/core/styles";
+<<<<<<< HEAD
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
 
+=======
+>>>>>>> farhan-besquare-main
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -25,6 +25,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
+import Dashbar from "../Menubar/DashBar";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -229,7 +230,13 @@ function Paypal() {
 }
 
 function Dashboard() {
+<<<<<<< HEAD
   const [theme, setTheme] = React.useState("dark");
+=======
+  //light mode and dark mode
+  const [theme, setTheme] = React.useState("dark");
+
+>>>>>>> farhan-besquare-main
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -247,6 +254,12 @@ function Dashboard() {
     <div className="DashBG">
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="Layout">
+<<<<<<< HEAD
+=======
+        <div className="dash-top">
+          <Dashbar theme={theme} setTheme={setTheme} />
+        </div>
+>>>>>>> farhan-besquare-main
         <div className="BoughtAssets" style={{ height: 175 }}>
           <div className="b-title">
             <span>Bought Assets</span>
@@ -275,7 +288,7 @@ function Dashboard() {
             />
           </div>
         </div>
-        <div className="LiveCharts box">4</div>
+        <div className="LiveCharts">4</div>
         <div className="Wallet">
           <div className="w-col w-value">
             <p>Wallet's Balance</p>
@@ -285,7 +298,7 @@ function Dashboard() {
           <Button onClick={handleOpen} className="w-col w-icon">
             <Avatar
               alt="reload wallet"
-              src={WalletIcon}
+              src={theme === "dark" ? WalletIconDark : WalletIconLight}
               sx={{ width: 50, height: 50 }}
             />
           </Button>
@@ -344,13 +357,23 @@ function Dashboard() {
             </div>
             <div className="c-top-dropdown c-col">
               <FormControl
-                sx={{
-                  m: 1,
-                  minWidth: 120,
-                  backgroundColor: "#193460",
-                  height: 30,
-                  borderRadius: 2,
-                }}
+                sx={
+                  theme === "dark"
+                    ? {
+                        m: 1,
+                        minWidth: 120,
+                        backgroundColor: "#193460",
+                        height: 30,
+                        borderRadius: 2,
+                      }
+                    : {
+                        m: 1,
+                        minWidth: 120,
+                        backgroundColor: "#609D45",
+                        height: 30,
+                        borderRadius: 2,
+                      }
+                }
               >
                 <Select
                   classes={{ icon: classes.iconSelect }}
@@ -392,17 +415,31 @@ function Dashboard() {
           <div className="c-mid">
             <div id="donut">
               <Doughnut
-                options={{
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                    tooltip: {
-                      backgroundColor: "rgba(255, 255, 255, 0.9)",
-                      bodyColor: "black",
-                    },
-                  },
-                }}
+                options={
+                  theme === "dark"
+                    ? {
+                        plugins: {
+                          legend: {
+                            display: false,
+                          },
+                          tooltip: {
+                            backgroundColor: "rgba(255, 255, 255, 0.9)",
+                            bodyColor: "black",
+                          },
+                        },
+                      }
+                    : {
+                        plugins: {
+                          legend: {
+                            display: false,
+                          },
+                          tooltip: {
+                            backgroundColor: "rgba(0, 0, 0, 0.9)",
+                            bodyColor: "white",
+                          },
+                        },
+                      }
+                }
                 data={{
                   labels: ["Loss", "Profit"],
                   datasets: [
@@ -421,7 +458,7 @@ function Dashboard() {
             <p>Total Loss:</p>
           </div>
         </div>
-        <div className="Table box">7</div>
+        <div className="Table">7</div>
       </div>
       <Footer />
     </div>

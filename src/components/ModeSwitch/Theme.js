@@ -8,6 +8,8 @@ export const lightTheme = {
   body: "#ffffff",
   fontColor: "#000000",
   backgroundImg: `url(${LightWave})`,
+  cardBorder: "1px solid #c2c2c2",
+  cardBody: "white",
   // searchBar: "#c4c4c4",
   // box: "#312e81",
   // wotd: "#F9F9F9",
@@ -17,6 +19,8 @@ export const darkTheme = {
   body: "#1F1F1F",
   fontColor: "#ffffff",
   backgroundImg: `url(${DarkWave})`,
+  cardBorder: "black",
+  cardBody: "#010023",
   // banner: "#000",
   // title: "#c7d2fe",
   // searchBar: "#575757",
@@ -26,19 +30,27 @@ export const darkTheme = {
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container{
+.login, .signup-container, .DashBG, .marketBG {
   transition: background-color 0.5s ease;
 }
 
-.login, .signup-container {
+.login, .signup-container, .DashBG, .marketBG{
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};
 }
 
-.footer{
+.Profile, .BoughtAssets, .Wallet, .Chart, .LiveCharts, .Table{
+  background-color: ${(props) => props.theme.cardBody};
+  color: ${(props) => props.theme.fontColor};
+  border: ${(props) => props.theme.cardBorder}
+}
+
+
+.footer, .DashHead, .MarketHead, .buy-sell-input{
   color: ${(props) => props.theme.fontColor}
 }
+
 
 /*
 .main-title, .sub-title{
