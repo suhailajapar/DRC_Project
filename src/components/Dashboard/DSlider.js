@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import "./DSlider.css";
 import { styled } from "@mui/material/styles";
-import IconTest from "../../assets/DashboardAsset/wallet-1.png";
+import IconTest from "../../assets/DashboardAsset/WalletIconDark.svg";
 
 const CardContentNoPadding = styled(CardContent)(`
   padding: 0;
