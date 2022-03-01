@@ -1,50 +1,43 @@
 import React from "react";
-import { Navbar, Button, Nav } from "react-bootstrap";
 import "./Market.css";
-import Marketlist from "./Marketlist";
+import Marketbar from "../Menubar/MarBar";
+import MGainSlider from "./MGainSlider";
+import MLossSlider from "./MLossSlider";
+import BuySellTabs from "./BuySellTabs";
 
 function Market() {
+  const [theme, setTheme] = React.useState("dark");
+
   return (
-    <>
-      <body>
-        <div className="chartNmarket">
-          <div className="infodisplay">
-            <div className="productname">
-              <div className="dropdown"></div>
-              <div className="displayname"></div>
-            </div>
-            <div className="timeselect"></div>
-            <div className="dateTime"></div>
+    <div className="marketBG">
+      <div className="market-layout">
+        <div className="market-bar-section">
+          <Marketbar theme={theme} setTheme={setTheme} />
+        </div>
+        <div className="title-section box">2</div>
+        <div className="graph-section box">3</div>
+        <div className="buysell-section">
+          <BuySellTabs />
+        </div>
+
+        <div className="gain-section">
+          <div className="gain-title">
+            <span>Top Gainer</span>
           </div>
-          <div className="chartNpurchase">
-            <div className="chart">
-              <div className="top-section">
-                <div>
-                  <h2>Cryptocurrency</h2>
-                  <Marketlist />
-                </div>
-                <div></div>
-              </div>
-              <div>
-                <h1 className="graph-section">Graph</h1>
-              </div>
-            </div>
-            <div className="buy-sell">
-              <input className="amount" placeholder="Amount"></input>
-              <input className="price" placeholder="Price"></input>
-              <input className="total" placeholder="Total"></input>
-              <button className="buy" type="submit">
-                Buy
-              </button>
-            </div>
+          <div className="gain-slider">
+            <MGainSlider theme={theme} setTheme={setTheme} />
           </div>
         </div>
-        <div className="listNgainers">
-          <div className="list"></div>
-          <div className="gainers">gainers</div>
+        <div className="loss-section">
+          <div className="loss-title">
+            <span>Top Loser</span>
+          </div>
+          <div className="loss-slider">
+            <MLossSlider theme={theme} setTheme={setTheme} />
+          </div>
         </div>
-      </body>
-    </>
+      </div>
+    </div>
   );
 }
 
