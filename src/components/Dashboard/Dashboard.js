@@ -11,12 +11,6 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import { makeStyles } from "@material-ui/core/styles";
-<<<<<<< HEAD
-import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer";
-
-=======
->>>>>>> farhan-besquare-main
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -26,6 +20,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -230,13 +226,9 @@ function Paypal() {
 }
 
 function Dashboard() {
-<<<<<<< HEAD
-  const [theme, setTheme] = React.useState("dark");
-=======
   //light mode and dark mode
   const [theme, setTheme] = React.useState("dark");
 
->>>>>>> farhan-besquare-main
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -254,12 +246,9 @@ function Dashboard() {
     <div className="DashBG">
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="Layout">
-<<<<<<< HEAD
-=======
         <div className="dash-top">
           <Dashbar theme={theme} setTheme={setTheme} />
         </div>
->>>>>>> farhan-besquare-main
         <div className="BoughtAssets" style={{ height: 175 }}>
           <div className="b-title">
             <span>Bought Assets</span>
