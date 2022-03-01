@@ -1,107 +1,134 @@
-body {
-  background-color: midnightblue;
-  height: 86vh;
+.market-layout {
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  grid-gap: 10px;
+  margin-left: 60px;
+  height: 100vh;
 }
 
-.chartNmarket {
-  background-color: yellow;
-  height: 70%;
+.box {
+  background-color: darkgray;
+  border: 5px black;
+  border-radius: 20px;
 }
 
-.infodisplay {
-  background-color: blueviolet;
-  height: 10%;
+.header-section {
+  grid-column: 1/7;
+  grid-row: 1;
 }
 
-.chartNpurchase {
-  height: 90%;
-  background-color: coral;
-  display: inline-flex;
-  width: 100%;
+.title-section {
+  grid-column: 1/7;
+  grid-row: 2;
 }
 
-.buy-sell {
-  background-color: darkgoldenrod;
-  width: 20%;
-  display: inline;
-  justify-content: center;
-  align-items: center;
+.graph-section {
+  grid-column: 1/5;
+  grid-row: 3/8;
 }
 
-input {
-  padding: 20px;
-  width: 80%;
-  border-radius: 6px;
+.buysell-section {
+  grid-column: 5/7;
+  grid-row: 3/7;
 }
 
-button {
-  padding: 20px;
-  width: 92%;
-  border-radius: 6px;
+.gain-section {
+  grid-column: 1/7;
+  grid-row: 8/10;
 }
 
-.listNgainers {
-  width: 100%;
-  background-color: darkmagenta;
-
-  display: inline-flex;
-  height: 40%;
+.loss-section {
+  grid-column: 1/7;
+  grid-row: 10/12;
 }
 
-.gainers {
-  background-color: fuchsia;
+/* Market list */
+
+.coin-market {
+  background-color: black;
   width: 40%;
 }
 
-.list {
-  background-color: dodgerblue;
-  width: 60%;
+/* Top Area */
+
+.list-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Search Function */
-
+.coin-search {
+  width: 90%;
+}
 .search-input {
-  height: 10px;
-  width: 25%;
+  height: 3vh;
+  width: 60%;
   margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.coin-close {
+  width: 10%;
+  color: white;
+}
+
+.close-button {
+  float: right;
+  background-color: aqua;
 }
 
 /* Crypto Marketlist display */
 
-.chart {
-  background-color: wheat;
-  width: 80%;
+.coin-table {
+  width: 100%;
 }
 
-.coin-container {
-  display: flex;
-  justify-content: center;
-}
-
-.coin-row {
-  display: flex;
-  flex-direction: row;
-  justify-items: start;
-  align-items: center;
-  height: 40px;
-  border-bottom: 1px solid black;
-  width: 900px;
-}
-
-.coin {
-  display: flex;
-  align-items: center;
-  padding-right: 24px;
-  width: 20%;
-  font-size: 15px;
-}
-
-.coin-data {
-  display: flex;
+th {
   text-align: center;
-  justify-content: space-between;
-  font-size: 15px;
-  width: 20%;
+  border-bottom: 1px solid aqua;
+  color: aqua;
+  width: 25%;
+}
+td {
+  text-align: center;
+  border-bottom: 1px solid aqua;
+  color: beige;
+  width: 25%;
+}
+
+tr td:hover {
+  color: black;
+}
+
+.table-body tr:hover {
+  background-color: dimgray;
+}
+
+.table-header {
+  width: 98.7%;
+  display: inline-table;
+}
+
+.table-body {
+  width: 100%;
+  display: inline-table;
+}
+
+.coin-market {
+  position: absolute;
+  z-index: 999999;
+}
+
+.coin-list {
+  height: 35vh;
+  overflow-y: scroll;
+  width: 100%;
+  color: beige;
 }
 
 .coin-symbol {
@@ -109,12 +136,12 @@ button {
 }
 
 .image {
-  height: 15px;
-  margin-left: 10%;
+  height: 20px;
+  width: 20px;
 }
 
 .cryptoName {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .red {

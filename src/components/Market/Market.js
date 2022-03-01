@@ -1,50 +1,33 @@
-import React from "react";
-import { Navbar, Button, Nav } from "react-bootstrap";
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
 import "./Market.css";
 import Marketlist from "./Marketlist";
 
 function Market() {
+  const [popout, setPopout] = useState(false);
   return (
-    <>
-      <body>
-        <div className="chartNmarket">
-          <div className="infodisplay">
-            <div className="productname">
-              <div className="dropdown"></div>
-              <div className="displayname"></div>
-            </div>
-            <div className="timeselect"></div>
-            <div className="dateTime"></div>
-          </div>
-          <div className="chartNpurchase">
-            <div className="chart">
-              <div className="top-section">
-                <div>
-                  <h2>Cryptocurrency</h2>
-                  <Marketlist />
-                </div>
-                <div></div>
-              </div>
-              <div>
-                <h1 className="graph-section">Graph</h1>
-              </div>
-            </div>
-            <div className="buy-sell">
-              <input className="amount" placeholder="Amount"></input>
-              <input className="price" placeholder="Price"></input>
-              <input className="total" placeholder="Total"></input>
-              <button className="buy" type="submit">
-                Buy
-              </button>
-            </div>
+    <body className="market-layout">
+      <div className="header-section box">1</div>
+      <div className="title-section">
+        <div>
+          <div className="btn-container">
+            <Button
+              className="btn-popout"
+              onClick={() => {
+                setPopout(true);
+              }}
+            >
+              Click Me
+            </Button>
+            {popout && <Marketlist closePopout={setPopout} />}
           </div>
         </div>
-        <div className="listNgainers">
-          <div className="list"></div>
-          <div className="gainers">gainers</div>
-        </div>
-      </body>
-    </>
+      </div>
+      <div className="graph-section box"></div>
+      <div className="buysell-section box">4</div>
+      <div className="gain-section box">5</div>
+      <div className="loss-section box">6</div>
+    </body>
   );
 }
 

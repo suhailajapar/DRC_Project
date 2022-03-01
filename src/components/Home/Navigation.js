@@ -8,6 +8,7 @@ import Profile from "../Profile/Profile";
 import WithoutNav from "./WithoutNav";
 import WithNav from "./WithNav";
 import WithSideBar from "./WithSideBar";
+import Market from "../Market/Market";
 
 function Navigation() {
   return (
@@ -18,6 +19,7 @@ function Navigation() {
         </Route>
         <Route element={<WithSideBar />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/market" element={<Market />} />
         </Route>
         <Route element={<WithoutNav />}>
           <Route path="/login" element={<Login />} />
