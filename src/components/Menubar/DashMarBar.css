@@ -1,0 +1,82 @@
+.dash-bar {
+  border: 3px black;
+  border-radius: 7px;
+  columns: 2;
+  align-self: center;
+  justify-content: space-between;
+  padding-top: 0px;
+}
+
+.DashLogo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.DashHead {
+  font-family: "Red Hat Display", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  padding: 20px 0 0 25px;
+  color: white;
+}
+
+.dash-icon-text {
+  padding: 5px;
+}
+
+.dash-icon-head {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0 0;
+}
+
+.dash-icon-pads {
+  padding: 0 10px;
+}
+
+.dash-mar-logo {
+  height: 77px;
+  width: 208px;
+}
+
+.market-bar {
+  border: 3px black;
+  border-radius: 7px;
+  columns: 2;
+  align-self: center;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.MarketLogo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.MarketHead {
+  font-family: "Red Hat Display", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  padding: 5px 0 0 25px;
+  color: white;
+}
+
+.market-icon-head {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px 0 0;
+}
+
+.market-icon-text {
+  padding: 5px;
+}
+
+.market-icon-pads {
+  padding: 0 10px;
+}

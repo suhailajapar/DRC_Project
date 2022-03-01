@@ -5,10 +5,10 @@ import Home from "./Home";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Profile from "../Profile/Profile";
+import Market from "../Market/Market";
 import WithoutNav from "./WithoutNav";
 import WithNav from "./WithNav";
 import WithSideBar from "./WithSideBar";
-import Market from "../Market/Market";
 
 function Navigation() {
   return (

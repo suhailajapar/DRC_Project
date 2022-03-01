@@ -1,9 +1,13 @@
 import React from "react";
 // import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Profile.css";
+import InputAdornment from "@mui/material/InputAdornment";
 import EditIcon from "@mui/icons-material/Edit";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
+import SideBar from "../Menubar/SideBar";
+import Box from "@mui/material/Box";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
 function Profile() {
   const {
@@ -18,6 +22,7 @@ function Profile() {
 
   return (
     <div className="main-wrapper">
+      <SideBar />
       <div className="photo-box"></div>
       <div className="container1">
         {" "}
@@ -26,6 +31,18 @@ function Profile() {
       </div>
       <div className="div1">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <span className="error-message">
+            {errors?.fullname?.type === "required" && (
+              <p>This field is required</p>
+            )}
+            {errors?.fullname?.type === "maxLength" && (
+              <p>Full name cannot exceed 50 characters</p>
+            )}
+            {errors?.fullname?.type === "pattern" && (
+              <p>Alphabetical characters only</p>
+            )}
+          </span>
+
           <h1 className="headers">
             Full Name :
             <input
@@ -37,15 +54,14 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.fullname?.type === "required" && (
-            <p>This field is required</p>
-          )}
-          {errors?.fullname?.type === "maxLength" && (
-            <p>Full name cannot exceed 50 characters</p>
-          )}
-          {errors?.fullname?.type === "pattern" && (
-            <p>Alphabetical characters only</p>
-          )}
+
+          <span className="error-message">
+            {errors?.Email?.type === "pattern" && <p>Enter valid email only</p>}
+            {errors?.Email?.type === "required" && (
+              <p>This field is required</p>
+            )}
+          </span>
+
           <h1 className="headers">
             Email :
             <input
@@ -55,11 +71,18 @@ function Profile() {
                 required: true,
               })}
             />
-            {errors?.Email?.type === "pattern" && <p>Enter valid email only</p>}
-            {errors?.Email?.type === "required" && (
+          </h1>
+
+          <span className="error-message">
+            {errors?.MobileNumber?.type === "pattern" && (
+              <p>Valid Mobile Number only</p>
+            )}
+            {errors.MobileNumber && <p>Min 10 digits</p>}
+            {errors?.MobileNumber?.type === "required" && (
               <p>This field is required</p>
             )}
-          </h1>
+          </span>
+
           <h1 className="headers">
             Mobile Number :
             <input
@@ -72,18 +95,21 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.MobileNumber?.type === "pattern" && (
-            <p>Valid Mobile Number only</p>
-          )}
-          {errors.MobileNumber && <p>Min 10 digits</p>}
-          {errors?.MobileNumber?.type === "required" && (
-            <p>This field is required</p>
-          )}
+          <span className="error-message">
+            {errors?.Password?.type === "pattern" && (
+              <p>Only Alphanumeric and underscores are accepted</p>
+            )}
+            {errors.Password && <p>Min 10 digits. </p>}
+            {errors?.Password?.type === "required" && (
+              <p> This field is required</p>
+            )}
+          </span>
+
           <h1 className="headers">
             Password
             <input
               type="password"
-              className="InputBox"
+              className="InputBox-p"
               {...register("Password", {
                 required: true,
                 minlegth: 10,
@@ -92,13 +118,6 @@ function Profile() {
               })}
             />
           </h1>
-          {errors?.Password?.type === "pattern" && (
-            <p>Only Alphanumeric and underscores are accepted</p>
-          )}
-          {errors.Password && <p>Min 10 digits</p>}
-          {errors?.Password?.type === "required" && (
-            <p>This field is required</p>
-          )}
 
           <button className="Save-Button">Save </button>
         </form>
