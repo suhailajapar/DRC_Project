@@ -1,0 +1,78 @@
+.sidebar {
+  height: 100%;
+  width: 55px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #373737;
+  overflow-x: hidden;
+  padding-top: 16px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#DP {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  padding: 5px 0 5px 0;
+}
+
+#Market {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  padding: 5px 0 5px 0;
+}
+
+#Dashboard {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  padding: 5px 0 5px 0;
+}
+
+#Logout {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  padding: 5px 0 5px 0;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 60px;
+}
+
+.tip {
+  transform: scale(1.5);
+}
+
+/* Style sidebar links */
+.DP,
+.sidebar-market,
+.sidebar-dashboard,
+.sidebar-logout {
+  margin-bottom: 20px;
+  padding: 1px 6px;
+}
+
+/* Style links on mouse-over */
+.DP:hover,
+.sidebar-market:hover,
+.sidebar-dashboard:hover,
+.sidebar-logout:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* Style the main content */
+/* .main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+/* padding: 0px 10px;
+} */
