@@ -4,12 +4,14 @@ import Marketbar from "../Menubar/MarBar";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
-
   return (
     <div className="marketBG">
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="market-layout">
         <div className="market-bar-section">
           <Marketbar theme={theme} setTheme={setTheme} />
@@ -37,6 +39,7 @@ function Market() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
