@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const pool = require("./db");
+const pool = require("./database/index");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
@@ -125,15 +125,41 @@ const upload = multer({
   storage: storage,
 });
 
-//route for post data
-app.post("/api/upload", upload.single("image"), (req, res) => {
-  const { loginid, file, fileName } = req.body;
+//Configuration for Multer
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public");
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     cb(null, `files/admin-${file.fieldname}-${Date.now()}.${ext}`);
+//   },
+// });
 
-  if (!file) {
+// Multer Filter
+// const multerFilter = (req, file, cb) => {
+//   if (
+//     ["png", "jpg", "jpeg", "gif", "bmp"].includes(file.mimetype.split("/")[1])
+//   ) {
+//     cb(null, true);
+//   } else {
+//     cb(new Error("Not a PDF File!!"), false);
+//   }
+// };
+
+// const upload = multer({
+//   storage: multerStorage,
+//   fileFilter: multerFilter,
+// });
+
+//route for post image
+app.post("/api/upload", upload.single("image"), (req, res) => {
+  // const loginid = req.user_id[0];
+  if (!req.file) {
     console.log("No file upload");
   } else {
-    console.log(fileName);
-    const imgsrc = "http://127.0.0.1:3000/images/" + fileName;
+    const imgsrc = "http://127.0.0.1:3000/images/" + req.file.filename;
+    // URL of the Image
     const insertImage =
       "UPDATE hikers.users SET user_img = $1  WHERE loginid = $2 RETURNING *";
     pool.connect((err, db) => {
@@ -145,7 +171,8 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
             console.log(err);
           } else {
             console.log("file uploaded");
-            res.status(200).send(result);
+            console.log(result);
+            // res.status(200).send(result);
           }
         });
       }
