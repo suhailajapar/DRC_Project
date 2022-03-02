@@ -27,8 +27,8 @@ const setupUserTable = async () => {
         phone TEXT,
         date_joined TIMESTAMPTZ,
         user_img TEXT,
-        CONSTRAINT "PK_54115ee388cdb6d86bb4bf5b2ea" PRIMARY KEY (loginid),
-        CONSTRAINT "UQ_4c8f96ccf523e9a3faefd5bdd4c" UNIQUE (email)
+        CONSTRAINT "pk_users" PRIMARY KEY (loginid),
+        CONSTRAINT "uq_email" UNIQUE (email)
     );
     `);
 
@@ -43,8 +43,8 @@ const setupWalletTable = async () => {
         currency character varying COLLATE pg_catalog."default" NOT NULL,
         balance numeric(8,0) NOT NULL DEFAULT '0'::numeric,
         "loginid" TEXT,
-        CONSTRAINT "PK_bec464dd8d54c39c54fd32e2334" PRIMARY KEY (id),
-        CONSTRAINT "FK_276aecaae66a8b798156f70fc4b" FOREIGN KEY ("loginid")
+        CONSTRAINT "pk_wallet" PRIMARY KEY (id),
+        CONSTRAINT "fk_wallet" FOREIGN KEY ("loginid")
             REFERENCES hikers.users (loginid) MATCH SIMPLE
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
@@ -55,7 +55,23 @@ const setupWalletTable = async () => {
 };
 
 const setupTransactionTable = async () => {
-  await db.query(``);
+  await db.query(`
+  CREATE TABLE IF NOT EXISTS hikers.transaction
+  (
+      id uuid NOT NULL DEFAULT uuid_generate_v4(),
+      currency character varying COLLATE pg_catalog."default" NOT NULL,
+      type character varying COLLATE pg_catalog."default" NOT NULL,
+      current_price numeric(8,0) NOT NULL DEFAULT '0'::numeric,
+      quantity numeric(8,0) NOT NULL DEFAULT '0'::numeric,
+      "time" timestamp without time zone NOT NULL,
+      status character varying COLLATE pg_catalog."default" NOT NULL,
+      "walletId" uuid,
+      CONSTRAINT "PK_89eadb93a89810556e1cbcd6ab9" PRIMARY KEY (id),
+      CONSTRAINT "FK_900eb6b5efaecf57343e4c0e79d" FOREIGN KEY ("walletId")
+          REFERENCES hikers.wallet (id) MATCH SIMPLE
+          ON UPDATE NO ACTION
+          ON DELETE NO ACTION
+  )`);
 };
 
 (async () => {
@@ -65,17 +81,24 @@ const setupTransactionTable = async () => {
     console.log("Error setting up functions: " + e);
   }
 
-  console.log("Setting up User table");
+  console.log("Setting up Users table...");
   try {
     await setupUserTable();
   } catch (e) {
-    console.log("Error setting up User table: " + e);
+    console.log("Error setting up Users table: " + e);
   }
 
-  console.log("Setting up Wallet table");
+  console.log("Setting up Wallet table...");
   try {
     await setupWalletTable();
   } catch (e) {
     console.log("Error setting up Wallet table: " + e);
+  }
+
+  console.log("Setting up Transaction table...");
+  try {
+    await setupTransactionTable();
+  } catch (e) {
+    console.log("Error setting up Transaction table: " + e);
   }
 })();
