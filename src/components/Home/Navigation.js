@@ -17,14 +17,18 @@ function Navigation() {
         <Route element={<WithNav />}>
           <Route path="/" element={<Home />} />
         </Route>
-        <Route element={<WithSideBar />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<WithSideBar nameIt={"Profile"} />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route element={<WithSideBar nameIt={"Market"} />}>
           <Route path="/market" element={<Market />} />
+        </Route>
+        <Route element={<WithSideBar nameIt={"Dashboard"} />}>
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<WithoutNav />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

@@ -47,7 +47,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 
-.footer, .DashHead, .MarketHead, .buy-sell-input{
+.footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input{
   color: ${(props) => props.theme.fontColor}
 }
 
