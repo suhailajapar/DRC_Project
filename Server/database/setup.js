@@ -3,17 +3,19 @@ const { db_user } = require("./config");
 
 const setupUserTable = (async = () => {
   await db.query(`
+    CREATE SCHEMA IF NOT EXISTS hikers;
+    CREATE SEQUENCE IF NOT EXISTS user_id_seq;
     CREATE TABLE IF NOT EXISTS hikers.users
     (
-        loginid text COLLATE pg_catalog."default" NOT NULL DEFAULT (('HKR'::text || to_char((CURRENT_DATE)::timestamp with time zone, 'YYYYMMDD'::text)) || lpad((nextval('user_id_seq'::regclass))::text, 18, '0'::text)),
-        username text COLLATE pg_catalog."default" NOT NULL,
-        full_name text COLLATE pg_catalog."default" NOT NULL,
-        email text COLLATE pg_catalog."default" NOT NULL,
-        password text COLLATE pg_catalog."default" NOT NULL,
-        phone text COLLATE pg_catalog."default",
-        date_joined timestamp with time zone,
-        user_img text COLLATE pg_catalog."default",
-        CONSTRAINT users_email_key UNIQUE (email)
+        loginid TEXT NOT NULL DEFAULT (('HKR'::text || to_char((CURRENT_DATE)::timestamp with time zone, 'YYYYMMDD'::text)) || lpad((nextval('user_id_seq'::regclass))::text, 18, '0'::text)),
+        username TEXT NOT NULL,
+        full_name TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        phone TEXT,
+        date_joined TIMESTAMPTZ,
+        user_img TEXT,
+        PRIMARY KEY (loginid)
     )
     `);
 
@@ -24,15 +26,15 @@ const setupWalletTable = async () => {
   await db.query(`
     CREATE TABLE IF NOT EXISTS hikers.wallet
     (
-        id uuid NOT NULL DEFAULT uuid_generate_v4(),
-        currency character varying COLLATE pg_catalog."default" NOT NULL,
-        balance numeric(8,0) NOT NULL DEFAULT '0'::numeric,
-        "loginid" text,
-        CONSTRAINT "PK_bec464dd8d54c39c54fd32e2334" PRIMARY KEY (id),
-        CONSTRAINT "FK_276aecaae66a8b798156f70fc4b" FOREIGN KEY ("loginid")
-            REFERENCES hikers.users (loginid) MATCH SIMPLE
-            ON UPDATE NO ACTION
-            ON DELETE NO ACTION
+      wallet_id uuid NOT NULL DEFAULT uuid_generate_v4(),
+      currency VARCHAR(255) NOT NULL,
+      balance NUMERIC(8,0) NOT NULL DEFAULT '0'::numeric,
+      loginid TEXT,
+	    PRIMARY KEY (wallet_id),
+      CONSTRAINT fk_user FOREIGN KEY (loginid)
+          REFERENCES hikers.users (loginid)
+          ON UPDATE NO ACTION
+          ON DELETE NO ACTION
     )
 `);
 
