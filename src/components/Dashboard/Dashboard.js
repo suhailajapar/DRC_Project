@@ -20,6 +20,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
+import SideBar from "../Menubar/FinalTestBar";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -235,36 +236,59 @@ function Dashboard() {
           </div>
         </div>
         <div className="Profile">
-          <div className="p-col profile-details-box">
+          <div className="profile-details-box">
             <div className="profile-details">
               <h3 id="prof-head">User Profile</h3>
-              <p>@username</p>
-              <p>Full Name</p>
-              <p>Date joined: 01-01-2022</p>
-              <p>Asset's Balance as on (Today's Date)</p>
+              <p id="prof-text">@username</p>
+              <p id="prof-text">Full Name</p>
+              <p id="prof-text">Date joined: 01-01-2022</p>
+              <p id="prof-text">Asset's Balance as on (Today's Date)</p>
               <h2 id="prof-bal">USD 999999.99</h2>
             </div>
           </div>
-          <div className="p-col profile-avatar">
+          <div className="profile-avatar">
             <Avatar
               alt="user's pic"
               src={ProfilePic}
-              sx={{ width: 65, height: 65 }}
+              sx={[
+                {
+                  "@media (max-width: 1024px)": {
+                    width: 60,
+                    height: 60,
+                  },
+                  width: 65,
+                  height: 65,
+                },
+              ]}
             />
           </div>
         </div>
+        <div className="LiveCharts-header">
+          Current Trends (since buy price)
+        </div>
         <div className="LiveCharts">4</div>
         <div className="Wallet">
-          <div className="w-col w-value">
+          <div className="w-value">
             <p>Wallet's Balance</p>
             <h1 id="wal-bal">USD 999999.99</h1>
           </div>
 
-          <Button onClick={handleOpen} className="w-col w-icon">
+          <Button onClick={handleOpen} className="w-icon">
             <Avatar
               alt="reload wallet"
               src={theme === "dark" ? WalletIconDark : WalletIconLight}
-              sx={{ width: 50, height: 50 }}
+              sx={{
+                width: 50,
+                height: 50,
+                "@media (min-width: 769px) and (max-width: 1024px)": {
+                  width: 40,
+                  height: 40,
+                },
+                "@media (min-width: 200px) and (max-width: 768px)": {
+                  width: 55,
+                  height: 55,
+                },
+              }}
             />
           </Button>
           {/* Modal starts here */}
@@ -344,17 +368,33 @@ function Dashboard() {
                   theme === "dark"
                     ? {
                         m: 1,
-                        minWidth: 120,
                         backgroundColor: "#193460",
                         height: 30,
                         borderRadius: 2,
+                        "@media (min-width: 1024px) and (max-width: 1175px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 769px) and (max-width: 1024px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 10px) and (max-width: 375px)": {
+                          width: 100,
+                        },
                       }
                     : {
                         m: 1,
-                        minWidth: 120,
                         backgroundColor: "#609D45",
                         height: 30,
                         borderRadius: 2,
+                        "@media (min-width: 1024px) and (max-width: 1175px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 769px) and (max-width: 1024px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 10px) and (max-width: 375px)": {
+                          width: 100,
+                        },
                       }
                 }
               >
@@ -435,12 +475,13 @@ function Dashboard() {
                 }}
               />
             </div>
-          </div>
-          <div className="c-bot">
-            <p id="c-footer">Total Profit:</p>
-            <p>Total Loss:</p>
+            <div className="c-bot">
+              <p id="c-footer">Total Profit:</p>
+              <p>Total Loss:</p>
+            </div>
           </div>
         </div>
+        <div className="Table-header">Transaction History </div>
         <div className="Table">7</div>
       </div>
     </div>

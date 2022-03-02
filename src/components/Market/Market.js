@@ -4,6 +4,7 @@ import Marketbar from "../Menubar/MarBar";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
+import SideBar from "../Menubar/FinalTestBar";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");

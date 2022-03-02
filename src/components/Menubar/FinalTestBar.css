@@ -1,0 +1,135 @@
+.test-bar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #373737;
+  box-shadow: 2px 0px 4px rgba(255, 255, 255, 0.19);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  border-radius: 0 10px 10px 0;
+}
+
+#DP {
+  width: 45px;
+  padding: 5px 0 5px 0;
+  margin-left: 3px;
+}
+
+#Market {
+  width: 35px;
+  padding: 5px 0 5px 0;
+  margin-left: 5px;
+}
+
+#Dashboard {
+  width: 35px;
+  padding: 5px 0 5px 0;
+  margin-left: 5px;
+}
+
+#Logout {
+  width: 35px;
+  padding: 5px 0 5px 0;
+  margin-left: 5px;
+}
+
+#logo {
+  width: 70px;
+  margin-left: -10px;
+}
+
+.tip {
+  transform: scale(1.5);
+}
+
+/* Style sidebar links */
+.test-bar a {
+  padding: 6px 0 6px 5px;
+  display: block;
+}
+
+/* Style links on mouse-over */
+.test-bar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.responsive-nav-drop {
+  display: flex;
+  align-items: center;
+}
+
+#responsive-dash-header {
+  display: none;
+  color: white;
+  font-weight: normal;
+  font-size: 1.375rem;
+  padding: 2px 0 0 10px;
+}
+
+.responsive-nav-drop:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#responsive-logo {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .test-bar {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #282828;
+    box-shadow: none;
+    overflow-y: hidden;
+    border-radius: 0;
+  }
+  #responsive-dash-header {
+    display: block;
+  }
+  #responsive-logo {
+    padding-top: 5px;
+    width: 140px;
+    display: block;
+  }
+  #logo {
+    width: 50px;
+    margin-left: 0;
+  }
+  .test-bar a:not(:nth-child(2)) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #responsive-logo {
+    padding-top: 10px;
+    width: 110px;
+  }
+  #responsive-dash-header {
+    font-size: 1.125rem;
+    padding: 10px 0 0 10px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #responsive-logo {
+    margin-left: -10px;
+    padding: 10px 0 0 0;
+    width: 100px;
+  }
+  #responsive-dash-header {
+    font-size: 1rem;
+    padding: 10px 0 0 10px;
+  }
+}

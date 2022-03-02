@@ -32,6 +32,27 @@ export default function SimpleSlider() {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   return (
     <Slider {...settings}>

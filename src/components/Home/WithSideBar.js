@@ -1,11 +1,11 @@
 import React from "react";
-import SideBar from "../Menubar/SideBar";
+import SideBar from "../Menubar/FinalTestBar";
 import { Outlet } from "react-router";
 
-export default () => {
+export default (props) => {
   return (
     <>
-      <SideBar />
+      <SideBar titleName={props.nameIt} />
       <Outlet />
     </>
   );

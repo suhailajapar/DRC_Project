@@ -18,14 +18,46 @@ const Dashbar = ({ theme, setTheme }) => {
         <span className="DashHead">Dashboard</span>
       </div>
       <div className="dash-icon-head">
-        <ToggleSwitch theme={theme} setTheme={setTheme} />
+        <ToggleSwitch
+          id="light-dark-switch"
+          theme={theme}
+          setTheme={setTheme}
+        />
         <NotificationsIcon
-          sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+          sx={
+            theme === "dark"
+              ? {
+                  color: "white",
+                  "@media (max-width: 768px)": {
+                    display: "none",
+                  },
+                }
+              : {
+                  color: "black",
+                  "@media (max-width: 768px)": {
+                    display: "none",
+                  },
+                }
+          }
           fontSize="large"
           className="dash-icon-pads"
         />
         <MailIcon
-          sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+          sx={
+            theme === "dark"
+              ? {
+                  color: "white",
+                  "@media (max-width: 768px)": {
+                    display: "none",
+                  },
+                }
+              : {
+                  color: "black",
+                  "@media (max-width: 768px)": {
+                    display: "none",
+                  },
+                }
+          }
           fontSize="large"
         />
       </div>
