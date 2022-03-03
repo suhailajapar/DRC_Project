@@ -5,9 +5,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import EditIcon from "@mui/icons-material/Edit";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
-import SideBar from "../Menubar/SideBar";
 import Box from "@mui/material/Box";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import SideBar from "../Menubar/FinalTestBar";
 
 function Profile() {
   const {
@@ -22,7 +22,6 @@ function Profile() {
 
   return (
     <div className="main-wrapper">
-      <SideBar />
       <div className="photo-box"></div>
       <div className="container1">
         {" "}

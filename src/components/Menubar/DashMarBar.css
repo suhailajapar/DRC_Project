@@ -1,8 +1,8 @@
 .dash-bar {
   border: 3px black;
   border-radius: 7px;
-  columns: 2;
-  align-self: center;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   padding-top: 0px;
 }
@@ -30,7 +30,7 @@
   font-size: 20px;
   display: flex;
   justify-content: flex-end;
-  padding: 20px 20px 0 0;
+  padding: 23px 20px 0 0;
 }
 
 .dash-icon-pads {
@@ -70,7 +70,7 @@
   font-size: 20px;
   display: flex;
   justify-content: flex-end;
-  padding: 10px 20px 0 0;
+  padding: 8px 20px 0 0;
 }
 
 .market-icon-text {
@@ -79,4 +79,36 @@
 
 .market-icon-pads {
   padding: 0 10px;
+}
+
+@media only screen and (min-width: 671px) and (max-width: 768px) {
+  .dash-mar-logo {
+    width: 150px;
+  }
+
+  .dash-icon-head {
+    padding: 5px 0 10px 0;
+  }
+  .dash-mar-logo {
+    display: none;
+  }
+  .DashHead {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .dash-mar-logo {
+    width: 130px;
+  }
+
+  .dash-icon-head {
+    padding: 5px 0 10px 0;
+  }
+  .dash-mar-logo {
+    display: none;
+  }
+  .DashHead {
+    display: none;
+  }
 }

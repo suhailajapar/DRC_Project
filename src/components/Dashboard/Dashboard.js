@@ -20,6 +20,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
+import SideBar from "../Menubar/FinalTestBar";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -36,7 +39,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   height: 800,
-  width: 1200,
+  width: 400,
   bgcolor: "black",
   border: "2px solid #000",
   boxShadow: 24,
@@ -57,7 +60,9 @@ function CreditnDebitCard() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Credit and Debit card</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Credit and Debit card"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -73,7 +78,7 @@ function CreditnDebitCard() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -93,7 +98,7 @@ function CreditnDebitCard() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -109,10 +114,17 @@ function Bank() {
   const handleClose = () => {
     setOpen(false);
   };
+  const [bank, setBank] = React.useState("");
+
+  const handleChange = (event) => {
+    setBank(event.target.value);
+  };
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Bank</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Bank"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -128,7 +140,7 @@ function Bank() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -138,13 +150,23 @@ function Bank() {
         >
           <Stack spacing={2}>
             Bank:
-            <input type="text" name="Bank" />
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Bank"
+              onChange={handleChange}
+              sx={{ bgcolor: "white" }}
+            >
+              <MenuItem value={10}>Maybank</MenuItem>
+              <MenuItem value={20}>CIMB</MenuItem>
+              <MenuItem value={30}>Hong Leong</MenuItem>
+            </Select>
             Amount: $
             <input type="number" name="Amount" />
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -163,7 +185,9 @@ function Paypal() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Paypal</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Paypal"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -179,7 +203,7 @@ function Paypal() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -195,7 +219,7 @@ function Paypal() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -221,6 +245,7 @@ function Dashboard() {
 
   return (
     <div className="DashBG">
+      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <div className="Layout">
         <div className="dash-top">
           <Dashbar theme={theme} setTheme={setTheme} />
@@ -235,36 +260,59 @@ function Dashboard() {
           </div>
         </div>
         <div className="Profile">
-          <div className="p-col profile-details-box">
+          <div className="profile-details-box">
             <div className="profile-details">
               <h3 id="prof-head">User Profile</h3>
-              <p>@username</p>
-              <p>Full Name</p>
-              <p>Date joined: 01-01-2022</p>
-              <p>Asset's Balance as on (Today's Date)</p>
+              <p id="prof-text">@username</p>
+              <p id="prof-text">Full Name</p>
+              <p id="prof-text">Date joined: 01-01-2022</p>
+              <p id="prof-text">Asset's Balance as on (Today's Date)</p>
               <h2 id="prof-bal">USD 999999.99</h2>
             </div>
           </div>
-          <div className="p-col profile-avatar">
+          <div className="profile-avatar">
             <Avatar
               alt="user's pic"
               src={ProfilePic}
-              sx={{ width: 65, height: 65 }}
+              sx={[
+                {
+                  "@media (max-width: 1024px)": {
+                    width: 60,
+                    height: 60,
+                  },
+                  width: 65,
+                  height: 65,
+                },
+              ]}
             />
           </div>
         </div>
+        <div className="LiveCharts-header">
+          Current Trends (since buy price)
+        </div>
         <div className="LiveCharts">4</div>
         <div className="Wallet">
-          <div className="w-col w-value">
+          <div className="w-value">
             <p>Wallet's Balance</p>
             <h1 id="wal-bal">USD 999999.99</h1>
           </div>
 
-          <Button onClick={handleOpen} className="w-col w-icon">
+          <Button onClick={handleOpen} className="w-icon">
             <Avatar
               alt="reload wallet"
               src={theme === "dark" ? WalletIconDark : WalletIconLight}
-              sx={{ width: 50, height: 50 }}
+              sx={{
+                width: 50,
+                height: 50,
+                "@media (min-width: 769px) and (max-width: 1024px)": {
+                  width: 40,
+                  height: 40,
+                },
+                "@media (min-width: 200px) and (max-width: 768px)": {
+                  width: 55,
+                  height: 55,
+                },
+              }}
             />
           </Button>
           {/* Modal starts here */}
@@ -282,22 +330,13 @@ function Dashboard() {
                 <p>Deposit</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Credit & Debit card" />
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Local Bank" />
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Paypal" />
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -309,22 +348,13 @@ function Dashboard() {
                 <p>Withdrawal</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Credit & Debit card" />
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Local Bank" />
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Paypal" />
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -344,17 +374,33 @@ function Dashboard() {
                   theme === "dark"
                     ? {
                         m: 1,
-                        minWidth: 120,
                         backgroundColor: "#193460",
                         height: 30,
                         borderRadius: 2,
+                        "@media (min-width: 1024px) and (max-width: 1175px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 769px) and (max-width: 1024px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 10px) and (max-width: 375px)": {
+                          width: 100,
+                        },
                       }
                     : {
                         m: 1,
-                        minWidth: 120,
                         backgroundColor: "#609D45",
                         height: 30,
                         borderRadius: 2,
+                        "@media (min-width: 1024px) and (max-width: 1175px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 769px) and (max-width: 1024px)": {
+                          width: 110,
+                        },
+                        "@media (min-width: 10px) and (max-width: 375px)": {
+                          width: 100,
+                        },
                       }
                 }
               >
@@ -435,14 +481,16 @@ function Dashboard() {
                 }}
               />
             </div>
-          </div>
-          <div className="c-bot">
-            <p id="c-footer">Total Profit:</p>
-            <p>Total Loss:</p>
+            <div className="c-bot">
+              <p id="c-footer">Total Profit:</p>
+              <p>Total Loss:</p>
+            </div>
           </div>
         </div>
+        <div className="Table-header">Transaction History </div>
         <div className="Table">7</div>
       </div>
+      <Footer />
     </div>
   );
 }

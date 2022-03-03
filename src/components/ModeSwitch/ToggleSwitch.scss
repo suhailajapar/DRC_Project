@@ -1,4 +1,5 @@
 .toggle-switch {
+  z-index: 2;
   position: relative;
   width: 75px;
   display: inline-block;
@@ -14,10 +15,19 @@
   }
   @media only screen and (min-width: 481px) and (max-width: 768px) {
     transform: scale(0.825);
+    position: fixed;
+    // margin-bottom: 45px;
+    // margin-right: -40px;
   }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
+  @media screen and (min-width: 351px) and (max-width: 480px) {
     transform: scale(0.75);
+    position: fixed;
     margin-left: 25px;
+  }
+  @media screen and (min-width: 100px) and (max-width: 350px) {
+    transform: scale(0.6);
+    position: fixed;
+    margin-right: -25px;
   }
 
   &-checkbox {
