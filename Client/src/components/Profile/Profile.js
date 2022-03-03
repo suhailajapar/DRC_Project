@@ -28,7 +28,7 @@ const Profile = () => {
 
   return (
     <div className="main-wrapper">
-      <ChangePasswordModal display={display} />;
+      <ChangePasswordModal display={display} />
       <SideBar />
       <Menubar theme={theme} setTheme={setTheme} />
       <div>
