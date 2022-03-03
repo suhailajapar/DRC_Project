@@ -245,7 +245,7 @@ function Dashboard() {
 
   return (
     <div className="DashBG">
-      <Menubar theme={theme} setTheme={setTheme} />
+      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <div className="Layout">
         <div className="dash-top">
           <Dashbar theme={theme} setTheme={setTheme} />
