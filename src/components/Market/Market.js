@@ -12,7 +12,7 @@ function Market() {
   const [theme, setTheme] = React.useState("dark");
   return (
     <div className="marketBG">
-      <Menubar theme={theme} setTheme={setTheme} />
+      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <div className="market-layout">
         <div className="market-bar-section">
           <Marketbar theme={theme} setTheme={setTheme} />

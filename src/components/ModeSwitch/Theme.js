@@ -5,9 +5,11 @@ import DarkWave from "./../../assets/Waves/wave_dark.svg";
 
 //object that references to the color properties
 export const lightTheme = {
-  body: "#ffffff",
-  fontColor: "#000000",
+  body: "#fff",
+  fontColor: "#000",
   backgroundImg: `url(${LightWave})`,
+  cardBorder: "1px solid #c2c2c2",
+  cardBody: "white",
   // searchBar: "#c4c4c4",
   // box: "#312e81",
   // wotd: "#F9F9F9",
@@ -15,8 +17,10 @@ export const lightTheme = {
 
 export const darkTheme = {
   body: "#1F1F1F",
-  fontColor: "#ffffff",
+  fontColor: "#fff",
   backgroundImg: `url(${DarkWave})`,
+  cardBorder: "black",
+  cardBody: "#010023",
   // banner: "#000",
   // title: "#c7d2fe",
   // searchBar: "#575757",
@@ -26,11 +30,11 @@ export const darkTheme = {
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container{
+.login, .signup-container, .DashBG, .marketBG {
   transition: background-color 0.5s ease;
 }
 
-.login, .signup-container {
+.login, .signup-container, .DashBG, .marketBG{
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};
@@ -47,6 +51,7 @@ export const GlobalStyles = createGlobalStyle`
   color: ${(props) => props.theme.fontColor}
 }
 
+
 /*
 .main-title, .sub-title{
   color: ${(props) => props.theme.title}
@@ -60,7 +65,7 @@ export const GlobalStyles = createGlobalStyle`
   color: ${(props) => props.theme.fontColor}
 }
 
-.searchBar, .input {
+.searchBar, .input{
   background-color: ${(props) => props.theme.searchBar}
 }
 
