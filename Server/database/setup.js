@@ -22,13 +22,13 @@ const setupUserTable = async () => {
         loginid TEXT NOT NULL DEFAULT (('HKR'::text || to_char((CURRENT_DATE)::timestamp with time zone, 'YYYYMMDD'::text)) || lpad((nextval('user_id_seq'::regclass))::text, 18, '0'::text)),
         username TEXT NOT NULL,
         full_name TEXT NOT NULL,
-        email TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
         phone TEXT,
         date_joined TIMESTAMPTZ,
         user_img TEXT,
-        CONSTRAINT "pk_users" PRIMARY KEY (loginid),
-        CONSTRAINT "uq_email" UNIQUE (email)
+        PRIMARY KEY (loginid),
+        -- CONSTRAINT "UQ_4c8f96ccf523e9a3faefd5bdd4c" UNIQUE (email)
     );
     `);
 
