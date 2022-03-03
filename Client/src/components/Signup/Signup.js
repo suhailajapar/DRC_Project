@@ -139,7 +139,7 @@ const Signup = () => {
                   required: true,
                   minLength: 8,
                   maxLength: 16,
-                  pattern: /^[a-zA-Z0-9-_]+$/,
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
                 })}
               />
               <label className="signup-input-title">Confirm Password</label>

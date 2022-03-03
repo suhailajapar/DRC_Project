@@ -88,22 +88,28 @@ font-family: 'IBM Plex Sans', sans-serif;
 .InputBox-p {
   width: 515px;
   height: 45px;
-  font-size: 30px;
+  color: #606060;
   border: 1px solid #979797;
   border-radius: 5px;
   background-color: #979797;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding: 1px 2px;
+}
+
+.pwd-bullet {
+  padding: 0 20px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: inherit;
 }
 
 input::placeholder {
   padding: 0 20px;
   font-size: 18px;
-}
-
-.InputBox-p::placeholder {
-  color: #606060;
-  line-height: normal;
-  font-size: 30px;
 }
 
 .Save-Button {
@@ -121,6 +127,10 @@ input::placeholder {
 
 .Save-Button:hover {
   background-color: rgb(23, 112, 23);
+}
+
+.popup-modal {
+  z-index: 100;
 }
 
 /* Responsive Design */

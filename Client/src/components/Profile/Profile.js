@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload";
+import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import "./Profile.css";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
 import SideBar from "../Menubar/SideBar";
 import Menubar from "../Menubar/Menubar";
@@ -9,6 +11,10 @@ import { SiteDataContext } from "../../SiteData";
 const Profile = () => {
   const [theme, setTheme] = React.useState("dark");
   const { user_data } = useContext(SiteDataContext);
+  const [display, setDisplay] = useState("none");
+  const pwdPopupHandler = () => {
+    setDisplay("unset");
+  };
 
   const {
     register,
@@ -22,9 +28,10 @@ const Profile = () => {
 
   return (
     <div className="main-wrapper">
+      <ChangePasswordModal display={display} />;
       <SideBar />
       <Menubar theme={theme} setTheme={setTheme} />
-      <>
+      <div>
         <div className="user-container">
           <div className="photo-box"></div>
           <ImageUpload className="photo-box" />
@@ -117,24 +124,25 @@ const Profile = () => {
 
             <div className="form-boxes">
               <div className="headers">Password :</div>
-              <input
-                type="password"
-                className="InputBox-p"
-                placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                {...register("password", {
-                  required: true,
-                  minlegth: 8,
-                  maxlength: 16,
-                  pattern: /^[a-zA-Z0-9_]*$/,
-                })}
-              />
+              <div className="InputBox-p">
+                <span className="pwd-bullet">
+                  <span>
+                    &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
+                  </span>
+                  <EditRoundedIcon
+                    fontSize="medium"
+                    style={{ color: "white" }}
+                    onClick={pwdPopupHandler}
+                  />
+                </span>
+              </div>
             </div>
             <div className="form-boxes">
               <button className="Save-Button">Save </button>
             </div>
           </form>
         </div>
-      </>
+      </div>
     </div>
   );
 };
