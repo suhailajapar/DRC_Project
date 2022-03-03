@@ -71,7 +71,12 @@ const ChangePasswordModal = (props) => {
             isPasswordError={passLengthValidation}
           />
           <div className={classes.buttons}>
-            <span className={classes.cancel_btn}>Cancel</span>
+            <span
+              className={classes.cancel_btn}
+              onClick={() => props.setDisplay("none")}
+            >
+              Cancel
+            </span>
             <button
               className={classes.pwd_btn}
               disabled={!validateForm}
