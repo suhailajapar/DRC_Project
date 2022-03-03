@@ -21,6 +21,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
 import SideBar from "../Menubar/FinalTestBar";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -37,7 +39,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   height: 800,
-  width: 1200,
+  width: 400,
   bgcolor: "black",
   border: "2px solid #000",
   boxShadow: 24,
@@ -58,7 +60,9 @@ function CreditnDebitCard() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Credit and Debit card</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Credit and Debit card"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -74,7 +78,7 @@ function CreditnDebitCard() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -94,7 +98,7 @@ function CreditnDebitCard() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -110,10 +114,17 @@ function Bank() {
   const handleClose = () => {
     setOpen(false);
   };
+  const [bank, setBank] = React.useState("");
+
+  const handleChange = (event) => {
+    setBank(event.target.value);
+  };
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Bank</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Bank"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -129,7 +140,7 @@ function Bank() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -139,13 +150,23 @@ function Bank() {
         >
           <Stack spacing={2}>
             Bank:
-            <input type="text" name="Bank" />
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Bank"
+              onChange={handleChange}
+              sx={{ bgcolor: "white" }}
+            >
+              <MenuItem value={10}>Maybank</MenuItem>
+              <MenuItem value={20}>CIMB</MenuItem>
+              <MenuItem value={30}>Hong Leong</MenuItem>
+            </Select>
             Amount: $
             <input type="number" name="Amount" />
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -164,7 +185,9 @@ function Paypal() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Paypal</Button>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemText primary="Paypal"></ListItemText>
+      </ListItemButton>
       <Modal
         hideBackdrop
         open={open}
@@ -180,7 +203,7 @@ function Paypal() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: 300,
-            width: 800,
+            width: 400,
             bgcolor: "black",
             color: "white",
             border: "2px solid #000",
@@ -196,7 +219,7 @@ function Paypal() {
             <input type="submit" value="Submit" />
           </Stack>
 
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </React.Fragment>
@@ -222,6 +245,7 @@ function Dashboard() {
 
   return (
     <div className="DashBG">
+      <Menubar theme={theme} setTheme={setTheme} />
       <div className="Layout">
         <div className="dash-top">
           <Dashbar theme={theme} setTheme={setTheme} />
@@ -306,22 +330,13 @@ function Dashboard() {
                 <p>Deposit</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Credit & Debit card" />
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Local Bank" />
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Deposit through Paypal" />
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -333,22 +348,13 @@ function Dashboard() {
                 <p>Withdrawal</p>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Credit & Debit card" />
-                      <CreditnDebitCard />
-                    </ListItemButton>
+                    <CreditnDebitCard />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Local Bank" />
-                      <Bank />
-                    </ListItemButton>
+                    <Bank />
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Withdraw through Paypal" />
-                      <Paypal />
-                    </ListItemButton>
+                    <Paypal />
                   </ListItem>
                 </List>
               </Box>
@@ -484,6 +490,7 @@ function Dashboard() {
         <div className="Table-header">Transaction History </div>
         <div className="Table">7</div>
       </div>
+      <Footer />
     </div>
   );
 }
