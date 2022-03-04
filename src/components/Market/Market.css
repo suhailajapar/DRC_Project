@@ -1,3 +1,90 @@
+/* Market list */
+
+.coin-market {
+  background-color: black;
+  width: 40%;
+}
+
+/* Top Area */
+
+.list-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-search {
+  width: 90%;
+}
+.search-input {
+  height: 3vh;
+  width: 60%;
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.coin-close {
+  width: 10%;
+  color: white;
+}
+
+.close-button {
+  float: right;
+  background-color: aqua;
+}
+
+/* Crypto Marketlist display */
+
+.coin-table {
+  width: 100%;
+}
+
+th {
+  text-align: center;
+  border-bottom: 1px solid aqua;
+  color: aqua;
+  width: 25%;
+}
+td {
+  text-align: center;
+  border-bottom: 1px solid aqua;
+  color: beige;
+  width: 25%;
+}
+
+tr td:hover {
+  color: black;
+}
+
+.table-body tr:hover {
+  background-color: dimgray;
+}
+
+.table-header {
+  width: 98.7%;
+  display: inline-table;
+}
+
+.table-body {
+  width: 100%;
+  display: inline-table;
+}
+
+.coin-market {
+  position: absolute;
+  z-index: 999999;
+}
+
+.coin-list {
+  height: 35vh;
+  overflow-y: scroll;
+  width: 100%;
+  color: beige;
+}
+
 .marketBG {
   background-color: #1f1f1f;
   background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
@@ -64,22 +151,19 @@
   padding: 10px 0 5px 0;
 }
 
-/* .slick-prev:before {
-  content: "";
-  border: solid white;
-  border-width: 0 4px 4px 0;
-  display: inline-block;
-  padding: 6px;
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
+.image {
+  height: 20px;
+  width: 20px;
 }
 
-.slick-next:before {
-  content: "";
-  border: solid white;
-  border-width: 0 4px 4px 0;
-  display: inline-block;
-  padding: 6px;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-} */
+.cryptoName {
+  font-size: 16px;
+}
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #11d811;
+}
