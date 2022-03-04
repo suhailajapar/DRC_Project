@@ -20,8 +20,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
 
 import { SiteDataContext } from "../../SiteData";
@@ -246,6 +244,8 @@ function Dashboard() {
     setDoughnutType(event.target.value);
   };
 
+  let curr_date = new Date();
+
   return (
     <div className="DashBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
@@ -266,10 +266,10 @@ function Dashboard() {
           <div className="profile-details-box">
             <div className="profile-details">
               <h3 id="prof-head">User Profile</h3>
-              <p>{user_data.username}</p>
+              <p>@{user_data.username}</p>
               <p>{user_data.full_name}</p>
               <p>Date joined: {user_data.date_joined}</p>
-              <p>Asset's Balance as on (Today's Date)</p>
+              <p>Asset's Balance as on {curr_date.toDateString()}</p>
               <h2 id="prof-bal">USD 999999.99</h2>
             </div>
           </div>
