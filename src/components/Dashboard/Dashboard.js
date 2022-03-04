@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Dashboard.css";
 import { Avatar } from "@mui/material";
 import ProfilePic from "../../assets/DashboardAsset/profile-placeholder.png";
@@ -20,9 +20,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
+
+import { SiteDataContext } from "../../SiteData";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   iconSelect: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
 
 Chart.register(...registerables);
 
-//Pop-up modal sty;e
+//Pop-up modal style
 const style = {
   position: "absolute",
   top: "50%",
@@ -232,9 +233,9 @@ function Dashboard() {
 
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
+  const { user_data } = useContext(SiteDataContext);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const [doughnutType, setDoughnutType] = React.useState("");
 
   const classes = useStyles();
@@ -242,6 +243,8 @@ function Dashboard() {
   const handleChange = (event) => {
     setDoughnutType(event.target.value);
   };
+
+  let curr_date = new Date();
 
   return (
     <div className="DashBG">
@@ -263,10 +266,10 @@ function Dashboard() {
           <div className="profile-details-box">
             <div className="profile-details">
               <h3 id="prof-head">User Profile</h3>
-              <p id="prof-text">@username</p>
-              <p id="prof-text">Full Name</p>
-              <p id="prof-text">Date joined: 01-01-2022</p>
-              <p id="prof-text">Asset's Balance as on (Today's Date)</p>
+              <p>@{user_data.username}</p>
+              <p>{user_data.full_name}</p>
+              <p>Date joined: {user_data.date_joined}</p>
+              <p>Asset's Balance as on {curr_date.toDateString()}</p>
               <h2 id="prof-bal">USD 999999.99</h2>
             </div>
           </div>

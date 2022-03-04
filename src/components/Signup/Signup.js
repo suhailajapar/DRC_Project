@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Footer from "./../Footer/Footer";
@@ -7,15 +7,32 @@ import { useForm } from "react-hook-form";
 
 const Signup = () => {
   const [theme, setTheme] = React.useState("dark");
+  const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
+  const [successMsg, setSuccessMsg] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  //Send to backend for registration
+  const userRegister = (data) => {
+    const userInfo = {
+      ...data,
+      date_joined: new Date().toLocaleString(),
+    };
+    const req = new Request("http://localhost:3001/api/register", {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(userInfo),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        setSuccessMsg(data.message);
+        return console.log(successMsg);
+      });
+    });
+  };
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+  // FOR VALIDATION
+  const onSubmit = (data, e) => {
+    userRegister(data);
+    e.target.reset();
   }; // your form submit function which will invoke after successful validation
 
   return (
@@ -34,13 +51,13 @@ const Signup = () => {
                 Username
                 <span className="error-message">
                   {" "}
-                  {errors?.username?.type === "required" && (
+                  {formState.errors?.username?.type === "required" && (
                     <p>This field is required</p>
                   )}
-                  {errors?.username?.type === "maxLength" && (
+                  {formState.errors?.username?.type === "maxLength" && (
                     <p>username cannot exceed 16 characters</p>
                   )}
-                  {errors?.username?.type === "pattern" && (
+                  {formState.errors?.username?.type === "pattern" && (
                     <p>Only alphanumeric input or underscores are accepted</p>
                   )}
                 </span>
@@ -58,14 +75,14 @@ const Signup = () => {
                 Full Name
                 <span className="error-message">
                   {" "}
-                  {errors?.fullname?.type === "required" && (
-                    <p>This field is required</p>
+                  {formState.errors?.fullname?.type === "required" && (
+                    <p>This field is required.</p>
                   )}
-                  {errors?.fullname?.type === "maxLength" && (
-                    <p>Full name cannot exceed 50 characters</p>
+                  {formState.errors?.fullname?.type === "maxLength" && (
+                    <p>Full name cannot exceed 50 characters.</p>
                   )}
-                  {errors?.fullname?.type === "pattern" && (
-                    <p>Alphabetical characters only</p>
+                  {formState.errors?.fullname?.type === "pattern" && (
+                    <p>Alphabetical characters only.</p>
                   )}
                 </span>
               </label>
@@ -81,18 +98,18 @@ const Signup = () => {
               <label className="signup-input-title">
                 Email
                 <span className="error-message">
-                  {errors?.Email?.type === "pattern" && (
-                    <p>Enter valid email only</p>
+                  {formState.errors?.email?.type === "pattern" && (
+                    <p>Enter valid email only.</p>
                   )}
-                  {errors?.Email?.type === "required" && (
-                    <p>This field is required</p>
+                  {formState.errors?.email?.type === "required" && (
+                    <p>This field is required.</p>
                   )}
                 </span>
               </label>
               <input
                 className="signup-input"
                 placeholder="Email"
-                {...register("Email", {
+                {...register("email", {
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
                   required: true,
                 })}
@@ -101,14 +118,16 @@ const Signup = () => {
                 Password
                 <span className="error-message">
                   {" "}
-                  {errors?.Password?.type === "pattern" && (
-                    <p>Only Alphanumeric and underscores are accepted</p>
+                  {formState.errors?.Password?.type === "pattern" && (
+                    <p>Only Alphanumeric and underscores are accepted.</p>
                   )}
-                  {errors.Password && (
-                    <p style={{ marginRight: "10px" }}>Min 10 digits</p>
+                  {formState.errors.Password && (
+                    <p style={{ marginRight: "10px" }}>
+                      Password must have at least 8 characters.
+                    </p>
                   )}
-                  {errors?.Password?.type === "required" && (
-                    <p>This field is required</p>
+                  {formState.errors?.Password?.type === "required" && (
+                    <p>This field is required.</p>
                   )}
                 </span>
               </label>
@@ -116,30 +135,36 @@ const Signup = () => {
                 className="signup-input"
                 type="password"
                 placeholder="Password"
-                {...register("Password", {
+                {...register("password", {
                   required: true,
-                  minLength: 10,
+                  minLength: 8,
                   maxLength: 16,
-                  pattern: /^[a-zA-Z0-9-_]+$/,
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
                 })}
               />
               <label className="signup-input-title">Confirm Password</label>
-              <input name="" className="signup-input" type="password" />
+              <input
+                name=""
+                className="signup-input"
+                placeholder="Repeat password"
+                type="password"
+              />
               <div id="create-acc">
-                <input
+                <button
                   type="submit"
+                  // disabled={formState.isDirty}
                   className="signup-button"
-                  value="Create Account"
-                  div
-                ></input>
+                >
+                  Create Account
+                </button>
               </div>
             </form>
           </div>
 
-          <div>
+          <div id="reg">
             Already registered?{" "}
-            <Link to="/login">
-              <span className="links">Log In</span>
+            <Link to="/login" className="links">
+              Log In
             </Link>
           </div>
         </div>
