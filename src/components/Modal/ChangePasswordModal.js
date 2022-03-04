@@ -8,11 +8,15 @@ const ChangePasswordModal = (props) => {
   const [retype_password, setRetypePassword] = useState("");
 
   const validateForm = () => {
-    return (
+    if (
       password.length > 0 &&
       new_password.length > 0 &&
       new_password === retype_password
-    );
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const passLengthValidation = (e) => {
@@ -22,6 +26,7 @@ const ChangePasswordModal = (props) => {
   };
 
   const passwordChangeHandler = () => {
+    setPassword("");
     alert("SUCCESS!");
     // const userPassword = {
     //   oldPassword: password,
@@ -41,7 +46,10 @@ const ChangePasswordModal = (props) => {
 
   return (
     <div style={{ display: `${props.display}` }}>
-      <div className={classes.backdrop} />
+      <div
+        className={classes.backdrop}
+        onClick={() => props.setDisplay("none")}
+      />
       <div className={classes.popup}>
         <Card className={classes.modal}>
           <h3>Change Password</h3>
@@ -50,8 +58,9 @@ const ChangePasswordModal = (props) => {
             className={classes.pwdInputArea}
             type="password"
             placeholder="Current password..."
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isPasswordError={passLengthValidation}
+            // isPasswordError={passLengthValidation}
           />
           <hr className={classes.line} />
           <div className={classes.pwdTitle}>New Password</div>
@@ -59,16 +68,18 @@ const ChangePasswordModal = (props) => {
             className={classes.pwdInputArea}
             type="password"
             placeholder="New password..."
+            value={new_password}
             onChange={(e) => setNewPassword(e.target.value)}
-            isPasswordError={passLengthValidation}
+            // isPasswordError={passLengthValidation}
           />
           <div className={classes.pwdTitle}>Re-type Password</div>
           <input
             className={classes.pwdInputArea}
             type="password"
+            value={retype_password}
             placeholder="Re-type new password..."
             onChange={(e) => setRetypePassword(e.target.value)}
-            isPasswordError={passLengthValidation}
+            // isPasswordError={passLengthValidation}
           />
           <div className={classes.buttons}>
             <span
@@ -79,7 +90,7 @@ const ChangePasswordModal = (props) => {
             </span>
             <button
               className={classes.pwd_btn}
-              disabled={!validateForm}
+              disabled={validateForm()}
               onClick={passwordChangeHandler}
             >
               Change password

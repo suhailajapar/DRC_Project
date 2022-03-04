@@ -4,7 +4,6 @@ import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import "./Profile.css";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
-import SideBar from "../Menubar/SideBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
 
@@ -29,7 +28,6 @@ const Profile = () => {
   return (
     <div className="main-wrapper">
       <ChangePasswordModal display={display} setDisplay={setDisplay} />
-      <SideBar />
       <Menubar theme={theme} setTheme={setTheme} />
       <div>
         <div className="user-container">
