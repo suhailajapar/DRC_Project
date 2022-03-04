@@ -8,7 +8,9 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import "./MSlider.css";
 import { styled } from "@mui/material/styles";
-import IconTest from "../../assets/DashboardAsset/wallet-1.png";
+import IconTest from "../../assets/DashboardAsset/WalletIconDark.svg";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const CardContentNoPadding = styled(CardContent)(`
   padding: 0;
@@ -21,7 +23,7 @@ const CardContentNoPadding = styled(CardContent)(`
 const title = <ul id="m-card-title">Bro</ul>;
 const currentPrice = <ul id="m-card-value">0.0009</ul>;
 
-export default function SimpleSlider() {
+export default function SimpleSlider({ theme, setTheme }) {
   var settings = {
     dots: false,
     infinite: true,
@@ -31,6 +33,16 @@ export default function SimpleSlider() {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    prevArrow: (
+      <ArrowBackIosIcon
+        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+      />
+    ),
+    nextArrow: (
+      <ArrowForwardIosIcon
+        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+      />
+    ),
   };
   return (
     <Slider {...settings}>

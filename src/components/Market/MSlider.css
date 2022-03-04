@@ -15,6 +15,7 @@
 .m-card-content {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .m-card-col {
   color: white;
@@ -32,4 +33,5 @@
   align-items: center;
   font-size: 12px;
   box-sizing: border-box;
+  padding-right: 36px;
 }

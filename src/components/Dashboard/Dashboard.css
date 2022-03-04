@@ -54,17 +54,17 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
 }
 
 .Layout {
   color: white;
-
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(11, 1fr);
-  grid-auto-rows: minmax(100px, auto);
+  /* grid-auto-rows: minmax(50px, 80px); */
   grid-gap: 25px;
-  margin: 0 40px 0 100px;
+  margin: 0 50px 0 110px;
   height: 100vh;
 }
 
@@ -75,44 +75,10 @@
   opacity: 0.1;
 }
 
-.DashLogo {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0 20px;
-}
-
-.DashHead {
-  font-family: "Red Hat Display", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  padding: 5px 0 0 25px;
-}
-
-.dash-icon-text {
-  padding: 5px;
-}
-
-.dash-icon-head {
-  font-size: 20px;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 20px 0 0;
-}
-
-.dash-icon-pads {
-  padding: 0 10px;
-}
-
-.Top {
+.dash-top {
   grid-column: 1/8;
   grid-row: 1;
-  border: 3px black;
-  border-radius: 7px;
-  columns: 2;
-  align-self: center;
-  justify-content: space-between;
-  padding-top: 15px;
+  margin-bottom: -15px;
 }
 
 .BoughtAssets {
@@ -134,49 +100,70 @@
   width: 100%;
 } */
 
+/* Dark Mode */
 .Profile {
   grid-column: 6/8;
   grid-row: 2/4;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: #010023;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #prof-bal {
   font-size: 20px;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.67em;
 }
 
 #prof-head {
   font-weight: bold;
   font-size: 16px;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.67em;
 }
 
-.p-col {
-  float: left;
+#prof-text {
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
 }
 
 .profile-details-box {
   height: 100%;
-  width: 75%;
 }
 
 .profile-details {
   padding: 5px 0 0 30px;
-  line-height: 0.8;
-  color: white;
-  font-size: 12px;
+  line-height: 16px;
+  font-size: 0.8125em;
 }
 
 .profile-avatar {
-  padding: 25px 0 0 25px;
-  width: 25%;
+  padding: 25px 30px 0 25px;
   box-sizing: border-box;
+}
+
+.LiveCharts-header {
+  grid-column: 1/6;
+  grid-row: 4;
+  padding: 0px;
+  color: white;
+  font-size: 16px;
+  margin-top: -10px;
 }
 
 .LiveCharts {
   grid-column: 1/6;
   grid-row: 4/9;
-  background-color: greenyellow;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+  padding: 0px 0 0px 30px;
+  margin-top: 25px;
+  height: 400px;
 }
 
 .Wallet {
@@ -186,10 +173,10 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: #010023;
   padding: 0px 0 0px 30px;
-}
-
-.w-col {
-  float: left;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .w-value {
@@ -218,18 +205,21 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: #010023;
   display: grid;
-  grid-template-rows: 60px auto 60px;
+  grid-template-rows: auto auto auto;
   padding-left: 30px;
+  height: 298px;
 }
 
-.c-col {
-  float: left;
+.c-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .c-top-title {
   padding-top: 5px;
   line-height: 0.7;
-  width: 60%;
+  /* width: 50%; */
 }
 
 #c-title {
@@ -239,20 +229,19 @@
   font-size: 10px;
 }
 .c-top-dropdown {
-  padding: 10px 0 0 15px;
-  width: 40%;
+  padding: 10px 20px 0 15px;
+  /* width: 40%; */
   box-sizing: border-box;
-}
-.c-top {
 }
 
 .c-mid {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 #donut {
-  width: 40%;
+  width: 180px;
   height: 100%;
 }
 
@@ -264,7 +253,335 @@
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
+
+.Table-header {
+  grid-column: 1/6;
+  grid-row: 8;
+  padding: 0px;
+  color: white;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
 .Table {
   grid-column: 1/8;
   grid-row: 9/12;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #010023;
+  padding: 0px 0 0px 30px;
+  margin-top: -20px;
+  /* height: 200px; */
+}
+
+/* Responsive Design */
+/* Laptop Fullscreen until 1024px ----------- */
+
+@media only screen and (min-width: 1024px) and (max-width: 1500px) {
+  .profile-details {
+    padding: 5px 0 0 30px;
+    line-height: 14px;
+    font-size: 0.8125em;
+  }
+  .Layout {
+    height: 100%;
+    grid-template-rows: 60px;
+  }
+  .Table-header {
+    margin-bottom: -30px;
+  }
+  .Table {
+    /* padding: 0px 0 0px 30px; */
+    margin-top: 25px;
+    height: 100vh;
+  }
+  #donut {
+    width: 150px;
+    height: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1350px) {
+  #c-title {
+    font-size: 0.8125em;
+    line-height: 1.5;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.2em;
+  }
+  #c-subtitle {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.2em;
+    line-height: 1.3;
+  }
+
+  #wal-bal {
+    margin-block-start: 0em;
+    margin-block-end: 0.67em;
+    font-size: 1.7em;
+  }
+
+  #prof-head {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.67em;
+  }
+  #prof-bal {
+    font-size: 1.3em;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+  }
+  #prof-text {
+    font-size: 0.8125em;
+  }
+  .c-top-dropdown {
+    padding: 10px 0px 0 15px;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1175px) {
+  .profile-details {
+    padding: 5px 0 0 30px;
+    line-height: 1.5;
+    font-size: 0.75em;
+  }
+  #prof-head {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.4em;
+    line-height: 1;
+  }
+  #prof-bal {
+    font-size: 1.3em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.5em;
+    line-height: 1;
+  }
+  #wal-bal {
+    margin-block-start: 0em;
+    margin-block-end: 0.67em;
+    font-size: 1.5em;
+  }
+  .Layout {
+    height: 100%;
+    grid-template-rows: 60px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1130px) {
+  .profile-details {
+    padding: 5px 0 0 30px;
+    line-height: 1.3;
+    font-size: 0.75em;
+  }
+  #prof-head {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.4em;
+    line-height: 1;
+  }
+  #prof-bal {
+    font-size: 1.1em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.5em;
+    line-height: 1;
+  }
+  .Table {
+    margin-bottom: -30px;
+  }
+}
+
+/* @media only screen and (min-width: 1025px) and (max-width: 1071px) {
+  #donut {
+    width: 125px;
+    height: 100%;
+  }
+  .Chart {
+    height: 290px;
+  }
+  .Table-header {
+    margin-top: 30px;
+  }
+  .Table {
+    padding: 0px 0 0px 30px;
+  }
+} */
+
+/* 769px until 1024px (medium screen) ----------- */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .Layout {
+    height: 100%;
+    grid-template-rows: 60px;
+  }
+  .profile-details {
+    padding: 5px 0 0 30px;
+    line-height: 1.2;
+    font-size: 0.75em;
+  }
+  #prof-head {
+    font-weight: bold;
+    font-size: 1em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.4em;
+    line-height: 1;
+  }
+  #prof-bal {
+    font-size: 1em;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.5em;
+    line-height: 1;
+  }
+  #donut {
+    width: 130px;
+    height: 100%;
+  }
+  .Profile {
+    width: 250px;
+  }
+  #wal-bal {
+    font-size: 1.4em;
+  }
+  #c-title {
+    font-size: 0.75em;
+    line-height: 1.5;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.2em;
+  }
+  #c-subtitle {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.2em;
+    line-height: 1.3;
+  }
+  .Table-header {
+    margin-bottom: -30px;
+  }
+  .Table {
+    margin-top: 20px;
+    height: 100vh;
+  }
+}
+
+/* 481px until 768px (small screen) ----------- */
+
+@media only screen and (max-width: 768px) {
+  .Layout {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 30px 0 30px;
+    padding-top: 10px;
+    height: 100%;
+  }
+  .BoughtAssets {
+    margin-top: 35px;
+  }
+  .Profile {
+    display: none;
+  }
+  .LiveCharts-header {
+    margin-top: -10px;
+  }
+  .LiveCharts {
+    margin-top: -10px;
+    height: 400px;
+  }
+
+  .Wallet {
+    margin-top: 0px;
+    flex-direction: row-reverse;
+    justify-content: start;
+    padding: 0px 0 0px 10px;
+  }
+  .w-icon {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 0;
+    height: 80px;
+  }
+  .w-value {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    line-height: 0.9;
+    font-size: 0.875rem;
+    padding: 5px 0 0 10px;
+  }
+  #wal-bal {
+    font-size: 1.5rem;
+    margin-block-start: 0em;
+    margin-block-end: 0.67em;
+  }
+  .Chart {
+    padding: 0px 0 20px 30px;
+    height: 100%;
+  }
+  .c-mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+  #donut {
+    width: 11.25rem;
+    height: 100%;
+  }
+  .c-bot {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-size: 0.75rem;
+    line-height: 3;
+    padding: 10px 0 0 10px;
+  }
+  #c-title {
+    font-size: 0.875em;
+    line-height: 1.4;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.2em;
+  }
+  #c-subtitle {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+    line-height: 1.3;
+    padding-bottom: 10px;
+  }
+  .Table-header {
+    padding: 0px;
+    font-size: 1rem;
+    margin-top: -10px;
+  }
+  /* .Table {
+    grid-row: 9;
+    margin-top: 20px;
+    height: 100vh;
+  } */
+}
+
+@media only screen and (max-width: 420px) {
+  #donut {
+    width: 10rem;
+    height: 100%;
+  }
+  #c-title {
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #donut {
+    width: 8rem;
+    height: 100%;
+  }
+  #wal-bal {
+    font-size: 1.3rem;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #donut {
+    width: 7rem;
+    height: 100%;
+  }
 }
