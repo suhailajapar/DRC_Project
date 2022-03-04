@@ -29,14 +29,14 @@ section {
 
 .title {
   width: 40vw;
-  margin-left: 100px;
+  /* margin-left: 50px; */
 }
 
 .top_part {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-image: url("./Media/gridlines.svg");
+  background-image: url("./Media/gridlines.png");
   background-position-x: left;
   background-repeat: no-repeat;
   background-size: contain;
@@ -61,6 +61,11 @@ section {
   align-items: center;
   justify-content: center;
   height: 90vh;
+}
+
+.last_part {
+  display: flex;
+  flex-direction: column;
 }
 
 .news_title {
@@ -91,7 +96,7 @@ section {
 .subtitle {
   color: #7ed957;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-weight: 400;
 }
 
@@ -119,7 +124,7 @@ section {
 .feature_one,
 .feature_two,
 .feature_three {
-  width: 35vw;
+  width: 30vw;
 }
 
 .feature_two {
@@ -132,13 +137,32 @@ section {
   margin-top: 150px;
 }
 
-.dboard_img,
+.dboard_img {
+  padding-left: 10vw;
+  height: 50vh;
+}
+
 .rocket_img {
   padding-left: 10vw;
+  height: 60vh;
 }
 
 .profit_loss_img {
-  padding-right: 15vw;
+  padding-right: 10vw;
+  height: 50vh;
+}
+
+.guy_img {
+  width: 65vh;
+}
+
+.github_link {
+  /* margin-top: 20px; */
+  height: 25px;
+  box-shadow: 0px 2px 4px rgba(54, 54, 54, 0.2);
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
 }
 
 /* Buttons */

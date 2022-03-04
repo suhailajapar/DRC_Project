@@ -1,14 +1,15 @@
 import React from "react";
 import Footer from "./../Footer/Footer";
-import CoinBTC from "./Media/BTC.svg";
-import CoinAave from "./Media/Aave.svg";
-import CoinETHC from "./Media/ETHC.svg";
+import CoinBTC from "./Media/BTC.png";
+import CoinAave from "./Media/Aave.png";
+import CoinETHC from "./Media/ETHC.png";
 import { Link } from "react-router-dom";
-import First from "./Media/first_part.svg";
-import Dboard from "./Media/feat_dbod.svg";
-import ProfitLoss from "./Media/feat_pl.svg";
-import Rocket from "./Media/feat_gainerloser.svg";
-import TheGuy from "./Media/tradeWithUsGuy.svg";
+import First from "./Media/first_part.png";
+import Dboard from "./Media/feat_dbod.png";
+import ProfitLoss from "./Media/feat_pl.png";
+import Rocket from "./Media/feat_gainerloser.png";
+import TheGuy from "./Media/tradeWithUsGuy.png";
+import GithubLink from "./Media/github.svg";
 import classes from "./Home.module.css";
 // import Marketpage from "./../Market/Market";
 
@@ -64,7 +65,7 @@ function Home() {
         </div>
       </section>
       <section className={classes.third_part}>
-        <div className={classes.feature_section}>Our Feature</div>
+        <div className={classes.feature_section}>Our Features</div>
         <div className={classes.features}>
           <div className={classes.first_feature}>
             <div className={classes.feature_one}>
@@ -107,13 +108,25 @@ function Home() {
       <section className={classes.fourth_part}>
         <img src={TheGuy} className={classes.guy_img} alt="illustration" />
         <div className={classes.last_part}>
-          <div className={classes.main_title}>Trade with Us</div>
-          <div className={classes.subtitle}>
-            Every successful trader has to start somewhere.
+          <div className={classes.main_title}>
+            Trade with Us
+            <p className={classes.subtitle}>
+              Every successful trader has to start somewhere.
+            </p>
           </div>
           <button className={classes.lpage_btn}>
             <Link to="/signup">Start Trading Now!</Link>
           </button>
+          <a
+            href="https://github.com/farhan-besquare/DRC_Project.git"
+            target="_blank"
+          >
+            <img
+              src={GithubLink}
+              className={classes.github_link}
+              alt="Github link"
+            />
+          </a>
         </div>
       </section>
       <Footer className={classes.home_footer} />
