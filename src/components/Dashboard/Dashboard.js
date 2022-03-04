@@ -10,7 +10,6 @@ import Select from "@mui/material/Select";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
-import { makeStyles } from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -20,15 +19,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer";
-
-const useStyles = makeStyles({
-  iconSelect: {
-    color: "white",
-  },
-});
+import TransTable from "./TransacHist";
 
 Chart.register(...registerables);
 
@@ -229,6 +220,8 @@ function Paypal() {
 function Dashboard() {
   //light mode and dark mode
   const [theme, setTheme] = React.useState("dark");
+  const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
+  const [dataSets, setDataSets] = React.useState([35, 65]);
 
   //Open close function for the wallet button
   const [open, setOpen] = React.useState(false);
@@ -236,8 +229,6 @@ function Dashboard() {
   const handleClose = () => setOpen(false);
 
   const [doughnutType, setDoughnutType] = React.useState("");
-
-  const classes = useStyles();
 
   const handleChange = (event) => {
     setDoughnutType(event.target.value);
@@ -405,12 +396,14 @@ function Dashboard() {
                 }
               >
                 <Select
-                  classes={{ icon: classes.iconSelect }}
                   sx={{
                     height: 30,
                     color: "white",
                     fontSize: 12,
                     borderRadius: 2,
+                    "& .MuiSelect-icon": {
+                      color: "white",
+                    },
                   }}
                   value={doughnutType}
                   onChange={handleChange}
@@ -420,6 +413,10 @@ function Dashboard() {
                   }}
                 >
                   <MenuItem
+                    onClick={() => {
+                      setLabel(["Loss", "Profit"]);
+                      setDataSets([35, 65]);
+                    }}
                     sx={{
                       height: 30,
                       fontSize: 12,
@@ -428,14 +425,22 @@ function Dashboard() {
                   >
                     Total Profit/Loss
                   </MenuItem>
-                  <MenuItem sx={{ fontSize: 12 }} value={10}>
-                    Something else
-                  </MenuItem>
-                  <MenuItem sx={{ fontSize: 12 }} value={20}>
-                    Another thing
-                  </MenuItem>
-                  <MenuItem sx={{ fontSize: 12 }} value={30}>
-                    Whatever
+                  <MenuItem
+                    onClick={() => {
+                      // api = something
+                      // push from api to arr=[]
+                      // setLabel = arr
+
+                      // api = something
+                      // push from api.data to some_arr=[]
+                      // setData = arr
+                      setLabel(["BTC", "ETH", "SHIBA"]);
+                      setDataSets([10, 10, 10, 10, 10, 10, 10, 10, 10, 10]);
+                    }}
+                    sx={{ fontSize: 12 }}
+                    value={10}
+                  >
+                    Total Assets
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -470,12 +475,34 @@ function Dashboard() {
                       }
                 }
                 data={{
-                  labels: ["Loss", "Profit"],
+                  labels: getLabel,
                   datasets: [
                     {
-                      data: [35, 65],
-                      backgroundColor: ["#C14462", "#439090"],
-                      borderColor: ["#FF003D", "#00FFFF"],
+                      data: dataSets,
+                      backgroundColor: [
+                        "#C14462",
+                        "#439090",
+                        "#00BFFF",
+                        "#F0E68C",
+                        "#DDA0DD",
+                        "#FFFFFF",
+                        "#9ACD32",
+                        "#E9967A",
+                        "#808000",
+                        "#7F0000",
+                      ],
+                      borderColor: [
+                        "#FF003D",
+                        "#00FFFF",
+                        "#98C4EC",
+                        "#FFD700",
+                        "#FF00FF",
+                        "#DCDCDC",
+                        "#00FF00",
+                        "#FA8072",
+                        "#B5B35D",
+                        "#800000",
+                      ],
                     },
                   ],
                 }}
@@ -488,9 +515,10 @@ function Dashboard() {
           </div>
         </div>
         <div className="Table-header">Transaction History </div>
-        <div className="Table">7</div>
+        <div className="Table">
+          <TransTable theme={theme} setTheme={setTheme} />
+        </div>
       </div>
-      <Footer />
     </div>
   );
 }
