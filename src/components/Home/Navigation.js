@@ -9,13 +9,32 @@ import Market from "../Market/Market";
 import WithoutNav from "./WithoutNav";
 import WithNav from "./WithNav";
 import WithSideBar from "./WithSideBar";
+import { SiteDataContext } from "../../SiteData";
+
+// TODO
+const LoggedIn = ({ children, is_logged_in }) => {
+  if (is_logged_in) return children;
+  window.location.href = "/";
+};
 
 function Navigation() {
+  const { user_data } = React.useContext(SiteDataContext);
+
   return (
     <Router>
       <Routes>
         <Route element={<WithNav />}>
           <Route path="/" element={<Home />} />
+        </Route>
+        <Route element={<WithSideBar />}>
+          <Route
+            path="/dashboard"
+            element={
+              <LoggedIn is_logged_in={!!user_data}>
+                <Dashboard />
+              </LoggedIn>
+            }
+          />
         </Route>
         <Route element={<WithSideBar nameIt={"Profile"} />}>
           <Route path="/profile" element={<Profile />} />

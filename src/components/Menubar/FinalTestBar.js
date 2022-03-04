@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,8 +17,10 @@ import LogoutLogo from "../../assets/DashboardAsset/Logout.svg";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate } from "react-router-dom";
+import { SiteDataContext } from "../../SiteData";
 
 export default function AccountMenu(props) {
+  const { handleLogout } = useContext(SiteDataContext) || {};
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -85,7 +87,7 @@ export default function AccountMenu(props) {
           placement="right"
           arrow
         >
-          <a href="/profile">
+          <a href="/profile" className="DP">
             <img src={UserDP} alt="User's Profile Picture" id="DP" />
           </a>
         </Tooltip>
@@ -94,7 +96,7 @@ export default function AccountMenu(props) {
           placement="right"
           arrow
         >
-          <a href="/market">
+          <a href="/market" className="sidebar-market">
             <img src={MarketLogo} alt="Market Logo" id="Market" />
           </a>
         </Tooltip>
@@ -103,7 +105,7 @@ export default function AccountMenu(props) {
           placement="right"
           arrow
         >
-          <a href="/dashboard">
+          <a href="/dashboard" className="sidebar-dashboard">
             <img src={DashLogo} alt="Dashboard Logo" id="Dashboard" />
           </a>
         </Tooltip>
@@ -112,7 +114,7 @@ export default function AccountMenu(props) {
           placement="right"
           arrow
         >
-          <a href="#ey">
+          <a href="#ey" className="sidebar-logout" onClick={handleLogout}>
             <img src={LogoutLogo} alt="Logout Logo" id="Logout" />
           </a>
         </Tooltip>
