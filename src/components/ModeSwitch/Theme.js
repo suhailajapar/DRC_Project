@@ -10,9 +10,6 @@ export const lightTheme = {
   backgroundImg: `url(${LightWave})`,
   cardBorder: "1px solid #c2c2c2",
   cardBody: "white",
-  // searchBar: "#c4c4c4",
-  // box: "#312e81",
-  // wotd: "#F9F9F9",
 };
 
 export const darkTheme = {
@@ -21,26 +18,21 @@ export const darkTheme = {
   backgroundImg: `url(${DarkWave})`,
   cardBorder: "black",
   cardBody: "#010023",
-  // banner: "#000",
-  // title: "#c7d2fe",
-  // searchBar: "#575757",
-  // box: "#6366f1",
-  // wotd: "#000",
 };
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container, .DashBG, .marketBG {
+.login, .signup-container, .DashBG, .marketBG, .main-wrapper{
   transition: background-color 0.5s ease;
 }
 
-.login, .signup-container, .DashBG, .marketBG{
+.login, .signup-container, .DashBG, .marketBG, .main-wrapper{
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};
 }
 
-.Profile, .BoughtAssets, .Wallet, .Chart, .LiveCharts, .Table{
+.BoughtAssets, .Wallet, .Chart, .LiveCharts, .Table{
   background-color: ${(props) => props.theme.cardBody};
   color: ${(props) => props.theme.fontColor};
   border: ${(props) => props.theme.cardBorder}
@@ -50,30 +42,4 @@ export const GlobalStyles = createGlobalStyle`
 .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .table-cell{
   color: ${(props) => props.theme.fontColor}
 }
-
-
-/*
-.main-title, .sub-title{
-  color: ${(props) => props.theme.title}
-}
-
-.wotd{
-  background-color: ${(props) => props.theme.wotd}
-
-}
-.words, .word-example, .word-definition, .wotd-title, .theWord, .definition, .title, .notFound, .message, .resolution, .about_us, .contributors, person_name{
-  color: ${(props) => props.theme.fontColor}
-}
-
-.searchBar, .input{
-  background-color: ${(props) => props.theme.searchBar}
-}
-
-.input{
-  color: ${(props) => props.theme.fontColor}
-}
-
-.partOfSpeech, .synonymsList, .antonymsList{
-  background-color: ${(props) => props.theme.box}
-} */
 `;

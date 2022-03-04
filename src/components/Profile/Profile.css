@@ -1,24 +1,35 @@
-.Profile {
-  font-family: "IBM Plex Sans", sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+*/
+
 .main-wrapper {
+  color: white;
   background-color: #1f1f1f;
   background-image: url("../../assets/Waves/wave_dark.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-position: bottom;
-  /* color: white; */
   font-family: "IBM Plex Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menubar {
+  width: 85%;
+  padding-top: 0px;
+  margin-top: 30px;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photo-box {
-  /* border: white; */
   display: grid;
   width: 160px;
   height: 160px;
@@ -28,74 +39,77 @@
   margin: 30px;
 }
 
+.container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px 0 30px 0;
+}
+
 .username {
-  font-family: sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 26px;
-  color: white;
-  padding: 15px 0 15px 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .date-joined {
-  font-family: sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 26px;
-  color: white;
-  padding: 15px 0 30px 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 18px;
 }
 
-.div1 > form {
+.form-boxes {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 800px;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin: 10px 0;
 }
 
 .headers {
   font-family: sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 22px;
-  line-height: 24px;
-  color: white;
-
+  font-size: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   text-align: right;
-  width: 800px;
-  line-height: 26px;
+  white-space: nowrap;
 }
 
 .InputBox {
-  width: 700px;
-  height: 55px;
+  width: 515px;
+  height: 45px;
   font-size: 25px;
   border: 1px solid #979797;
-  box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: transparent;
-  color: whitesmoke;
-  flex: 0 0 600px;
   margin-left: 10px;
 }
 
 .InputBox-p {
-  width: 700px;
-  height: 55px;
-  font-size: 30px;
+  width: 515px;
+  height: 45px;
+  color: #606060;
   border: 1px solid #979797;
-  box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: #979797;
-  color: whitesmoke;
-  flex: 0 0 600px;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding: 1px 2px;
+}
+
+.pwd-bullet {
+  padding: 0 20px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: inherit;
+}
+
+input::placeholder {
+  padding: 0 20px;
+  font-size: 18px;
 }
 
 .Save-Button {
@@ -103,12 +117,20 @@
   height: 40px;
   color: white;
   background-color: green;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   font-size: 18px;
   margin: 10px 0 10px 0;
   align-self: flex-end;
   justify-items: right;
+}
+
+.Save-Button:hover {
+  background-color: rgb(23, 112, 23);
+}
+
+.popup-modal {
+  z-index: 100;
 }
 
 /* Responsive Design */
@@ -133,12 +155,8 @@
     padding-bottom: 20px;
   }
 
-  .div1 > form {
-    width: 600px;
-  }
-
   .headers {
-    width: 600px;
+    /* width: 600px; */
     font-size: 20px;
   }
 
@@ -187,12 +205,8 @@
     font-size: 21px;
   }
 
-  .div1 > form {
-    width: 400px;
-  }
-
   .headers {
-    width: 400px;
+    /* width: 400px; */
     font-size: 17px;
   }
 
@@ -241,12 +255,8 @@
     font-size: 17px;
   }
 
-  .div1 > form {
-    width: 300px;
-  }
-
   .headers {
-    width: 270px;
+    /* width: 270px; */
     font-size: 14px;
   }
 
