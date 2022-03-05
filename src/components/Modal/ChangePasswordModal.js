@@ -6,6 +6,8 @@ const ChangePasswordModal = (props) => {
   const [password, setPassword] = useState("");
   const [new_password, setNewPassword] = useState("");
   const [retype_password, setRetypePassword] = useState("");
+  const [error, setError] = useState("");
+  const [isNotMatch, setIsNotMatch] = useState("");
 
   const validateForm = () => {
     if (
@@ -19,14 +21,31 @@ const ChangePasswordModal = (props) => {
     }
   };
 
-  const passLengthValidation = (e) => {
-    const pwd = e.target.value;
+  const errorHandler = (e) => {
+    const pwd = e;
     const re = new RegExp(`^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*-_?!).{8,16}`);
-    return re.test(pwd);
+    const pwd_test = re.test(pwd);
+    if (pwd.length < 1) {
+      return setError("This field is required");
+    }
+    if (new_password !== retype_password) {
+      setIsNotMatch("Password does not match.");
+      setError(
+        "Password length must at least 8-16 characters and only accept alphanumeric and -_?!"
+      );
+      return;
+    }
+    if (pwd_test === false) {
+      return setError(
+        "Password length must at least 8-16 characters and only accept alphanumeric and -_?!"
+      );
+    }
   };
 
   const passwordChangeHandler = () => {
     setPassword("");
+    setNewPassword("");
+    setRetypePassword("");
     alert("SUCCESS!");
     // const userPassword = {
     //   oldPassword: password,
@@ -53,34 +72,50 @@ const ChangePasswordModal = (props) => {
       <div className={classes.popup}>
         <Card className={classes.modal}>
           <h3 className={classes.title}>Change Password</h3>
-          <div className={classes.pwdTitle}>Current password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            placeholder="Current password..."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
+          <div className={classes.curr_pwd}>
+            <div className={classes.pwdTitle}>Current password</div>
+            <input
+              className={classes.pwdInputArea}
+              type="password"
+              placeholder="Current password..."
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                errorHandler(e.target.value);
+              }}
+            />
+            <div className={classes.err_msg}>{error}</div>
+          </div>
           <hr className={classes.line} />
-          <div className={classes.pwdTitle}>New Password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            placeholder="New password..."
-            value={new_password}
-            onChange={(e) => setNewPassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
-          <div className={classes.pwdTitle}>Re-type Password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            value={retype_password}
-            placeholder="Re-type new password..."
-            onChange={(e) => setRetypePassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
+          <div className={classes.new_pwd}>
+            <div className={classes.pwdTitle}>New Password</div>
+            <input
+              className={classes.pwdInputArea}
+              type="password"
+              placeholder="New password..."
+              value={new_password}
+              onChange={(e) => {
+                setNewPassword(e.target.value);
+                errorHandler(e.target.value);
+              }}
+            />
+            <div className={classes.err_msg}>{`${isNotMatch} ${error}`}</div>
+          </div>
+          <div className={classes.retype_pwd}>
+            <div className={classes.pwdTitle}>Re-type Password</div>
+            <input
+              className={classes.pwdInputArea}
+              type="password"
+              value={retype_password}
+              placeholder="Re-type new password..."
+              onChange={(e) => {
+                setRetypePassword(e.target.value);
+                errorHandler(e.target.value);
+              }}
+            />
+            <div className={classes.err_msg}>{`${isNotMatch} ${error}`}</div>
+          </div>
+
           <div className={classes.buttons}>
             <span
               className={classes.cancel_btn}
