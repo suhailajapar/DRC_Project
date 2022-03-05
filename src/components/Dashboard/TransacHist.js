@@ -137,7 +137,7 @@ export default function CustomizedTables({ theme, setTheme }) {
             display: "none" /* Chrome */,
           },
           "@media (max-width: 768px)": {
-            maxHeight: "170px",
+            maxHeight: "150px",
           },
         }}
       >

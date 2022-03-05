@@ -3,7 +3,7 @@
 font-family: 'IBM Plex Sans', sans-serif;
 */
 
-.main-wrapper {
+.main_wrapper {
   color: white;
   background-color: #1f1f1f;
   background-image: url("../../assets/Waves/wave_dark.svg");
@@ -17,19 +17,19 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: center;
 }
 
-.menubar {
+.profile_menubar {
   width: 85%;
   padding-top: 0px;
   margin-top: 30px;
 }
 
-.user-container {
+.user_container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.photo-box {
+.photo_box {
   display: grid;
   width: 160px;
   height: 160px;
@@ -52,12 +52,12 @@ font-family: 'IBM Plex Sans', sans-serif;
   margin-bottom: 10px;
 }
 
-.date-joined {
+.date_joined {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 18px;
 }
 
-.form-boxes {
+.form_boxes {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
@@ -85,7 +85,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   margin-left: 10px;
 }
 
-.InputBox-p {
+.InputBox_p {
   width: 515px;
   height: 45px;
   color: #606060;
@@ -98,7 +98,7 @@ font-family: 'IBM Plex Sans', sans-serif;
   padding: 1px 2px;
 }
 
-.pwd-bullet {
+.pwd_bullet {
   padding: 0 20px;
   font-size: 30px;
   display: flex;
@@ -112,7 +112,7 @@ input::placeholder {
   font-size: 18px;
 }
 
-.Save-Button {
+.Save_Button {
   width: 135px;
   height: 40px;
   color: white;
@@ -125,22 +125,22 @@ input::placeholder {
   justify-items: right;
 }
 
-.Save-Button:hover {
+.Save_Button:hover {
   background-color: rgb(23, 112, 23);
 }
 
-.popup-modal {
+.popup_modal {
   z-index: 100;
 }
 
 /* Responsive Design */
 /* Laptops & Small Screens ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .main-wrapper {
+  .main_wrapper {
     height: 100;
   }
 
-  .photo-box {
+  .photo_box {
     width: 140px;
     height: 140px;
   }
@@ -150,7 +150,7 @@ input::placeholder {
     font-weight: lighter;
   }
 
-  .date-joined {
+  .date_joined {
     font-size: 24px;
     padding-bottom: 20px;
   }
@@ -168,14 +168,14 @@ input::placeholder {
     margin-left: 10px;
   }
 
-  .InputBox-p {
+  .InputBox_p {
     height: 45px;
     width: 600px;
     flex: 0 0 440px;
     font-size: 20px;
     margin-left: 10px;
   }
-  .Save-Button {
+  .Save_Button {
     width: 20%;
     height: 39px;
     font-size: 20px;
@@ -186,11 +186,11 @@ input::placeholder {
 
 /* Ipads & Tablets ----------- */
 @media only screen and (min-width: 541px) and (max-width: 767px) {
-  .main-wrapper {
+  .main_wrapper {
     height: 100;
   }
 
-  .photo-box {
+  .photo_box {
     width: 140px;
     height: 140px;
     margin-bottom: 20px;
@@ -201,7 +201,7 @@ input::placeholder {
     font-weight: lighter;
   }
 
-  .date-joined {
+  .date_joined {
     font-size: 21px;
   }
 
@@ -218,7 +218,7 @@ input::placeholder {
     margin-left: 10px;
   }
 
-  .InputBox-p {
+  .InputBox_p {
     height: 45px;
     width: 300px;
     flex: 0 0 30px;
@@ -226,7 +226,7 @@ input::placeholder {
     margin-left: 10px;
   }
 
-  .Save-Button {
+  .Save_Button {
     width: 30%;
     height: 35px;
     font-size: 15px;
@@ -237,11 +237,11 @@ input::placeholder {
 
 /* Mobile Devices ----------- */
 @media only screen and (min-width: 320px) and (max-width: 540px) {
-  .main-wrapper {
+  .main_wrapper {
     height: 100;
   }
 
-  .photo-box {
+  .photo_box {
     width: 130px;
     height: 130px;
     margin-bottom: 20px;
@@ -251,7 +251,7 @@ input::placeholder {
     font-size: 17px;
   }
 
-  .date-joined {
+  .date_joined {
     font-size: 17px;
   }
 
@@ -268,7 +268,7 @@ input::placeholder {
     margin-left: 10px;
   }
 
-  .InputBox-p {
+  .InputBox_p {
     height: 35px;
     width: 150px;
     flex: 0 0 50px;
@@ -276,7 +276,7 @@ input::placeholder {
     margin-left: 10px;
   }
 
-  .Save-Button {
+  .Save_Button {
     width: 30%;
     height: 35px;
     font-size: 15px;

@@ -52,7 +52,7 @@ const ChangePasswordModal = (props) => {
       />
       <div className={classes.popup}>
         <Card className={classes.modal}>
-          <h3>Change Password</h3>
+          <h3 className={classes.title}>Change Password</h3>
           <div className={classes.pwdTitle}>Current password</div>
           <input
             className={classes.pwdInputArea}
