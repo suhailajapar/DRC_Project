@@ -48,6 +48,10 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: left;
 }
 
+.error-message > p {
+  margin: 0;
+}
+
 .error-message {
   font-size: 11px;
   display: flex;
