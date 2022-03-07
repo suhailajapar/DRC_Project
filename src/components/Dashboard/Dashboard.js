@@ -20,6 +20,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
+import Linechart from "./Linechart";
 import SideBar from "../Menubar/FinalTestBar";
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
@@ -287,10 +288,10 @@ function Dashboard() {
             />
           </div>
         </div>
-        <div className="LiveCharts-header">
-          Current Trends (since buy price)
+        <div className="LiveCharts-header">Current Trend (Since buy Price)</div>
+        <div className="LiveCharts">
+          <Linechart />
         </div>
-        <div className="LiveCharts">4</div>
         <div className="Wallet">
           <div className="w-value">
             <p>Wallet's Balance</p>
