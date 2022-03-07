@@ -1,21 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
 import "./Login.css";
 import { useForm } from "react-hook-form";
+import { SiteDataContext } from "../../SiteData";
 
 const Login = () => {
-  const [theme, setTheme] = React.useState("dark");
+  const [theme, setTheme] = useState("dark");
+  const navigate = useNavigate();
+  const { user_data, error_message, handleLogin } = useContext(SiteDataContext);
+  const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  useEffect(() => {
+    if (user_data) {
+      navigate("/dashboard");
+    }
+  }, [user_data]);
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+  // FOR INPUT VALIDATION
+  const onSubmit = (data, e) => {
+    handleLogin(data);
+    e.target.reset();
   }; // your form submit function which will invoke after successful validation
 
   return (
@@ -24,23 +30,24 @@ const Login = () => {
       <div className="login-container">
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
-          <div className="login-sub-title">Welcome Back, Hikers!</div>
+          <div className="login-sub-title links">Welcome Back, Hikers!</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             {" "}
             <div className="login-input-title">
               Email
               <span className="error-message">
-                {errors?.Email?.type === "pattern" && (
-                  <p>Enter valid email only</p>
+                {formState.errors?.email?.type === "pattern" && (
+                  <p>Enter valid email only.</p>
                 )}
-                {errors?.Email?.type === "required" && (
-                  <p>This field is required</p>
+                {formState.errors?.email?.type === "required" && (
+                  <p>This field is required.</p>
                 )}
               </span>
             </div>
             <input
               className="login-input"
-              {...register("Email", {
+              placeholder="E-mail"
+              {...register("email", {
                 pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
                 required: true,
               })}
@@ -48,28 +55,33 @@ const Login = () => {
             <div className="login-input-title">
               Password
               <span className="error-message">
-                {errors?.Password?.type === "pattern" && (
-                  <p>Only Alphanumeric input accepted</p>
+                {formState.errors?.password?.type === "pattern" && (
+                  <p>Only Alphanumeric input accepted.</p>
                 )}
-                {errors.Password && (
-                  <p style={{ marginRight: "10px" }}>Min 10 digits</p>
+                {formState.errors.password && (
+                  <p style={{ marginRight: "10px" }}>
+                    Password must have at least 8 characters.
+                  </p>
                 )}
-                {errors?.Password?.type === "required" && (
-                  <p>This field is required</p>
+                {formState.errors?.password?.type === "required" && (
+                  <p>This field is required.</p>
                 )}
               </span>
             </div>
             <input
               type="password"
+              placeholder="Password"
               className="login-input"
-              {...register("Password", {
+              {...register("password", {
                 required: true,
-                minLength: 10,
+                minLength: 8,
                 maxLength: 16,
-                pattern: /^[0-9a-zA-Z]*$/,
+                pattern: /^[a-zA-Z0-9-_!?]+$/,
               })}
             />
-            <input type="submit" className="login-button"></input>
+            <button type="submit" className="login-button">
+              Login
+            </button>
           </form>
 
           <div>

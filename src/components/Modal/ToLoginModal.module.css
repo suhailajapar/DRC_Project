@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&family=Red+Hat+Display&display=swap");
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Red Hat Display', sans-serif;
+*/
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.popup {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  width: 30%;
+  font-family: "Red Hat Display", sans-serif;
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  top: 30vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.title {
+  margin: 20px 0 10px 0;
+  color: black !important;
+}
+
+.welcome_message {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.welcome_message > p {
+  margin: 0;
+  padding: 0;
+}
+
+.msg_title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+p.msg_desc {
+  padding-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.to_login_btn {
+  padding: 0 24px;
+  height: 35px;
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.to_login_btn:hover {
+  background-color: rgb(7, 116, 7);
+}
+
+.home_btn {
+  color: gray;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: inherit;
+  padding-right: 15px;
+  font-size: 14px;
+}
+
+.home_btn:hover {
+  color: green;
+}

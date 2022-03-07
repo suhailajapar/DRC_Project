@@ -2,20 +2,7 @@
 /* 
 font-family: 'IBM Plex Sans', sans-serif;
 */
-/* * {
-  box-sizing: border-box;
-  min-height: 100%;
-} */
 
-/* body {
-  background-color: #1f1f1f;
-  background-image: url("../../assets/Waves/wave_dark.svg");
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  font-family: "IBM Plex Sans", sans-serif;
-} */
 .menubar {
   padding-bottom: 0;
 }
@@ -61,6 +48,10 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: left;
 }
 
+.error-message > p {
+  margin: 0;
+}
+
 .error-message {
   font-size: 11px;
   display: flex;
@@ -70,8 +61,8 @@ font-family: 'IBM Plex Sans', sans-serif;
 
 .signup-input-title {
   text-align: left;
-  font-size: 25px;
-  padding: 10px 0 5px 0;
+  font-size: 20px;
+  padding: 15px 0 10px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -83,14 +74,15 @@ font-family: 'IBM Plex Sans', sans-serif;
   border: solid 1px #979797;
   color: white;
   height: 48px;
-  width: 615px;
-  font-size: 22px;
-  padding: 0 14px;
+  width: 515px;
+  font-size: 18px;
+  padding: 0 24px;
 }
 
 .signup-input::placeholder {
   color: #979797;
   font-size: 16px;
+  padding: 0;
 }
 
 .signup-button {
@@ -105,11 +97,15 @@ font-family: 'IBM Plex Sans', sans-serif;
   margin: 10px 0 10px 0;
 }
 
+.signup-button:hover {
+  background-color: #376921;
+}
+
 #create-acc {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px;
+  margin: 10px 0;
 }
 
 /* Responsive Design */

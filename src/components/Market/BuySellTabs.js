@@ -60,12 +60,7 @@ export default function FullWidthTabs() {
         onChange={handleChange}
         textColor="inherit"
         variant="fullWidth"
-        sx={{
-          borderRadius: 4,
-          "& .MuiTab-root": {
-            opacity: 1,
-          },
-        }}
+        sx={{ borderRadius: 4, "& .MuiTab-root": { opacity: 1 } }}
         TabIndicatorProps={{ style: { background: "transparent" } }}
       >
         <Tab
