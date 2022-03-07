@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&family=Red+Hat+Display&display=swap");
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Red Hat Display', sans-serif;
+*/
 
 .Amountbox {
   display: "block";
@@ -55,6 +60,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  overflow: hidden;
+  height: 100vh;
 }
 
 .Layout {
@@ -91,7 +98,8 @@
 }
 
 .b-title {
-  font-size: 14px;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 16px;
   margin: 0;
   padding: 10px 0 10px 0;
 }
@@ -115,13 +123,21 @@
 
 #prof-bal {
   font-size: 20px;
-  margin-block-start: 0.6em;
-  margin-block-end: 0.67em;
+  font-weight: 700;
+}
+
+h3#prof-head {
+  margin-bottom: 5px;
+}
+
+.p3 {
+  padding-top: 5px;
 }
 
 #prof-head {
   font-weight: bold;
-  font-size: 16px;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 18px;
   margin-block-start: 0.6em;
   margin-block-end: 0.67em;
 }
@@ -137,8 +153,13 @@
 
 .profile-details {
   padding: 5px 0 0 30px;
-  line-height: 16px;
-  font-size: 0.8125em;
+  font-size: 16px;
+}
+
+.profile-details > p {
+  margin: 0;
+  padding-bottom: 2px;
+  font-family: "Red Hat Display", sans-serif;
 }
 
 .profile-avatar {
@@ -147,6 +168,7 @@
 }
 
 .LiveCharts-header {
+  font-family: "Red Hat Display", sans-serif;
   grid-column: 1/6;
   grid-row: 4;
   padding: 0px;
@@ -183,6 +205,7 @@
   width: 75%;
   line-height: 0.8;
   font-size: 14px;
+  font-family: "Red Hat Display", sans-serif;
 }
 
 #wal-bal {
@@ -194,11 +217,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
-  height: 100%;
+  width: 55px;
+  margin-right: 15px;
 }
 
 .Chart {
+  font-family: "Red Hat Display", sans-serif;
   grid-column: 6/8;
   grid-row: 5/9;
   border-radius: 20px;
@@ -237,7 +261,7 @@
 .c-mid {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 #donut {
@@ -247,6 +271,7 @@
 
 .c-bot {
   font-size: 12px;
+  width: 90%;
 }
 
 #c-footer {
@@ -255,6 +280,7 @@
 }
 
 .Table-header {
+  font-family: "Red Hat Display", sans-serif;
   grid-column: 1/6;
   grid-row: 8;
   padding: 0px;
@@ -268,13 +294,21 @@
   grid-row: 9/12;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #010023;
-  padding: 0px 0 0px 30px;
+  background-color: transparent;
+  padding: 0px 0 0px 0px;
   margin-top: -20px;
-  /* height: 200px; */
+  display: flex;
+  flex-direction: column;
+  /* height: 200px !important; */
 }
 
 /* Responsive Design */
+@media only screen and (min-width: 1501px) {
+  .Table-header {
+    margin-top: 40px;
+  }
+}
+
 /* Laptop Fullscreen until 1024px ----------- */
 
 @media only screen and (min-width: 1024px) and (max-width: 1500px) {
@@ -292,8 +326,8 @@
   }
   .Table {
     /* padding: 0px 0 0px 30px; */
-    margin-top: 25px;
-    height: 100vh;
+    margin-top: 10px;
+    /* height: 100vh; */
   }
   #donut {
     width: 150px;
@@ -335,7 +369,7 @@
     font-size: 0.8125em;
   }
   .c-top-dropdown {
-    padding: 10px 0px 0 15px;
+    padding: 10px 0px 0 0px;
     box-sizing: border-box;
   }
 }
@@ -389,9 +423,9 @@
     margin-block-end: 0.5em;
     line-height: 1;
   }
-  .Table {
+  /* .Table {
     margin-bottom: -30px;
-  }
+  } */
 }
 
 /* @media only screen and (min-width: 1025px) and (max-width: 1071px) {
@@ -444,6 +478,11 @@
   #wal-bal {
     font-size: 1.4em;
   }
+
+  .w-icon {
+    width: 45px;
+    margin-right: 15px;
+  }
   #c-title {
     font-size: 0.75em;
     line-height: 1.5;
@@ -467,10 +506,13 @@
 /* 481px until 768px (small screen) ----------- */
 
 @media only screen and (max-width: 768px) {
+  .DashBG {
+    height: 100%;
+  }
   .Layout {
     display: flex;
     flex-direction: column;
-    margin: 0px 30px 0 30px;
+    margin: 0px 20px 0 20px;
     padding-top: 10px;
     height: 100%;
   }
@@ -498,8 +540,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 0;
-    height: 80px;
+    margin: 0 15px;
   }
   .w-value {
     display: flex;
