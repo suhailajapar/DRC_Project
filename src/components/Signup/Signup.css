@@ -48,6 +48,10 @@ font-family: 'IBM Plex Sans', sans-serif;
   align-items: left;
 }
 
+.error-message > p {
+  margin: 0;
+}
+
 .error-message {
   font-size: 11px;
   display: flex;
@@ -70,14 +74,15 @@ font-family: 'IBM Plex Sans', sans-serif;
   border: solid 1px #979797;
   color: white;
   height: 48px;
-  width: 615px;
+  width: 515px;
   font-size: 18px;
-  padding: 0 14px;
+  padding: 0 24px;
 }
 
 .signup-input::placeholder {
   color: #979797;
   font-size: 16px;
+  padding: 0;
 }
 
 .signup-button {

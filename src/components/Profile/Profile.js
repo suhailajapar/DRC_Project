@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload";
 import ChangePasswordModal from "../Modal/ChangePasswordModal";
-import "./Profile.css";
+import classes from "./Profile.module.css";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
 import Menubar from "../Menubar/Menubar";
@@ -26,20 +26,24 @@ const Profile = () => {
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <div className="main-wrapper">
+    <div className={classes.main_wrapper}>
       <ChangePasswordModal display={display} setDisplay={setDisplay} />
-      <Menubar theme={theme} setTheme={setTheme} />
+      <Menubar
+        theme={theme}
+        setTheme={setTheme}
+        className={classes.profile_menubar}
+      />
       <div>
-        <div className="user-container">
-          <div className="photo-box"></div>
-          <ImageUpload className="photo-box" />
-          <div className="container1">
+        <div className={classes.user_container}>
+          <div className={classes.photo_box}></div>
+          <ImageUpload className={classes.photo_box} />
+          <div className={classes.container1}>
             {" "}
-            <div className="username">@suhaila</div>
-            <div className="date-joined">Date joined: 28-9-2021 </div>
+            <div className={classes.username}>@suhaila</div>
+            <div className={classes.date_joined}>Date joined: 28-9-2021 </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <span className="error-message">
+            <span className={classes.error_message}>
               {errors?.fullname?.type === "required" && (
                 <p>This field is required</p>
               )}
@@ -51,10 +55,10 @@ const Profile = () => {
               )}
             </span>
 
-            <div className="form-boxes">
-              <div className="headers">Full Name :</div>
+            <div className={classes.form_boxes}>
+              <div className={classes.headers}>Full Name :</div>
               <input
-                className="InputBox"
+                className={classes.InputBox}
                 placeholder="Ho Laa Hoo"
                 {...register("fullname", {
                   required: true,
@@ -64,7 +68,7 @@ const Profile = () => {
               />
             </div>
 
-            <span className="error-message">
+            <span className={classes.error_message}>
               {errors?.Email?.type === "pattern" && (
                 <p>Enter valid email only</p>
               )}
@@ -73,10 +77,10 @@ const Profile = () => {
               )}
             </span>
 
-            <div className="form-boxes">
-              <div className="headers">Email :</div>
+            <div className={classes.form_boxes}>
+              <div className={classes.headers}>Email :</div>
               <input
-                className="InputBox"
+                className={classes.InputBox}
                 placeholder="email@email.com"
                 {...register("Email", {
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
@@ -85,7 +89,7 @@ const Profile = () => {
               />
             </div>
 
-            <span className="error-message">
+            <span className={classes.error_message}>
               {errors?.MobileNumber?.type === "pattern" && (
                 <p>Valid Mobile Number only</p>
               )}
@@ -95,10 +99,10 @@ const Profile = () => {
               )}
             </span>
 
-            <div className="form-boxes">
-              <div className="headers">Mobile Number :</div>
+            <div className={classes.form_boxes}>
+              <div className={classes.headers}>Mobile Number :</div>
               <input
-                className="InputBox"
+                className={classes.InputBox}
                 placeholder="012-3456789"
                 {...register("MobileNumber", {
                   required: true,
@@ -108,7 +112,7 @@ const Profile = () => {
                 })}
               />
             </div>
-            <span className="error-message">
+            <span className={classes.error_message}>
               {errors?.Password?.type === "pattern" && (
                 <p>Only Alphanumeric and underscores are accepted</p>
               )}
@@ -120,10 +124,10 @@ const Profile = () => {
               )}
             </span>
 
-            <div className="form-boxes">
-              <div className="headers">Password :</div>
-              <div className="InputBox-p">
-                <span className="pwd-bullet">
+            <div className={classes.form_boxes}>
+              <div className={classes.headers}>Password :</div>
+              <div className={classes.InputBox_p}>
+                <span className={classes.pwd_bullet}>
                   <span>
                     &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
                   </span>
@@ -135,8 +139,8 @@ const Profile = () => {
                 </span>
               </div>
             </div>
-            <div className="form-boxes">
-              <button className="Save-Button">Save </button>
+            <div className={classes.form_boxes}>
+              <button className={classes.Save_Button}>Save </button>
             </div>
           </form>
         </div>

@@ -58,6 +58,7 @@ font-family: 'IBM Plex Sans', sans-serif;
 .login-input::placeholder {
   color: #979797;
   font-size: 16px;
+  padding: 0;
 }
 
 .login-button {
