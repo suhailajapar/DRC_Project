@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&family=Red+Hat+Display&display=swap");
+/* 
+font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Red Hat Display', sans-serif;
+*/
+
+.landingPage {
+  scroll-snap-type: y mandatory;
+  color: white;
+  background-color: #001127;
+  margin: 0;
+  padding: 0;
+}
+
+.crypto_news {
+  width: 40vw;
+}
+
+iframe {
+  width: 100%;
+  height: 325px;
+}
+
+section {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  width: 40vw;
+  /* margin-left: 50px; */
+}
+
+.top_part {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-image: url("./Media/gridlines.png");
+  background-position-x: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.second_part {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+}
+
+.third_part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fourth_part {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.last_part {
+  display: flex;
+  flex-direction: column;
+}
+
+.news_title {
+  margin-bottom: 50px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.first_feature,
+.second_feature,
+.third_feature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* TEXT STYLING */
+.main_title {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #7ed957;
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.feature_section {
+  font-size: 48px;
+  font-family: "Red Hat Display", sans-serif;
+  margin-bottom: 50px;
+}
+
+.feature_title {
+  font-size: 28px;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 24px;
+  font-family: "IBM Plex Sans", sans-serif;
+  line-height: 42px;
+  width: 500px;
+  color: #4dff00;
+}
+
+.feature_one,
+.feature_two,
+.feature_three {
+  width: 30vw;
+}
+
+.feature_two {
+  width: 30vw;
+}
+
+/* ILLUSTRATION STYLING */
+.illustration_one {
+  height: 800px;
+  margin-top: 150px;
+}
+
+.dboard_img {
+  padding-left: 10vw;
+  height: 50vh;
+}
+
+.rocket_img {
+  padding-left: 10vw;
+  height: 60vh;
+}
+
+.profit_loss_img {
+  padding-right: 10vw;
+  height: 50vh;
+}
+
+.guy_img {
+  width: 65vh;
+}
+
+.github_link {
+  /* margin-top: 20px; */
+  height: 25px;
+  box-shadow: 0px 2px 4px rgba(54, 54, 54, 0.2);
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+/* Buttons */
+.lpage_btn {
+  background: linear-gradient(-45deg, #498e2c, #2db676, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+  width: fit-content;
+  height: fit-content;
+  padding: 15px 50px;
+  border-radius: 10px;
+  border: none;
+}
+
+.lpage_btn:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.lpage_btn > a {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.lpage_btn > a:hover {
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* FOOTER */
+
+.home_footer {
+  color: white;
+  font-size: 1rem;
+  position: static;
+  bottom: 0;
+  line-height: 75px;
+}
+
+/* Coin Animation */
+
+.coin_logo {
+  height: 150px;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.coin_logo1 {
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+}
+
+.coins {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  margin-right: 8vw;
+}
+
+.coin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 -10px;
+}
+
+.coin2 {
+  justify-content: flex-start;
+}
+
+.shadow {
+  animation: scaling 2.6s infinite ease-in-out;
+}
+
+.shadow {
+  position: relative;
+  left: 20px;
+  top: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  height: 30px;
+  width: 160px;
+  animation: scaling 2.6s infinite;
+  border-radius: 100%;
+}
+
+.shadow1 {
+  width: 120px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .coin_logo1 {
+    animation: coin-logo-bounce 2.6s infinite ease-in-out;
+  }
+  .coin_logo {
+    animation: coin-logo-bounce 2.6s infinite ease-in-out;
+  }
+}
+
+@keyframes coin-logo-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes coin-logo-bounce {
+  20% {
+    animation-timing-function: ease-out;
+    transform: translateY(-60px);
+  }
+
+  50% {
+    animation-timing-function: ease-out;
+    transform: translateY(-80px);
+  }
+}
+
+@keyframes scaling {
+  20% {
+    transform: scale(0.6);
+  }
+
+  50% {
+    transform: scale(0.5);
+  }
+}
