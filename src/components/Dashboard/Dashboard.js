@@ -10,229 +10,26 @@ import Select from "@mui/material/Select";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Stack from "@mui/material/Stack";
 import Dashbar from "../Menubar/DashBar";
 import TransTable from "./TransacHist";
-import Footer from "./../Footer/Footer";
 
 import { SiteDataContext } from "../../SiteData";
 import { useNavigate } from "react-router-dom";
+import WalletReloadModal from "../Modal/WalletReloadModal";
 
 Chart.register(...registerables);
-
-//Pop-up modal style
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  height: 800,
-  width: 400,
-  bgcolor: "black",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  display: "block",
-};
-
-//For deposit and withdrawal
-//Credit and Debit Card
-function CreditnDebitCard() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <React.Fragment>
-      <ListItemButton onClick={handleOpen}>
-        <ListItemText primary="Credit and Debit card"></ListItemText>
-      </ListItemButton>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box
-          className="Amountbox"
-          sx={{
-            position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: 300,
-            width: 400,
-            bgcolor: "black",
-            color: "white",
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Stack spacing={2}>
-            Card No.:
-            <input type="number" name="Card No." />
-            Expiration Date:
-            <input type="number" name="Expiration Date" />
-            Card Security Code:
-            <input type="number" name="Card Security Code" />
-            Amount: $
-            <input type="number" name="Amount" />
-            <input type="submit" value="Submit" />
-          </Stack>
-
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
-}
-
-//Bank
-function Bank() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const [bank, setBank] = React.useState("");
-
-  const handleChange = (event) => {
-    setBank(event.target.value);
-  };
-
-  return (
-    <React.Fragment>
-      <ListItemButton onClick={handleOpen}>
-        <ListItemText primary="Bank"></ListItemText>
-      </ListItemButton>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box
-          className="Amountbox"
-          sx={{
-            position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: 300,
-            width: 400,
-            bgcolor: "black",
-            color: "white",
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Stack spacing={2}>
-            Bank:
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Bank"
-              onChange={handleChange}
-              sx={{ bgcolor: "white" }}
-            >
-              <MenuItem value={10}>Maybank</MenuItem>
-              <MenuItem value={20}>CIMB</MenuItem>
-              <MenuItem value={30}>Hong Leong</MenuItem>
-            </Select>
-            Amount: $
-            <input type="number" name="Amount" />
-            <input type="submit" value="Submit" />
-          </Stack>
-
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
-}
-
-//Paypal
-function Paypal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <React.Fragment>
-      <ListItemButton onClick={handleOpen}>
-        <ListItemText primary="Paypal"></ListItemText>
-      </ListItemButton>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box
-          className="Amountbox"
-          sx={{
-            position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: 300,
-            width: 400,
-            bgcolor: "black",
-            color: "white",
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Stack spacing={2}>
-            Paypal Account No.:
-            <input type="number" name="Card No." />
-            Amount: $
-            <input type="number" name="Amount" />
-            <input type="submit" value="Submit" />
-          </Stack>
-
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
-}
 
 function Dashboard() {
   //light mode and dark mode
   const [theme, setTheme] = React.useState("dark");
   const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
   const [dataSets, setDataSets] = React.useState([35, 65]);
-
-  //Open close function for the wallet button
-  const [open, setOpen] = React.useState(false);
   const { user_data } = useContext(SiteDataContext);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [doughnutType, setDoughnutType] = React.useState("");
+  const [display, setDisplay] = React.useState("none");
+  const WalletPopupHandler = () => {
+    setDisplay("unset");
+  };
 
   const handleChange = (event) => {
     setDoughnutType(event.target.value);
@@ -243,6 +40,7 @@ function Dashboard() {
   return (
     <div className="DashBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
+      <WalletReloadModal display={display} setDisplay={setDisplay} />
       <div className="Layout">
         <div className="dash-top">
           <Dashbar theme={theme} setTheme={setTheme} />
@@ -263,8 +61,10 @@ function Dashboard() {
               <p>@{user_data.username}</p>
               <p>{user_data.full_name}</p>
               <p>Date joined: {user_data.date_joined}</p>
-              <p>Asset's Balance as on {curr_date.toDateString()}</p>
-              <h2 id="prof-bal">USD 999999.99</h2>
+              <p className="p3">
+                Asset's Balance as on {curr_date.toDateString()}
+              </p>
+              <p id="prof-bal">USD 999999.99</p>
             </div>
           </div>
           <div className="profile-avatar">
@@ -293,77 +93,18 @@ function Dashboard() {
             <p>Wallet's Balance</p>
             <h1 id="wal-bal">USD 999999.99</h1>
           </div>
-
-          <Button onClick={handleOpen} className="w-icon">
-            <Avatar
-              alt="reload wallet"
-              src={theme === "dark" ? WalletIconDark : WalletIconLight}
-              sx={{
-                width: 50,
-                height: 50,
-                "@media (min-width: 769px) and (max-width: 1024px)": {
-                  width: 40,
-                  height: 40,
-                },
-                "@media (min-width: 200px) and (max-width: 768px)": {
-                  width: 55,
-                  height: 55,
-                },
-              }}
-            />
-          </Button>
-          {/* Modal starts here */}
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style} className="Walletbox">
-              <Box
-                sx={{ overflow: "auto", height: 350, margin: 6 }}
-                className="Deposit"
-              >
-                <p>Deposit</p>
-                <List>
-                  <ListItem disablePadding>
-                    <CreditnDebitCard />
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <Bank />
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <Paypal />
-                  </ListItem>
-                </List>
-              </Box>
-
-              <Box
-                sx={{ overflow: "auto", height: 350, margin: 6 }}
-                className="Withdrawal"
-              >
-                <p>Withdrawal</p>
-                <List>
-                  <ListItem disablePadding>
-                    <CreditnDebitCard />
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <Bank />
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <Paypal />
-                  </ListItem>
-                </List>
-              </Box>
-            </Box>
-          </Modal>
-          {/* Modal ends here */}
+          <img
+            className="w-icon"
+            onClick={WalletPopupHandler}
+            alt="reload wallet"
+            src={theme === "dark" ? WalletIconDark : WalletIconLight}
+          />
         </div>
         <div className="Chart">
           <div className="c-top">
             <div className="c-top-title c-col">
               <p id="c-title">Total Profit/Loss</p>
-              <p id="c-subtitle">as on 01-01-2022</p>
+              <p id="c-subtitle">as on {curr_date.toDateString()}</p>
             </div>
             <div className="c-top-dropdown c-col">
               <FormControl
