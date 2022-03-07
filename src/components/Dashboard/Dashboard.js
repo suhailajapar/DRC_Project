@@ -11,6 +11,10 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import Dashbar from "../Menubar/DashBar";
+import Linechart from "./Linechart";
+import SideBar from "../Menubar/FinalTestBar";
+import Menubar from "./../Menubar/Menubar";
+import Footer from "./../Footer/Footer";
 import TransTable from "./TransacHist";
 
 import { SiteDataContext } from "../../SiteData";
@@ -84,10 +88,10 @@ function Dashboard() {
             />
           </div>
         </div>
-        <div className="LiveCharts-header">
-          Current Trends (since buy price)
+        <div className="LiveCharts-header">Current Trend (Since buy Price)</div>
+        <div className="LiveCharts">
+          <Linechart />
         </div>
-        <div className="LiveCharts">4</div>
         <div className="Wallet">
           <div className="w-value">
             <p>Wallet's Balance</p>

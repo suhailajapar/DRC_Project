@@ -71,6 +71,7 @@ export default function FullWidthTabs() {
                 fontWeight: 900,
                 fontSize: 22,
               },
+
               fontSize: 18,
               color: "#C4C4C4",
               backgroundColor: "#171717",

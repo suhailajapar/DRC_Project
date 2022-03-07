@@ -1,0 +1,100 @@
+.app > .chartContainer > .tv-lightweight-charts {
+  /* Height of chart (vh or px) */
+  height: 45vh !important;
+}
+.app {
+  width: 100%;
+}
+/* Width of the chart */
+.container {
+  width: 100%;
+}
+
+.loader {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: rgb(241, 242, 243);
+}
+
+.dropdown-box {
+  margin-top: -5px;
+  margin-left: 2px;
+  height: 30vh;
+  overflow: auto;
+  width: 200px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); */
+  /* border-radius: 2px; */
+  width: 30%;
+  z-index: 999999;
+  position: absolute;
+}
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #11d811;
+}
+
+tr {
+  width: 100%;
+  display: inline-table;
+  background-color: black;
+  color: aqua;
+}
+.coinList {
+  width: 33%;
+  justify-content: center;
+  text-align: center;
+}
+
+.dropdown-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.pair-list {
+  padding: 5px 10px;
+}
+
+.interval-filter {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+}
+
+.interval-filter > div {
+  padding: 5px 20px;
+}
+
+.mins {
+  border-radius: 5px 0 0 5px;
+}
+
+.mos {
+  border-radius: 0 5px 5px 0;
+}
+
+.interval-filter > div:hover {
+  background-color: rgb(56, 55, 55);
+}
+
+.db-chart {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+}
+
+.buy-btn {
+  width: 200px;
+  height: 300px;
+}

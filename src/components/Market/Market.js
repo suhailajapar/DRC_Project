@@ -8,6 +8,7 @@ import BuySellTabs from "./BuySellTabs";
 import SideBar from "../Menubar/FinalTestBar";
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
+import Candlestickchart from "./Candlestickchart";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
@@ -19,7 +20,9 @@ function Market() {
           <Marketbar theme={theme} setTheme={setTheme} />
         </div>
         <div className="title-section"></div>
-        <div className="graph-section">3</div>
+        <div className="graph-section">
+          <Candlestickchart />
+        </div>
         <div className="buysell-section">
           <BuySellTabs />
         </div>
