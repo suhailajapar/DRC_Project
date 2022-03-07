@@ -30,7 +30,7 @@ const Login = () => {
       <div className="login-container">
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
-          <div className="login-sub-title">Welcome Back, Hikers!</div>
+          <div className="login-sub-title links">Welcome Back, Hikers!</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             {" "}
             <div className="login-input-title">

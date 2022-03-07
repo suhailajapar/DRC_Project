@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
+import ToLoginModal from "../Modal/ToLoginModal";
 
 const Signup = () => {
-  const [theme, setTheme] = React.useState("dark");
+  const [theme, setTheme] = useState("dark");
   const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
   const [successMsg, setSuccessMsg] = useState("");
+  const [display, setDisplay] = useState("none");
+  const toLoginHandler = () => {
+    setDisplay("unset");
+  };
 
   //Send to backend for registration
   const userRegister = (data) => {
@@ -16,7 +21,7 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toLocaleString(),
     };
-    const req = new Request("http://localhost:3001/api/register", {
+    const req = new Request("http://localhost:3001/user/register", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userInfo),
@@ -33,15 +38,17 @@ const Signup = () => {
   const onSubmit = (data, e) => {
     userRegister(data);
     e.target.reset();
+    toLoginHandler();
   }; // your form submit function which will invoke after successful validation
 
   return (
     <div className="signup-container">
+      <ToLoginModal display={display} onSuccessMsg={successMsg}/>
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="signup-inner-container">
           <div className="signup-main-title">Create Hikers Account</div>
-          <div className="signup-sub-title">
+          <div className="signup-sub-title links">
             Be part of Hikers and start gaining!
           </div>
           <div>

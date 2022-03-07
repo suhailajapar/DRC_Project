@@ -1,32 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "../Card/Card";
 import classes from "./ChangePasswordModal.module.css";
+import { useForm } from "react-hook-form";
 
 const ChangePasswordModal = (props) => {
-  const [password, setPassword] = useState("");
-  const [new_password, setNewPassword] = useState("");
-  const [retype_password, setRetypePassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setError,
+    reset,
+    clearErrors,
+    formState,
+  } = useForm();
 
-  const validateForm = () => {
-    if (
-      password.length > 0 &&
-      new_password.length > 0 &&
-      new_password === retype_password
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const passLengthValidation = (e) => {
-    const pwd = e.target.value;
-    const re = new RegExp(`^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*-_?!).{8,16}`);
-    return re.test(pwd);
-  };
-
-  const passwordChangeHandler = () => {
-    setPassword("");
+  const passwordChangeHandler = (data) => {
+    console.log(data);
     alert("SUCCESS!");
     // const userPassword = {
     //   oldPassword: password,
@@ -44,6 +33,12 @@ const ChangePasswordModal = (props) => {
     // });
   };
 
+  // FOR INPUT VALIDATION
+  const onSubmit = (data, e) => {
+    passwordChangeHandler(data);
+    reset();
+  };
+
   return (
     <div style={{ display: `${props.display}` }}>
       <div
@@ -52,50 +47,127 @@ const ChangePasswordModal = (props) => {
       />
       <div className={classes.popup}>
         <Card className={classes.modal}>
-          <h3>Change Password</h3>
-          <div className={classes.pwdTitle}>Current password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            placeholder="Current password..."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
-          <hr className={classes.line} />
-          <div className={classes.pwdTitle}>New Password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            placeholder="New password..."
-            value={new_password}
-            onChange={(e) => setNewPassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
-          <div className={classes.pwdTitle}>Re-type Password</div>
-          <input
-            className={classes.pwdInputArea}
-            type="password"
-            value={retype_password}
-            placeholder="Re-type new password..."
-            onChange={(e) => setRetypePassword(e.target.value)}
-            // isPasswordError={passLengthValidation}
-          />
-          <div className={classes.buttons}>
-            <span
-              className={classes.cancel_btn}
-              onClick={() => props.setDisplay("none")}
-            >
-              Cancel
-            </span>
-            <button
-              className={classes.pwd_btn}
-              disabled={validateForm()}
-              onClick={passwordChangeHandler}
-            >
-              Change password
-            </button>
-          </div>
+          <h3 className={classes.title}>Change Password</h3>
+          <form style={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
+            <div className={classes.pwd_box}>
+              <div className={classes.pwdTitle}>Current password</div>
+              <input
+                className={classes.pwdInputArea}
+                type="password"
+                placeholder="Current password..."
+                {...register("curr_password", {
+                  required: "This field is required.",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Password must have at least 8 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "Password cannot be more than 16 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
+                })}
+              />
+              <div className={classes.err_msg}>
+                {formState.errors.curr_password && (
+                  <span>{formState.errors?.curr_password.message}</span>
+                )}
+              </div>
+            </div>
+            <hr className={classes.line} />
+            <div className={classes.pwd_box}>
+              <div className={classes.pwdTitle}>New Password</div>
+              <input
+                className={classes.pwdInputArea}
+                type="password"
+                placeholder="New password..."
+                {...register("new_password", {
+                  onChange: (e) => {
+                    if (e.target.value !== getValues("retype_password")) {
+                      setError("new_password", {
+                        type: "manual",
+                        message: "Password must match.",
+                      });
+                    } else {
+                      clearErrors(["new_password", "retype_password"]);
+                    }
+                  },
+                  required: "This field is required.",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Password must have at least 8 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "Password cannot be more than 16 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
+                })}
+              />
+              <div className={classes.err_msg}>
+                {formState.errors?.new_password && (
+                  <span>{formState.errors?.new_password.message}</span>
+                )}
+              </div>
+            </div>
+            <div className={classes.pwd_box}>
+              <div className={classes.pwdTitle}>Re-type Password</div>
+              <input
+                className={classes.pwdInputArea}
+                type="password"
+                placeholder="Re-type new password..."
+                {...register("retype_password", {
+                  onChange: (e) => {
+                    if (e.target.value !== getValues("new_password")) {
+                      setError("retype_password", {
+                        type: "manual",
+                        message: "Password must match.",
+                      });
+                    } else {
+                      clearErrors(["new_password", "retype_password"]);
+                    }
+                  },
+                  required: "This field is required.",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Password must have at least 8 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "Password cannot be more than 16 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
+                })}
+              />
+              <div className={classes.err_msg}>
+                {formState.errors?.retype_password && (
+                  <span>{formState.errors?.retype_password.message}</span>
+                )}
+              </div>
+            </div>
+
+            <div className={classes.buttons}>
+              <span
+                className={classes.cancel_btn}
+                onClick={() => props.setDisplay("none")}
+              >
+                Cancel
+              </span>
+              <button
+                className={classes.pwd_btn}
+                type="submit"
+                // disabled={validateForm()}
+              >
+                Change password
+              </button>
+            </div>
+          </form>
         </Card>
       </div>
     </div>
