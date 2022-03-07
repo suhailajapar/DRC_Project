@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
 import "./Market.css";
 import Marketbar from "../Menubar/MarBar";
 import MGainSlider from "./MGainSlider";
@@ -17,8 +18,8 @@ function Market() {
         <div className="market-bar-section">
           <Marketbar theme={theme} setTheme={setTheme} />
         </div>
-        <div className="title-section box">2</div>
-        <div className="graph-section box">3</div>
+        <div className="title-section"></div>
+        <div className="graph-section">3</div>
         <div className="buysell-section">
           <BuySellTabs />
         </div>
@@ -40,7 +41,7 @@ function Market() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
