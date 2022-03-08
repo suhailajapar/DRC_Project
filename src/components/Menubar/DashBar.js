@@ -23,7 +23,7 @@ const Dashbar = ({ theme, setTheme }) => {
           theme={theme}
           setTheme={setTheme}
         />
-        <NotificationsIcon
+        {/* <NotificationsIcon
           sx={
             theme === "dark"
               ? {
@@ -59,7 +59,7 @@ const Dashbar = ({ theme, setTheme }) => {
                 }
           }
           fontSize="large"
-        />
+        /> */}
       </div>
     </div>
   );

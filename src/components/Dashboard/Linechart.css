@@ -1,0 +1,10 @@
+.line-dash {
+  max-height: 400px;
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 1300px) {
+  .line-dash {
+    min-height: 400px;
+  }
+}

@@ -21,7 +21,7 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toLocaleString(),
     };
-    const req = new Request("http://localhost:3001/user/register", {
+    const req = new Request("http://192.168.100.140:3001/user/register", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userInfo),
@@ -43,7 +43,7 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <ToLoginModal display={display} onSuccessMsg={successMsg}/>
+      <ToLoginModal display={display} onSuccessMsg={successMsg} />
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="signup-inner-container">

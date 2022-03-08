@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import "./Market.css";
-import Marketbar from "../Menubar/MarBar";
+import Marketbar from "../Menubar/HeaderBar";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
@@ -17,14 +17,14 @@ function Market() {
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <div className="market-layout">
         <div className="market-bar-section">
-          <Marketbar theme={theme} setTheme={setTheme} />
+          <Marketbar titleName={"Market"} theme={theme} setTheme={setTheme} />
         </div>
         <div className="title-section"></div>
         <div className="graph-section">
           <Candlestickchart />
         </div>
         <div className="buysell-section">
-          <BuySellTabs />
+          <BuySellTabs theme={theme} setTheme={setTheme} />
         </div>
 
         <div className="gain-section">
