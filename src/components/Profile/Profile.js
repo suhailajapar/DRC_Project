@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload";
 import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import classes from "./Profile.module.css";
@@ -9,11 +9,26 @@ import { SiteDataContext } from "../../SiteData";
 
 const Profile = () => {
   const [theme, setTheme] = React.useState("dark");
-  const { user_data } = useContext(SiteDataContext);
+  const { user_data, is_data_ready } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
+  // const [user_info, setUserInfo] = useState(null);
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
+
+  //Req to BE for user details (hikers.users)
+  // useEffect(() => {
+  //   const user_id = user_data.loginid;
+  //   const req = new Request(`http://localhost:3001/profile/:${user_id}`, {
+  //     method: "GET",
+  //     headers: new Headers({ "Content-Type": "application/json" }),
+  //   });
+  //   fetch(req).then((res) => {
+  //     res.json().then((data) => {
+  //       return console.log(data);
+  //     });
+  //   });
+  // }, []);
 
   const {
     register,
@@ -23,7 +38,11 @@ const Profile = () => {
 
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
-  }; // your form submit function which will invoke after successful validation
+  };
+
+  if (!is_data_ready) {
+    return <h1>Loading..</h1>;
+  }
 
   return (
     <div className={classes.main_wrapper}>
@@ -39,8 +58,13 @@ const Profile = () => {
           <ImageUpload className={classes.photo_box} />
           <div className={classes.container1}>
             {" "}
-            <div className={classes.username}>@suhaila</div>
-            <div className={classes.date_joined}>Date joined: 28-9-2021 </div>
+            <div className={classes.username}>@{user_data.username}</div>
+            <div className={classes.date_joined}>
+              Date joined:
+              <span style={{ paddingLeft: "10px" }}>
+                {user_data.date_joined}
+              </span>
+            </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <span className={classes.error_message}>
@@ -59,7 +83,7 @@ const Profile = () => {
               <div className={classes.headers}>Full Name :</div>
               <input
                 className={classes.InputBox}
-                placeholder="Ho Laa Hoo"
+                placeholder={user_data.full_name}
                 {...register("fullname", {
                   required: true,
                   maxLength: 50,
@@ -81,7 +105,7 @@ const Profile = () => {
               <div className={classes.headers}>Email :</div>
               <input
                 className={classes.InputBox}
-                placeholder="email@email.com"
+                placeholder={user_data.email}
                 {...register("Email", {
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
                   required: true,
@@ -103,7 +127,7 @@ const Profile = () => {
               <div className={classes.headers}>Mobile Number :</div>
               <input
                 className={classes.InputBox}
-                placeholder="012-3456789"
+                placeholder={user_data.phone}
                 {...register("MobileNumber", {
                   required: true,
                   minlegth: 10,

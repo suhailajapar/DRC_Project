@@ -1,13 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../Card/Card";
 import classes from "./WalletReloadModal.module.css";
+import { SiteDataContext } from "../../SiteData";
 
 const WalletReloadModal = (props) => {
   const [topup_amount, setTopupAmount] = useState(0);
   const [selected_currency, setSelectedCurrency] = useState("usd");
+  const [wallet_id, setWalletId] = useState(
+    "030c4ec6-d667-4ef1-ba00-8535aff4b9dd"
+  );
+  const { user_data } = useContext(SiteDataContext);
+
+  // useEffect(() => {
+  //   const loginid = "HKR20220228000000000000000008";
+  //   fetch(`http://localhost:3001/wallet/${loginid}`).then((res) => {
+  //     res.json().then((data) => {
+  //       return console.log(data);
+  //     });
+  //   });
+  // }, []);
+
+  //Send to backend for reload
+  const reloadWallet = () => {
+    const reload_info = {
+      amount: topup_amount,
+      currency: selected_currency,
+    };
+    const req = new Request(`http://localhost:3001/wallet/topup/:wallet_id`, {
+      method: "POST",
+      params: { wallet_id: wallet_id },
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(reload_info),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        return console.log(data);
+      });
+    });
+  };
 
   const walletReloadHandler = () => {
-    setTopupAmount("");
+    reloadWallet();
+    // setTopupAmount("");
     alert("topup BANZAI!");
   };
 
@@ -26,7 +60,7 @@ const WalletReloadModal = (props) => {
               <span className={classes.wallet_info}>1234-5678-9101-0001</span>
             </div>
             <div className={classes.info_line}>
-              <label for="wallet_currency">Wallet Currency:</label>
+              <label name="wallet_currency">Wallet Currency:</label>
               <select
                 name="wallet_currency"
                 id="wallet_currency"

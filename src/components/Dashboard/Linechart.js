@@ -15,7 +15,7 @@ function App() {
 
   const [price_data, setPriceData] = useState([]);
   const [time_label, setTimeLabel] = useState([]);
-  console.log("time", time, "close", close);
+  // console.log("time", time, "close", close);
 
   useEffect(() => {
     if (close) {
@@ -27,9 +27,9 @@ function App() {
     if (time) {
       const date = new Date(time);
       const t = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const newdate = `${t} ${month}/${day}`;
+      // const day = date.getDate();
+      // const month = date.getMonth() + 1;
+      const newdate = t;
       setTimeLabel((prev) => [...prev, newdate]);
     }
   }, [time]);

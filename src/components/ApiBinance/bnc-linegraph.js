@@ -11,7 +11,7 @@ const useBncLineChart = (symbol) => {
     );
     socket.current.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
-      console.log(data);
+      // console.log(data);
       const { c, E } = data.data;
       setClose(c);
       setTime(E);

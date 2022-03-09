@@ -18,7 +18,7 @@ const useBinanceData = (symbol) => {
     );
     socket.current.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
-      console.log(data);
+      // console.log(data);
       const { a, b, o, l, h, c, v, P, E } = data.data;
       setAsk(a);
       setBid(b);
