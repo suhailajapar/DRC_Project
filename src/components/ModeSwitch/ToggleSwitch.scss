@@ -16,6 +16,7 @@
   @media only screen and (min-width: 481px) and (max-width: 768px) {
     transform: scale(0.825);
     position: fixed;
+    margin-left: 10px;
     // margin-bottom: 45px;
     // margin-right: -40px;
   }
@@ -27,7 +28,7 @@
   @media screen and (min-width: 100px) and (max-width: 350px) {
     transform: scale(0.6);
     position: fixed;
-    margin-right: -25px;
+    margin-left: 35px;
   }
 
   &-checkbox {

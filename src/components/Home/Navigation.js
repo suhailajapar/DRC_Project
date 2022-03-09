@@ -26,7 +26,7 @@ function Navigation() {
         <Route element={<WithNav />}>
           <Route path="/" element={<Home />} />
         </Route>
-        <Route element={<WithSideBar />}>
+        <Route element={<WithSideBar nameIt={"Dashboard"} />}>
           <Route
             path="/dashboard"
             element={

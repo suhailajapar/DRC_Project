@@ -43,6 +43,7 @@
 }
 
 .market-bar {
+  /* width: 92vw; */
   border: 3px black;
   border-radius: 7px;
   columns: 2;
@@ -81,34 +82,14 @@
   padding: 0 10px;
 }
 
-@media only screen and (min-width: 671px) and (max-width: 768px) {
-  .dash-mar-logo {
-    width: 150px;
-  }
-
-  .dash-icon-head {
-    padding: 5px 0 10px 0;
-  }
-  .dash-mar-logo {
+@media only screen and (max-width: 768px) {
+  .MarketLogo {
     display: none;
   }
-  .DashHead {
+  .MarketHead {
     display: none;
   }
-}
-
-@media only screen and (max-width: 670px) {
-  .dash-mar-logo {
-    width: 130px;
-  }
-
-  .dash-icon-head {
-    padding: 5px 0 10px 0;
-  }
-  .dash-mar-logo {
-    display: none;
-  }
-  .DashHead {
-    display: none;
+  .market-bar {
+    padding-top: 0;
   }
 }

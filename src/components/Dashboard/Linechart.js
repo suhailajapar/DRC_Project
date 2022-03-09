@@ -7,7 +7,7 @@ import annotationPlugin from "chartjs-plugin-annotation";
 import zoomPlugin from "chartjs-plugin-zoom";
 Chart.register(...registerables, annotationPlugin, zoomPlugin);
 
-function App() {
+function Linechart() {
   const [pair, setPair] = useState("BTCUSDT");
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
@@ -35,11 +35,11 @@ function App() {
   }, [time]);
   const options = {
     scales: {
-      xAxis: {
-        // min: time_label[time_label.length - 11],
-      },
+      // xAxis: {
+      //   min: time_label[time_label.length - 11],
+      // },
       // yAxis: {
-      //   grace: "80%",
+      //   grace: "90%",
       // },
     },
     plugins: {
@@ -60,6 +60,7 @@ function App() {
           },
         },
       },
+      AspectRatio: 1,
       responsive: true,
       scales: {
         y: {
@@ -70,7 +71,13 @@ function App() {
             Math.max(price_data);
           },
         },
+        // x: {
+        //   max: () => {
+        //     Math.max(time_label);
+        //   },
+        // },
       },
+
       zoom: {
         zoom: {
           wheel: {
@@ -92,8 +99,9 @@ function App() {
     //Market chart
     <div className="app">
       {/* Line Chart */}
-      <div className="db-chart">
+      <div className="dash-chart">
         <Line
+          className="line-dash"
           key={pair + interval + pair}
           data={{
             labels: time_label,
@@ -114,4 +122,4 @@ function App() {
   );
 }
 
-export default App;
+export default Linechart;

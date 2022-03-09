@@ -4,6 +4,7 @@ import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import classes from "./Profile.module.css";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
+import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
 
@@ -11,7 +12,6 @@ const Profile = () => {
   const [theme, setTheme] = React.useState("dark");
   const { user_data, is_data_ready } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
-  // const [user_info, setUserInfo] = useState(null);
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
@@ -67,6 +67,18 @@ const Profile = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={classes.form_boxes}>
+              <div className={classes.headers}>Full Name :</div>
+              <input
+                className={classes.InputBox}
+                placeholder="Ho Laa Hoo"
+                {...register("fullname", {
+                  required: true,
+                  maxLength: 50,
+                  pattern: /^[a-zA-Z ]*$/,
+                })}
+              />
+            </div>
             <span className={classes.error_message}>
               {errors?.fullname?.type === "required" && (
                 <p>This field is required</p>
@@ -76,28 +88,6 @@ const Profile = () => {
               )}
               {errors?.fullname?.type === "pattern" && (
                 <p>Alphabetical characters only</p>
-              )}
-            </span>
-
-            <div className={classes.form_boxes}>
-              <div className={classes.headers}>Full Name :</div>
-              <input
-                className={classes.InputBox}
-                placeholder={user_data.full_name}
-                {...register("fullname", {
-                  required: true,
-                  maxLength: 50,
-                  pattern: /^[a-zA-Z ]*$/,
-                })}
-              />
-            </div>
-
-            <span className={classes.error_message}>
-              {errors?.Email?.type === "pattern" && (
-                <p>Enter valid email only</p>
-              )}
-              {errors?.Email?.type === "required" && (
-                <p>This field is required</p>
               )}
             </span>
 
@@ -112,13 +102,11 @@ const Profile = () => {
                 })}
               />
             </div>
-
             <span className={classes.error_message}>
-              {errors?.MobileNumber?.type === "pattern" && (
-                <p>Valid Mobile Number only</p>
+              {errors?.Email?.type === "pattern" && (
+                <p>Enter valid email only</p>
               )}
-              {errors.MobileNumber && <p>Min 10 digits</p>}
-              {errors?.MobileNumber?.type === "required" && (
+              {errors?.Email?.type === "required" && (
                 <p>This field is required</p>
               )}
             </span>
@@ -137,14 +125,12 @@ const Profile = () => {
               />
             </div>
             <span className={classes.error_message}>
-              {errors?.Password?.type === "pattern" && (
-                <p>Only Alphanumeric and underscores are accepted</p>
+              {errors?.MobileNumber?.type === "pattern" && (
+                <p>Valid Mobile Number only</p>
               )}
-              {errors.Password && (
-                <p>Password must have at least 8 characters. </p>
-              )}
-              {errors?.Password?.type === "required" && (
-                <p> This field is required</p>
+              {errors.MobileNumber && <p>Min 10 digits</p>}
+              {errors?.MobileNumber?.type === "required" && (
+                <p>This field is required</p>
               )}
             </span>
 
