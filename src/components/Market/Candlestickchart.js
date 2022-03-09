@@ -41,6 +41,8 @@ function Candlestickchart() {
   const [ask, bid, open, low, high, close, volume, percent] =
     useBinanceData(pair);
 
+  console.log(percent);
+
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
 
   const handleInterval = (interval) => {
