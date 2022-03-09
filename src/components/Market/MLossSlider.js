@@ -23,6 +23,28 @@ const CardContentNoPadding = styled(CardContent)(`
 const title = <ul id="m-card-title">Bro</ul>;
 const currentPrice = <ul id="m-card-value">0.0009</ul>;
 
+function SampleNextArrow(props) {
+  const { className, onClick, theme } = props;
+  return (
+    <ArrowForwardIosIcon
+      className={className}
+      onClick={onClick}
+      sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, onClick, theme } = props;
+  return (
+    <ArrowBackIosIcon
+      className={className}
+      onClick={onClick}
+      sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+    />
+  );
+}
+
 export default function SimpleSlider({ theme, setTheme }) {
   var settings = {
     dots: false,
@@ -33,16 +55,8 @@ export default function SimpleSlider({ theme, setTheme }) {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    prevArrow: (
-      <ArrowBackIosIcon
-        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
-      />
-    ),
-    nextArrow: (
-      <ArrowForwardIosIcon
-        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
-      />
-    ),
+    prevArrow: <SamplePrevArrow theme={theme} setTheme={setTheme} />,
+    nextArrow: <SampleNextArrow theme={theme} setTheme={setTheme} />,
     responsive: [
       {
         breakpoint: 1024,

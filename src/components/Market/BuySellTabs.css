@@ -18,6 +18,14 @@
   box-sizing: border-box;
 }
 
+.unit {
+  color: red;
+  position: absolute;
+  display: block;
+
+  z-index: 9;
+}
+
 .buy-input::placeholder {
   color: #979797;
   font-size: 16px;
@@ -68,4 +76,20 @@ input[type="number"] {
 
 /* Market RWD */
 /* Large Screens */
-/* @media only screen and (min-width: ) */
+@media only screen and (max-width: 1500px) {
+  .buy-input-container {
+    padding: 10px 0rem 0 0rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .buy-input-container {
+    padding: 10px 1rem 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .buy-input-container {
+    padding: 10px 0rem 0 0rem;
+  }
+}

@@ -1,12 +1,63 @@
 import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
 import "./BuySellTabs.css";
+
+const BuySellInput = styled(TextField)(({ theme }) => ({
+  "& .MuiInputLabel-root": {
+    color: "#727272",
+  },
+  "& label.Mui-focused":
+    theme === "dark"
+      ? {
+          color: "#E5E5E5",
+        }
+      : { color: "#000000" },
+  "& .MuiInputAdornment-root":
+    theme === "dark"
+      ? {
+          color: "white",
+        }
+      : {
+          color: "black",
+        },
+  "& .MuiOutlinedInput-root":
+    theme === "dark"
+      ? {
+          borderRadius: 10,
+          color: "#E5E5E5",
+          "& fieldset": {
+            borderColor: "#BDBDBD",
+          },
+          "&:hover fieldset": {
+            borderColor: "#BDBDBD",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#BDBDBD",
+          },
+        }
+      : {
+          borderRadius: 10,
+          color: "#000000",
+          "& fieldset": {
+            borderColor: "#616161",
+          },
+          "&:hover fieldset": {
+            borderColor: "#616161",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#7E7E7E",
+          },
+        },
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,7 +72,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -41,8 +92,9 @@ function a11yProps(index) {
   };
 }
 
-export default function FullWidthTabs() {
-  const theme = useTheme();
+export default function FullWidthTabs({ theme, setTheme }) {
+  // const theme = useTheme();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -98,58 +150,158 @@ export default function FullWidthTabs() {
         />
       </Tabs>
 
-      <SwipeableViews
+      {/* <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <div className="buy-input-container">
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Amount"
-            />
-            <div className="buy-spacing"></div>
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Price"
-            />
-            <div className="buy-spacing"></div>
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Total"
-            />
-            <div className="buy-spacing"></div>
-            <input type="submit" className="buy-button" value="BUY" />
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <div className="buy-input-container">
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Amount"
-            />
-            <div className="buy-spacing"></div>
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Price"
-            />
-            <div className="buy-spacing"></div>
-            <input
-              className="buy-sell-input"
-              type="number"
-              placeholder="Total"
-            />
-            <div className="buy-spacing"></div>
-            <input type="submit" className="sell-button" value="SELL" />
-          </div>
-        </TabPanel>
-      </SwipeableViews>
+      > */}
+      <TabPanel value={value} index={0}>
+        <div className="buy-input-container">
+          <BuySellInput
+            label="Amount"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>SQB</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <div className="buy-spacing"></div>
+          <BuySellInput
+            label="Price"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>USD</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <div className="buy-spacing"></div>
+          <BuySellInput
+            label="Total"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>USD</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <div className="buy-spacing"></div>
+          <Button
+            variant="contained"
+            // color="success"
+            sx={{
+              bgcolor: "#498e2c",
+              height: "54px",
+              borderRadius: "10px",
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 900,
+              "&:hover": {
+                backgroundColor: "#237500",
+                boxShadow: "none",
+              },
+              "&:active": {
+                backgroundColor: "#498e2c",
+                boxShadow: "none",
+              },
+            }}
+            fullWidth
+            onClick={() => {
+              alert("clicked");
+            }}
+          >
+            BUY
+          </Button>
+          {/* <input type="submit" className="buy-button" value="BUY" /> */}
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={1} dir={theme.direction}>
+        <div className="buy-input-container">
+          <BuySellInput
+            label="Amount"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>SQB</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <div className="buy-spacing"></div>
+          <BuySellInput
+            label="Price"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>USD</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <div className="buy-spacing"></div>
+          <BuySellInput
+            label="Total"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography>USD</Typography>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            theme={theme}
+            setTheme={setTheme}
+          />{" "}
+          <div className="buy-spacing"></div>
+          <Button
+            variant="contained"
+            // color="success"
+            sx={{
+              bgcolor: "red",
+              height: "54px",
+              borderRadius: "10px",
+              color: "white",
+              fontSize: "24px",
+              fontWeight: 900,
+              "&:hover": {
+                backgroundColor: "#921010",
+                boxShadow: "none",
+              },
+              "&:active": {
+                backgroundColor: "red",
+                boxShadow: "none",
+              },
+            }}
+            fullWidth
+            onClick={() => {
+              alert("clicked");
+            }}
+          >
+            SELL
+          </Button>
+          {/* <input type="submit" className="sell-button" value="SELL" /> */}
+        </div>
+      </TabPanel>
+      {/* </SwipeableViews> */}
     </Box>
   );
 }

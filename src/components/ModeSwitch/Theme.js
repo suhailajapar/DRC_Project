@@ -24,9 +24,11 @@ export const darkTheme = {
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container, .DashBG, .marketBG, .Profile_main_wrapper__-PDi6{
+.login, .signup-container, .DashBG, .marketBG, .Profile_main_wrapper__-PDi6 {
   transition: background-color 0.5s ease;
 }
+
+
 
 .login, .signup-container, .DashBG, .marketBG, .Profile_main_wrapper__-PDi6{
   background-color: ${(props) => props.theme.body};
@@ -41,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 
-.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .table-cell{
+.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .table-cell, .Profile_main_wrapper__-PDi6{
   color: ${(props) => props.theme.fontColor}
 }
 

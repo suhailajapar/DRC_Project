@@ -92,6 +92,11 @@ tr {
   display: flex;
   flex-direction: row;
   width: 800px;
+  /* position:relative;
+  min-height:auto;
+  width:100%;
+  display: flex;
+  flex-grow:1; */
 }
 
 .buy-btn {
