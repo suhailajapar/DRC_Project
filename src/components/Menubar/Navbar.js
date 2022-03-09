@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import MenuLogoDark from "./../../assets/Logo/D_menulogo.svg";
 import "./Navbar.css";
 
+// imported on landing page
+
 const Navbar = () => {
   return (
     <div className="navbar">
