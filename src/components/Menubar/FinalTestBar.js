@@ -16,7 +16,7 @@ import DashLogo from "../../assets/DashboardAsset/Dashboard-Layout.svg";
 import LogoutLogo from "../../assets/DashboardAsset/Logout.svg";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { SiteDataContext } from "../../SiteData";
 
 export default function AccountMenu(props) {
@@ -87,27 +87,27 @@ export default function AccountMenu(props) {
           placement="right"
           arrow
         >
-          <a href="/profile" className="DP">
+          <Link className="DP" to="/profile">
             <img src={UserDP} alt="User's Profile Picture" id="DP" />
-          </a>
+          </Link>
         </Tooltip>
         <Tooltip
           title={<Typography fontSize={15}>Market</Typography>}
           placement="right"
           arrow
         >
-          <a href="/market" className="sidebar-market">
+          <Link to="/market" className="sidebar-market">
             <img src={MarketLogo} alt="Market Logo" id="Market" />
-          </a>
+          </Link>
         </Tooltip>
         <Tooltip
           title={<Typography fontSize={15}>Dashboard</Typography>}
           placement="right"
           arrow
         >
-          <a href="/dashboard" className="sidebar-dashboard">
+          <Link to="/dashboard" className="sidebar-dashboard">
             <img src={DashLogo} alt="Dashboard Logo" id="Dashboard" />
-          </a>
+          </Link>
         </Tooltip>
         <Tooltip
           title={<Typography fontSize={15}>Logout</Typography>}

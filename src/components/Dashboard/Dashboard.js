@@ -10,7 +10,7 @@ import Select from "@mui/material/Select";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
-import Dashbar from "../Menubar/DashBar";
+import Dashbar from "../Menubar/HeaderBar";
 import Linechart from "./Linechart";
 import SideBar from "../Menubar/FinalTestBar";
 import Menubar from "./../Menubar/Menubar";
@@ -47,7 +47,7 @@ function Dashboard() {
       <WalletReloadModal display={display} setDisplay={setDisplay} />
       <div className="Layout">
         <div className="dash-top">
-          <Dashbar theme={theme} setTheme={setTheme} />
+          <Dashbar titleName={"Dashboard"} theme={theme} setTheme={setTheme} />
         </div>
         <div className="BoughtAssets" style={{ height: 175 }}>
           <div className="b-title">
@@ -77,9 +77,17 @@ function Dashboard() {
               src={ProfilePic}
               sx={[
                 {
+                  "@media (max-width: 1720px)": {
+                    width: 55,
+                    height: 55,
+                  },
+                  "@media (max-width: 1070px)": {
+                    width: 50,
+                    height: 50,
+                  },
                   "@media (max-width: 1024px)": {
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                   },
                   width: 65,
                   height: 65,
