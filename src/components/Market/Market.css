@@ -92,6 +92,7 @@ tr td:hover {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  height: 100vh;
 }
 
 .market-layout {
@@ -101,6 +102,7 @@ tr td:hover {
   grid-gap: 25px;
   margin: 0 50px 0 110px;
   height: 100vh;
+  overflow: hidden;
 }
 
 .box {
@@ -132,6 +134,7 @@ tr td:hover {
 .gain-section {
   grid-column: 2/6;
   grid-row: 8/10;
+  margin-top: 20px;
 }
 
 .gain-title {
@@ -143,6 +146,7 @@ tr td:hover {
 .loss-section {
   grid-column: 2/6;
   grid-row: 10/12;
+  margin-top: -10px;
 }
 
 .loss-title {
@@ -166,4 +170,35 @@ tr td:hover {
 
 .green {
   color: #11d811;
+}
+
+/* @media only screen and (max-height: 852px) {
+  .marketBG {
+    background-attachment: fixed;
+    height: 1000px;
+  }
+  .market-layout {
+    overflow: visible;
+  }
+} */
+
+@media only screen and (max-width: 768px) {
+  .marketBG {
+    height: 100%;
+  }
+  .market-layout {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 15px 0 15px;
+    padding-top: 10px;
+    height: 100%;
+  }
+  .gain-section {
+    padding: 0 25px;
+    display: none;
+  }
+  .loss-section {
+    padding: 0 25px;
+    display: none;
+  }
 }

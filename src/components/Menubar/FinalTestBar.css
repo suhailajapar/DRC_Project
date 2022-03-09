@@ -150,23 +150,23 @@
 
 @media only screen and (max-width: 450px) {
   #responsive-logo {
-    padding-top: 10px;
+    padding-top: 0px;
     width: 110px;
   }
   #responsive-dash-header {
     font-size: 1.125rem;
-    padding: 10px 0 0 10px;
+    padding: 0px 0 0 10px;
   }
 }
 
 @media only screen and (max-width: 375px) {
   #responsive-logo {
     margin-left: -10px;
-    padding: 10px 0 0 0;
+    padding: 0px 0 0 0;
     width: 100px;
   }
   #responsive-dash-header {
     font-size: 1rem;
-    padding: 10px 0 0 10px;
+    padding: 0px 0 0 10px;
   }
 }
