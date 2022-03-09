@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const useBinanceData = (symbol) => {
   const [ask, setAsk] = React.useState(0);
@@ -8,9 +8,10 @@ const useBinanceData = (symbol) => {
   const [high, setHigh] = React.useState(0);
   const [close, setClose] = React.useState();
   const [volume, setVolume] = React.useState(0);
-  const [percent, setPercent] = React.useState("");
   const [time, setTime] = React.useState();
+  const [percent, setPercent] = React.useState("");
   const socket = React.useRef(null);
+  const [lineChart, setLineChart] = useState([]);
 
   React.useEffect(() => {
     socket.current = new WebSocket(
@@ -18,8 +19,12 @@ const useBinanceData = (symbol) => {
     );
     socket.current.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
-      console.log(data);
-      const { a, b, o, l, h, c, v, P, E } = data.data;
+      const { a, b, o, l, h, c, v, E, P } = data.data;
+      let obj = {
+        time: E,
+        close: c,
+      };
+      lineChart.push(obj);
       setAsk(a);
       setBid(b);
       setOpen(o);
@@ -27,14 +32,14 @@ const useBinanceData = (symbol) => {
       setHigh(h);
       setClose(c);
       setVolume(v);
-      setPercent(P);
       setTime(E);
+      setPercent(P);
     };
 
     return () => socket.current.close();
   }, [symbol]);
 
-  return [ask, bid, open, low, high, close, volume, percent, time];
+  return [ask, bid, open, low, high, close, volume, time, percent, lineChart];
 };
 
 export default useBinanceData;
