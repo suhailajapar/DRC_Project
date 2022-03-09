@@ -313,9 +313,9 @@ section {
 /* Responsive designs */
 /* Large screen max-width 1244px */
 @media only screen and (max-width: 1240px) {
-  body {
+  /* body {
     background-color: red;
-  }
+  } */
   .main_title {
     text-size-adjust: inherit;
   }
