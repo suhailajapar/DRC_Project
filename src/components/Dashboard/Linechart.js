@@ -13,28 +13,9 @@ function App() {
     UseBinanceData(pair);
 
   let time_label = lineChart.map((lineChart) =>
-    new Date(lineChart.time * 1000).toLocaleTimeString()
+    new Date(lineChart.time).toLocaleTimeString()
   );
   let price_data = lineChart.map((lineChart) => parseFloat(lineChart.close));
-
-  // useEffect(() => {
-  //   if (close) {
-  //     setPriceData((prev) => [...prev, close]);
-  //   }
-  //   console.log(price_data);
-  // }, [close]);
-
-  // useEffect(() => {
-  //   if (time) {
-  //     const date = new Date(time);
-  //     const t = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-  //     const day = date.getDate();
-  //     const month = date.getMonth() + 1;
-  //     const newdate = `${t} ${month}/${day}`;
-  //     setTimeLabel((prev) => [...prev, newdate]);
-  //     console.log(time_label);
-  //   }
-  // }, [time]);
   const options = {
     scales: {
       xAxis: {
