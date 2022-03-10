@@ -9,6 +9,7 @@ const WalletReloadModal = (props) => {
   const [topup_amount, setTopupAmount] = useState(0);
   const { user_data, is_data_ready } = useContext(SiteDataContext);
 
+  //GET USER WALLET LIST FROM BE
   useEffect(() => {
     const loginid = user_data.loginid;
     fetch(`http://localhost:3001/wallet/${loginid}`).then((res) => {
@@ -18,13 +19,14 @@ const WalletReloadModal = (props) => {
     });
   }, []);
 
+  //SET USER SELECTED WALLET
   useEffect(() => {
     if (wallet_list?.length > 0) {
       setSelectedWallet(wallet_list.find((w) => w.currency === "USD"));
     }
   }, [wallet_list]);
 
-  //To backend for reload
+  //REQ TO BE FOR RELOAD/TRANSFER PROCESS
   const reloadWallet = () => {
     const reload_info = {
       amount: topup_amount,

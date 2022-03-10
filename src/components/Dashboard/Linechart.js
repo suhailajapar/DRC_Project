@@ -18,6 +18,7 @@ function App() {
   const options = {
     scales: {
       x: {
+        //LIMIT TO 12 DATA AT A TIME
         min: time_label[time_label.length - 12],
       },
       y: {
@@ -28,9 +29,6 @@ function App() {
           Math.max(price_data);
         },
       },
-      // y: {
-      //   grace: "80%",
-      // },
     },
     plugins: {
       autocolors: false,
@@ -42,8 +40,7 @@ function App() {
           line1: {
             type: "line",
             yScaleId: "yAxis",
-            // yMin: price_data[price_data.length - 1],
-            // yMax: price_data[price_data.length - 1],
+            //WHERE BOUGHT PRICE IS SPECIFIED
             yMin: 41560.12,
             yMax: 41560.12,
             borderColor: "rgb(255, 99, 132)",
@@ -71,21 +68,14 @@ function App() {
           duration: 0,
         },
       },
-      // pan: {
-      //   enabled: true,
-      //   mode: "x",
-      // },
     },
   };
 
   return (
-    //Market chart
     <div className="app">
-      {/* Line Chart */}
       <div className="line-chart-container">
         <Line
           className="line-dash"
-          // key={pair + interval + pair}
           data={{
             labels: time_label,
             datasets: [
