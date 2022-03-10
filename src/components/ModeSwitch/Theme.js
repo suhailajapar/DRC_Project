@@ -24,13 +24,13 @@ export const darkTheme = {
 
 //base styling (for entire document)
 export const GlobalStyles = createGlobalStyle`
-.login, .signup-container, .DashBG, .marketBG, .Profile_main_wrapper__-PDi6 {
+.login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu {
   transition: background-color 0.5s ease;
 }
 
 
 
-.login, .signup-container, .DashBG, .marketBG, .Profile_main_wrapper__-PDi6{
+.login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu {
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};

@@ -237,7 +237,7 @@ section {
   display: flex;
   flex-direction: row;
   height: 400px;
-  /* margin-right: 8vw; */
+  margin-right: 8vw;
 }
 
 .coin {
@@ -313,9 +313,6 @@ section {
 /* Responsive designs */
 /* Large screen max-width 1244px */
 @media only screen and (max-width: 1240px) {
-  /* body {
-    background-color: red;
-  } */
   .main_title {
     text-size-adjust: inherit;
   }
@@ -329,25 +326,6 @@ section {
   }
   .illustration_one {
     height: 700px;
-    width: auto;
-  }
-
-  /* second section screen max 1240*/
-  /* eth */
-  .coin_logo {
-    width: 100%;
-    /* height: auto; */
-  }
-  /* btc & aave */
-  .coin_logo1 {
-    width: 100%;
-    height: auto;
-  }
-  /* shadows */
-  .shadow {
-    left: auto;
-    top: auto;
-    height: 30px;
     width: auto;
   }
 
@@ -454,6 +432,9 @@ section {
     margin-bottom: 10%;
   }
   /* second section */
+  .coins {
+    margin-right: 0;
+  }
   /* eth */
   .coin_logo {
     width: 150px;
