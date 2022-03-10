@@ -6,30 +6,51 @@ import LoaderImg from "../../assets/Market Asset/Loader.svg";
 import DropdownImg from "../../assets/Market Asset/down-chevron.png";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
+import Btc from "./../../assets/Icon_symbol/btc.svg";
+import Eth from "./../../assets/Icon_symbol/eth.svg";
+import Shib from "./../../assets/Icon_symbol/shiba.svg";
+import Bnb from "./../../assets/Icon_symbol/bnb.svg";
+import Slp from "./../../assets/Icon_symbol/slp.svg";
+import Sol from "./../../assets/Icon_symbol/sol.svg";
+import Avax from "./../../assets/Icon_symbol/avax.svg";
+import Xrp from "./../../assets/Icon_symbol/xrp.svg";
+import Ada from "./../../assets/Icon_symbol/ada.svg";
+import Nul from "./../../assets/Icon_symbol/nuls.svg";
+import Clv from "./../../assets/Icon_symbol/clv.svg";
+import Matic from "./../../assets/Icon_symbol/matic.svg";
+import Dia from "./../../assets/Icon_symbol/dia.svg";
+import Beta from "./../../assets/Icon_symbol/beta.svg";
+import Anc from "./../../assets/Icon_symbol/anc.svg";
+import Luna from "./../../assets/Icon_symbol/luna.svg";
+import Knc from "./../../assets/Icon_symbol/knc.svg";
+import Jst from "./../../assets/Icon_symbol/jst.svg";
+import Bnx from "./../../assets/Icon_symbol/bnx.svg";
+import Xvs from "./../../assets/Icon_symbol/xvs.svg";
+import Row from "./Row";
 
 Chart.register(...registerables, annotationPlugin);
 
 const crypto_list = [
-  { id: "BTCUSDT", name: "BTC/USDT" },
-  { id: "ETHUSDT", name: "ETH/USDT" },
-  { id: "SHIBUSDT", name: "SHIB/USDT" },
-  { id: "BNBUSDT", name: "BNB/USDT" },
-  { id: "SLPUSDT", name: "SLP/USDT" },
-  { id: "SOLUSDT", name: "SOL/USDT" },
-  { id: "AVAXUSDT", name: "AVAX/USDT" },
-  { id: "XRPUSDT", name: "XRP/USDT" },
-  { id: "ADAUSDT", name: "ADA/USDT" },
-  { id: "NULSUSDT", name: "NULS/USDT" },
-  { id: "CLVUSDT", name: "CLV/USDT" },
-  { id: "MATICUSDT", name: "MATIC/USDT" },
-  { id: "DIAUSDT", name: "DIA/USDT" },
-  { id: "BETAUSDT", name: "BETA/USDT" },
-  { id: "ANCUSDT", name: "ANC/USDT" },
-  { id: "LUNAUSDT", name: "LUNA/USDT" },
-  { id: "KNCUSDT", name: "KNC/USDT" },
-  { id: "JSTUSDT", name: "JST/USDT" },
-  { id: "BNXUSDT", name: "BNX/USDT" },
-  { id: "XVSUSDT", name: "XVS/USDT" },
+  { src: Btc, id: "BTCUSDT", name: "BTC/USDT" },
+  { src: Eth, id: "ETHUSDT", name: "ETH/USDT" },
+  { src: Shib, id: "SHIBUSDT", name: "SHIB/USDT" },
+  { src: Bnb, id: "BNBUSDT", name: "BNB/USDT" },
+  { src: Slp, id: "SLPUSDT", name: "SLP/USDT" },
+  { src: Sol, id: "SOLUSDT", name: "SOL/USDT" },
+  { src: Avax, id: "AVAXUSDT", name: "AVAX/USDT" },
+  { src: Xrp, id: "XRPUSDT", name: "XRP/USDT" },
+  { src: Ada, id: "ADAUSDT", name: "ADA/USDT" },
+  { src: Nul, id: "NULSUSDT", name: "NULS/USDT" },
+  { src: Clv, id: "CLVUSDT", name: "CLV/USDT" },
+  { src: Matic, id: "MATICUSDT", name: "MATIC/USDT" },
+  { src: Dia, id: "DIAUSDT", name: "DIA/USDT" },
+  { src: Beta, id: "BETAUSDT", name: "BETA/USDT" },
+  { src: Anc, id: "ANCUSDT", name: "ANC/USDT" },
+  { src: Luna, id: "LUNAUSDT", name: "LUNA/USDT" },
+  { src: Knc, id: "KNCUSDT", name: "KNC/USDT" },
+  { src: Jst, id: "JSTUSDT", name: "JST/USDT" },
+  { src: Bnx, id: "BNXUSDT", name: "BNX/USDT" },
+  { src: Xvs, id: "XVSUSDT", name: "XVS/USDT" },
 ];
 
 function Candlestickchart() {
@@ -38,7 +59,7 @@ function Candlestickchart() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
-  const [ask, bid, open, low, high, close, volume, percent] =
+  const [ask, bid, open, low, high, close, volume, , percent] =
     useBinanceData(pair);
 
   console.log(percent);
@@ -57,14 +78,10 @@ function Candlestickchart() {
   }, [loading]);
 
   return (
-    //Market chart
     <div className="app">
       Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
       {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
       {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)}
-      Percent: {parseFloat(percent).toFixed(2)} Volume:
-      {parseFloat(volume).toFixed(2)}
-      {/* DROPDOWN */}
       <div>
         <div
           onClick={() => {
@@ -77,7 +94,6 @@ function Candlestickchart() {
             className="dropdown-icon"
           />
         </div>
-
         <div className="dropdown-box ">
           {crypto_list.map((c) => {
             if (showDropdown) {
@@ -90,25 +106,10 @@ function Candlestickchart() {
                   key={c.id}
                   className="pair-list"
                 >
-                  <tr>
-                    <td className="coinList">{c.name}</td>
-                    <td className="coinList">{parseFloat(close).toFixed(2)}</td>
-                    <td className="coinList">
-                      {parseFloat(percent).toFixed(2) < 0 ? (
-                        <p className="coin-percent red">
-                          {parseFloat(percent).toFixed(2)}%
-                        </p>
-                      ) : (
-                        <p className="coin-percent green">
-                          {parseFloat(percent).toFixed(2)}%
-                        </p>
-                      )}
-                    </td>
-                  </tr>
+                  <Row key={c.id} src={c.src} pair={c.id} name={c.name} />;
                 </div>
               );
             }
-            return <></>;
           })}
         </div>
       </div>

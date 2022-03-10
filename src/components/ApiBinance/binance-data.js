@@ -11,7 +11,7 @@ const useBinanceData = (symbol) => {
   const [time, setTime] = React.useState();
   const [percent, setPercent] = React.useState("");
   const socket = React.useRef(null);
-  const [lineChart, setLineChart] = useState([]);
+  const [lineChart] = useState([]);
 
   React.useEffect(() => {
     socket.current = new WebSocket(
