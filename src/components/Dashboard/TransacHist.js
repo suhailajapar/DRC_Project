@@ -9,38 +9,47 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#010023",
-    color: theme.palette.common.white,
-    // fontSize: 12,
-    border: 0,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    // fontSize: 12,
-    // color: "white",
-    padding: 5,
-  },
-  // "&:nth-of-type(3)": {
+  // "&:nth-of-type(1)": {
   //   width: "fit-content",
   // },
+  [`&.${tableCellClasses.body}`]:
+    theme === "dark"
+      ? {
+          color: "white",
+          padding: 5,
+        }
+      : {
+          color: "black",
+          padding: 5,
+        },
+  [`&.${tableCellClasses.head}`]:
+    theme === "dark"
+      ? {
+          color: "white",
+          border: 0,
+        }
+      : {
+          color: "black",
+          border: 0,
+        },
 }));
 
-const StyledTableRow = styled(TableRow)(() => ({
-  //   "&:nth-of-type(odd)":
-  //     theme === "dark"
-  //       ? {
-  //           backgroundColor: "#1F1F1F",
-  //         }
-  //       : { backgroundColor: "#FFFFFF" },
-  //   "&:nth-of-type(even)":
-  //     theme === "dark"
-  //       ? {
-  //           backgroundColor: "#010023",
-  //         }
-  //       : { backgroundColor: "#F3F3F3" },
-  //   "& th": {
-  //     backgroundColor: "#010023",
-  //   },
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)":
+    theme === "dark"
+      ? {
+          backgroundColor: "#1F1F1F",
+        }
+      : { backgroundColor: "#FFFFFF" },
+  "&:nth-of-type(even)":
+    theme === "dark"
+      ? {
+          backgroundColor: "#010023",
+        }
+      : { backgroundColor: "#F3F3F3" },
+  // "& th": {
+  //   backgroundColor: "#010023",
+  // },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
@@ -123,7 +132,9 @@ const rows = [
   createData(10, 356, 16.0, 49, 3.9, 2, 2),
 ];
 
-export default function CustomizedTables({ theme, setTheme }) {
+export default function CustomizedTables(props) {
+  const { theme, setTheme } = props;
+
   // const [theme, setTheme] = React.useState("dark");
 
   return (
@@ -172,6 +183,7 @@ export default function CustomizedTables({ theme, setTheme }) {
                           fontWeight: "bold",
                           padding: 0.5,
                           pl: 1.5,
+                          // width: 0,
                         }
                       : {
                           backgroundColor: "#F3F3F3",
@@ -179,6 +191,7 @@ export default function CustomizedTables({ theme, setTheme }) {
                           fontWeight: "bold",
                           padding: 0.5,
                           pl: 1.5,
+                          // width: 0,
                         }
                   }
                 >
@@ -189,51 +202,62 @@ export default function CustomizedTables({ theme, setTheme }) {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <StyledTableRow
-                sx={
-                  theme === "dark"
-                    ? {
-                        "&:nth-of-type(odd)": {
-                          backgroundColor: "#1F1F1F",
-                        },
-                        "&:nth-of-type(even)": {
-                          backgroundColor: "#010023",
-                        },
-                      }
-                    : {
-                        "&:nth-of-type(odd)": {
-                          backgroundColor: "#FFFFFF",
-                        },
-                        "&:nth-of-type(even)": {
-                          backgroundColor: "#F3F3F3",
-                        },
-                      }
-                }
-                key={row.name}
-              >
-                <StyledTableCell className="table-cell" align="left">
+              <StyledTableRow key={row.name} theme={theme} setTheme={setTheme}>
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.transactionNumber}
                 </StyledTableCell>
-                <StyledTableCell className="table-cell" align="left">
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.coinName}
                 </StyledTableCell>
                 <StyledTableCell
                   className="table-cell"
                   sx={{ width: "fit-content" }}
                   align="left"
+                  theme={theme}
+                  setTheme={setTheme}
                 >
                   {row.datePurchase}
                 </StyledTableCell>
-                <StyledTableCell className="table-cell" align="left">
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.coinQuantity}
                 </StyledTableCell>
-                <StyledTableCell className="table-cell" align="left">
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.coinPrice}
                 </StyledTableCell>
-                <StyledTableCell className="table-cell" align="left">
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.transactionCharge}
                 </StyledTableCell>
-                <StyledTableCell className="table-cell" align="left">
+                <StyledTableCell
+                  className="table-cell"
+                  align="left"
+                  theme={theme}
+                  setTheme={setTheme}
+                >
                   {row.totalPrice}
                 </StyledTableCell>
               </StyledTableRow>

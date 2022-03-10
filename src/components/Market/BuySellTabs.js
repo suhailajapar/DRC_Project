@@ -92,9 +92,8 @@ function a11yProps(index) {
   };
 }
 
-export default function FullWidthTabs({ theme, setTheme }) {
-  // const theme = useTheme();
-
+export default function FullWidthTabs(props) {
+  const { theme, setTheme } = props;
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -106,7 +105,13 @@ export default function FullWidthTabs({ theme, setTheme }) {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        "& .MuiBox-root": {
+          padding: "24px 0px",
+        },
+      }}
+    >
       <Tabs
         value={value}
         onChange={handleChange}
@@ -270,7 +275,7 @@ export default function FullWidthTabs({ theme, setTheme }) {
             fullWidth
             theme={theme}
             setTheme={setTheme}
-          />{" "}
+          />
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
