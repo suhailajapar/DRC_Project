@@ -16,20 +16,6 @@ const Profile = () => {
     setDisplay("unset");
   };
 
-  //Req to BE for user details (hikers.users)
-  // useEffect(() => {
-  //   const user_id = user_data.loginid;
-  //   const req = new Request(`http://localhost:3001/profile/:${user_id}`, {
-  //     method: "GET",
-  //     headers: new Headers({ "Content-Type": "application/json" }),
-  //   });
-  //   fetch(req).then((res) => {
-  //     res.json().then((data) => {
-  //       return console.log(data);
-  //     });
-  //   });
-  // }, []);
-
   const {
     register,
     handleSubmit,
@@ -40,6 +26,7 @@ const Profile = () => {
     alert(JSON.stringify(data));
   };
 
+  //Check if user_data is ready
   if (!is_data_ready) {
     return <h1>Loading..</h1>;
   }

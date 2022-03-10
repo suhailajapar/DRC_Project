@@ -22,7 +22,7 @@ const Login = () => {
   const onSubmit = (data, e) => {
     handleLogin(data);
     e.target.reset();
-  }; // your form submit function which will invoke after successful validation
+  }; 
 
   return (
     <div className="login">
@@ -31,6 +31,7 @@ const Login = () => {
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
           <div className="login-sub-title links">Welcome Back, Hikers!</div>
+          <div className="err">{error_message}</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             {" "}
             <div className="login-input-title">

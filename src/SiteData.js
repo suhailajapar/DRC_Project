@@ -4,7 +4,7 @@ export const SiteDataContext = createContext();
 const SiteData = ({ children }) => {
   const [user_data, setUserData] = useState();
   const [is_data_ready, setDataReady] = useState(false);
-  const [error_message, setErrorMessage] = useState("Ok");
+  const [error_message, setErrorMessage] = useState("");
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("user_data"));
@@ -19,7 +19,7 @@ const SiteData = ({ children }) => {
     const login_credentials = {
       ...user_data,
     };
-    const req = new Request("http://192.168.100.140:3001/user/login", {
+    const req = new Request("http://localhost:3001/user/login", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(login_credentials),
