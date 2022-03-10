@@ -58,7 +58,7 @@ const Profile = () => {
               <div className={classes.headers}>Full Name :</div>
               <input
                 className={classes.InputBox}
-                placeholder="Ho Laa Hoo"
+                placeholder={user_data.full_name}
                 {...register("fullname", {
                   required: true,
                   maxLength: 50,
@@ -102,7 +102,9 @@ const Profile = () => {
               <div className={classes.headers}>Mobile Number :</div>
               <input
                 className={classes.InputBox}
-                placeholder={user_data.phone}
+                placeholder={
+                  user_data.phone ? user_data.phone : "Phone number..."
+                }
                 {...register("MobileNumber", {
                   required: true,
                   minlegth: 10,

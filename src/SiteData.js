@@ -27,7 +27,6 @@ const SiteData = ({ children }) => {
 
     const res = await fetch(req);
     const data = await res.json();
-    console.log(data);
     if (data.message) {
       setErrorMessage(data.message);
     } else {
