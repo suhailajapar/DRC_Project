@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 
-.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .table-cell, .Profile_main_wrapper__-PDi6{
+.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .table-cell, .Profile_main_wrapper__-PDi6, .Profile_InputBox__o4OoZ{
   color: ${(props) => props.theme.fontColor}
 }
 

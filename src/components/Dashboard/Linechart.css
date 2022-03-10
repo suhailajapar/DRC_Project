@@ -1,11 +1,11 @@
-.line-chart-container {
+/* .line-chart-container {
   width: 63vw;
-}
+} */
 
 .line-dash {
   max-height: 400px;
   /* max-width: 100vw; */
-  min-width: 63vw;
+  min-width: 100%;
 }
 
 @media only screen and (max-width: 1300px) {

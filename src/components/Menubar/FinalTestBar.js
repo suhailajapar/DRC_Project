@@ -18,6 +18,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate, Link } from "react-router-dom";
 import { SiteDataContext } from "../../SiteData";
+import RandomAvatar from "../Profile/RandomAvatar";
+import { Box } from "@mui/system";
 
 export default function AccountMenu(props) {
   const { handleLogout } = useContext(SiteDataContext) || {};
@@ -159,6 +161,11 @@ export default function AccountMenu(props) {
               transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
+            "& .MuiMenuItem-root": {
+              "&:hover": {
+                background: "rgba(255, 255, 255, 0.2)",
+              },
+            },
           },
         }}
         transformOrigin={{ horizontal: "left", vertical: "top" }}
@@ -176,14 +183,14 @@ export default function AccountMenu(props) {
           <Avatar src={UserDP} />
           User Profile
         </MenuItem>
-        <MenuItem>
+        {/* <MenuItem>
           <NotificationsIcon />
           Notification
         </MenuItem>
         <MenuItem>
           <MailIcon />
           Inbox
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem>
           <Avatar src={LogoutLogo} />
           Logout

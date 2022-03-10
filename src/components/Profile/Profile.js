@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
+import avatarSample from "../../assets/Logo/avatar_sample.png";
 
 const Profile = () => {
   const [theme, setTheme] = React.useState("dark");
@@ -15,6 +16,17 @@ const Profile = () => {
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
+  // const [changeAvatar, setChangeAvatar] = React.useState(genConfig({}));
+  const [click, setClick] = React.useState(0);
+
+  // React.useEffect(() => {
+  //   console.log(onClick);
+  //   if (onClick === 0) {
+  //     // setChangeAvatar(null);
+  //   } else if (onClick >= 1) {
+  //     // setChangeAvatar(null);
+  //   }
+  // }, [onClick]);
 
   const {
     register,

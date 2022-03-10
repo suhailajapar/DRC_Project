@@ -321,7 +321,12 @@ font-family: 'Red Hat Display', sans-serif;
   }
   .Table {
     margin-top: -10px;
-    /* height: 200px; */
+    height: 200px;
+  }
+}
+@media only screen and (max-height: 852px) and (max-width: 768px) {
+  .Table {
+    height: 100%;
   }
 }
 
