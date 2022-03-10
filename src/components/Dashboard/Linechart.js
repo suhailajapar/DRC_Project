@@ -2,45 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./Linechart.css";
-import useBncLineChart from "../ApiBinance/bnc-linegraph";
+import UseBinanceData from "./../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import zoomPlugin from "chartjs-plugin-zoom";
 Chart.register(...registerables, annotationPlugin, zoomPlugin);
 
-function Linechart() {
+function App() {
   const [pair, setPair] = useState("BTCUSDT");
-  const [loading, setLoading] = useState(false);
-  const [interval, setInterval] = useState("1m");
-  const [close, time] = useBncLineChart(pair);
+  const [ask, bid, open, low, high, close, volume, time, percent, lineChart] =
+    UseBinanceData(pair);
 
-  const [price_data, setPriceData] = useState([]);
-  const [time_label, setTimeLabel] = useState([]);
-  console.log("time", time, "close", close);
-
-  useEffect(() => {
-    if (close) {
-      setPriceData((prev) => [...prev, close]);
-    }
-  }, [close]);
-
-  useEffect(() => {
-    if (time) {
-      const date = new Date(time);
-      const t = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const newdate = `${t} ${month}/${day}`;
-      setTimeLabel((prev) => [...prev, newdate]);
-    }
-  }, [time]);
+  let time_label = lineChart.map((lineChart) =>
+    new Date(lineChart.time).toLocaleTimeString()
+  );
+  let price_data = lineChart.map((lineChart) => parseFloat(lineChart.close));
   const options = {
     scales: {
-      // xAxis: {
-      //   min: time_label[time_label.length - 11],
-      // },
-      // yAxis: {
-      //   grace: "90%",
-      // },
+      xAxis: {
+        min: time_label[time_label.length - 12],
+      },
+      y: {
+        grace: "80%",
+      },
     },
     plugins: {
       autocolors: false,
@@ -48,36 +31,20 @@ function Linechart() {
         annotations: {
           line1: {
             type: "line",
-            yMin: close,
-            yMax: close,
+            yScaleId: "yAxis",
+            yMin: price_data[price_data.length - 1],
+            yMax: price_data[price_data.length - 1],
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
-              content: close,
+              content: price_data[price_data.length - 1],
               enabled: true,
               position: "right",
             },
           },
         },
       },
-      AspectRatio: 1,
       responsive: true,
-      scales: {
-        y: {
-          min: () => {
-            Math.min(price_data);
-          },
-          max: () => {
-            Math.max(price_data);
-          },
-        },
-        // x: {
-        //   max: () => {
-        //     Math.max(time_label);
-        //   },
-        // },
-      },
-
       zoom: {
         zoom: {
           wheel: {
@@ -86,12 +53,16 @@ function Linechart() {
           pinch: {
             enabled: true,
           },
-          mode: "xy",
+          mode: "x",
         },
         animation: {
           duration: 0,
         },
       },
+      // pan: {
+      //   enabled: true,
+      //   mode: "x",
+      // },
     },
   };
 
@@ -99,14 +70,15 @@ function Linechart() {
     //Market chart
     <div className="app">
       {/* Line Chart */}
-      <div className="dash-chart">
+      <div className="line-chart-container">
         <Line
           className="line-dash"
-          key={pair + interval + pair}
+          // key={pair + interval + pair}
           data={{
             labels: time_label,
             datasets: [
               {
+                label: "Current Value",
                 data: price_data,
                 fill: true,
                 backgroundColor: "rgba(75,192,192,0.1)",
@@ -122,4 +94,4 @@ function Linechart() {
   );
 }
 
-export default Linechart;
+export default App;

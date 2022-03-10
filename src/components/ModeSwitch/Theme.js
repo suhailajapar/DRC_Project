@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
 
-.login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu{
+.login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu {
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg};
