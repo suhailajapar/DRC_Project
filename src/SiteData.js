@@ -27,8 +27,9 @@ const SiteData = ({ children }) => {
 
     const res = await fetch(req);
     const data = await res.json();
-    if (data.message) {
-      setErrorMessage(data.message);
+
+    if (data.error) {
+      setErrorMessage(data.error);
     } else {
       // loginid, username, full_name, email, phone, date_joined, user_img
       setUserData(data);

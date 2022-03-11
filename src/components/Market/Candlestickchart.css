@@ -20,6 +20,14 @@
   background-color: rgb(241, 242, 243);
 }
 
+.market-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .dropdown-box {
   margin-top: -5px;
   margin-left: 2px;

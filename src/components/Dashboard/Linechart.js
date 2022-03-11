@@ -46,7 +46,7 @@ function App() {
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
-              content: price_data[price_data.length - 1],
+              content: 41560.12,
               enabled: true,
               position: "right",
             },

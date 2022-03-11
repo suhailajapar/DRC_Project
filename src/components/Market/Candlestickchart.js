@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import TradeViewChart from "react-crypto-chart";
 import LoaderImg from "../../assets/Market Asset/Loader.svg";
-import DropdownImg from "../../assets/Market Asset/down-chevron.png";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import Btc from "./../../assets/Icon_symbol/btc.svg";
@@ -78,20 +78,21 @@ function Candlestickchart() {
   }, [loading]);
 
   return (
-    <div className="app">
-      Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
-      {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
-      {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)}
+    <div>
+      <div className="market-info">
+        Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)}{" "}
+        Open:
+        {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
+        {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)}
+        <span>{new Date().toGMTString()}</span>
+      </div>
       <div>
-        <div
-          onClick={() => {
-            setShowDropdown(!showDropdown);
-          }}
-        >
-          <img
-            src={DropdownImg}
-            alt="dropdown button"
-            className="dropdown-icon"
+        <div>
+          <ArrowDropDownCircleIcon
+            onClick={() => {
+              setShowDropdown(!showDropdown);
+            }}
+            sx={{ color: "#609D45" }}
           />
         </div>
         <div className="dropdown-box ">

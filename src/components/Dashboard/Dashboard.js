@@ -44,7 +44,10 @@ function Dashboard() {
   return (
     <div className="DashBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
-      <WalletReloadModal display={display} setDisplay={setDisplay} />
+      <WalletReloadModal
+        display={display}
+        setDisplay={setDisplay}
+      />
       <div className="Layout">
         <div className="dash-top">
           <Dashbar titleName={"Dashboard"} theme={theme} setTheme={setTheme} />

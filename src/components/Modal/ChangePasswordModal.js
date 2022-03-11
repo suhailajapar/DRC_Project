@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Card from "../Card/Card";
 import classes from "./ChangePasswordModal.module.css";
 import { useForm } from "react-hook-form";
+import { SiteDataContext } from "../../SiteData";
 
 const ChangePasswordModal = (props) => {
+  const { user_data, is_data_ready } = useContext(SiteDataContext);
+  const [old_password, setOldPassword] = useState("");
+  const [new_password, setNewPassword] = useState("");
+  const [message, setMessage] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -15,23 +21,30 @@ const ChangePasswordModal = (props) => {
   } = useForm();
 
   const passwordChangeHandler = (data) => {
-    console.log(data);
-    alert("SUCCESS!");
-    // const userPassword = {
-    //   oldPassword: password,
-    //   newPassword: new_password,
-    // };
-    // const req = new Request("http://localhost:3001/api/update-password", {
-    //   method: "PUT",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify(userPassword),
-    // });
-    // fetch(req).then((res) => {
-    //   res.json().then((data) => {
-    //     console.log(data);
-    //   });
-    // });
+    const loginid = user_data.loginid;
+    const userPassword = {
+      old_password: old_password,
+      new_password: new_password,
+    };
+    const req = new Request(
+      `http://localhost:3001/user/profile/update-password/${loginid}`,
+      {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(userPassword),
+      }
+    );
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+      });
+    });
   };
+
+  //Check if user_data is ready
+  if (!is_data_ready) {
+    return <h1>Loading..</h1>;
+  }
 
   // FOR INPUT VALIDATION
   const onSubmit = (data, e) => {
