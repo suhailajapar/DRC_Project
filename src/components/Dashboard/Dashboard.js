@@ -68,7 +68,7 @@ function Dashboard() {
               <p className="p3">
                 Asset's Balance as on {curr_date.toDateString()}
               </p>
-              <p id="prof-bal">USD 999999.99</p>
+              <p id="prof-bal">USD 0</p>
             </div>
           </div>
           <div className="profile-avatar">
@@ -103,7 +103,7 @@ function Dashboard() {
         <div className="Wallet">
           <div className="w-value">
             <p>Wallet's Balance</p>
-            <h1 id="wal-bal">USD 999999.99</h1>
+            <h1 id="wal-bal">USD 0</h1>
           </div>
           <img
             className="w-icon"
