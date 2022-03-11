@@ -7,9 +7,8 @@ import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
-import avatarSample from "../../assets/Logo/avatar_sample.png";
 
-const Profile = () => {
+const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
   const { user_data, is_data_ready } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
@@ -60,7 +59,7 @@ const Profile = () => {
         <div className={classes.user_container}>
           <div className={classes.photo_box}>
             <img
-              src={avatarSample}
+              src={props.avatarSample}
               id={classes.avatar}
               // style={{ width: "160px", height: "160px" }}
             />

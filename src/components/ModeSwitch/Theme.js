@@ -59,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${(props) => props.theme.tableCellEven};
 }
 
-.css-pv6s8w-MuiTableRow-root td, .MuiTableCell-root:hover, .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root {
+.css-pv6s8w-MuiTableRow-root td, .MuiTableCell-root:hover, .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root, .css-1umaptr-MuiTableCell-root  {
     color: ${(props) => props.theme.fontColor};
 
 }
