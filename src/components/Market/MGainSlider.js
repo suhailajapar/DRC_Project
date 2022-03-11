@@ -24,28 +24,16 @@ const title = <ul id="m-card-title">Binance</ul>;
 const currentPrice = <ul id="m-card-value">0.0009</ul>;
 
 function SampleNextArrow(props) {
-  const { className, onClick, theme } = props;
-  return (
-    <ArrowForwardIosIcon
-      className={className}
-      onClick={onClick}
-      sx={theme === "dark" ? { color: "white" } : { color: "black" }}
-    />
-  );
+  const { className, onClick } = props;
+  return <ArrowForwardIosIcon className={className} onClick={onClick} />;
 }
 
 function SamplePrevArrow(props) {
-  const { className, onClick, theme } = props;
-  return (
-    <ArrowBackIosIcon
-      className={className}
-      onClick={onClick}
-      sx={theme === "dark" ? { color: "white" } : { color: "black" }}
-    />
-  );
+  const { className, onClick } = props;
+  return <ArrowBackIosIcon className={className} onClick={onClick} />;
 }
 
-export default function SimpleSlider({ theme, setTheme }) {
+export default function SimpleSlider() {
   var settings = {
     dots: false,
     infinite: true,
@@ -55,8 +43,8 @@ export default function SimpleSlider({ theme, setTheme }) {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    prevArrow: <SamplePrevArrow theme={theme} setTheme={setTheme} />,
-    nextArrow: <SampleNextArrow theme={theme} setTheme={setTheme} />,
+    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
     responsive: [
       {
         breakpoint: 1024,

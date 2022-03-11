@@ -15,7 +15,9 @@ const Menubar = ({ className, theme, setTheme }) => {
           alt="MenuLogo"
         />
       </Link>
-      <ToggleSwitch theme={theme} setTheme={setTheme} />
+      <div id="menubar-switch">
+        <ToggleSwitch theme={theme} setTheme={setTheme} />
+      </div>
     </div>
   );
 };

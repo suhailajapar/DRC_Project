@@ -93,7 +93,7 @@ function a11yProps(index) {
 }
 
 export default function FullWidthTabs(props) {
-  const { theme, setTheme } = props;
+  const { theme } = props;
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -172,8 +172,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <BuySellInput
@@ -186,8 +184,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <BuySellInput
@@ -200,8 +196,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <Button
@@ -245,8 +239,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <BuySellInput
@@ -259,8 +251,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <BuySellInput
@@ -273,8 +263,6 @@ export default function FullWidthTabs(props) {
               ),
             }}
             fullWidth
-            theme={theme}
-            setTheme={setTheme}
           />
           <div className="buy-spacing"></div>
           <Button

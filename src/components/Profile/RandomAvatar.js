@@ -196,7 +196,7 @@ function generateRandomAvatarOptions() {
 export default function randomAvatar() {
   return (
     <Avatar
-      style={{ width: "50px", height: "50px" }}
+      // style={{ width: "50px", height: "50px" }}
       avatarStyle="Circle"
       {...generateRandomAvatarOptions()}
     />

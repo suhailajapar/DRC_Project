@@ -10,3 +10,25 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media only screen and (max-width: 768px) {
+  #menubar-switch {
+    position: absolute;
+    right: 20vw;
+    top: 4vh;
+  }
+  .menubar {
+    padding: 30px 40px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #menubar-switch {
+    position: absolute;
+    right: 25vw;
+    top: 4vh;
+  }
+  .menubar {
+    padding: 30px 30px;
+  }
+}

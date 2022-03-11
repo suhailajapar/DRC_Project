@@ -8,48 +8,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  // "&:nth-of-type(1)": {
-  //   width: "fit-content",
-  // },
-  [`&.${tableCellClasses.body}`]:
-    theme === "dark"
-      ? {
-          color: "white",
-          padding: 5,
-        }
-      : {
-          color: "black",
-          padding: 5,
-        },
-  [`&.${tableCellClasses.head}`]:
-    theme === "dark"
-      ? {
-          color: "white",
-          border: 0,
-        }
-      : {
-          color: "black",
-          border: 0,
-        },
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.body}`]: {
+    padding: 5,
+  },
+  [`&.${tableCellClasses.head}`]: {
+    border: 0,
+  },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)":
-    theme === "dark"
-      ? {
-          backgroundColor: "#1F1F1F",
-        }
-      : { backgroundColor: "#FFFFFF" },
-  "&:nth-of-type(even)":
-    theme === "dark"
-      ? {
-          backgroundColor: "#010023",
-        }
-      : { backgroundColor: "#F3F3F3" },
-  // "& th": {
-  //   backgroundColor: "#010023",
-  // },
+const StyledTableRow = styled(TableRow)(() => ({
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
@@ -133,10 +101,7 @@ const rows = [
 ];
 
 export default function CustomizedTables(props) {
-  const { theme, setTheme } = props;
-
-  // const [theme, setTheme] = React.useState("dark");
-
+  const { theme } = props;
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer
@@ -171,29 +136,11 @@ export default function CustomizedTables(props) {
         >
           <TableHead>
             <TableRow>
-              {headerColumn.map((column) => (
+              {headerColumn.map((column, index) => (
                 <TableCell
-                  key={column.id}
+                  key={index}
                   align={column.align}
-                  sx={
-                    theme === "dark"
-                      ? {
-                          backgroundColor: "#010023",
-                          color: "white",
-                          fontWeight: "bold",
-                          padding: 0.5,
-                          pl: 1.5,
-                          // width: 0,
-                        }
-                      : {
-                          backgroundColor: "#F3F3F3",
-                          color: "black",
-                          fontWeight: "bold",
-                          padding: 0.5,
-                          pl: 1.5,
-                          // width: 0,
-                        }
-                  }
+                  sx={{ fontWeight: "bold", padding: 0.5 }}
                 >
                   {column.label}
                 </TableCell>
@@ -201,63 +148,31 @@ export default function CustomizedTables(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name} theme={theme} setTheme={setTheme}>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+            {rows.map((row, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell className="table-cell" align="left">
                   {row.transactionNumber}
                 </StyledTableCell>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+                <StyledTableCell className="table-cell" align="left">
                   {row.coinName}
                 </StyledTableCell>
                 <StyledTableCell
                   className="table-cell"
                   sx={{ width: "fit-content" }}
                   align="left"
-                  theme={theme}
-                  setTheme={setTheme}
                 >
                   {row.datePurchase}
                 </StyledTableCell>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+                <StyledTableCell className="table-cell" align="left">
                   {row.coinQuantity}
                 </StyledTableCell>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+                <StyledTableCell className="table-cell" align="left">
                   {row.coinPrice}
                 </StyledTableCell>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+                <StyledTableCell className="table-cell" align="left">
                   {row.transactionCharge}
                 </StyledTableCell>
-                <StyledTableCell
-                  className="table-cell"
-                  align="left"
-                  theme={theme}
-                  setTheme={setTheme}
-                >
+                <StyledTableCell className="table-cell" align="left">
                   {row.totalPrice}
                 </StyledTableCell>
               </StyledTableRow>
