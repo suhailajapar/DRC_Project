@@ -26,7 +26,7 @@ const WalletReloadModal = (props) => {
               <span className={classes.wallet_info}>1234-5678-9101-0001</span>
             </div>
             <div className={classes.info_line}>
-              <label for="wallet_currency">Wallet Currency:</label>
+              <label name="wallet_currency">Wallet Currency:</label>
               <select
                 name="wallet_currency"
                 id="wallet_currency"

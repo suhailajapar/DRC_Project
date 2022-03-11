@@ -19,9 +19,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate, Link } from "react-router-dom";
 import { SiteDataContext } from "../../SiteData";
 import RandomAvatar from "../Profile/RandomAvatar";
-import { Box } from "@mui/system";
+import ToggleSwitch from "./../ModeSwitch/Switch";
 
 export default function AccountMenu(props) {
+  const [theme, setTheme] = React.useState("dark");
   const { handleLogout } = useContext(SiteDataContext) || {};
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -120,6 +121,9 @@ export default function AccountMenu(props) {
             <img src={LogoutLogo} alt="Logout Logo" id="Logout" />
           </a>
         </Tooltip>
+      </div>
+      <div id="switch-box">
+        <ToggleSwitch theme={theme} setTheme={setTheme} />
       </div>
       <Menu
         anchorEl={anchorEl}

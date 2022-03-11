@@ -15,6 +15,19 @@
   border-radius: 0 10px 10px 0;
 }
 
+#switch-box {
+  z-index: 3;
+  position: absolute;
+  background: transparent;
+  color: white;
+  top: 2.5vh;
+  right: 5vw;
+}
+
+#responsive-switch {
+  display: none;
+}
+
 #DP {
   /* width: 45px;
   padding: 5px 0 5px 0;
@@ -146,8 +159,23 @@
   .test-bar a:not(:nth-child(2)) {
     display: none;
   }
+  #switch-box {
+    right: 15vw;
+    top: 1.5vh;
+  }
 }
 
+@media only screen and (max-width: 600px) {
+  #switch-box {
+    right: 18vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #switch-box {
+    right: 20vw;
+  }
+}
 @media only screen and (max-width: 450px) {
   #responsive-logo {
     padding-top: 0px;
@@ -156,6 +184,9 @@
   #responsive-dash-header {
     font-size: 1.125rem;
     padding: 0px 0 0 10px;
+  }
+  #switch-box {
+    right: 25vw;
   }
 }
 
