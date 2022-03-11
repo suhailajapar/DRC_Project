@@ -53,6 +53,7 @@ font-family: 'Red Hat Display', sans-serif;
   width: 100%;
   white-space: nowrap;
   padding: 4px 0;
+  color: black;
 }
 
 .wallet_info {
