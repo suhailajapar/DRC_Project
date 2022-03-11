@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import classes from "./ChangePasswordModal.module.css";
 import { useForm } from "react-hook-form";
 import { SiteDataContext } from "../../SiteData";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const ChangePasswordModal = (props) => {
   const { user_data, is_data_ready } = useContext(SiteDataContext);
@@ -23,20 +24,16 @@ const ChangePasswordModal = (props) => {
   const passwordChangeHandler = (data) => {
     const loginid = user_data.loginid;
     const userPassword = {
-      old_password: old_password,
-      new_password: new_password,
+      ...data,
     };
-    const req = new Request(
-      `http://localhost:3001/user/profile/update-password/${loginid}`,
-      {
-        method: "POST",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify(userPassword),
-      }
-    );
+    const req = new Request(`${BASE_URL}/user/update-password/${loginid}`, {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(userPassword),
+    });
     fetch(req).then((res) => {
       res.json().then((data) => {
-        console.log(data);
+        return console.log(data.message);
       });
     });
   };
@@ -48,6 +45,7 @@ const ChangePasswordModal = (props) => {
 
   // FOR INPUT VALIDATION
   const onSubmit = (data, e) => {
+    console.log(data);
     passwordChangeHandler(data);
     reset();
   };
@@ -68,7 +66,7 @@ const ChangePasswordModal = (props) => {
                 className={classes.pwdInputArea}
                 type="password"
                 placeholder="Current password..."
-                {...register("curr_password", {
+                {...register("old_password", {
                   required: "This field is required.",
                   minLength: {
                     value: 8,
