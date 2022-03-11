@@ -23,7 +23,7 @@ import WalletReloadModal from "../Modal/WalletReloadModal";
 
 Chart.register(...registerables);
 
-function Dashboard() {
+function Dashboard(props) {
   //light mode and dark mode
   const [theme, setTheme] = React.useState("dark");
   const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
@@ -77,7 +77,7 @@ function Dashboard() {
           <div className="profile-avatar">
             <Avatar
               alt="user's pic"
-              src={ProfilePic}
+              src={props.dashDP}
               sx={[
                 {
                   "@media (max-width: 1720px)": {

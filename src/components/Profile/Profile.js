@@ -7,9 +7,8 @@ import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
-import avatarSample from "../../assets/Logo/avatar_sample.png";
 
-const Profile = () => {
+const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
   const { user_data, is_data_ready } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
@@ -36,7 +35,7 @@ const Profile = () => {
 
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
-  };
+  }; // your form submit function which will invoke after successful validation
 
   //Check if user_data is ready
   if (!is_data_ready) {
@@ -44,19 +43,38 @@ const Profile = () => {
   }
 
   return (
-    <div className={classes.main_wrapper}>
-      <ChangePasswordModal display={display} setDisplay={setDisplay} />
-      <Menubar
-        theme={theme}
-        setTheme={setTheme}
-        className={classes.profile_menubar}
-      />
-      <div>
+    <div className={classes.profile_bg}>
+      <div className={classes.main_wrapper}>
+        <div className={classes.profile_header}>
+          <ProfBar titleName={"Profile"} theme={theme} setTheme={setTheme} />
+        </div>
+        <ChangePasswordModal display={display} setDisplay={setDisplay} />
+
+        {/* <Menubar
+          theme={theme}
+          setTheme={setTheme}
+          className={classes.profile_menubar}
+        /> */}
+
         <div className={classes.user_container}>
-          <div className={classes.photo_box}></div>
-          <ImageUpload className={classes.photo_box} />
+          <div className={classes.photo_box}>
+            <img
+              src={props.avatarSample}
+              id={classes.avatar}
+              // style={{ width: "160px", height: "160px" }}
+            />
+          </div>
+          {/* <ImageUpload className={classes.photo_box} />
+          <button
+            type="button"
+            onClick={() => {
+              setClick(click + 1);
+              console.log(click);
+            }}
+          >
+            Hello
+          </button> */}
           <div className={classes.container1}>
-            {" "}
             <div className={classes.username}>@{user_data.username}</div>
             <div className={classes.date_joined}>
               Date joined:
@@ -66,6 +84,20 @@ const Profile = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <span className={classes.error_message}>
+              {errors?.fullname?.type === "required" && (
+                <p id={classes.warning}>This field is required</p>
+              )}
+              {errors?.fullname?.type === "maxLength" && (
+                <p id={classes.warning}>
+                  Full name cannot exceed 50 characters
+                </p>
+              )}
+              {errors?.fullname?.type === "pattern" && (
+                <p id={classes.warning}>Alphabetical characters only</p>
+              )}
+            </span> */}
+
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Full Name :</div>
               <input
@@ -78,6 +110,7 @@ const Profile = () => {
                 })}
               />
             </div>
+
             <span className={classes.error_message}>
               {errors?.fullname?.type === "required" && (
                 <p>This field is required</p>
@@ -89,7 +122,7 @@ const Profile = () => {
                 <p>Alphabetical characters only</p>
               )}
             </span>
-
+            <div className={classes.form_spacing}></div>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Email :</div>
               <input
@@ -101,14 +134,16 @@ const Profile = () => {
                 })}
               />
             </div>
+
             <span className={classes.error_message}>
               {errors?.Email?.type === "pattern" && (
-                <p>Enter valid email only</p>
+                <p id={classes.warning}>Enter valid email only</p>
               )}
               {errors?.Email?.type === "required" && (
-                <p>This field is required</p>
+                <p id={classes.warning}>This field is required</p>
               )}
             </span>
+            <div className={classes.form_spacing}></div>
 
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Mobile Number :</div>
@@ -127,24 +162,27 @@ const Profile = () => {
             </div>
             <span className={classes.error_message}>
               {errors?.MobileNumber?.type === "pattern" && (
-                <p>Valid Mobile Number only</p>
+                <p id={classes.warning}>Valid Mobile Number only</p>
               )}
               {errors.MobileNumber && <p>Min 10 digits</p>}
               {errors?.MobileNumber?.type === "required" && (
-                <p>This field is required</p>
+                <p id={classes.warning}>This field is required</p>
               )}
             </span>
+            <div className={classes.form_spacing}></div>
 
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Password :</div>
               <div className={classes.InputBox_p}>
                 <span className={classes.pwd_bullet}>
-                  <span>
-                    &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
+                  <span id={classes.pass_placeholder}>
+                    &bull;&bull;&bull;&bull;&bull;&bull;&bull;
                   </span>
                   <EditRoundedIcon
                     fontSize="medium"
-                    style={{ color: "white" }}
+                    sx={{
+                      color: "white",
+                    }}
                     onClick={pwdPopupHandler}
                   />
                 </span>

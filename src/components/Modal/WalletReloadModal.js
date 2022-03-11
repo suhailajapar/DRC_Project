@@ -13,7 +13,7 @@ const WalletReloadModal = (props) => {
   //GET USER WALLET LIST FROM BE
   useEffect(() => {
     const loginid = user_data.loginid;
-    fetch(`http://localhost:3001/wallet/${loginid}`).then((res) => {
+    fetch(`http://192.168.100.140:3001/wallet/${loginid}`).then((res) => {
       res.json().then((data) => {
         setWalletList(data);
         // props.setWalletBalance(data.balance);
@@ -35,7 +35,7 @@ const WalletReloadModal = (props) => {
       currency: selected_wallet?.currency,
     };
     const req = new Request(
-      `http://localhost:3001/wallet/topup/${selected_wallet.wallet_id}`,
+      `http://192.168.100.140:3001/wallet/topup/${selected_wallet.wallet_id}`,
       {
         method: "POST",
         headers: new Headers({ "Content-Type": "application/json" }),
