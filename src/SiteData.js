@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
-import { removeCookie } from "react-cookie";
+// import { removeCookie } from "react-cookie";
 export const SiteDataContext = createContext();
 
 const SiteData = ({ children }) => {
@@ -71,7 +71,7 @@ const SiteData = ({ children }) => {
     localStorage.removeItem("user_data");
     setUserData(null);
     setWalletList([]);
-    removeCookie("access-token");
+    // removeCookie("access-token");
     window.location.pathname = "/";
   };
 
