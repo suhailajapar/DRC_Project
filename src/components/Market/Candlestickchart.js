@@ -27,6 +27,7 @@ import Jst from "./../../assets/Icon_symbol/jst.svg";
 import Bnx from "./../../assets/Icon_symbol/bnx.svg";
 import Xvs from "./../../assets/Icon_symbol/xvs.svg";
 import Row from "./Row";
+import LightWeightChart from "../Chart/lightweight-chart";
 
 Chart.register(...registerables, annotationPlugin);
 
@@ -55,21 +56,19 @@ const crypto_list = [
 
 function Candlestickchart() {
   const [pair, setPair] = useState("BTCUSDT");
-
+  const [display, setDisplay] = useState("none");
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
   const [ask, bid, open, low, high, close, volume, , percent] =
     useBinanceData(pair);
 
-  console.log(percent);
-
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
 
-  const handleInterval = (interval) => {
-    setLoading(true);
-    setInterval(interval);
-  };
+  // const handleInterval = (interval) => {
+  //   // setLoading(true);
+  //   setInterval(interval);
+  // };
 
   useEffect(() => {
     if (loading) {
@@ -86,43 +85,49 @@ function Candlestickchart() {
         {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)}
         <span>{new Date().toGMTString()}</span>
       </div>
-      <div>
+      <div className="chart-info">
+        <div className="market-chart-title">{getName(pair)}</div>
         <div>
-          <ArrowDropDownCircleIcon
-            onClick={() => {
-              setShowDropdown(!showDropdown);
-            }}
-            sx={{ color: "#609D45" }}
-          />
-        </div>
-        <div className="dropdown-box ">
-          {crypto_list.map((c) => {
-            if (showDropdown) {
-              return (
-                <div
-                  onClick={(e) => {
-                    setPair(c.id);
-                    setShowDropdown(!showDropdown);
-                  }}
-                  key={c.id}
-                  className="pair-list"
-                >
-                  <Row key={c.id} src={c.src} pair={c.id} name={c.name} />;
-                </div>
-              );
-            }
-          })}
+          <div>
+            <ArrowDropDownCircleIcon
+              onClick={() => {
+                setShowDropdown(!showDropdown);
+                setDisplay("unset");
+              }}
+              sx={{ color: "#609D45" }}
+            />
+            <div style={{ display: display }}>
+              <div className="dropdown-box">
+                {crypto_list.map((c) => {
+                  if (showDropdown) {
+                    return (
+                      <div
+                        onClick={(e) => {
+                          setPair(c.id);
+                          setShowDropdown(!showDropdown);
+                          setDisplay("none");
+                        }}
+                        key={c.id}
+                        // className="pair-list"
+                      >
+                        <Row key={c.id} src={c.src} pair={c.id} name={c.name} />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="market-chart-title">{getName(pair)}</div>
       <div className="interval-filter">
-        <div className="mins" onClick={() => handleInterval("1m")}>
+        <div className="mins" onClick={() => setInterval("1m")}>
           Min
         </div>
-        <div onClick={() => handleInterval("1h")}>Hr</div>
-        <div onClick={() => handleInterval("1d")}>Day</div>
-        <div onClick={() => handleInterval("1w")}>Week</div>
-        <div className="mos" onClick={() => handleInterval("1M")}>
+        <div onClick={() => setInterval("1h")}>Hr</div>
+        <div onClick={() => setInterval("1d")}>Day</div>
+        <div onClick={() => setInterval("1w")}>Week</div>
+        <div className="mos" onClick={() => setInterval("1M")}>
           Month
         </div>
       </div>
@@ -131,12 +136,7 @@ function Candlestickchart() {
           <img src={LoaderImg} alt="loading" />
         </div>
       ) : (
-        <TradeViewChart
-          key={pair + interval}
-          pair={pair}
-          interval={interval}
-          className="chart"
-        />
+        <LightWeightChart symbol={pair} interval={interval} />
       )}
     </div>
   );

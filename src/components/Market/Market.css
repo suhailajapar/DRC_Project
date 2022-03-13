@@ -49,16 +49,15 @@
   width: 25%;
 } */
 
-td {
+.list-row > td {
   text-align: center;
-  border-bottom: 1px solid aqua;
   color: beige;
   /* width: 25%; */
 }
 
-tr td:hover {
+/* tr td:hover {
   color: black;
-}
+} */
 
 .table-body tr:hover {
   background-color: dimgray;

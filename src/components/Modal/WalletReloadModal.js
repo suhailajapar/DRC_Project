@@ -5,22 +5,11 @@ import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const WalletReloadModal = (props) => {
-  const [wallet_list, setWalletList] = useState([]);
   const [selected_wallet, setSelectedWallet] = useState(null);
   const [topup_amount, setTopupAmount] = useState(0);
   const [input_err, setInputError] = useState("");
-  const { user_data, is_data_ready } = useContext(SiteDataContext);
-
-  //GET USER WALLET LIST FROM BE
-  useEffect(() => {
-    const loginid = user_data.loginid;
-    fetch(`${BASE_URL}/wallet/${loginid}`).then((res) => {
-      res.json().then((data) => {
-        setWalletList(data);
-        // props.setWalletBalance(data.balance);
-      });
-    });
-  }, []);
+  const { is_data_ready, wallet_list, fetchWalleList } =
+    useContext(SiteDataContext);
 
   //SET USER SELECTED WALLET
   useEffect(() => {
@@ -45,13 +34,14 @@ const WalletReloadModal = (props) => {
     );
     fetch(req).then((res) => {
       res.json().then((data) => {
-        return console.log(data.balance);
+        console.log(data.balance);
+        fetchWalleList();
       });
     });
   };
 
   const walletReloadHandler = () => {
-    if (topup_amount > 10 && topup_amount < 10000) {
+    if (topup_amount >= 10 && topup_amount <= 10000) {
       reloadWallet();
       setTopupAmount("");
       setInputError("");
@@ -118,7 +108,7 @@ const WalletReloadModal = (props) => {
               type="number"
               placeholder="Amount..."
               min="10"
-              max="10000"
+              max="10001"
               value={topup_amount === 0 ? "Amount..." : topup_amount}
               onChange={(e) => setTopupAmount(e.target.value)}
             />

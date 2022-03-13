@@ -4,10 +4,12 @@ export const SiteDataContext = createContext();
 
 const SiteData = ({ children }) => {
   const [user_data, setUserData] = useState();
+  const [wallet_list, setWalletList] = useState([]);
   const [is_data_ready, setDataReady] = useState(false);
   const [error_message, setErrorMessage] = useState("");
 
   useEffect(() => {
+    setDataReady(false);
     const data = JSON.parse(localStorage.getItem("user_data"));
     if (data) {
       setUserData(data);
@@ -15,11 +17,28 @@ const SiteData = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    setDataReady(false);
+    fetchWalleList().then(() => {
+      setDataReady(true);
+    });
+  }, [user_data]);
+
+  const fetchWalleList = async () => {
+    if (user_data) {
+      const { loginid } = user_data;
+      const result = await fetch(`${BASE_URL}/wallet/${loginid}`);
+      const data = await result.json();
+      setWalletList(data);
+    }
+  };
+
   const handleLogin = async (user_data) => {
     if (!user_data) return;
     const login_credentials = {
       ...user_data,
     };
+    setDataReady(false);
     const req = new Request(`${BASE_URL}/user/login`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
@@ -35,6 +54,7 @@ const SiteData = ({ children }) => {
       // loginid, username, full_name, email, phone, date_joined, user_img
       setUserData(data);
       localStorage.setItem("user_data", JSON.stringify(data));
+      await fetchWalleList();
       setDataReady(true);
     }
   };
@@ -42,6 +62,7 @@ const SiteData = ({ children }) => {
   const handleLogout = async () => {
     localStorage.removeItem("user_data");
     setUserData(null);
+    setWalletList([]);
     window.location.pathname = "/";
   };
 
@@ -53,6 +74,8 @@ const SiteData = ({ children }) => {
         handleLogin,
         handleLogout,
         is_data_ready,
+        wallet_list,
+        fetchWalleList,
       }}
     >
       {children}
