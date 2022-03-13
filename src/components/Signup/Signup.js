@@ -33,7 +33,6 @@ const Signup = () => {
     };
     const req = new Request(`${BASE_URL}/user/register`, {
       method: "POST",
-      // credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userInfo),
     });
