@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
+import { removeCookie } from "react-cookie";
 export const SiteDataContext = createContext();
 
 const SiteData = ({ children }) => {
@@ -58,7 +59,7 @@ const SiteData = ({ children }) => {
     if (data.error) {
       setErrorMessage(data.error);
     } else {
-      // loginid, username, full_name, email, phone, date_joined, user_img
+      // loginid, username, full_name, email, phone, date_joined
       setUserData(data);
       localStorage.setItem("user_data", JSON.stringify(data));
       await fetchWalleList();
@@ -70,6 +71,7 @@ const SiteData = ({ children }) => {
     localStorage.removeItem("user_data");
     setUserData(null);
     setWalletList([]);
+    removeCookie("access-token");
     window.location.pathname = "/";
   };
 
