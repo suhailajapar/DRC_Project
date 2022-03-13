@@ -47,7 +47,7 @@ const SiteData = ({ children }) => {
     setDataReady(false);
     const req = new Request(`${BASE_URL}/user/login`, {
       method: "POST",
-      credentials: "include",
+      // credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(login_credentials),
     });
@@ -59,7 +59,6 @@ const SiteData = ({ children }) => {
       setErrorMessage(data.error);
     } else {
       // loginid, username, full_name, email, phone, date_joined, user_img
-      document.cookie = `access-token=${data.token}; Max-Age=300; Domain=https://www.tradehikers.xyz; Path=/; Expires=Invalid Date; HttpOnly`;
       setUserData(data);
       localStorage.setItem("user_data", JSON.stringify(data));
       await fetchWalleList();

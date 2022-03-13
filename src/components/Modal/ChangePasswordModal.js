@@ -28,6 +28,7 @@ const ChangePasswordModal = (props) => {
     };
     const req = new Request(`${BASE_URL}/user/update-password/${loginid}`, {
       method: "POST",
+      credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userPassword),
     });

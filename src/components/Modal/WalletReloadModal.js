@@ -28,6 +28,7 @@ const WalletReloadModal = (props) => {
       `${BASE_URL}/wallet/topup/${selected_wallet.wallet_id}`,
       {
         method: "POST",
+        credentials: "include",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
