@@ -8,7 +8,7 @@ const WalletReloadModal = (props) => {
   const [selected_wallet, setSelectedWallet] = useState(null);
   const [topup_amount, setTopupAmount] = useState(0);
   const [input_err, setInputError] = useState("");
-  const { is_data_ready, wallet_list, fetchWalleList } =
+  const { user_data, is_data_ready, wallet_list, fetchWalleList } =
     useContext(SiteDataContext);
 
   //SET USER SELECTED WALLET
@@ -21,6 +21,7 @@ const WalletReloadModal = (props) => {
   //REQ TO BE FOR RELOAD/TRANSFER PROCESS
   const reloadWallet = () => {
     const reload_info = {
+      token: user_data.token,
       amount: topup_amount,
       currency: selected_wallet?.currency,
     };
@@ -28,7 +29,6 @@ const WalletReloadModal = (props) => {
       `${BASE_URL}/wallet/topup/${selected_wallet.wallet_id}`,
       {
         method: "POST",
-        credentials: "include",
         headers: new Headers({
           "Content-Type": "application/json",
         }),

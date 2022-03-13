@@ -25,10 +25,10 @@ const ChangePasswordModal = (props) => {
     const loginid = user_data.loginid;
     const userPassword = {
       ...data,
+      token: user_data.token,
     };
     const req = new Request(`${BASE_URL}/user/update-password/${loginid}`, {
       method: "POST",
-      credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userPassword),
     });

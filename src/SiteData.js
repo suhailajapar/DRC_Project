@@ -27,15 +27,14 @@ const SiteData = ({ children }) => {
 
   const fetchWalleList = async () => {
     if (user_data) {
-      const { loginid, access_token } = user_data;
+      console.log("wallet" + user_data);
+      const { loginid, token } = user_data;
       const result = await fetch(`${BASE_URL}/wallet/${loginid}`, {
-        method: "GET",
-        // credentials: "include",
+        method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${access_token}`,
         }),
-        body: JSON.stringify(access_token)
+        body: JSON.stringify({ token }),
       });
       const data = await result.json();
       setWalletList(data);
@@ -50,7 +49,6 @@ const SiteData = ({ children }) => {
     setDataReady(false);
     const req = new Request(`${BASE_URL}/user/login`, {
       method: "POST",
-      // credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(login_credentials),
     });
