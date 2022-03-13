@@ -33,9 +33,9 @@ const SiteData = ({ children }) => {
         // credentials: "include",
         headers: new Headers({
           "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
+          // Authorization: `Bearer ${access_token}`,
         }),
-        // body: JSON.stringify(access_token)
+        body: JSON.stringify(access_token)
       });
       const data = await result.json();
       setWalletList(data);
