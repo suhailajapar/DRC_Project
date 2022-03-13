@@ -48,7 +48,7 @@ const SiteData = ({ children }) => {
     setDataReady(false);
     const req = new Request(`${BASE_URL}/user/login`, {
       method: "POST",
-      credentials: "include",
+      // credentials: "include",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(login_credentials),
     });
