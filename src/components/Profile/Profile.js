@@ -7,25 +7,18 @@ import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
-  const { user_data, is_data_ready } = useContext(SiteDataContext);
+  const { user_data, is_data_ready, fetchUser } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
   // const [changeAvatar, setChangeAvatar] = React.useState(genConfig({}));
   const [click, setClick] = React.useState(0);
-
-  // React.useEffect(() => {
-  //   console.log(onClick);
-  //   if (onClick === 0) {
-  //     // setChangeAvatar(null);
-  //   } else if (onClick >= 1) {
-  //     // setChangeAvatar(null);
-  //   }
-  // }, [onClick]);
+  const [error_message, setErrorMessage] = useState("");
 
   const {
     register,
@@ -33,9 +26,38 @@ const Profile = (props) => {
     formState: { errors },
   } = useForm();
 
+  //REQ TO BE FOR UPDATE USER DETAILS
+  const updateUser = (data) => {
+    const { loginid } = user_data;
+    const user_info = {
+      token: user_data.token,
+      loginid: user_data.loginid,
+      ...data,
+    };
+    console.log(user_info);
+    const req = new Request(`${BASE_URL}/user/profile/update/${loginid}`, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(user_info),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        if (data.error) {
+          setErrorMessage(data.error);
+        } else {
+          console.log(data);
+          setErrorMessage("Details save.");
+        }
+      });
+    });
+  };
+
   const onSubmit = (data) => {
+    // updateUser();
     alert(JSON.stringify(data));
-  }; // your form submit function which will invoke after successful validation
+  };
 
   //Check if user_data is ready
   if (!is_data_ready) {
@@ -61,6 +83,7 @@ const Profile = (props) => {
             <img
               src={props.avatarSample}
               id={classes.avatar}
+              alt="avatar"
               // style={{ width: "160px", height: "160px" }}
             />
           </div>
@@ -83,66 +106,52 @@ const Profile = (props) => {
               </span>
             </div>
           </div>
+          <div>{error_message}</div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <span className={classes.error_message}>
-              {errors?.fullname?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
-              {errors?.fullname?.type === "maxLength" && (
-                <p id={classes.warning}>
-                  Full name cannot exceed 50 characters
-                </p>
-              )}
-              {errors?.fullname?.type === "pattern" && (
-                <p id={classes.warning}>Alphabetical characters only</p>
-              )}
-            </span> */}
-
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Full Name :</div>
               <input
                 className={classes.InputBox}
                 placeholder={user_data.full_name}
                 {...register("fullname", {
-                  required: true,
-                  maxLength: 50,
+                  // required: true,
+                  maxLength: {
+                    value: 50,
+                    message: "Full name cannot exceed 50 characters",
+                  },
                   pattern: /^[a-zA-Z ]*$/,
                 })}
               />
             </div>
 
             <span className={classes.error_message}>
-              {errors?.fullname?.type === "required" && (
-                <p>This field is required</p>
-              )}
-              {errors?.fullname?.type === "maxLength" && (
-                <p>Full name cannot exceed 50 characters</p>
-              )}
+              {errors?.fullname && <p>{errors?.phone.message}</p>}
               {errors?.fullname?.type === "pattern" && (
                 <p>Alphabetical characters only</p>
               )}
             </span>
-            <div className={classes.form_spacing}></div>
+
+            <div className={classes.form_spacing} />
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Email :</div>
               <input
                 className={classes.InputBox}
                 placeholder={user_data.email}
-                {...register("Email", {
+                {...register("email", {
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
-                  required: true,
                 })}
               />
             </div>
 
             <span className={classes.error_message}>
-              {errors?.Email?.type === "pattern" && (
+              {errors?.email?.type === "pattern" && (
                 <p id={classes.warning}>Enter valid email only</p>
               )}
-              {errors?.Email?.type === "required" && (
+              {errors?.email?.type === "required" && (
                 <p id={classes.warning}>This field is required</p>
               )}
             </span>
+
             <div className={classes.form_spacing}></div>
 
             <div className={classes.form_boxes}>
@@ -152,22 +161,27 @@ const Profile = (props) => {
                 placeholder={
                   user_data.phone ? user_data.phone : "Phone number..."
                 }
-                {...register("MobileNumber", {
-                  required: true,
-                  minlegth: 10,
-                  maxlength: 15,
-                  pattern: /\d+/,
+                {...register("phone", {
+                  minLength: {
+                    value: 9,
+                    message:
+                      "Ops! format should be +6012345678910 or 609876543123456789",
+                  },
+                  maxLength: {
+                    value: 17,
+                    message:
+                      "Ops! format should be +6012345678910 or 609876543123456789",
+                  },
+                  pattern:
+                    /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/,
                 })}
               />
             </div>
             <span className={classes.error_message}>
-              {errors?.MobileNumber?.type === "pattern" && (
-                <p id={classes.warning}>Valid Mobile Number only</p>
+              {errors?.phone?.type === "pattern" && (
+                <p id={classes.warning}>Valid Mobile Number only.</p>
               )}
-              {errors.MobileNumber && <p>Min 10 digits</p>}
-              {errors?.MobileNumber?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
+              {errors?.phone && <p>{errors?.phone.message}</p>}
             </span>
             <div className={classes.form_spacing}></div>
 

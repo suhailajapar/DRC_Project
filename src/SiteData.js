@@ -41,6 +41,30 @@ const SiteData = ({ children }) => {
     }
   };
 
+  const fetchUser = async () => {
+    const { loginid, token } = user_data;
+    const req = new Request(`${BASE_URL}/user/profile/${loginid}`, {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(token),
+    });
+
+    const res = await fetch(req);
+    const data = await res.json();
+
+    if (data.error) {
+      setErrorMessage(data.error);
+      return false;
+    } else {
+      // loginid, username, full_name, email, phone, date_joined
+      setUserData({ ...data, token });
+      localStorage.setItem("user_data", JSON.stringify({ ...data, token }));
+      // await fetchWalleList();
+      setDataReady(true);
+      return true;
+    }
+  };
+
   const handleLogin = async (user_data) => {
     if (!user_data) return;
     const login_credentials = {
@@ -88,6 +112,7 @@ const SiteData = ({ children }) => {
         fetchWalleList,
         pair,
         setPair,
+        fetchUser,
       }}
     >
       {children}

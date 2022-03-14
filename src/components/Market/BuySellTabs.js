@@ -102,7 +102,7 @@ export default function FullWidthTabs(props) {
   const [quantity, setQuantity] = useState(0);
   const [error_message, setErrorMessage] = useState("");
 
-  //REQ TO BE FOR RELOAD/TRANSFER PROCESS
+  //REQ TO BE FOR BUY TRANSACTION
   const buyCrypto = () => {
     const buy_info = {
       token: user_data.token,
@@ -110,7 +110,7 @@ export default function FullWidthTabs(props) {
       quantity: quantity,
       currency: pair.substr(0, pair.length - 4),
     };
-    console.log(buy_info);
+    // console.log(buy_info);
     const req = new Request(`${BASE_URL}/transaction/buy`, {
       method: "POST",
       headers: new Headers({
@@ -128,11 +128,54 @@ export default function FullWidthTabs(props) {
           if (data.error.name) {
             setErrorMessage("token expired, please re-login");
           }
-          setErrorMessage(data.error);
+          return setErrorMessage(data.error);
         } else {
           console.log(data);
           setErrorMessage(
             ` SUCCESS! buy:${pair.substr(
+              0,
+              pair.length - 4
+            )} quantity:${quantity} price:${data.current_price} total:${
+              quantity * data.current_price
+            }`
+          );
+          fetchWalleList();
+        }
+      });
+    });
+  };
+
+  //REQ TO BE FOR BUY TRANSACTION
+  const sellCrypto = () => {
+    const sell_info = {
+      token: user_data.token,
+      loginid: user_data.loginid,
+      quantity: quantity,
+      currency: pair.substr(0, pair.length - 4),
+    };
+    // console.log(sell_info);
+    const req = new Request(`${BASE_URL}/transaction/sell`, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(sell_info),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        // if (data.name) {
+        //   setErrorMessage("token expired, please re-login");
+        //   // handleLogout();
+        // }
+        if (data.error) {
+          if (data.error.name) {
+            setErrorMessage("token expired, please re-login");
+          }
+          return setErrorMessage(data.error);
+        } else {
+          console.log(data);
+          setErrorMessage(
+            ` SUCCESS! sell:${pair.substr(
               0,
               pair.length - 4
             )} quantity:${quantity} price:${data.current_price} total:${
@@ -152,6 +195,7 @@ export default function FullWidthTabs(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setErrorMessage("");
   };
 
   const handleChangeIndex = (index) => {
@@ -219,7 +263,7 @@ export default function FullWidthTabs(props) {
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
-            value={quantity}
+            value={quantity === 0 ? "" : quantity}
             onChange={(e) => setQuantity(e.target.value)}
             InputProps={{
               endAdornment: (
@@ -292,9 +336,12 @@ export default function FullWidthTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
+        <div>{error_message}</div>
         <div className="buy-input-container">
           <BuySellInput
-            label="Amount"
+            label="Quantity"
+            value={quantity === 0 ? "" : quantity}
+            onChange={(e) => setQuantity(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -358,9 +405,7 @@ export default function FullWidthTabs(props) {
               },
             }}
             fullWidth
-            onClick={() => {
-              alert("sell is clicked");
-            }}
+            onClick={sellCrypto}
           >
             SELL
           </Button>
