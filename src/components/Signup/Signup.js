@@ -5,6 +5,7 @@ import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
 import ToLoginModal from "../Modal/ToLoginModal";
+import classes from "../Home/Home.module.css";
 
 const Signup = () => {
   const [theme, setTheme] = useState("dark");
@@ -30,7 +31,7 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toLocaleString(),
     };
-    const req = new Request("http://192.168.100.140:3001/user/register", {
+    const req = new Request("http://159.223.55.216:3001/user/register", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userInfo),
@@ -240,7 +241,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer className={classes.home_footer} />
     </div>
   );
 };

@@ -2,13 +2,15 @@
 /* 
 font-family: 'IBM Plex Sans', sans-serif;
 */
-
+/* body {
+  background-color: red;
+} */
 .menubar {
   padding-bottom: 0;
 }
 
 .signup-container {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #1f1f1f;
   background-image: url("../../assets/Waves/wave_dark.svg");
   background-position: bottom;
@@ -234,7 +236,7 @@ font-family: 'IBM Plex Sans', sans-serif;
 
   .signup-button {
     width: 80%;
-    height: 35px;
+    height: 60%;
     font-size: 14px;
   }
 
