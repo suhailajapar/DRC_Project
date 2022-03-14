@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "./Market.css";
 import Marketbar from "../Menubar/HeaderBar";
@@ -37,6 +38,22 @@ function Market() {
         </div>
         <div className="buysell-section">
           <BuySellTabs theme={theme} setTheme={setTheme} />
+          <div className="mini-message">
+            Please{" "}
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "#0ead11" }}
+            >
+              Log In
+            </Link>{" "}
+            or{" "}
+            <Link
+              to="/signup"
+              style={{ textDecoration: "none", color: "#0ead11" }}
+            >
+              Register
+            </Link>
+          </div>
         </div>
 
         <div className="gain-section">

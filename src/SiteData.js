@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
-export const SiteDataContext = createContext();
+
+export const SiteDataContext = createContext({});
 
 const SiteData = ({ children }) => {
   const [user_data, setUserData] = useState();
   const [wallet_list, setWalletList] = useState([]);
   const [is_data_ready, setDataReady] = useState(false);
   const [error_message, setErrorMessage] = useState("");
+  const [total_asset, setTotalAsset] = useState(0);
   const [pair, setPair] = useState("BTCUSDT");
 
   useEffect(() => {
@@ -21,6 +24,7 @@ const SiteData = ({ children }) => {
   useEffect(() => {
     setDataReady(false);
     fetchWalleList().then(() => {
+      getTotalAsset();
       setDataReady(true);
     });
   }, [user_data]);
@@ -38,10 +42,12 @@ const SiteData = ({ children }) => {
       });
       const data = await result.json();
       setWalletList(data);
+      getTotalAsset();
     }
   };
 
   const fetchUser = async () => {
+    setDataReady(false);
     const { loginid, token } = user_data;
     const req = new Request(`${BASE_URL}/user/profile/${loginid}`, {
       method: "POST",
@@ -66,7 +72,7 @@ const SiteData = ({ children }) => {
   };
 
   const handleLogin = async (user_data) => {
-    if (!user_data) return;
+    localStorage.removeItem("user_data");
     const login_credentials = {
       ...user_data,
     };
@@ -100,6 +106,27 @@ const SiteData = ({ children }) => {
     window.location.pathname = "/";
   };
 
+  const getTotalAsset = () => {
+    setTotalAsset(0);
+    const crypto_wallet = wallet_list.filter((w) => w.currency !== "USD");
+    crypto_wallet.forEach(async (cw) => {
+      const curr_price = await getCurrentCryptoPrice(cw.currency);
+      setTotalAsset(
+        (prev) => prev + curr_price * Number.parseFloat(cw.balance)
+      );
+    });
+  };
+
+  const API_ENDPOINT = "https://api.binance.com/api/v3";
+  const getCurrentCryptoPrice = async (target) => {
+    const response = await axios.get(
+      `${API_ENDPOINT}/ticker/price?symbol=${target.toUpperCase()}USDT`
+    );
+
+    const { price } = response.data;
+    return Number.parseFloat(price);
+  };
+
   return (
     <SiteDataContext.Provider
       value={{
@@ -113,6 +140,7 @@ const SiteData = ({ children }) => {
         pair,
         setPair,
         fetchUser,
+        total_asset,
       }}
     >
       {children}

@@ -39,9 +39,9 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           "& fieldset": {
             borderColor: "#BDBDBD",
           },
-          "&:hover fieldset": {
-            borderColor: "#BDBDBD",
-          },
+          // "&:hover fieldset": {
+          //   borderColor: "#BDBDBD",
+          // },
           "&.Mui-focused fieldset": {
             borderColor: "#BDBDBD",
           },
@@ -52,9 +52,9 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           "& fieldset": {
             borderColor: "#616161",
           },
-          "&:hover fieldset": {
-            borderColor: "#616161",
-          },
+          // "&:hover fieldset": {
+          //   borderColor: "#616161",
+          // },
           "&.Mui-focused fieldset": {
             borderColor: "#7E7E7E",
           },
@@ -206,7 +206,7 @@ export default function FullWidthTabs(props) {
     <Box
       sx={{
         "& .MuiBox-root": {
-          padding: "24px 0px",
+          padding: "10px 0px",
         },
       }}
     >
@@ -279,6 +279,7 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
+            disabled={true}
             label="Price"
             InputProps={{
               endAdornment: (
@@ -294,6 +295,7 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
+            disabled={true}
             label="Total"
             InputProps={{
               endAdornment: (
@@ -356,6 +358,7 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
+            disabled={true}
             label="Price"
             InputProps={{
               endAdornment: (
@@ -371,6 +374,7 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
+            disabled={true}
             label="Total"
             InputProps={{
               endAdornment: (

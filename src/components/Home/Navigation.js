@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 import Home from "./Home";
 import Login from "../Login/Login";
@@ -12,15 +17,21 @@ import WithSideBar from "./WithSideBar";
 import { SiteDataContext } from "../../SiteData";
 import avatarSample from "../../assets/Logo/avatar_sample.png";
 
-// TODO
+//Check if user  is logged in
 const LoggedIn = ({ children, is_logged_in }) => {
-  if (is_logged_in) return children;
-  window.location.href = "/";
+  if (is_logged_in) {
+    return children;
+  } else {
+    return <Navigate to="/" />;
+  }
 };
 
 function Navigation() {
-  const { user_data } = React.useContext(SiteDataContext);
+  const { user_data, is_data_ready } = React.useContext(SiteDataContext);
 
+  if (!is_data_ready) {
+    return <h1>Loading..</h1>;
+  }
   return (
     <Router>
       <Routes>

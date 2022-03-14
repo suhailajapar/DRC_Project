@@ -48,14 +48,14 @@ const Profile = (props) => {
           setErrorMessage(data.error);
         } else {
           console.log(data);
-          setErrorMessage("Details save.");
+          setErrorMessage("Data sucessfully saved.");
         }
       });
     });
   };
 
   const onSubmit = (data) => {
-    // updateUser();
+    updateUser(data);
     alert(JSON.stringify(data));
   };
 
@@ -106,15 +106,22 @@ const Profile = (props) => {
               </span>
             </div>
           </div>
-          <div>{error_message}</div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
+            <span className={classes.error_message}>
+              {errors?.full_name && <p>{errors?.full_name.message}</p>}
+              {errors?.full_name?.type === "pattern" && (
+                <p>Alphabetical characters only</p>
+              )}
+            </span>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Full Name :</div>
               <input
                 className={classes.InputBox}
-                placeholder={user_data.full_name}
-                {...register("fullname", {
-                  // required: true,
+                defaultValue={!user_data.full_name ? "" : user_data.full_name}
+                placeholder="Name..."
+                {...register("full_name", {
+                  required: "This field is required.",
                   maxLength: {
                     value: 50,
                     message: "Full name cannot exceed 50 characters",
@@ -124,43 +131,40 @@ const Profile = (props) => {
               />
             </div>
 
-            <span className={classes.error_message}>
-              {errors?.fullname && <p>{errors?.phone.message}</p>}
-              {errors?.fullname?.type === "pattern" && (
-                <p>Alphabetical characters only</p>
-              )}
-            </span>
-
             <div className={classes.form_spacing} />
+            <span className={classes.error_message}>
+              {errors?.email?.type === "pattern" && (
+                <p>Enter valid email only</p>
+              )}
+              {errors?.email && <p>{errors?.email.message}</p>}
+            </span>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Email :</div>
               <input
                 className={classes.InputBox}
-                placeholder={user_data.email}
+                defaultValue={!user_data.email ? "" : user_data.email}
+                placeholder="Email..."
                 {...register("email", {
+                  required: "This field is required.",
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
                 })}
               />
             </div>
 
-            <span className={classes.error_message}>
-              {errors?.email?.type === "pattern" && (
-                <p id={classes.warning}>Enter valid email only</p>
-              )}
-              {errors?.email?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
-            </span>
-
             <div className={classes.form_spacing}></div>
 
+            <span className={classes.error_message}>
+              {errors?.phone?.type === "pattern" && (
+                <p>Valid Mobile Number only.</p>
+              )}
+              {errors?.phone && <p>{errors?.phone.message}</p>}
+            </span>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Mobile Number :</div>
               <input
                 className={classes.InputBox}
-                placeholder={
-                  user_data.phone ? user_data.phone : "Phone number..."
-                }
+                defaultValue={!user_data.phone ? "" : user_data.phone}
+                placeholder={"Phone number..."}
                 {...register("phone", {
                   minLength: {
                     value: 9,
@@ -177,12 +181,7 @@ const Profile = (props) => {
                 })}
               />
             </div>
-            <span className={classes.error_message}>
-              {errors?.phone?.type === "pattern" && (
-                <p id={classes.warning}>Valid Mobile Number only.</p>
-              )}
-              {errors?.phone && <p>{errors?.phone.message}</p>}
-            </span>
+
             <div className={classes.form_spacing}></div>
 
             <div className={classes.form_boxes}>
@@ -203,6 +202,7 @@ const Profile = (props) => {
               </div>
             </div>
             <div className={classes.form_boxes}>
+              <div className={classes.backend_error}>{error_message}</div>
               <button className={classes.Save_Button}>Save </button>
             </div>
           </form>

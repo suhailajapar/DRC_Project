@@ -70,6 +70,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .w-icon {
+  cursor: pointer;
   content: ${(props) => props.theme.walletIcon};
 }
 

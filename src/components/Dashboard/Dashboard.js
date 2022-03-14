@@ -28,7 +28,8 @@ function Dashboard(props) {
   const [theme, setTheme] = React.useState("dark");
   const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
   const [dataSets, setDataSets] = React.useState([35, 65]);
-  const { user_data, is_data_ready, wallet_list } = useContext(SiteDataContext);
+  const { user_data, is_data_ready, wallet_list, total_asset } =
+    useContext(SiteDataContext);
   const [doughnutType, setDoughnutType] = React.useState("");
   const [display, setDisplay] = React.useState("none");
   const WalletPopupHandler = () => {
@@ -72,7 +73,7 @@ function Dashboard(props) {
               <p className="p3">
                 Asset's Balance as on {curr_date.toDateString()}
               </p>
-              <p id="prof-bal">USD 0</p>
+              <p id="prof-bal">USD {Math.round(total_asset * 100) / 100}</p>
             </div>
           </div>
           <div className="profile-avatar">

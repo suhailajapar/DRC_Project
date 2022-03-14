@@ -201,13 +201,13 @@ function Candlestickchart() {
         </div> */}
       </div>
 
-      {loading ? (
+      {/* {loading ? (
         <div className="loader">
           <img src={LoaderImg} alt="loading" />
         </div>
-      ) : (
-        <LightWeightChart symbol={pair} interval={interval} />
-      )}
+      ) : ( */}
+      <LightWeightChart symbol={pair} interval={interval} />
+      {/* )} */}
     </div>
   );
 }
