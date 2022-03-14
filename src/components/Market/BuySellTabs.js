@@ -100,7 +100,7 @@ export default function FullWidthTabs(props) {
   const { user_data, is_data_ready, fetchWalleList, pair } =
     useContext(SiteDataContext);
   const [quantity, setQuantity] = useState(0);
-  // const [currency, setCurrency] = useState("BTC");
+  const [error_message, setErrorMessage] = useState("");
 
   //REQ TO BE FOR RELOAD/TRANSFER PROCESS
   const buyCrypto = () => {
@@ -120,8 +120,17 @@ export default function FullWidthTabs(props) {
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
-        console.log(data);
-        fetchWalleList();
+        if (data.error) {
+          setErrorMessage(data.error);
+        } else {
+          console.log(data);
+          setErrorMessage(
+            ` SUCCESS! buy:${pair} quantity:${quantity} price:${
+              data.current_price
+            } total:${quantity * data.current_price}`
+          );
+          fetchWalleList();
+        }
       });
     });
   };
@@ -196,6 +205,7 @@ export default function FullWidthTabs(props) {
         onChangeIndex={handleChangeIndex}
       > */}
       <TabPanel value={value} index={0}>
+        <div>{error_message}</div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
