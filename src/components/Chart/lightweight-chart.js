@@ -134,7 +134,7 @@ const LightWeightChart = ({ symbol, interval }) => {
             data: chart_data,
           },
         ]}
-        width={700}
+        autoWidth={true}
         height={400}
       />
     </div>

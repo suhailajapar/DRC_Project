@@ -154,6 +154,7 @@
   vertical-align: middle;
   /* background-color: #1b1b1b; */
   background: rgba(27, 27, 27, 0.9);
+  text-align: center;
 }
 
 .market-chart-title {
@@ -180,6 +181,29 @@
   flex-direction: row;
   justify-content: space-between;
   padding-bottom: 10px;
+}
+
+.arrow {
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  border: solid #11d811;
+  border-width: 0 3px 3px 0;
+}
+
+.coin-pads {
+  padding-left: 10px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  border: solid #f00606;
+  border-width: 0 3px 3px 0;
 }
 
 @media only screen and (max-width: 400px) {

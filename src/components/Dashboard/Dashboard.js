@@ -108,7 +108,7 @@ function Dashboard(props) {
           <div className="w-value">
             <p>Wallet's Balance</p>
             <h1 id="wal-bal">
-              USD{" "}
+              USD
               {wallet_list
                 .find((w) => w.currency === "USD")
                 ?.balance.toLocaleString("en-US") || "0"}
@@ -118,7 +118,6 @@ function Dashboard(props) {
             className="w-icon"
             onClick={WalletPopupHandler}
             alt="reload wallet"
-            src={theme === "dark" ? WalletIconDark : WalletIconLight}
           />
         </div>
         <div className="Chart">

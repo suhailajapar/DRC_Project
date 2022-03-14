@@ -228,6 +228,9 @@ export default function FullWidthTabs(props) {
                 </InputAdornment>
               ),
             }}
+            InputLabelProps={{
+              style: { color: "#727272" },
+            }}
             fullWidth
           />
           <div className="buy-spacing"></div>
@@ -240,6 +243,9 @@ export default function FullWidthTabs(props) {
                 </InputAdornment>
               ),
             }}
+            InputLabelProps={{
+              style: { color: "#727272" },
+            }}
             fullWidth
           />
           <div className="buy-spacing"></div>
@@ -251,6 +257,9 @@ export default function FullWidthTabs(props) {
                   <Typography>USD</Typography>
                 </InputAdornment>
               ),
+            }}
+            InputLabelProps={{
+              style: { color: "#727272" },
             }}
             fullWidth
           />
@@ -289,9 +298,12 @@ export default function FullWidthTabs(props) {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <Typography>SQB</Typography>
+                  <Typography>{pair.substr(0, pair.length - 4)}</Typography>
                 </InputAdornment>
               ),
+            }}
+            InputLabelProps={{
+              style: { color: "#727272" },
             }}
             fullWidth
           />
@@ -305,6 +317,9 @@ export default function FullWidthTabs(props) {
                 </InputAdornment>
               ),
             }}
+            InputLabelProps={{
+              style: { color: "#727272" },
+            }}
             fullWidth
           />
           <div className="buy-spacing"></div>
@@ -316,6 +331,9 @@ export default function FullWidthTabs(props) {
                   <Typography>USD</Typography>
                 </InputAdornment>
               ),
+            }}
+            InputLabelProps={{
+              style: { color: "#727272" },
             }}
             fullWidth
           />

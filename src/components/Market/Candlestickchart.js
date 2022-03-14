@@ -135,15 +135,18 @@ function Candlestickchart() {
           </span>
           <span id="mchart-title-name">{getName(pair)}</span>
           <span id="mchart-title-price">
-            {close === 0 ? (
-              <p>Loading...</p>
-            ) : (
-              Number.parseFloat(close).toFixed(2)
-            )}
+            {close === 0 ? <p>Loading...</p> : Number.parseFloat(close)}
           </span>
           <span
             className={`coin-precentage ${
-              Number.parseFloat(percent) > 0 ? "green" : "red"
+              Number.parseFloat(percent) > 0 ? "arrow up" : "arrow down"
+            }`}
+          ></span>
+          <span
+            className={`coin-precentage ${
+              Number.parseFloat(percent) > 0
+                ? "green coin-pads"
+                : "red coin-pads"
             }`}
           >
             {Number.parseFloat(percent).toFixed(2)}
