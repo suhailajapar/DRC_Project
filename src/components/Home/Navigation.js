@@ -46,7 +46,11 @@ function Navigation() {
         >
           <Route
             path="/profile"
-            element={<Profile avatarSample={avatarSample} />}
+            element={
+              <LoggedIn is_logged_in={!!user_data}>
+                <Profile avatarSample={avatarSample} />
+              </LoggedIn>
+            }
           />
         </Route>
         <Route

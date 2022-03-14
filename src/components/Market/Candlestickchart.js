@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import TradeViewChart from "react-crypto-chart";
 import LoaderImg from "../../assets/Market Asset/Loader.svg";
 import useBinanceData from "../ApiBinance/binance-data";
@@ -28,6 +29,8 @@ import Xvs from "./../../assets/Icon_symbol/xvs.svg";
 import Row from "./Row";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import LightWeightChart from "../Chart/lightweight-chart";
+import { SiteDataContext } from "../../SiteData";
 
 Chart.register(...registerables, annotationPlugin);
 
@@ -55,15 +58,14 @@ const crypto_list = [
 ];
 
 function Candlestickchart() {
-  const [pair, setPair] = useState("BTCUSDT");
-
+  // const [pair, setPair] = useState("BTCUSDT");
+  const [display, setDisplay] = useState("none");
+  const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
   const [ask, bid, open, low, high, close, volume, , percent] =
     useBinanceData(pair);
-
-  console.log(percent);
 
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
   const getSrc = (id) => crypto_list.find((c) => c.id === id).src;
@@ -201,12 +203,7 @@ function Candlestickchart() {
           <img src={LoaderImg} alt="loading" />
         </div>
       ) : (
-        <TradeViewChart
-          key={pair + interval}
-          pair={pair}
-          interval={interval}
-          className="chart"
-        />
+        <LightWeightChart symbol={pair} interval={interval} />
       )}
     </div>
   );
