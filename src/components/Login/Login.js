@@ -12,17 +12,14 @@ const Login = () => {
   const { user_data, error_message, handleLogin } = useContext(SiteDataContext);
   const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
 
-  useEffect(() => {
-    if (user_data) {
+  // FOR INPUT VALIDATION
+  const onSubmit = async (data, e) => {
+    const result = await handleLogin(data);
+    e.target.reset();
+    if (result) {
       navigate("/dashboard");
     }
-  }, [user_data]);
-
-  // FOR INPUT VALIDATION
-  const onSubmit = (data, e) => {
-    handleLogin(data);
-    e.target.reset();
-  }; 
+  };
 
   return (
     <div className="login">

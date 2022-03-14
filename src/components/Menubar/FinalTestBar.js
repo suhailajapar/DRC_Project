@@ -194,7 +194,7 @@ export default function AccountMenu(props) {
           <MailIcon />
           Inbox
         </MenuItem> */}
-        <MenuItem>
+        <MenuItem onClick={handleLogout}>
           <Avatar src={LogoutLogo} />
           Logout
         </MenuItem>

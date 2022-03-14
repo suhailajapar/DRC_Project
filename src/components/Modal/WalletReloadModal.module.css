@@ -86,7 +86,11 @@ font-family: 'Red Hat Display', sans-serif;
 }
 
 .err_msg {
+  display: flex;
+  justify-content: center;
   margin: 5px 0;
+  color: red;
+  font-size: 12px;
 }
 
 .buttons {
