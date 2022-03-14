@@ -41,12 +41,12 @@ function App() {
             type: "line",
             yScaleId: "yAxis",
             //WHERE BOUGHT PRICE IS SPECIFIED
-            yMin: 41560.12,
-            yMax: 41560.12,
+            yMin: 38140.12,
+            yMax: 38140.12,
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
-              content: price_data[price_data.length - 1],
+              content: 38140.12,
               enabled: true,
               position: "right",
             },
