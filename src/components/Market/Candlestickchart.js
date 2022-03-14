@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
@@ -28,6 +28,7 @@ import Bnx from "./../../assets/Icon_symbol/bnx.svg";
 import Xvs from "./../../assets/Icon_symbol/xvs.svg";
 import Row from "./Row";
 import LightWeightChart from "../Chart/lightweight-chart";
+import { SiteDataContext } from "../../SiteData";
 
 Chart.register(...registerables, annotationPlugin);
 
@@ -55,8 +56,9 @@ const crypto_list = [
 ];
 
 function Candlestickchart() {
-  const [pair, setPair] = useState("BTCUSDT");
+  // const [pair, setPair] = useState("BTCUSDT");
   const [display, setDisplay] = useState("none");
+  const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");

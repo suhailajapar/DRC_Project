@@ -109,7 +109,9 @@ function Dashboard(props) {
             <p>Wallet's Balance</p>
             <h1 id="wal-bal">
               USD{" "}
-              {wallet_list.find((w) => w.currency === "USD")?.balance || "0"}
+              {wallet_list
+                .find((w) => w.currency === "USD")
+                ?.balance.toLocaleString("en-US") || "0"}
             </h1>
           </div>
           <img

@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
-// import { removeCookie } from "react-cookie";
 export const SiteDataContext = createContext();
 
 const SiteData = ({ children }) => {
@@ -8,6 +7,7 @@ const SiteData = ({ children }) => {
   const [wallet_list, setWalletList] = useState([]);
   const [is_data_ready, setDataReady] = useState(false);
   const [error_message, setErrorMessage] = useState("");
+  const [pair, setPair] = useState("BTCUSDT");
 
   useEffect(() => {
     setDataReady(false);
@@ -58,12 +58,14 @@ const SiteData = ({ children }) => {
 
     if (data.error) {
       setErrorMessage(data.error);
+      return false;
     } else {
       // loginid, username, full_name, email, phone, date_joined
       setUserData(data);
       localStorage.setItem("user_data", JSON.stringify(data));
       await fetchWalleList();
       setDataReady(true);
+      return true;
     }
   };
 
@@ -71,7 +73,6 @@ const SiteData = ({ children }) => {
     localStorage.removeItem("user_data");
     setUserData(null);
     setWalletList([]);
-    // removeCookie("access-token");
     window.location.pathname = "/";
   };
 
@@ -85,6 +86,8 @@ const SiteData = ({ children }) => {
         is_data_ready,
         wallet_list,
         fetchWalleList,
+        pair,
+        setPair,
       }}
     >
       {children}

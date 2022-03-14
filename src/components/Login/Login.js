@@ -14,9 +14,11 @@ const Login = () => {
 
   // FOR INPUT VALIDATION
   const onSubmit = async (data, e) => {
-    await handleLogin(data);
+    const result = await handleLogin(data);
     e.target.reset();
-    navigate("/dashboard");
+    if (result) {
+      navigate("/dashboard");
+    }
   };
 
   return (

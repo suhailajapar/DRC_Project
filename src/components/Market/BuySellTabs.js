@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { styled } from "@mui/material/styles";
@@ -10,6 +10,8 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
 import "./BuySellTabs.css";
+import { SiteDataContext } from "../../SiteData";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const BuySellInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
@@ -95,6 +97,39 @@ function a11yProps(index) {
 export default function FullWidthTabs(props) {
   const { theme } = props;
   const [value, setValue] = React.useState(0);
+  const { user_data, is_data_ready, fetchWalleList, pair } =
+    useContext(SiteDataContext);
+  const [quantity, setQuantity] = useState(0);
+  // const [currency, setCurrency] = useState("BTC");
+
+  //REQ TO BE FOR RELOAD/TRANSFER PROCESS
+  const buyCrypto = () => {
+    const buy_info = {
+      token: user_data.token,
+      loginid: user_data.loginid,
+      quantity: quantity,
+      currency: pair.substr(0, pair.length - 4),
+    };
+    console.log(buy_info);
+    const req = new Request(`${BASE_URL}/transaction/buy`, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(buy_info),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        fetchWalleList();
+      });
+    });
+  };
+
+  //Check if user_data is ready
+  if (!is_data_ready) {
+    return <h1>Loading..</h1>;
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -163,11 +198,13 @@ export default function FullWidthTabs(props) {
       <TabPanel value={value} index={0}>
         <div className="buy-input-container">
           <BuySellInput
-            label="Amount"
+            label="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <Typography>SQB</Typography>
+                  <Typography>{pair.substr(0, pair.length - 4)}</Typography>
                 </InputAdornment>
               ),
             }}
@@ -218,9 +255,7 @@ export default function FullWidthTabs(props) {
               },
             }}
             fullWidth
-            onClick={() => {
-              alert("clicked");
-            }}
+            onClick={buyCrypto}
           >
             BUY
           </Button>
@@ -286,7 +321,7 @@ export default function FullWidthTabs(props) {
             }}
             fullWidth
             onClick={() => {
-              alert("clicked");
+              alert("sell is clicked");
             }}
           >
             SELL
