@@ -97,7 +97,7 @@ function a11yProps(index) {
 export default function FullWidthTabs(props) {
   const { theme } = props;
   const [value, setValue] = React.useState(0);
-  const { user_data, is_data_ready, fetchWalleList, pair } =
+  const { user_data, is_data_ready, fetchWalleList, pair, handleLogout } =
     useContext(SiteDataContext);
   const [quantity, setQuantity] = useState(0);
   const [error_message, setErrorMessage] = useState("");
@@ -120,14 +120,24 @@ export default function FullWidthTabs(props) {
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
+        // if (data.name) {
+        //   setErrorMessage("token expired, please re-login");
+        //   // handleLogout();
+        // }
         if (data.error) {
+          if (data.error.name) {
+            setErrorMessage("token expired, please re-login");
+          }
           setErrorMessage(data.error);
         } else {
           console.log(data);
           setErrorMessage(
-            ` SUCCESS! buy:${pair} quantity:${quantity} price:${
-              data.current_price
-            } total:${quantity * data.current_price}`
+            ` SUCCESS! buy:${pair.substr(
+              0,
+              pair.length - 4
+            )} quantity:${quantity} price:${data.current_price} total:${
+              quantity * data.current_price
+            }`
           );
           fetchWalleList();
         }
