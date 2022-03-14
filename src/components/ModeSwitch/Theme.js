@@ -4,6 +4,8 @@ import LightWave from "./../../assets/Waves/wave_light.svg";
 import DarkWave from "./../../assets/Waves/wave_dark.svg";
 import LightLogo from "../../assets/DashboardAsset/DashLogoLight.svg";
 import DarkLogo from "../../assets/DashboardAsset/DashLogoDark.svg";
+import DropdownImgLight from "../../assets/Market Asset/down-chevron-light.png";
+import DropdownImgDark from "../../assets/Market Asset/down-chevron-dark.png";
 
 //object that references to the color properties
 export const lightTheme = {
@@ -16,6 +18,7 @@ export const lightTheme = {
   tableCellOdd: "#FFFFFF",
   tableCellEven: "#F3F3F3",
   headerLogo: `url(${LightLogo})`,
+  dropdownIcon: `url(${DropdownImgLight})`,
 };
 
 export const darkTheme = {
@@ -28,6 +31,7 @@ export const darkTheme = {
   tableCellOdd: "#1F1F1F",
   tableCellEven: "#010023",
   headerLogo: `url(${DarkLogo})`,
+  dropdownIcon: `url(${DropdownImgDark})`,
 };
 
 //base styling (for entire document)
@@ -59,16 +63,25 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${(props) => props.theme.tableCellEven};
 }
 
-.css-pv6s8w-MuiTableRow-root td, .MuiTableCell-root:hover, .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root, .css-1umaptr-MuiTableCell-root  {
+.css-pv6s8w-MuiTableRow-root td, .MuiTableCell-root:hover, 
+.css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, 
+.css-ahj2mt-MuiTypography-root, .css-1umaptr-MuiTableCell-root  {
     color: ${(props) => props.theme.fontColor};
 
+}
+
+.dropdown-icon {
+  content: ${(props) => props.theme.dropdownIcon};
+ 
 }
 
 .headerBarLogo {
   content: ${(props) => props.theme.headerLogo}
 }
 
-.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input,  .Profile_main_wrapper__-PDi6, .Profile_InputBox__o4OoZ{
+.Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, 
+.LiveCharts-header, .Table-header, .login-input, .signup-input,  
+.Profile_main_wrapper__-PDi6, .Profile_InputBox__o4OoZ{
   color: ${(props) => props.theme.fontColor}
 }
 

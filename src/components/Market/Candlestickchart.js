@@ -3,7 +3,6 @@ import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
 import TradeViewChart from "react-crypto-chart";
 import LoaderImg from "../../assets/Market Asset/Loader.svg";
-import DropdownImg from "../../assets/Market Asset/down-chevron.png";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import Btc from "./../../assets/Icon_symbol/btc.svg";
@@ -27,6 +26,8 @@ import Jst from "./../../assets/Icon_symbol/jst.svg";
 import Bnx from "./../../assets/Icon_symbol/bnx.svg";
 import Xvs from "./../../assets/Icon_symbol/xvs.svg";
 import Row from "./Row";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 Chart.register(...registerables, annotationPlugin);
 
@@ -65,10 +66,11 @@ function Candlestickchart() {
   console.log(percent);
 
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
+  const getSrc = (id) => crypto_list.find((c) => c.id === id).src;
 
-  const handleInterval = (interval) => {
+  const handleInterval = (event, newInterval) => {
     setLoading(true);
-    setInterval(interval);
+    setInterval(newInterval);
   };
 
   useEffect(() => {
@@ -79,22 +81,33 @@ function Candlestickchart() {
 
   return (
     <div className="app">
-      Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
+      {/* Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
       {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
-      {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)}
+      {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)} */}
       <div>
         <div
           onClick={() => {
             setShowDropdown(!showDropdown);
           }}
         >
-          <img
-            src={DropdownImg}
-            alt="dropdown button"
-            className="dropdown-icon"
-          />
+          Cryptocurrency
+          <img alt="dropdown button" className="dropdown-icon" />
         </div>
-        <div className="dropdown-box ">
+        <div className={showDropdown ? "dropdown-box" : ""}>
+          <tr className={showDropdown ? "dropdown-coin-header" : "hide-header"}>
+            <td>
+              <p>Symbol</p>
+            </td>
+            <td id="dropdown-coin-header-name">
+              <p>Name</p>
+            </td>
+            <td>
+              <p>Price</p>
+            </td>
+            <td>
+              <p>24hr %</p>
+            </td>
+          </tr>
           {crypto_list.map((c) => {
             if (showDropdown) {
               return (
@@ -106,25 +119,83 @@ function Candlestickchart() {
                   key={c.id}
                   className="pair-list"
                 >
-                  <Row key={c.id} src={c.src} pair={c.id} name={c.name} />;
+                  <Row key={c.id} src={c.src} pair={c.id} name={c.name} />
                 </div>
               );
             }
           })}
         </div>
       </div>
-      <div className="market-chart-title">{getName(pair)}</div>
-      <div className="interval-filter">
-        <div className="mins" onClick={() => handleInterval("1m")}>
-          Min
+      <div className="mchart-title-and-filter">
+        <div className="market-chart-title">
+          <span>
+            <img src={getSrc(pair)} className="crypto_logo" />
+          </span>
+          <span id="mchart-title-name">{getName(pair)}</span>
+          <span id="mchart-title-price">
+            {close === 0 ? (
+              <p>Loading...</p>
+            ) : (
+              Number.parseFloat(close).toFixed(2)
+            )}
+          </span>
+          <span
+            className={`coin-precentage ${
+              Number.parseFloat(percent) > 0 ? "green" : "red"
+            }`}
+          >
+            {Number.parseFloat(percent).toFixed(2)}
+          </span>
         </div>
-        <div onClick={() => handleInterval("1h")}>Hr</div>
-        <div onClick={() => handleInterval("1d")}>Day</div>
-        <div onClick={() => handleInterval("1w")}>Week</div>
-        <div className="mos" onClick={() => handleInterval("1M")}>
-          Month
+        <div className="interval-filter">
+          <ToggleButtonGroup
+            value={interval}
+            exclusive
+            onChange={handleInterval}
+            aria-label="interval filter"
+            sx={{
+              "& .MuiToggleButton-root": {
+                backgroundColor: "#595959",
+                height: "25px",
+                color: "white",
+                fontSize: "0.875rem",
+              },
+              "& .MuiToggleButton-root:hover": {
+                backgroundColor: "rgb(56, 55, 55)",
+              },
+              "& .MuiToggleButton-root.Mui-selected": {
+                color: "white",
+                backgroundColor: "rgb(56, 55, 55)",
+              },
+            }}
+          >
+            <ToggleButton value="1m" aria-label="minutes">
+              Min
+            </ToggleButton>
+            <ToggleButton value="1h" aria-label="hours">
+              Hr
+            </ToggleButton>
+            <ToggleButton value="1d" aria-label="days">
+              Day
+            </ToggleButton>
+            <ToggleButton value="1w" aria-label="weeks">
+              Week
+            </ToggleButton>
+          </ToggleButtonGroup>
         </div>
+        {/* <div className="interval-filter">
+          <div className="mins" onClick={() => handleInterval("1m")}>
+            Min
+          </div>
+          <div onClick={() => handleInterval("1h")}>Hr</div>
+          <div onClick={() => handleInterval("1d")}>Day</div>
+          <div onClick={() => handleInterval("1w")}>Week</div>
+          <div className="mos" onClick={() => handleInterval("1M")}>
+            Month
+          </div>
+        </div> */}
       </div>
+
       {loading ? (
         <div className="loader">
           <img src={LoaderImg} alt="loading" />
