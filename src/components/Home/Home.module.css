@@ -476,7 +476,7 @@ section {
   }
 }
 
-/* 550px and smaller */
+/* 600px and smaller */
 @media only screen and (max-width: 600px) {
   /* first sec */
   .top_part {
@@ -515,11 +515,13 @@ section {
     text-align: center;
   }
 
-  .lpage_btn {
-    justify-content: center;
+  /* NEEDED IN PROD */
+  .last_part {
+    align-items: center;
   }
 }
 
+/* 510px and smaller */
 @media only screen and (max-width: 510px) {
   /* second section */
   /* eth */
@@ -544,11 +546,6 @@ section {
     height: 420px;
     width: auto;
     margin-top: 100px;
-  }
-
-  /* fourth sect */
-  .last_part {
-    align-items: center;
   }
 }
 
