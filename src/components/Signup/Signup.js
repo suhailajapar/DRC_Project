@@ -5,6 +5,7 @@ import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
 import ToLoginModal from "../Modal/ToLoginModal";
+import classes from "../Home/Home.module.css";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const Signup = () => {
@@ -31,6 +32,7 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toLocaleString(),
     };
+
     const req = new Request(`${BASE_URL}/user/register`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
@@ -241,7 +243,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer className={classes.home_footer} />
     </div>
   );
 };
