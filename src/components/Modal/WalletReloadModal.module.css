@@ -93,6 +93,15 @@ font-family: 'Red Hat Display', sans-serif;
   font-size: 12px;
 }
 
+.succ_msg {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  color: green;
+  font-size: 12px;
+}
+
+
 .buttons {
   display: flex;
   align-items: center;

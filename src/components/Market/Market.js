@@ -15,13 +15,14 @@ function Market() {
   const [theme, setTheme] = React.useState("dark");
 
   const currentDate = new Date();
-  const currentTime = currentDate.toLocaleTimeString([], {
+  const currentTime = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   });
   const month = currentDate.toLocaleString("default", { month: "long" });
   const date = `${month} ${""} ${currentDate.getDate()},${currentDate.getFullYear()}`;
+
   return (
     <div className="marketBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
@@ -39,14 +40,14 @@ function Market() {
         <div className="buysell-section">
           <BuySellTabs theme={theme} setTheme={setTheme} />
           <div className="mini-message">
-            Please{" "}
+            Please&nbsp;
             <Link
               to="/login"
               style={{ textDecoration: "none", color: "#0ead11" }}
             >
               Log In
-            </Link>{" "}
-            or{" "}
+            </Link>
+            &nbsp;or&nbsp;
             <Link
               to="/signup"
               style={{ textDecoration: "none", color: "#0ead11" }}

@@ -137,7 +137,8 @@ const Signup = () => {
                 className="signup-input"
                 placeholder="Email"
                 {...register("email", {
-                  pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
+                  pattern:
+                    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                   required: "This field is required.",
                 })}
               />

@@ -3,14 +3,17 @@ import Card from "../Card/Card";
 import classes from "./WalletReloadModal.module.css";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
+import { useNavigate } from "react-router-dom";
 
 const WalletReloadModal = (props) => {
   const [selected_wallet, setSelectedWallet] = useState(null);
   const [topup_amount, setTopupAmount] = useState(0);
   const [input_err, setInputError] = useState("");
-  const { user_data, is_data_ready, wallet_list, fetchWalleList } =
+  const [message, setMessage] = useState("");
+  const { user_data, is_data_ready, wallet_list, fetchWalleList, checkJWT } =
     useContext(SiteDataContext);
-
+  const navigate = useNavigate();
+  
   //SET USER SELECTED WALLET
   useEffect(() => {
     if (wallet_list?.length > 0) {
@@ -18,29 +21,51 @@ const WalletReloadModal = (props) => {
     }
   }, [wallet_list]);
 
+  //REQ TO BE FOR TRANSACTION HISTORY
+  const getHistory = async () => {
+    const { loginid, token } = user_data;
+    const req = new Request(`${BASE_URL}/transaction/${loginid}`, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify({ token }),
+    });
+    const result = await fetch(req);
+    const data = await result.json();
+    console.log(data);
+  };
+
   //REQ TO BE FOR RELOAD/TRANSFER PROCESS
   const reloadWallet = () => {
-    const reload_info = {
-      token: user_data.token,
-      amount: topup_amount,
-      currency: selected_wallet?.currency,
-    };
-    const req = new Request(
-      `${BASE_URL}/wallet/topup/${selected_wallet.wallet_id}`,
-      {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(reload_info),
-      }
-    );
-    fetch(req).then((res) => {
-      res.json().then((data) => {
-        console.log(data.balance);
-        fetchWalleList();
+    let is_authenticated = checkJWT();
+    console.log(is_authenticated);
+
+    if (is_authenticated) {
+      const reload_info = {
+        token: user_data.token,
+        amount: topup_amount,
+        currency: selected_wallet?.currency,
+      };
+      const req = new Request(
+        `${BASE_URL}/wallet/topup/${selected_wallet.wallet_id}`,
+        {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+          body: JSON.stringify(reload_info),
+        }
+      );
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          console.log(data.balance);
+          fetchWalleList();
+        });
       });
-    });
+    } else {
+      navigate("/login");
+    }
   };
 
   const walletReloadHandler = () => {
@@ -48,6 +73,7 @@ const WalletReloadModal = (props) => {
       reloadWallet();
       setTopupAmount("");
       setInputError("");
+      setMessage("Reload/Transfer Successful");
     } else if (topup_amount < 10) {
       setInputError("Value must be greater than or equal to 10");
     } else if (topup_amount > 10000) {
@@ -115,9 +141,15 @@ const WalletReloadModal = (props) => {
               value={topup_amount === 0 ? "Amount..." : topup_amount}
               onChange={(e) => setTopupAmount(e.target.value)}
             />
-            <div className={`${classes.err_msg} ${classes.info_line}`}>
-              {input_err}
-            </div>
+            {input_err ? (
+              <div className={`${classes.err_msg} ${classes.info_line}`}>
+                {input_err}
+              </div>
+            ) : (
+              <div className={`${classes.succ_msg} ${classes.info_line}`}>
+                {message}
+              </div>
+            )}
           </div>
           <div className={classes.buttons}>
             <span

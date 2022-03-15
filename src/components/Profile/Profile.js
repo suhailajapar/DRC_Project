@@ -8,10 +8,12 @@ import ProfBar from "../Menubar/HeaderBar";
 import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
+import { useNavigate } from "react-router-dom";
 
 const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
-  const { user_data, is_data_ready, fetchUser } = useContext(SiteDataContext);
+  const { user_data, is_data_ready, checkJWT } =
+    useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
   const pwdPopupHandler = () => {
     setDisplay("unset");
@@ -19,6 +21,7 @@ const Profile = (props) => {
   // const [changeAvatar, setChangeAvatar] = React.useState(genConfig({}));
   const [click, setClick] = React.useState(0);
   const [error_message, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,30 +31,36 @@ const Profile = (props) => {
 
   //REQ TO BE FOR UPDATE USER DETAILS
   const updateUser = (data) => {
-    const { loginid } = user_data;
-    const user_info = {
-      token: user_data.token,
-      loginid: user_data.loginid,
-      ...data,
-    };
-    console.log(user_info);
-    const req = new Request(`${BASE_URL}/user/profile/update/${loginid}`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(user_info),
-    });
-    fetch(req).then((res) => {
-      res.json().then((data) => {
-        if (data.error) {
-          setErrorMessage(data.error);
-        } else {
-          console.log(data);
-          setErrorMessage("Data sucessfully saved.");
-        }
+    let is_authenticated = checkJWT();
+    console.log(is_authenticated);
+    if (is_authenticated) {
+      const { loginid } = user_data;
+      const user_info = {
+        token: user_data.token,
+        loginid: user_data.loginid,
+        ...data,
+      };
+      console.log(user_info);
+      const req = new Request(`${BASE_URL}/user/profile/update/${loginid}`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(user_info),
       });
-    });
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          if (data.error) {
+            setErrorMessage(data.error);
+          } else {
+            console.log(data);
+            setErrorMessage("Data sucessfully saved.");
+          }
+        });
+      });
+    } else {
+      navigate("/login");
+    }
   };
 
   const onSubmit = (data) => {

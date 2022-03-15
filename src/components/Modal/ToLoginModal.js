@@ -5,7 +5,7 @@ import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import classes from "./ToLoginModal.module.css";
 
-const WalletReloadModal = (props) => {
+const ToLoginModal = (props) => {
   const navigate = useNavigate();
 
   return (
@@ -60,4 +60,4 @@ const WalletReloadModal = (props) => {
   );
 };
 
-export default WalletReloadModal;
+export default ToLoginModal;

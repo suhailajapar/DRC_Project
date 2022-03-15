@@ -99,12 +99,12 @@ const LightWeightChart = ({ symbol, interval }) => {
     },
     grid: {
       vertLines: {
-        color: "#404043",
+        color: "rgba(64, 64, 67, 0.4)",
         style: 1,
         visible: true,
       },
       horzLines: {
-        color: "#404043",
+        color: "rgba(64, 64, 67, 0.4)",
         style: 1,
         visible: true,
       },
@@ -136,7 +136,7 @@ const LightWeightChart = ({ symbol, interval }) => {
             },
           ]}
           autoWidth={true}
-          height={400}
+          height={450}
         />
       )}
     </div>

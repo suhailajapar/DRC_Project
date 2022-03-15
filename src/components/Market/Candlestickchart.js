@@ -58,7 +58,6 @@ const crypto_list = [
 ];
 
 function Candlestickchart() {
-  // const [pair, setPair] = useState("BTCUSDT");
   const [display, setDisplay] = useState("none");
   const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -83,9 +82,6 @@ function Candlestickchart() {
 
   return (
     <div className="app">
-      {/* Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
-      {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
-      {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)} */}
       <div>
         <div
           onClick={() => {
@@ -131,7 +127,7 @@ function Candlestickchart() {
       <div className="mchart-title-and-filter">
         <div className="market-chart-title">
           <span>
-            <img src={getSrc(pair)} className="crypto_logo" />
+            <img src={getSrc(pair)} className="crypto_logo" alt="crypto"/>
           </span>
           <span id="mchart-title-name">{getName(pair)}</span>
           <span id="mchart-title-price">
@@ -188,26 +184,10 @@ function Candlestickchart() {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        {/* <div className="interval-filter">
-          <div className="mins" onClick={() => handleInterval("1m")}>
-            Min
-          </div>
-          <div onClick={() => handleInterval("1h")}>Hr</div>
-          <div onClick={() => handleInterval("1d")}>Day</div>
-          <div onClick={() => handleInterval("1w")}>Week</div>
-          <div className="mos" onClick={() => handleInterval("1M")}>
-            Month
-          </div>
-        </div> */}
       </div>
 
-      {/* {loading ? (
-        <div className="loader">
-          <img src={LoaderImg} alt="loading" />
-        </div>
-      ) : ( */}
       <LightWeightChart symbol={pair} interval={interval} />
-      {/* )} */}
+
     </div>
   );
 }

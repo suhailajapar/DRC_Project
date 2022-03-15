@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
+import jwt_decode from "jwt-decode";
 
 export const SiteDataContext = createContext({});
 
@@ -43,31 +44,6 @@ const SiteData = ({ children }) => {
       const data = await result.json();
       setWalletList(data);
       getTotalAsset();
-    }
-  };
-
-  const fetchUser = async () => {
-    setDataReady(false);
-    const { loginid, token } = user_data;
-    const req = new Request(`${BASE_URL}/user/profile/${loginid}`, {
-      method: "POST",
-      headers: new Headers({ "Content-Type": "application/json" }),
-      body: JSON.stringify(token),
-    });
-
-    const res = await fetch(req);
-    const data = await res.json();
-
-    if (data.error) {
-      setErrorMessage(data.error);
-      return false;
-    } else {
-      // loginid, username, full_name, email, phone, date_joined
-      setUserData({ ...data, token });
-      localStorage.setItem("user_data", JSON.stringify({ ...data, token }));
-      // await fetchWalleList();
-      setDataReady(true);
-      return true;
     }
   };
 
@@ -127,6 +103,27 @@ const SiteData = ({ children }) => {
     return Number.parseFloat(price);
   };
 
+  const checkJWT = () => {
+    let stored_user_data = localStorage.getItem("user_data");
+
+    let { token } = JSON.parse(stored_user_data);
+    console.log(stored_user_data);
+    console.log(token);
+    let decodedToken = jwt_decode(token);
+    console.log("Decoded Token", decodedToken);
+    let currentDate = new Date();
+
+    // JWT exp is in seconds
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
+      // console.log("Token expired. Please login again");
+      localStorage.removeItem("user_data");
+      return false;
+    } else {
+      // console.log("Valid token");
+      return true;
+    }
+  };
+
   return (
     <SiteDataContext.Provider
       value={{
@@ -139,8 +136,8 @@ const SiteData = ({ children }) => {
         fetchWalleList,
         pair,
         setPair,
-        fetchUser,
         total_asset,
+        checkJWT,
       }}
     >
       {children}
