@@ -5,6 +5,7 @@ import Footer from "./../Footer/Footer";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { SiteDataContext } from "../../SiteData";
+import classes from "../Home/Home.module.css";
 
 const Login = () => {
   const [theme, setTheme] = useState("dark");
@@ -90,7 +91,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer className={classes.home_footer} />
     </div>
   );
 };
