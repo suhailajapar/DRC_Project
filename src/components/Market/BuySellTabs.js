@@ -273,7 +273,7 @@ export default function FullWidthTabs(props) {
         onChangeIndex={handleChangeIndex}
       > */}
       <TabPanel value={value} index={0}>
-        <div>{error_message}</div>
+        <div classname="">{error_message}</div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
