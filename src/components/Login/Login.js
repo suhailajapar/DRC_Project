@@ -46,7 +46,8 @@ const Login = () => {
               className="login-input"
               placeholder="E-mail"
               {...register("email", {
-                pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
+                pattern:
+                  /^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                 required: true,
               })}
             />

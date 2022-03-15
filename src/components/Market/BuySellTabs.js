@@ -120,7 +120,7 @@ export default function FullWidthTabs(props) {
       const buy_info = {
         token: user_data.token,
         loginid: user_data.loginid,
-        quantity: quantity,
+        quantity: Number.parseFloat(quantity),
         currency: pair.substr(0, pair.length - 4),
       };
       // console.log(buy_info);
@@ -165,7 +165,7 @@ export default function FullWidthTabs(props) {
       const sell_info = {
         token: user_data.token,
         loginid: user_data.loginid,
-        quantity: quantity,
+        quantity: Number.parseFloat(quantity),
         currency: pair.substr(0, pair.length - 4),
       };
       // console.log(sell_info);
@@ -185,15 +185,13 @@ export default function FullWidthTabs(props) {
             return setErrorMessage(data.error);
           } else {
             console.log(data);
-            setErrorMessage(
-              ` SUCCESS! sell:${pair.substr(
-                0,
-                pair.length - 4
-              )} quantity:${quantity} price:${data.current_price} total:${
-                quantity * data.current_price
-              }`
-            );
+            setErrorMessage("Transaction Successful");
             fetchWalleList();
+            return (
+              <div>
+                <div>{data.currency}</div>
+              </div>
+            );
           }
         });
       });
