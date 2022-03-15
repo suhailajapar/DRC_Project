@@ -140,14 +140,7 @@ export default function FullWidthTabs(props) {
             return setErrorMessage(data.error);
           } else {
             console.log(data);
-            setErrorMessage(
-              ` SUCCESS! buy:${pair.substr(
-                0,
-                pair.length - 4
-              )} quantity:${quantity} price:${data.current_price} total:${
-                quantity * data.current_price
-              }`
-            );
+            setErrorMessage("Transaction successful.");
             fetchWalleList();
           }
         });
@@ -185,13 +178,19 @@ export default function FullWidthTabs(props) {
             return setErrorMessage(data.error);
           } else {
             console.log(data);
-            setErrorMessage("Transaction Successful");
+            setErrorMessage("Transaction successful.");
             fetchWalleList();
-            return (
-              <div>
-                <div>{data.currency}</div>
-              </div>
-            );
+            // return (
+            //   <div>
+            //     <div>
+            //       Type:{data.type} Currency: {data.currency} Status:{" "}
+            //       {data.status}
+            //     </div>
+            //     <div>
+            //       Quantity: {data.quantity} Price: {data.current_price}
+            //     </div>
+            //   </div>
+            // );
           }
         });
       });
@@ -271,7 +270,15 @@ export default function FullWidthTabs(props) {
         onChangeIndex={handleChangeIndex}
       > */}
       <TabPanel value={value} index={0}>
-        <div classname="">{error_message}</div>
+        <div
+          className={`txn_message ${
+            error_message === "Transaction successful."
+              ? "txn-green"
+              : "txn-red"
+          }`}
+        >
+          {error_message}
+        </div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
@@ -350,7 +357,7 @@ export default function FullWidthTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        <div>{error_message}</div>
+        <div className="txn_message">{error_message}</div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"

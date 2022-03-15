@@ -61,6 +61,20 @@
   background-color: #921010;
 }
 
+.txn_message {
+  display: flex;
+    justify-content: center;
+    width: inherit;
+}
+
+.txn-red {
+  color: red;
+}
+
+.txn-green {
+  color: rgb(1, 163, 1);
+}
+
 /* hiding input number arrow icon */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
