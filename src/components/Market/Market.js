@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "./Market.css";
@@ -13,15 +13,26 @@ import Candlestickchart from "./Candlestickchart";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
+  const [date, setDate] = React.useState("");
+  const [time, setTime] = React.useState("");
 
-  const currentDate = new Date();
-  const currentTime = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-  const month = currentDate.toLocaleString("default", { month: "long" });
-  const date = `${month} ${""} ${currentDate.getDate()},${currentDate.getFullYear()}`;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const d = new Date();
+      const month = d.toLocaleString("default", { month: "long" });
+      setDate(`${month} ${""} ${d.getDate()}, ${d.getFullYear()}`);
+
+      const t = d.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+      setTime(t);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="marketBG">
@@ -32,7 +43,7 @@ function Market() {
         </div>
         <div className="title-section">
           <span id="current-date-display">{date}</span>
-          <span>{currentTime}</span>
+          <span>{time}</span>
         </div>
         <div className="graph-section">
           <Candlestickchart />
