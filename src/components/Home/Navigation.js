@@ -46,9 +46,9 @@ function Navigation() {
           <Route
             path="/dashboard"
             element={
-              // <LoggedIn is_logged_in={!!user_data}>
+              <LoggedIn is_logged_in={!!user_data}>
               <Dashboard dashDP={avatarSample} />
-              // </LoggedIn>
+              </LoggedIn>
             }
           />
         </Route>
