@@ -8,39 +8,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#010023",
-    color: theme.palette.common.white,
-    // fontSize: 12,
-    border: 0,
-  },
+const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
-    // fontSize: 12,
-    // color: "white",
     padding: 5,
   },
-  // "&:nth-of-type(3)": {
-  //   width: "fit-content",
-  // },
+  [`&.${tableCellClasses.head}`]: {
+    border: 0,
+  },
 }));
 
 const StyledTableRow = styled(TableRow)(() => ({
-  //   "&:nth-of-type(odd)":
-  //     theme === "dark"
-  //       ? {
-  //           backgroundColor: "#1F1F1F",
-  //         }
-  //       : { backgroundColor: "#FFFFFF" },
-  //   "&:nth-of-type(even)":
-  //     theme === "dark"
-  //       ? {
-  //           backgroundColor: "#010023",
-  //         }
-  //       : { backgroundColor: "#F3F3F3" },
-  //   "& th": {
-  //     backgroundColor: "#010023",
-  //   },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
@@ -123,9 +100,8 @@ const rows = [
   createData(10, 356, 16.0, 49, 3.9, 2, 2),
 ];
 
-export default function CustomizedTables({ theme, setTheme }) {
-  // const [theme, setTheme] = React.useState("dark");
-
+export default function CustomizedTables(props) {
+  const { theme } = props;
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer
@@ -160,27 +136,11 @@ export default function CustomizedTables({ theme, setTheme }) {
         >
           <TableHead>
             <TableRow>
-              {headerColumn.map((column) => (
+              {headerColumn.map((column, index) => (
                 <TableCell
-                  key={column.id}
+                  key={index}
                   align={column.align}
-                  sx={
-                    theme === "dark"
-                      ? {
-                          backgroundColor: "#010023",
-                          color: "white",
-                          fontWeight: "bold",
-                          padding: 0.5,
-                          pl: 1.5,
-                        }
-                      : {
-                          backgroundColor: "#F3F3F3",
-                          color: "black",
-                          fontWeight: "bold",
-                          padding: 0.5,
-                          pl: 1.5,
-                        }
-                  }
+                  sx={{ fontWeight: "bold", padding: 0.5 }}
                 >
                   {column.label}
                 </TableCell>
@@ -188,29 +148,8 @@ export default function CustomizedTables({ theme, setTheme }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow
-                sx={
-                  theme === "dark"
-                    ? {
-                        "&:nth-of-type(odd)": {
-                          backgroundColor: "#1F1F1F",
-                        },
-                        "&:nth-of-type(even)": {
-                          backgroundColor: "#010023",
-                        },
-                      }
-                    : {
-                        "&:nth-of-type(odd)": {
-                          backgroundColor: "#FFFFFF",
-                        },
-                        "&:nth-of-type(even)": {
-                          backgroundColor: "#F3F3F3",
-                        },
-                      }
-                }
-                key={row.name}
-              >
+            {rows.map((row, index) => (
+              <StyledTableRow key={index}>
                 <StyledTableCell className="table-cell" align="left">
                   {row.transactionNumber}
                 </StyledTableCell>

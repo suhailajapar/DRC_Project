@@ -1,15 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../Card/Card";
 import classes from "./WalletReloadModal.module.css";
+import { SiteDataContext } from "../../SiteData";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const WalletReloadModal = (props) => {
+  const [selected_wallet, setSelectedWallet] = useState(null);
   const [topup_amount, setTopupAmount] = useState(0);
-  const [selected_currency, setSelectedCurrency] = useState("usd");
+  const [input_err, setInputError] = useState("");
+  const { user_data, is_data_ready, wallet_list, fetchWalleList } =
+    useContext(SiteDataContext);
+
+  //SET USER SELECTED WALLET
+  useEffect(() => {
+    if (wallet_list?.length > 0) {
+      setSelectedWallet(wallet_list.find((w) => w.currency === "USD"));
+    }
+  }, [wallet_list]);
+
+  //REQ TO BE FOR RELOAD/TRANSFER PROCESS
+  const reloadWallet = () => {
+    const reload_info = {
+      token: user_data.token,
+      amount: topup_amount,
+      currency: selected_wallet?.currency,
+    };
+    const req = new Request(
+      `${BASE_URL}/wallet/topup/${selected_wallet.wallet_id}`,
+      {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(reload_info),
+      }
+    );
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        console.log(data.balance);
+        fetchWalleList();
+      });
+    });
+  };
 
   const walletReloadHandler = () => {
-    setTopupAmount("");
-    alert("topup BANZAI!");
+    if (topup_amount >= 10 && topup_amount <= 10000) {
+      reloadWallet();
+      setTopupAmount("");
+      setInputError("");
+    } else if (topup_amount < 10) {
+      setInputError("Value must be greater than or equal to 10");
+    } else if (topup_amount > 10000) {
+      setInputError("Value must be less than or equal to 10000");
+    }
   };
+
+  //Check if user_data is ready
+  if (!is_data_ready || !wallet_list || wallet_list.length < 1) {
+    return <h1>Loading..</h1>;
+  }
 
   return (
     <div style={{ display: `${props.display}` }}>
@@ -23,22 +72,36 @@ const WalletReloadModal = (props) => {
           <div className={classes.info}>
             <div className={classes.info_line}>
               Wallet ID:
-              <span className={classes.wallet_info}>1234-5678-9101-0001</span>
+              <span className={classes.wallet_info}>
+                {selected_wallet?.wallet_id}
+              </span>
             </div>
             <div className={classes.info_line}>
-              <label for="wallet_currency">Wallet Currency:</label>
+              <label name="wallet_currency">Wallet Currency:</label>
               <select
                 name="wallet_currency"
                 id="wallet_currency"
                 className={classes.wallet_currency}
-                onChange={(e) => setSelectedCurrency(e.target.value)}
+                value={selected_wallet?.currency}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setSelectedWallet(
+                    wallet_list.find((w) => w.currency === e.target.value)
+                  );
+                }}
               >
-                <option value="usd">USD</option>
-                <option value="btc">BTC</option>
+                {wallet_list?.map((w) => {
+                  return (
+                    <option key={w.wallet_id} value={w.currency}>
+                      {w.currency}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div className={classes.info_line}>
-              {selected_currency === "usd" ? "Reload " : "Transfer "}amount:
+              {selected_wallet?.currency === "USD" ? "Reload " : "Transfer "}
+              amount:
               <span className={classes.wallet_limit}>
                 (Max topup limit 10,000)
               </span>
@@ -47,10 +110,13 @@ const WalletReloadModal = (props) => {
               className={classes.input_area}
               type="number"
               placeholder="Amount..."
+              min="10"
+              max="10001"
+              value={topup_amount === 0 ? "Amount..." : topup_amount}
               onChange={(e) => setTopupAmount(e.target.value)}
             />
             <div className={`${classes.err_msg} ${classes.info_line}`}>
-              Error Message HERE!
+              {input_err}
             </div>
           </div>
           <div className={classes.buttons}>
@@ -61,11 +127,11 @@ const WalletReloadModal = (props) => {
               Cancel
             </span>
             <button
+              type="submit"
               className={classes.reload_btn}
-              /* disabled={validateForm()} */
               onClick={walletReloadHandler}
             >
-              {selected_currency === "usd" ? "Reload" : "Transfer"}
+              {selected_wallet?.currency === "USD" ? "Reload" : "Transfer"}
             </button>
           </div>
         </Card>

@@ -84,6 +84,13 @@ font-family: 'IBM Plex Sans', sans-serif;
 .links:hover {
   font-weight: bold;
 }
+
+.err {
+  font-size: 14px;
+  color: red;
+  margin: 15px 0 4px 0;
+}
+
 .error-message {
   font-size: 11px;
   display: flex;

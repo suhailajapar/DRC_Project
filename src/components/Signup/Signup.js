@@ -5,11 +5,22 @@ import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
 import ToLoginModal from "../Modal/ToLoginModal";
+import classes from "../Home/Home.module.css";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const Signup = () => {
   const [theme, setTheme] = useState("dark");
-  const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
-  const [successMsg, setSuccessMsg] = useState("");
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setError,
+    // reset,
+    clearErrors,
+    formState,
+  } = useForm({ mode: "onchange" });
+  const [message, setMessage] = useState("");
+  const [err_message, setErrorMessage] = useState("");
   const [display, setDisplay] = useState("none");
   const toLoginHandler = () => {
     setDisplay("unset");
@@ -21,15 +32,19 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toLocaleString(),
     };
-    const req = new Request("http://192.168.100.140:3001/user/register", {
+
+    const req = new Request(`${BASE_URL}/user/register`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(userInfo),
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
-        setSuccessMsg(data.message);
-        return console.log(successMsg);
+        if (data.message) {
+          return setMessage(data.message);
+        } else {
+          return setErrorMessage(data.error);
+        }
       });
     });
   };
@@ -37,13 +52,18 @@ const Signup = () => {
   // FOR VALIDATION
   const onSubmit = (data, e) => {
     userRegister(data);
-    e.target.reset();
+    // reset();
     toLoginHandler();
-  }; // your form submit function which will invoke after successful validation
+  };
 
   return (
     <div className="signup-container">
-      <ToLoginModal display={display} onSuccessMsg={successMsg} />
+      <ToLoginModal
+        display={display}
+        setDisplay={setDisplay}
+        onMessage={message}
+        onErrorMessage={err_message}
+      />
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="signup-inner-container">
@@ -58,14 +78,11 @@ const Signup = () => {
                 Username
                 <span className="error-message">
                   {" "}
-                  {formState.errors?.username?.type === "required" && (
-                    <p>This field is required</p>
-                  )}
-                  {formState.errors?.username?.type === "maxLength" && (
-                    <p>username cannot exceed 16 characters</p>
+                  {formState.errors.username && (
+                    <p>{formState.errors?.username.message}</p>
                   )}
                   {formState.errors?.username?.type === "pattern" && (
-                    <p>Only alphanumeric input or underscores are accepted</p>
+                    <p>Only alphanumeric and underscores are accepted.</p>
                   )}
                 </span>
               </label>
@@ -73,8 +90,11 @@ const Signup = () => {
                 placeholder="Username"
                 className="signup-input"
                 {...register("username", {
-                  required: true,
-                  maxLength: 16,
+                  required: "This field is required.",
+                  maxLength: {
+                    value: 16,
+                    message: "username cannot be more than 16 characters",
+                  },
                   pattern: /^[a-zA-Z0-9-_]+$/,
                 })}
               />
@@ -82,11 +102,8 @@ const Signup = () => {
                 Full Name
                 <span className="error-message">
                   {" "}
-                  {formState.errors?.fullname?.type === "required" && (
-                    <p>This field is required.</p>
-                  )}
-                  {formState.errors?.fullname?.type === "maxLength" && (
-                    <p>Full name cannot exceed 50 characters.</p>
+                  {formState.errors.fullname && (
+                    <p>{formState.errors?.fullname.message}</p>
                   )}
                   {formState.errors?.fullname?.type === "pattern" && (
                     <p>Alphabetical characters only.</p>
@@ -97,8 +114,11 @@ const Signup = () => {
                 placeholder="Full Name"
                 className="signup-input"
                 {...register("fullname", {
-                  required: true,
-                  maxLength: 50,
+                  required: "This field is required.",
+                  maxLength: {
+                    value: 50,
+                    message: "max. 50 characters",
+                  },
                   pattern: /^[a-zA-Z ]*$/,
                 })}
               />
@@ -108,8 +128,8 @@ const Signup = () => {
                   {formState.errors?.email?.type === "pattern" && (
                     <p>Enter valid email only.</p>
                   )}
-                  {formState.errors?.email?.type === "required" && (
-                    <p>This field is required.</p>
+                  {formState.errors.email && (
+                    <p>{formState.errors?.email.message}</p>
                   )}
                 </span>
               </label>
@@ -118,23 +138,18 @@ const Signup = () => {
                 placeholder="Email"
                 {...register("email", {
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
-                  required: true,
+                  required: "This field is required.",
                 })}
               />
               <label className="signup-input-title">
                 Password
                 <span className="error-message">
                   {" "}
-                  {formState.errors?.Password?.type === "pattern" && (
+                  {formState.errors?.password?.type === "pattern" && (
                     <p>Only Alphanumeric and underscores are accepted.</p>
                   )}
-                  {formState.errors.Password && (
-                    <p style={{ marginRight: "10px" }}>
-                      Password must have at least 8 characters.
-                    </p>
-                  )}
-                  {formState.errors?.Password?.type === "required" && (
-                    <p>This field is required.</p>
+                  {formState.errors.password && (
+                    <p>{formState.errors?.password.message}</p>
                   )}
                 </span>
               </label>
@@ -143,18 +158,70 @@ const Signup = () => {
                 type="password"
                 placeholder="Password"
                 {...register("password", {
-                  required: true,
-                  minLength: 8,
-                  maxLength: 16,
+                  onChange: (e) => {
+                    if (e.target.value !== getValues("confirm_password")) {
+                      setError("password", {
+                        type: "manual",
+                        message: "Password must match.",
+                      });
+                    } else {
+                      clearErrors(["password", "confirm_password"]);
+                    }
+                  },
+                  required: "This field is required.",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Password must have at least 8 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "Password cannot be more than 16 characters and only alphanumeric and '_' are accepted.",
+                  },
                   pattern: /^[a-zA-Z0-9-_!?]+$/,
                 })}
               />
-              <label className="signup-input-title">Confirm Password</label>
+              <label className="signup-input-title">
+                Confirm Password
+                <span className="error-message">
+                  {" "}
+                  {formState.errors?.confirm_password?.type === "pattern" && (
+                    <p>Only Alphanumeric and underscores are accepted.</p>
+                  )}
+                  {formState.errors.confirm_password && (
+                    <p>{formState.errors?.password.message}</p>
+                  )}
+                </span>
+              </label>
               <input
-                name=""
                 className="signup-input"
-                placeholder="Repeat password"
+                placeholder="Re-type password"
                 type="password"
+                {...register("confirm_password", {
+                  onChange: (e) => {
+                    if (e.target.value !== getValues("password")) {
+                      setError("confirm_password", {
+                        type: "manual",
+                        message: "Password must match.",
+                      });
+                    } else {
+                      clearErrors(["password", "confirm_password"]);
+                    }
+                  },
+                  required: "This field is required.",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Password must have at least 8 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "Password cannot be more than 16 characters and only alphanumeric and '_' are accepted.",
+                  },
+                  pattern: /^[a-zA-Z0-9-_!?]+$/,
+                })}
               />
               <div id="create-acc">
                 <button
@@ -176,7 +243,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer className={classes.home_footer} />
     </div>
   );
 };

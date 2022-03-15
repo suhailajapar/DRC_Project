@@ -9,8 +9,7 @@ Chart.register(...registerables, annotationPlugin, zoomPlugin);
 
 function App() {
   const [pair, setPair] = useState("BTCUSDT");
-  const [ask, bid, open, low, high, close, volume, time, percent, lineChart] =
-    UseBinanceData(pair);
+  const [, , , , , , , , , lineChart] = UseBinanceData(pair);
 
   let time_label = lineChart.map((lineChart) =>
     new Date(lineChart.time).toLocaleTimeString()
@@ -18,26 +17,36 @@ function App() {
   let price_data = lineChart.map((lineChart) => parseFloat(lineChart.close));
   const options = {
     scales: {
-      xAxis: {
+      x: {
+        //LIMIT TO 12 DATA AT A TIME
         min: time_label[time_label.length - 12],
       },
       y: {
-        grace: "80%",
+        min: () => {
+          Math.min(price_data);
+        },
+        max: () => {
+          Math.max(price_data);
+        },
       },
     },
     plugins: {
       autocolors: false,
+      legend: {
+        display: false,
+      },
       annotation: {
         annotations: {
           line1: {
             type: "line",
             yScaleId: "yAxis",
-            yMin: price_data[price_data.length - 1],
-            yMax: price_data[price_data.length - 1],
+            //WHERE BOUGHT PRICE IS SPECIFIED
+            yMin: 38140.12,
+            yMax: 38140.12,
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
-              content: price_data[price_data.length - 1],
+              content: 38140.12,
               enabled: true,
               position: "right",
             },
@@ -59,26 +68,18 @@ function App() {
           duration: 0,
         },
       },
-      // pan: {
-      //   enabled: true,
-      //   mode: "x",
-      // },
     },
   };
 
   return (
-    //Market chart
     <div className="app">
-      {/* Line Chart */}
       <div className="line-chart-container">
         <Line
           className="line-dash"
-          // key={pair + interval + pair}
           data={{
             labels: time_label,
             datasets: [
               {
-                label: "Current Value",
                 data: price_data,
                 fill: true,
                 backgroundColor: "rgba(75,192,192,0.1)",

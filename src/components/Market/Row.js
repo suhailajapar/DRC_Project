@@ -9,8 +9,10 @@ const Row = ({ pair, src, name }) => {
       <td>
         <img src={src} className="crypto_logo" />
       </td>
-      <td>{name}</td>
-      <td>{Number.parseFloat(close).toFixed(2)}</td>
+      <td id="dropdown-coin-name">{name}</td>
+      <td>
+        {close === 0 ? <p>Loading...</p> : Number.parseFloat(close).toFixed(2)}
+      </td>
       <td>
         <p
           className={`coin-precentage ${

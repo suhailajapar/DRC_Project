@@ -12,17 +12,14 @@ const Login = () => {
   const { user_data, error_message, handleLogin } = useContext(SiteDataContext);
   const { register, handleSubmit, formState } = useForm({ mode: "onchange" });
 
-  useEffect(() => {
-    if (user_data) {
+  // FOR INPUT VALIDATION
+  const onSubmit = async (data, e) => {
+    const result = await handleLogin(data);
+    e.target.reset();
+    if (result) {
       navigate("/dashboard");
     }
-  }, [user_data]);
-
-  // FOR INPUT VALIDATION
-  const onSubmit = (data, e) => {
-    handleLogin(data);
-    e.target.reset();
-  }; // your form submit function which will invoke after successful validation
+  };
 
   return (
     <div className="login">
@@ -31,6 +28,7 @@ const Login = () => {
         <div className="inner-container">
           <div className="login-main-title">Hikers Account Login</div>
           <div className="login-sub-title links">Welcome Back, Hikers!</div>
+          <div className="err">{error_message}</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             {" "}
             <div className="login-input-title">

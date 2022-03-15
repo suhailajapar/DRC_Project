@@ -10,7 +10,6 @@ import Tooltip from "@mui/material/Tooltip";
 import "./FinalTestBar.css";
 import HomeLogo from "../../assets/DashboardAsset/Dashboard-Logo.svg";
 import DashLogoDark from "../../assets/DashboardAsset/DashLogoDark.svg";
-import UserDP from "../../assets/DashboardAsset/User-profile.svg";
 import MarketLogo from "../../assets/DashboardAsset/Increase.svg";
 import DashLogo from "../../assets/DashboardAsset/Dashboard-Layout.svg";
 import LogoutLogo from "../../assets/DashboardAsset/Logout.svg";
@@ -18,8 +17,11 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate, Link } from "react-router-dom";
 import { SiteDataContext } from "../../SiteData";
+import RandomAvatar from "../Profile/RandomAvatar";
+import ToggleSwitch from "./../ModeSwitch/Switch";
 
 export default function AccountMenu(props) {
+  const [theme, setTheme] = React.useState("dark");
   const { handleLogout } = useContext(SiteDataContext) || {};
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -88,7 +90,7 @@ export default function AccountMenu(props) {
           arrow
         >
           <Link className="DP" to="/profile">
-            <img src={UserDP} alt="User's Profile Picture" id="DP" />
+            <img src={props.UserDP} alt="User's Profile Picture" id="DP" />
           </Link>
         </Tooltip>
         <Tooltip
@@ -118,6 +120,9 @@ export default function AccountMenu(props) {
             <img src={LogoutLogo} alt="Logout Logo" id="Logout" />
           </a>
         </Tooltip>
+      </div>
+      <div id="switch-box">
+        <ToggleSwitch theme={theme} setTheme={setTheme} />
       </div>
       <Menu
         anchorEl={anchorEl}
@@ -159,6 +164,11 @@ export default function AccountMenu(props) {
               transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
+            "& .MuiMenuItem-root": {
+              "&:hover": {
+                background: "rgba(255, 255, 255, 0.2)",
+              },
+            },
           },
         }}
         transformOrigin={{ horizontal: "left", vertical: "top" }}
@@ -173,18 +183,18 @@ export default function AccountMenu(props) {
           Dashboard
         </MenuItem>
         <MenuItem onClick={(e) => navigatePages(e.target.textContent)}>
-          <Avatar src={UserDP} />
+          <Avatar src={props.UserDP} />
           User Profile
         </MenuItem>
-        <MenuItem>
+        {/* <MenuItem>
           <NotificationsIcon />
           Notification
         </MenuItem>
         <MenuItem>
           <MailIcon />
           Inbox
-        </MenuItem>
-        <MenuItem>
+        </MenuItem> */}
+        <MenuItem onClick={handleLogout}>
           <Avatar src={LogoutLogo} />
           Logout
         </MenuItem>

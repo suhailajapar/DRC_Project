@@ -12,6 +12,15 @@ import Candlestickchart from "./Candlestickchart";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
+
+  const currentDate = new Date();
+  const currentTime = currentDate.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  const month = currentDate.toLocaleString("default", { month: "long" });
+  const date = `${month} ${""} ${currentDate.getDate()},${currentDate.getFullYear()}`;
   return (
     <div className="marketBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
@@ -19,7 +28,10 @@ function Market() {
         <div className="market-bar-section">
           <Marketbar titleName={"Market"} theme={theme} setTheme={setTheme} />
         </div>
-        <div className="title-section"></div>
+        <div className="title-section">
+          <span id="current-date-display">{date}</span>
+          <span>{currentTime}</span>
+        </div>
         <div className="graph-section">
           <Candlestickchart />
         </div>

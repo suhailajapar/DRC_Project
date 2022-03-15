@@ -6,10 +6,10 @@ const useBinanceData = (symbol) => {
   const [open, setOpen] = React.useState(0);
   const [low, setLow] = React.useState(0);
   const [high, setHigh] = React.useState(0);
-  const [close, setClose] = React.useState();
+  const [close, setClose] = React.useState(0);
   const [volume, setVolume] = React.useState(0);
   const [time, setTime] = React.useState();
-  const [percent, setPercent] = React.useState("");
+  const [percent, setPercent] = React.useState(0);
   const socket = React.useRef(null);
   const [lineChart] = useState([]);
 
