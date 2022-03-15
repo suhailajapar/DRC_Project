@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 import Home from "./Home";
 import Login from "../Login/Login";
@@ -17,75 +12,75 @@ import WithSideBar from "./WithSideBar";
 import { SiteDataContext } from "../../SiteData";
 import avatarSample from "../../assets/Logo/avatar_sample.png";
 
-//Check if user  is logged in
-const LoggedIn = ({ children, is_logged_in }) => {
-  if (is_logged_in) {
+// Check if user  is logged in
+const RequireLogIn = ({ children }) => {
+    const { checkJWT, user_data, is_data_ready } = React.useContext(SiteDataContext);
+    if (!is_data_ready) {
+        return <h1>Loading...</h1>;
+    }
+    if (!user_data) {
+        return <Navigate to="/login/?error=login" />;
+    }
+    if (!checkJWT()) {
+        return <Navigate to="/login/?error=expired" />;
+    }
     return children;
-  } else {
-    return <Navigate to="/" />;
-  }
 };
 
 function Navigation() {
-  const { user_data, is_data_ready } = React.useContext(SiteDataContext);
-
-  if (!is_data_ready) {
-    return <h1>Loading..</h1>;
-  }
-  return (
-    <Router>
-      <Routes>
-        <Route element={<WithNav />}>
-          <Route path="/" element={<Home />} />
-        </Route>
-        <Route
-          element={
-            <WithSideBar nameIt={"Dashboard"} profilePic={avatarSample} />
-          }
-        >
-          <Route
-            path="/dashboard"
-            element={
-              <LoggedIn is_logged_in={!!user_data}>
-              <Dashboard dashDP={avatarSample} />
-              </LoggedIn>
-            }
-          />
-        </Route>
-        <Route
-          element={<WithSideBar nameIt={"Profile"} profilePic={avatarSample} />}
-        >
-          <Route
-            path="/profile"
-            element={
-              <LoggedIn is_logged_in={!!user_data}>
-                <Profile avatarSample={avatarSample} />
-              </LoggedIn>
-            }
-          />
-        </Route>
-        <Route
-          element={<WithSideBar nameIt={"Market"} profilePic={avatarSample} />}
-        >
-          <Route path="/market" element={<Market />} />
-        </Route>
-        <Route
-          element={
-            <WithSideBar nameIt={"Dashboard"} profilePic={avatarSample} />
-          }
-        >
-          <Route
-            path="/dashboard"
-            element={<Dashboard dashDP={avatarSample} />}
-          />
-        </Route>
-        <Route element={<WithoutNav />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route element={<WithNav />}>
+                    <Route path="/" element={<Home />} />
+                </Route>
+                <Route element={<WithSideBar nameIt={"Dashboard"} profilePic={avatarSample} />}>
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <RequireLogIn>
+                                <Dashboard dashDP={avatarSample} />
+                            </RequireLogIn>
+                        }
+                    />
+                </Route>
+                <Route element={<WithSideBar nameIt={"Profile"} profilePic={avatarSample} />}>
+                    <Route
+                        path="/profile"
+                        element={
+                            <RequireLogIn>
+                                <Profile avatarSample={avatarSample} />
+                            </RequireLogIn>
+                        }
+                    />
+                </Route>
+                <Route element={<WithSideBar nameIt={"Market"} profilePic={avatarSample} />}>
+                    <Route
+                        path="/market"
+                        element={
+                            <RequireLogIn>
+                                <Market />
+                            </RequireLogIn>
+                        }
+                    />
+                </Route>
+                <Route element={<WithSideBar nameIt={"Dashboard"} profilePic={avatarSample} />}>
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <RequireLogIn>
+                                <Dashboard dashDP={avatarSample} />
+                            </RequireLogIn>
+                        }
+                    />
+                </Route>
+                <Route element={<WithoutNav />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                </Route>
+            </Routes>
+        </Router>
+    );
 }
 
 export default Navigation;
