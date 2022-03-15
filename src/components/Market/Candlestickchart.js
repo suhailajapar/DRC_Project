@@ -1,31 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
-import TradeViewChart from "react-crypto-chart";
-import LoaderImg from "../../assets/Market Asset/Loader.svg";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
-import Btc from "./../../assets/Icon_symbol/btc.svg";
-import Eth from "./../../assets/Icon_symbol/eth.svg";
-import Shib from "./../../assets/Icon_symbol/shiba.svg";
-import Bnb from "./../../assets/Icon_symbol/bnb.svg";
-import Slp from "./../../assets/Icon_symbol/slp.svg";
-import Sol from "./../../assets/Icon_symbol/sol.svg";
-import Avax from "./../../assets/Icon_symbol/avax.svg";
-import Xrp from "./../../assets/Icon_symbol/xrp.svg";
-import Ada from "./../../assets/Icon_symbol/ada.svg";
-import Nul from "./../../assets/Icon_symbol/nuls.svg";
-import Clv from "./../../assets/Icon_symbol/clv.svg";
-import Matic from "./../../assets/Icon_symbol/matic.svg";
-import Dia from "./../../assets/Icon_symbol/dia.svg";
-import Beta from "./../../assets/Icon_symbol/beta.svg";
-import Anc from "./../../assets/Icon_symbol/anc.svg";
-import Luna from "./../../assets/Icon_symbol/luna.svg";
-import Knc from "./../../assets/Icon_symbol/knc.svg";
-import Jst from "./../../assets/Icon_symbol/jst.svg";
-import Bnx from "./../../assets/Icon_symbol/bnx.svg";
-import Xvs from "./../../assets/Icon_symbol/xvs.svg";
+import Btc from "./../../assets/Icon_symbol/btc.png";
+import Eth from "./../../assets/Icon_symbol/eth.png";
+import Shib from "./../../assets/Icon_symbol/shiba.png";
+import Bnb from "./../../assets/Icon_symbol/bnb.png";
+import Slp from "./../../assets/Icon_symbol/slp.png";
+import Sol from "./../../assets/Icon_symbol/sol.png";
+import Avax from "./../../assets/Icon_symbol/avax.png";
+import Xrp from "./../../assets/Icon_symbol/xrp.png";
+import Ada from "./../../assets/Icon_symbol/ada.png";
+import Nul from "./../../assets/Icon_symbol/nuls.png";
+import Clv from "./../../assets/Icon_symbol/clv.png";
+import Matic from "./../../assets/Icon_symbol/matic.png";
+import Dia from "./../../assets/Icon_symbol/dia.png";
+import Beta from "./../../assets/Icon_symbol/beta.png";
+import Anc from "./../../assets/Icon_symbol/anc.png";
+import Luna from "./../../assets/Icon_symbol/luna.png";
+import Knc from "./../../assets/Icon_symbol/knc.png";
+import Jst from "./../../assets/Icon_symbol/jst.png";
+import Bnx from "./../../assets/Icon_symbol/bnx.png";
+import Xvs from "./../../assets/Icon_symbol/xvs.png";
 import Row from "./Row";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -127,7 +124,7 @@ function Candlestickchart() {
       <div className="mchart-title-and-filter">
         <div className="market-chart-title">
           <span>
-            <img src={getSrc(pair)} className="crypto_logo" alt="crypto"/>
+            <img src={getSrc(pair)} className="crypto_logo" alt="crypto" />
           </span>
           <span id="mchart-title-name">{getName(pair)}</span>
           <span id="mchart-title-price">
@@ -187,7 +184,6 @@ function Candlestickchart() {
       </div>
 
       <LightWeightChart symbol={pair} interval={interval} />
-
     </div>
   );
 }
