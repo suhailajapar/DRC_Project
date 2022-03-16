@@ -5,8 +5,6 @@ import Slider from "react-slick";
 import CardContent from "@mui/material/CardContent";
 import "./MSlider.css";
 import { styled } from "@mui/material/styles";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Btc from "./../../assets/Icon_symbol/btc.png";
 import Eth from "./../../assets/Icon_symbol/eth.png";
 import Shib from "./../../assets/Icon_symbol/shiba.png";
@@ -139,41 +137,17 @@ export default function MLosslider({ theme, setTheme }) {
     }
   `);
 
-  //Right Arrow
-  function SampleNextArrow(props) {
-    const { className, onClick, theme } = props;
-    return (
-      <ArrowForwardIosIcon
-        className={className}
-        onClick={onClick}
-        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
-      />
-    );
-  }
-
-  //Left Arrow
-  function SamplePrevArrow(props) {
-    const { className, onClick, theme } = props;
-    return (
-      <ArrowBackIosIcon
-        className={className}
-        onClick={onClick}
-        sx={theme === "dark" ? { color: "white" } : { color: "green" }}
-      />
-    );
-  }
-
   var settings = {
     dots: false,
     infinite: true,
+    arrows: false,
     speed: 2000,
     slidesToShow: 4,
     slidesToScroll: -1,
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    prevArrow: <SamplePrevArrow theme={theme} setTheme={setTheme} />,
-    nextArrow: <SampleNextArrow theme={theme} setTheme={setTheme} />,
+
     responsive: [
       {
         breakpoint: 1024,
