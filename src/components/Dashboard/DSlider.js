@@ -99,7 +99,12 @@ const SimpleSlider = () => {
       {crypto_list.map((c) => {
         return (
           <div>
-            <RenderCard key={c.id} name={c.name} src={c.src} pair={c.id} />
+            <RenderCard
+              key={c.id + c.name}
+              name={c.name}
+              src={c.src}
+              pair={c.id}
+            />
           </div>
         );
       })}

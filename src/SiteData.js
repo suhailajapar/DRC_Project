@@ -20,27 +20,31 @@ const SiteData = ({ children }) => {
     }
   }, []);
 
+  const fetchWalleList = async () => {
+    try {
+      if (user_data) {
+        const { loginid, token } = user_data;
+        const result = await fetch(`${BASE_URL}/wallet/${loginid}`, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+          body: JSON.stringify({ token }),
+        });
+        const data = await result.json();
+        setWalletList(data);
+      }
+    } catch (e) {
+      setErrorMessage("Something bad happened. Please try again.");
+    }
+  };
+
   useEffect(() => {
     setDataReady(false);
     fetchWalleList().then(() => {
       setDataReady(true);
     });
   }, [user_data]);
-
-  const fetchWalleList = async () => {
-    if (user_data) {
-      const { loginid, token } = user_data;
-      const result = await fetch(`${BASE_URL}/wallet/${loginid}`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ token }),
-      });
-      const data = await result.json();
-      setWalletList(data);
-    }
-  };
 
   const handleLogin = async (user_data) => {
     setDataReady(false);
@@ -71,7 +75,7 @@ const SiteData = ({ children }) => {
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     localStorage.removeItem("user_data");
     setUserData(null);
     setWalletList([]);

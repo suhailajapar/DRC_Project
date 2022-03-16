@@ -31,7 +31,7 @@ font-family: 'Red Hat Display', sans-serif;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 85%;
 }
 
 .nav-list > a,
@@ -52,13 +52,14 @@ font-family: 'Red Hat Display', sans-serif;
 .login-signup {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .signup-btn {
   background-color: #498e2c;
   padding: 2px 20px;
   border: solid 1px #498e2c;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 .signup-btn:hover {
@@ -67,24 +68,25 @@ font-family: 'Red Hat Display', sans-serif;
   border: solid 1px #3d7725;
 }
 
-.divider {
-  height: 2rem;
-  border-left: 2px solid white;
-}
-
 /* responsive for screen width lower than 1240px */
 @media only screen and (max-width: 1240px) {
   .navbar {
     width: 100%;
+    align-items: center;
   }
 }
 
 /* responsive for screen width lower than 710px */
 @media only screen and (max-width: 710px) {
-  .homebarlogo > a {
+  .homebarlogo {
     padding-left: 15px;
-    width: fit-content;
+    width: 55%;
   }
+
+  .nav-list {
+    width: 65%;
+  }
+
   .nav-list > a,
   .login-signup > a {
     font-size: 16px;
@@ -95,45 +97,47 @@ font-family: 'Red Hat Display', sans-serif;
 @media only screen and (max-width: 663px) {
   .homebarlogo {
     padding-left: 10px;
+    width: 65%;
   }
+
+  .navbar {
+    padding: 7px 10px;
+  }
+
   .login-signup {
     align-items: center;
+    margin-right: 12%;
   }
+
   .nav-list > a,
   .login-signup > a {
-    font-size: 12px;
+    font-size: 13px;
+    padding: 2px 5px;
   }
-  .nav-list {
-    margin-left: -30px;
-    justify-content: space-evenly;
-  }
+
   .signup-btn {
     padding: 2px 10px;
     text-align: center;
+    white-space: nowrap;
   }
 }
 
 /* responsive for screen width lower than 663px */
 @media only screen and (max-width: 330px) {
   .navbar {
-    width: fit-content;
+    padding: 5px;
   }
-  .homebarlogo > a {
-    /* padding: 0; */
-    width: fit-content;
-  }
+
   .login-signup {
     align-items: center;
   }
+
   .nav-list > a,
   .login-signup > a {
-    font-size: 11px;
+    font-size: 12px;
     padding: 5px;
   }
-  .nav-list {
-    margin-left: -30px;
-    justify-content: space-evenly;
-  }
+
   .signup-btn {
     padding: 2px 10px;
     text-align: center;

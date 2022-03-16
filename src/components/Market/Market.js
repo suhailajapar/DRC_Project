@@ -6,11 +6,13 @@ import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
 import Candlestickchart from "./Candlestickchart";
+import { SiteDataContext } from "../../SiteData";
 
 function Market() {
   const [theme, setTheme] = useState("dark");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const { user_data, wallet_list } = React.useContext(SiteDataContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,24 +47,27 @@ function Market() {
         </div>
         <div className="buysell-section">
           <BuySellTabs theme={theme} setTheme={setTheme} />
-          <div className="mini-message">
-            Please&nbsp;
-            <Link
-              to="/login"
-              style={{ textDecoration: "none", color: "#0ead11" }}
-            >
-              Log In
-            </Link>
-            &nbsp;or&nbsp;
-            <Link
-              to="/signup"
-              style={{ textDecoration: "none", color: "#0ead11" }}
-            >
-              Register
-            </Link>
-          </div>
+          {!user_data ? (
+            <div className="mini-message">
+              Please&nbsp;
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "#0ead11" }}
+              >
+                Log In
+              </Link>
+              &nbsp;or&nbsp;
+              <Link
+                to="/signup"
+                style={{ textDecoration: "none", color: "#0ead11" }}
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-
         <div className="gain-section">
           <div className="gain-title">
             <span>Top Gainer</span>
@@ -77,6 +82,17 @@ function Market() {
           </div>
           <div className="loss-slider">
             <MLossSlider theme={theme} setTheme={setTheme} />
+          </div>
+        </div>
+        <div className="balance-section">
+          <div className="w-value">
+            <p>Wallet's Balance</p>
+            <h1 id="wal-bal">
+              USD
+              {wallet_list
+                .find((w) => w.currency === "USD")
+                ?.balance.toLocaleString("en-US") || "0"}
+            </h1>
           </div>
         </div>
       </div>

@@ -91,21 +91,14 @@ function a11yProps(index) {
 
 export default function FullWidthTabs(props) {
   const { theme } = props;
-
   const [value, setValue] = React.useState(0);
-  const {
-    user_data,
-    is_data_ready,
-    fetchWalleList,
-    pair,
-    handleLogout,
-    checkJWT,
-    getCurrentCryptoPrice,
-  } = useContext(SiteDataContext);
+  const { user_data, is_data_ready, fetchWalleList, pair, checkJWT } =
+    useContext(SiteDataContext);
   const [ask, , , , , , , , ,] = useBinanceData(pair);
   const [quantity, setQuantity] = useState(0);
   const [error_message, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [transaction_details, setTransactionDetails] = useState(null);
 
   //REQ TO BE FOR BUY TRANSACTION
   const buyCrypto = () => {
@@ -118,7 +111,6 @@ export default function FullWidthTabs(props) {
         quantity: Number.parseFloat(quantity),
         currency: pair.substr(0, pair.length - 4),
       };
-      // console.log(buy_info);
       const req = new Request(`${BASE_URL}/transaction/buy`, {
         method: "POST",
         headers: new Headers({
@@ -134,9 +126,14 @@ export default function FullWidthTabs(props) {
             }
             return setErrorMessage(data.error);
           } else {
-            console.log(data);
             setErrorMessage("Transaction successful.");
             fetchWalleList();
+            setTransactionDetails((prev) => {
+              return {
+                ...prev,
+                ...data,
+              };
+            });
           }
         });
       });
@@ -148,7 +145,6 @@ export default function FullWidthTabs(props) {
   //REQ TO BE FOR SELL TRANSACTION
   const sellCrypto = () => {
     let is_authenticated = checkJWT();
-    console.log(is_authenticated);
     if (is_authenticated) {
       const sell_info = {
         token: user_data.token,
@@ -156,7 +152,6 @@ export default function FullWidthTabs(props) {
         quantity: Number.parseFloat(quantity),
         currency: pair.substr(0, pair.length - 4),
       };
-      // console.log(sell_info);
       const req = new Request(`${BASE_URL}/transaction/sell`, {
         method: "POST",
         headers: new Headers({
@@ -172,20 +167,14 @@ export default function FullWidthTabs(props) {
             }
             return setErrorMessage(data.error);
           } else {
-            console.log(data);
             setErrorMessage("Transaction successful.");
             fetchWalleList();
-            // return (
-            //   <div>
-            //     <div>
-            //       Type:{data.type} Currency: {data.currency} Status:{" "}
-            //       {data.status}
-            //     </div>
-            //     <div>
-            //       Quantity: {data.quantity} Price: {data.current_price}
-            //     </div>
-            //   </div>
-            // );
+            setTransactionDetails((prev) => {
+              return {
+                ...prev,
+                ...data,
+              };
+            });
           }
         });
       });
@@ -321,6 +310,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
+            disabled={!user_data ? true : false}
             sx={{
               bgcolor: "#498e2c",
               height: "54px",
@@ -366,7 +356,8 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <BuySellInput
             disabled={true}
-            label="Price"
+            label="Estimated Price"
+            value={Number.parseFloat(ask).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -382,7 +373,10 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <BuySellInput
             disabled={true}
-            label="Total"
+            label="Estimated Total"
+            value={(
+              Number.parseFloat(quantity) * Number.parseFloat(ask)
+            ).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -398,6 +392,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
+            disabled={!user_data ? true : false}
             sx={{
               bgcolor: "red",
               height: "54px",
@@ -421,6 +416,19 @@ export default function FullWidthTabs(props) {
           </Button>
         </div>
       </TabPanel>
+      {transaction_details && (
+        <div>
+          <div>
+            Type:{transaction_details.transaction_type} Currency:{" "}
+            {transaction_details.currency} Status:
+            {transaction_details.status}
+          </div>
+          <div>
+            Quantity: {transaction_details.quantity} Price:{" "}
+            {transaction_details.current_price}
+          </div>
+        </div>
+      )}
     </Box>
   );
 }

@@ -18,6 +18,7 @@ const Signup = () => {
     clearErrors,
     formState,
   } = useForm({ mode: "onchange" });
+  const [is_ready, setReady] = useState(false);
   const [message, setMessage] = useState("");
   const [err_message, setErrorMessage] = useState("");
   const [display, setDisplay] = useState("none");
@@ -27,6 +28,7 @@ const Signup = () => {
 
   //Send to backend for registration
   const userRegister = (data) => {
+    setReady(false);
     const userInfo = {
       ...data,
       date_joined: new Date().toLocaleString(),
@@ -39,6 +41,7 @@ const Signup = () => {
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
+        setReady(true);
         if (data.message) {
           return setMessage(data.message);
         } else {
@@ -57,12 +60,14 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <ToLoginModal
-        display={display}
-        setDisplay={setDisplay}
-        onMessage={message}
-        onErrorMessage={err_message}
-      />
+      {is_ready && (
+        <ToLoginModal
+          display={display}
+          setDisplay={setDisplay}
+          onMessage={message}
+          onErrorMessage={err_message}
+        />
+      )}
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="signup-inner-container">

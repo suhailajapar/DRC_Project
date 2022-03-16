@@ -11,7 +11,6 @@ import Rocket from "./Media/feat_gainerloser.png";
 import TheGuy from "./Media/tradeWithUsGuy.png";
 import GithubLink from "./Media/github.svg";
 import classes from "./Home.module.css";
-// import Marketpage from "./../Market/Market";
 
 function Home() {
   return (
@@ -57,6 +56,7 @@ function Home() {
             <p className={classes.subtitle}>The currency of the future</p>
           </div>
           <iframe
+            title="crypto-news"
             scrolling="yes"
             allowtransparency="true"
             frameBorder="0"
