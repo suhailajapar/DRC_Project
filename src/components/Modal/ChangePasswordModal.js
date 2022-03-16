@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const ChangePasswordModal = (props) => {
   const { user_data, is_data_ready, checkJWT } = useContext(SiteDataContext);
-  const [old_password, setOldPassword] = useState("");
-  const [new_password, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [error_msg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const {
@@ -38,7 +37,11 @@ const ChangePasswordModal = (props) => {
       });
       fetch(req).then((res) => {
         res.json().then((data) => {
-          return console.log(data.message);
+          if (data.error) {
+            setErrorMsg(data.error);
+          } else {
+            setMessage(data.message);
+          }
         });
       });
     } else {
@@ -56,6 +59,8 @@ const ChangePasswordModal = (props) => {
     console.log(data);
     passwordChangeHandler(data);
     reset();
+    setErrorMsg("");
+    setMessage("");
   };
 
   return (
@@ -178,15 +183,14 @@ const ChangePasswordModal = (props) => {
               >
                 Cancel
               </span>
-              <button
-                className={classes.pwd_btn}
-                type="submit"
-                // disabled={validateForm()}
-              >
+              <button className={classes.pwd_btn} type="submit">
                 Change password
               </button>
             </div>
           </form>
+          <div className={error_msg ? classes.err_msgs : classes.messages}>
+            {error_msg ? error_msg : message}
+          </div>
         </Card>
       </div>
     </div>

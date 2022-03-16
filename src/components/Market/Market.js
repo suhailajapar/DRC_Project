@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
 import "./Market.css";
 import Marketbar from "../Menubar/HeaderBar";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
 import BuySellTabs from "./BuySellTabs";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer";
 import Candlestickchart from "./Candlestickchart";
 
 function Market() {
@@ -36,7 +32,6 @@ function Market() {
 
   return (
     <div className="marketBG">
-      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <div className="market-layout">
         <div className="market-bar-section">
           <Marketbar titleName={"Market"} theme={theme} setTheme={setTheme} />
@@ -85,7 +80,6 @@ function Market() {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }

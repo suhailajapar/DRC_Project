@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -14,6 +12,7 @@ import Button from "@mui/material/Button";
 import "./BuySellTabs.css";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
+import useBinanceData from "../ApiBinance/binance-data";
 
 const BuySellInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
@@ -41,9 +40,6 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           "& fieldset": {
             borderColor: "#BDBDBD",
           },
-          // "&:hover fieldset": {
-          //   borderColor: "#BDBDBD",
-          // },
           "&.Mui-focused fieldset": {
             borderColor: "#BDBDBD",
           },
@@ -54,9 +50,6 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           "& fieldset": {
             borderColor: "#616161",
           },
-          // "&:hover fieldset": {
-          //   borderColor: "#616161",
-          // },
           "&.Mui-focused fieldset": {
             borderColor: "#7E7E7E",
           },
@@ -98,6 +91,7 @@ function a11yProps(index) {
 
 export default function FullWidthTabs(props) {
   const { theme } = props;
+
   const [value, setValue] = React.useState(0);
   const {
     user_data,
@@ -108,6 +102,7 @@ export default function FullWidthTabs(props) {
     checkJWT,
     getCurrentCryptoPrice,
   } = useContext(SiteDataContext);
+  const [ask, , , , , , , , ,] = useBinanceData(pair);
   const [quantity, setQuantity] = useState(0);
   const [error_message, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -209,10 +204,6 @@ export default function FullWidthTabs(props) {
     setErrorMessage("");
   };
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
   return (
     <Box
       sx={{
@@ -264,11 +255,6 @@ export default function FullWidthTabs(props) {
         />
       </Tabs>
 
-      {/* <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      > */}
       <TabPanel value={value} index={0}>
         <div
           className={`txn_message ${
@@ -300,6 +286,7 @@ export default function FullWidthTabs(props) {
           <BuySellInput
             disabled={true}
             label="Price"
+            value={Number.parseFloat(ask).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -316,6 +303,9 @@ export default function FullWidthTabs(props) {
           <BuySellInput
             disabled={true}
             label="Total"
+            value={(
+              Number.parseFloat(quantity) * Number.parseFloat(ask)
+            ).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -331,7 +321,6 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
-            // color="success"
             sx={{
               bgcolor: "#498e2c",
               height: "54px",
@@ -353,7 +342,6 @@ export default function FullWidthTabs(props) {
           >
             BUY
           </Button>
-          {/* <input type="submit" className="buy-button" value="BUY" /> */}
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
@@ -410,7 +398,6 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
-            // color="success"
             sx={{
               bgcolor: "red",
               height: "54px",
@@ -432,10 +419,8 @@ export default function FullWidthTabs(props) {
           >
             SELL
           </Button>
-          {/* <input type="submit" className="sell-button" value="SELL" /> */}
         </div>
       </TabPanel>
-      {/* </SwipeableViews> */}
     </Box>
   );
 }

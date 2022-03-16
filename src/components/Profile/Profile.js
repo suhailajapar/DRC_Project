@@ -1,26 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";
-import ImageUpload from "../ImageUpload/ImageUpload";
+import React, { useContext, useState } from "react";
 import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import classes from "./Profile.module.css";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
-import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 import { useNavigate } from "react-router-dom";
 
 const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
-  const { user_data, is_data_ready, checkJWT } =
-    useContext(SiteDataContext);
+  const { user_data, is_data_ready, checkJWT } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
-  // const [changeAvatar, setChangeAvatar] = React.useState(genConfig({}));
-  const [click, setClick] = React.useState(0);
   const [error_message, setErrorMessage] = useState("");
+  const [messages, setMessages] = useState("");
   const navigate = useNavigate();
 
   const {
@@ -54,7 +50,9 @@ const Profile = (props) => {
             setErrorMessage(data.error);
           } else {
             console.log(data);
-            setErrorMessage("Data sucessfully saved.");
+            setMessages(
+              "Data sucessfully saved. Changes will take effect on your next login."
+            );
           }
         });
       });
@@ -80,32 +78,10 @@ const Profile = (props) => {
           <ProfBar titleName={"Profile"} theme={theme} setTheme={setTheme} />
         </div>
         <ChangePasswordModal display={display} setDisplay={setDisplay} />
-
-        {/* <Menubar
-          theme={theme}
-          setTheme={setTheme}
-          className={classes.profile_menubar}
-        /> */}
-
         <div className={classes.user_container}>
           <div className={classes.photo_box}>
-            <img
-              src={props.avatarSample}
-              id={classes.avatar}
-              alt="avatar"
-              // style={{ width: "160px", height: "160px" }}
-            />
+            <img src={props.avatarSample} id={classes.avatar} alt="avatar" />
           </div>
-          {/* <ImageUpload className={classes.photo_box} />
-          <button
-            type="button"
-            onClick={() => {
-              setClick(click + 1);
-              console.log(click);
-            }}
-          >
-            Hello
-          </button> */}
           <div className={classes.container1}>
             <div className={classes.username}>@{user_data.username}</div>
             <div className={classes.date_joined}>
@@ -211,10 +187,12 @@ const Profile = (props) => {
               </div>
             </div>
             <div className={classes.form_boxes}>
-              <div className={classes.backend_error}>{error_message}</div>
               <button className={classes.Save_Button}>Save </button>
             </div>
           </form>
+          <div className={`${classes.backend_error} ${classes.backend_msg}`}>
+            {error_message ? error_message : messages}
+          </div>
         </div>
       </div>
     </div>

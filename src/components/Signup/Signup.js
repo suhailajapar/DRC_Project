@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
 import ToLoginModal from "../Modal/ToLoginModal";
-import classes from "../Home/Home.module.css";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const Signup = () => {
@@ -244,7 +243,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer className={classes.home_footer} />
+      <Footer className="signup-footer" />
     </div>
   );
 };
