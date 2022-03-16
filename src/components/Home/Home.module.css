@@ -243,7 +243,7 @@ section {
 .coin {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
   margin: 0 -20px;
 }
 
@@ -264,6 +264,7 @@ section {
   width: 160px;
   animation: scaling 2.6s infinite;
   border-radius: 100%;
+  justify-content: left;
 }
 
 .shadow1 {
@@ -392,7 +393,8 @@ section {
   }
   /* shadows */
   .shadow {
-    width: 90%;
+    width: 80%;
+    margin: 0 -5px;
   }
 }
 
@@ -421,7 +423,7 @@ section {
     margin-top: 100px;
   }
 
-  /* second section screen max 710*/
+  /* second section screen max 736*/
   .second_part {
     flex-direction: column;
     margin-top: 10%;
@@ -431,9 +433,11 @@ section {
     width: 90vw;
     margin-bottom: 10%;
   }
-  /* second section */
   .coins {
     margin-right: 0;
+  }
+  .coin {
+    margin: 0 -10px;
   }
   /* eth */
   .coin_logo {
@@ -447,7 +451,8 @@ section {
   }
   /* shadows */
   .shadow {
-    width: 100%;
+    width: 90%;
+    margin: 0 -10px;
   }
 
   /* third sect */
@@ -570,6 +575,6 @@ section {
   }
   /* shadows */
   .shadow {
-    width: 100%;
+    width: 80%;
   }
 }

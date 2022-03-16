@@ -106,6 +106,22 @@
   overflow: hidden;
 }
 
+@media only screen and (max-height: 729px) {
+  .market-layout {
+    height: 900px;
+    overflow: hidden;
+  }
+  .marketBG {
+    background-color: #1f1f1f;
+    height: 900px;
+    background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+}
+
 .box {
   background-color: darkgray;
   border: 5px black;
@@ -141,7 +157,7 @@
 }
 
 .gain-section {
-  grid-column: 2/6;
+  grid-column: 1/5;
   grid-row: 8/10;
   margin-top: 20px;
 }
@@ -153,7 +169,7 @@
 }
 
 .loss-section {
-  grid-column: 2/6;
+  grid-column: 1/5;
   grid-row: 10/12;
   margin-top: -10px;
 }
