@@ -1,39 +1,169 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import Avatar from "@mui/material/Avatar";
 import "./MSlider.css";
 import { styled } from "@mui/material/styles";
-import IconTest from "../../assets/DashboardAsset/WalletIconDark.svg";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Btc from "./../../assets/Icon_symbol/btc.png";
+import Eth from "./../../assets/Icon_symbol/eth.png";
+import Shib from "./../../assets/Icon_symbol/shiba.png";
+import Bnb from "./../../assets/Icon_symbol/bnb.png";
+import Slp from "./../../assets/Icon_symbol/slp.png";
+import Sol from "./../../assets/Icon_symbol/sol.png";
+import Avax from "./../../assets/Icon_symbol/avax.png";
+import Xrp from "./../../assets/Icon_symbol/xrp.png";
+import Ada from "./../../assets/Icon_symbol/ada.png";
+import Nul from "./../../assets/Icon_symbol/nuls.png";
+import Clv from "./../../assets/Icon_symbol/clv.png";
+import Matic from "./../../assets/Icon_symbol/matic.png";
+import Dia from "./../../assets/Icon_symbol/dia.png";
+import Beta from "./../../assets/Icon_symbol/beta.png";
+import Anc from "./../../assets/Icon_symbol/anc.png";
+import Luna from "./../../assets/Icon_symbol/luna.png";
+import Knc from "./../../assets/Icon_symbol/knc.png";
+import Jst from "./../../assets/Icon_symbol/jst.png";
+import Bnx from "./../../assets/Icon_symbol/bnx.png";
+import Xvs from "./../../assets/Icon_symbol/xvs.png";
+import GainLossCards from "./GainLossCard";
+import axios from "axios";
+import Loader from "./Loader";
 
-const CardContentNoPadding = styled(CardContent)(`
-  padding: 0;
-  &:last-child {
-    padding-bottom: 0;
+const crypto_list = [
+  { src: Btc, id: "BTCUSDT", name: "BTC/USDT" },
+  { src: Eth, id: "ETHUSDT", name: "ETH/USDT" },
+  { src: Shib, id: "SHIBUSDT", name: "SHIB/USDT" },
+  { src: Bnb, id: "BNBUSDT", name: "BNB/USDT" },
+  { src: Slp, id: "SLPUSDT", name: "SLP/USDT" },
+  { src: Sol, id: "SOLUSDT", name: "SOL/USDT" },
+  { src: Avax, id: "AVAXUSDT", name: "AVAX/USDT" },
+  { src: Xrp, id: "XRPUSDT", name: "XRP/USDT" },
+  { src: Ada, id: "ADAUSDT", name: "ADA/USDT" },
+  { src: Nul, id: "NULSUSDT", name: "NULS/USDT" },
+  { src: Clv, id: "CLVUSDT", name: "CLV/USDT" },
+  { src: Matic, id: "MATICUSDT", name: "MATIC/USDT" },
+  { src: Dia, id: "DIAUSDT", name: "DIA/USDT" },
+  { src: Beta, id: "BETAUSDT", name: "BETA/USDT" },
+  { src: Anc, id: "ANCUSDT", name: "ANC/USDT" },
+  { src: Luna, id: "LUNAUSDT", name: "LUNA/USDT" },
+  { src: Knc, id: "KNCUSDT", name: "KNC/USDT" },
+  { src: Jst, id: "JSTUSDT", name: "JST/USDT" },
+  { src: Bnx, id: "BNXUSDT", name: "BNX/USDT" },
+  { src: Xvs, id: "XVSUSDT", name: "XVS/USDT" },
+];
+//API Call -------------------------------------------------------------------------------
+
+export default function MGainSlider({ theme, setTheme }) {
+  const [gldata, setGldata] = useState("BTCUSDT");
+  const [intervalCount, setIntervalCount] = useState(0);
+  const [cryptoCurrencies, setCryptoCurrencies] = useState([
+    { id: "", name: "", percentage: "", price: "", src: "" },
+  ]);
+  const [topCryptoCurrencies, setTopCryptoCurrencies] = useState([
+    { id: "", name: "", percentage: "", price: "", src: "" },
+  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  let cryptoData = [];
+  var tempCrypArr = [];
+  var top5Arr = [];
+  let filteredCrypto = [];
+
+  useEffect(() => {
+    const timerCount = setInterval(() => {
+      setIntervalCount(intervalCount + 1);
+    }, 5000);
+    if (intervalCount > 0) {
+      clearInterval(timerCount);
+    }
+
+    crypto_list.forEach((element, index) => {
+      let cryptoObj = {};
+      cryptoObj["src"] = element.src;
+      cryptoObj["name"] = element.name;
+      axios
+        .get(
+          `https://api.binance.com/api/v3/ticker/24hr?symbols=["${element.id.toUpperCase()}"]`
+        )
+        .then((res) => {
+          const data = res.data;
+          cryptoObj["price"] = data[0].askPrice;
+          cryptoObj["id"] = data[0].symbol;
+          cryptoObj["percentage"] = data[0].priceChangePercent;
+          cryptoData.push(cryptoObj);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+    setCryptoCurrencies(cryptoData);
+
+    // Calculation ------------------------------------------------------------------------
+
+    for (var i in cryptoCurrencies) {
+      tempCrypArr.push(cryptoCurrencies[i].percentage);
+    }
+    tempCrypArr.sort(function (a, b) {
+      return a - b;
+    });
+
+    top5Arr = tempCrypArr.reverse().slice(0, 5);
+
+    for (var i in top5Arr) {
+      for (var j in cryptoCurrencies) {
+        if (top5Arr[i] === cryptoCurrencies[j].percentage) {
+          filteredCrypto.push(cryptoCurrencies[j]);
+        } else {
+          console.log("");
+        }
+      }
+    }
+    setTopCryptoCurrencies(filteredCrypto);
+  }, [intervalCount]);
+
+  //Loader
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+  }, []);
+
+  //-------------------------------------------------------------------------------------
+
+  //Slider Implementation ---------------------------------------------------------------
+
+  const CardContentNoPadding = styled(CardContent)(`
+    padding: 0;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  `);
+
+  //Right Arrow
+  function SampleNextArrow(props) {
+    const { className, onClick, theme } = props;
+    return (
+      <ArrowForwardIosIcon
+        className={className}
+        onClick={onClick}
+        sx={theme === "dark" ? { color: "white" } : { color: "black" }}
+      />
+    );
   }
-  
-`);
 
-const title = <ul id="m-card-title">Binance</ul>;
-const currentPrice = <ul id="m-card-value">0.0009</ul>;
+  //Left Arrow
+  function SamplePrevArrow(props) {
+    const { className, onClick, theme } = props;
+    return (
+      <ArrowBackIosIcon
+        className={className}
+        onClick={onClick}
+        sx={theme === "dark" ? { color: "white" } : { color: "green" }}
+      />
+    );
+  }
 
-function SampleNextArrow(props) {
-  const { className, onClick } = props;
-  return <ArrowForwardIosIcon className={className} onClick={onClick} />;
-}
-
-function SamplePrevArrow(props) {
-  const { className, onClick } = props;
-  return <ArrowBackIosIcon className={className} onClick={onClick} />;
-}
-
-export default function SimpleSlider() {
   var settings = {
     dots: false,
     infinite: true,
@@ -43,8 +173,8 @@ export default function SimpleSlider() {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow theme={theme} setTheme={setTheme} />,
+    nextArrow: <SampleNextArrow theme={theme} setTheme={setTheme} />,
     responsive: [
       {
         breakpoint: 1024,
@@ -67,66 +197,33 @@ export default function SimpleSlider() {
       },
     ],
   };
+
+  //-----------------------------------------------------------------------------------
+  //Slider Display --------------------------------------------------------------------
   return (
-    <Slider {...settings}>
-      <Card sx={{ maxWidth: 200, maxHeight: 100, borderRadius: 3 }}>
-        <CardContentNoPadding sx={{ bgcolor: "#2D2C56", height: 30 }}>
-          <div className="m-card-content">
-            <div className="m-card-col m-card-col-l">
-              <p>FARM/USD</p>
-            </div>
-            <div className="m-card-col m-card-col-r">
-              <p>255%</p>
-            </div>
-          </div>
-        </CardContentNoPadding>
-        <CardHeader
-          className="m-card-header"
-          sx={{ height: 35, bgcolor: "#2D2C56" }}
-          avatar={
-            <Avatar
-              src={IconTest}
-              sx={{
-                bgcolor: "#2D2C56",
-                width: 40,
-                height: 40,
-                paddingLeft: 2,
-              }}
-            />
-          }
-          titleTypographyProps={{
-            fontSize: 14,
-            align: "right",
-            color: "white",
-          }}
-          subheaderTypographyProps={{
-            fontSize: 17,
-            fontWeight: 700,
-            align: "right",
-            color: "white",
-          }}
-          title={title}
-          subheader={currentPrice}
-        />
-      </Card>
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
-    </Slider>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Slider {...settings}>
+          {topCryptoCurrencies.map((c, index) => {
+            return (
+              <div className="m-card-content">
+                <div className="card">
+                  <GainLossCards
+                    key={index}
+                    name={c.name}
+                    percentage={c.percentage}
+                    src={c.src}
+                    price={c.price}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </Slider>
+      )}
+    </>
   );
 }
+//-----------------------------------------------------------------------------------

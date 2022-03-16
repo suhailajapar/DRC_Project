@@ -185,7 +185,7 @@
 
 .arrow {
   display: inline-block;
-  padding: 3px;
+  padding: 0.1vw;
 }
 
 .up {
@@ -209,5 +209,23 @@
 @media only screen and (max-width: 400px) {
   .dropdown-box {
     width: 280px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .mchart-title-and-filter {
+    display: block;
+  }
+  #mchart-title-price {
+    font-size: 4vw;
+  }
+  #mchart-title-name {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title-section {
+    margin-top: 3vh;
   }
 }

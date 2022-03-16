@@ -1,5 +1,5 @@
 #m-card-title {
-  padding: 0px 20px 0 0;
+  padding: 0px px 0 0;
   padding-inline-start: 0px;
   line-height: 2;
   margin: 0;
@@ -34,4 +34,72 @@
   font-size: 12px;
   box-sizing: border-box;
   padding-right: 36px;
+}
+
+.card-view {
+  background-color: #2d2c56;
+  width: 70%;
+  height: 12vh;
+  justify-content: space-between;
+  border-radius: 25px;
+  box-shadow: 0 24px 9px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  /* width: 100%; */
+  min-width: 16vw;
+  display: flex;
+}
+
+.card-header {
+  width: 100%;
+  /* background-color: black; */
+  display: -webkit-inline-flex;
+  align-items: center;
+}
+
+.card-name {
+  font-size: 1.1vw;
+  width: 65%;
+  color: white;
+  text-align: center;
+}
+
+.card-arrow {
+  width: 5%;
+  margin-right: 0%;
+}
+
+.card-percentage {
+  font-size: 0.9vw;
+  width: 30%;
+  text-align: center;
+}
+
+.card-body {
+  width: 100%;
+  /* background-color: black; */
+  display: -webkit-inline-flex;
+  align-items: center;
+}
+
+.card-img {
+  width: 50%;
+}
+.img {
+  width: 2.2vw;
+  margin-left: 30%;
+  /* padding-bottom: 30px; */
+}
+
+.card-price {
+  font-size: 1.2vw;
+  width: 50%;
+  text-align: center;
+  color: white;
+}
+
+.sweet-loading {
+  width: 100%;
+  display: flex;
 }

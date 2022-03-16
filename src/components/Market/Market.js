@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import "./Market.css";
 import Marketbar from "../Menubar/HeaderBar";
@@ -9,9 +9,11 @@ import SideBar from "../Menubar/FinalTestBar";
 import Menubar from "./../Menubar/Menubar";
 import Footer from "./../Footer/Footer";
 import Candlestickchart from "./Candlestickchart";
+import Loader from "./Loader";
 
 function Market() {
   const [theme, setTheme] = React.useState("dark");
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentDate = new Date();
   const currentTime = currentDate.toLocaleTimeString([], {
@@ -21,6 +23,13 @@ function Market() {
   });
   const month = currentDate.toLocaleString("default", { month: "long" });
   const date = `${month} ${""} ${currentDate.getDate()},${currentDate.getFullYear()}`;
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 10000);
+  // }, []);
+
   return (
     <div className="marketBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}
@@ -38,7 +47,6 @@ function Market() {
         <div className="buysell-section">
           <BuySellTabs theme={theme} setTheme={setTheme} />
         </div>
-
         <div className="gain-section">
           <div className="gain-title">
             <span>Top Gainer</span>
