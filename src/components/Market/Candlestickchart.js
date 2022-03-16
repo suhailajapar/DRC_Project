@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
-import TradeViewChart from "react-crypto-chart";
-import LoaderImg from "../../assets/Market Asset/Loader.svg";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import Btc from "./../../assets/Icon_symbol/btc.svg";
@@ -58,13 +55,11 @@ const crypto_list = [
 ];
 
 function Candlestickchart() {
-  const [display, setDisplay] = useState("none");
   const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
-  const [ask, bid, open, low, high, close, volume, , percent] =
-    useBinanceData(pair);
+  const [, , , , , close, , , percent] = useBinanceData(pair);
 
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
   const getSrc = (id) => crypto_list.find((c) => c.id === id).src;
@@ -127,7 +122,7 @@ function Candlestickchart() {
       <div className="mchart-title-and-filter">
         <div className="market-chart-title">
           <span>
-            <img src={getSrc(pair)} className="crypto_logo" alt="crypto"/>
+            <img src={getSrc(pair)} className="crypto_logo" alt="crypto" />
           </span>
           <span id="mchart-title-name">{getName(pair)}</span>
           <span id="mchart-title-price">
@@ -187,7 +182,6 @@ function Candlestickchart() {
       </div>
 
       <LightWeightChart symbol={pair} interval={interval} />
-
     </div>
   );
 }

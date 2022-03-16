@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { Avatar } from "@mui/material";
-import ProfilePic from "../../assets/DashboardAsset/profile-placeholder.png";
-import WalletIconDark from "../../assets/DashboardAsset/WalletIconDark.svg";
-import WalletIconLight from "../../assets/DashboardAsset/WalletIconLight.svg";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -12,43 +9,128 @@ import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import Dashbar from "../Menubar/HeaderBar";
 import Linechart from "./Linechart";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer";
 import TransTable from "./TransacHist";
-
 import { SiteDataContext } from "../../SiteData";
-import { useNavigate } from "react-router-dom";
 import WalletReloadModal from "../Modal/WalletReloadModal";
 
 Chart.register(...registerables);
 
 function Dashboard(props) {
   //light mode and dark mode
-  const [theme, setTheme] = React.useState("dark");
-  const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
-  const [dataSets, setDataSets] = React.useState([35, 65]);
-  const { user_data, is_data_ready, wallet_list, total_asset } =
-    useContext(SiteDataContext);
-  const [doughnutType, setDoughnutType] = React.useState("");
-  const [display, setDisplay] = React.useState("none");
+  const [theme, setTheme] = useState("dark");
+  const [getLabel, setLabel] = useState(["Loss", "Profit"]);
+  const [dataSets, setDataSets] = useState([0, 0]);
+  const { user_data, is_data_ready, wallet_list } = useContext(SiteDataContext);
+  const [doughnutType, setDoughnutType] = useState("");
+  const [display, setDisplay] = useState("none");
+  const [asset_database, setAssetDatabase] = useState([]);
+  let curr_date = new Date();
+  let profitArr = [];
+  let lossArr = [];
+  let buyArr = [];
+  let sellArr = [];
+
   const WalletPopupHandler = () => {
     setDisplay("unset");
   };
 
-  const handleChange = (event) => {
-    setDoughnutType(event.target.value);
+  const handleChange = (e) => {
+    setDoughnutType(e.target.value);
   };
 
-  let curr_date = new Date();
+  useEffect(() => {
+    const base_url = "https://api.tradehikers.xyz";
+    const { loginid, token } = user_data;
+    const req = new Request(`${base_url}/transaction/${loginid}`, {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify({ token }),
+    });
+    fetch(req).then((res) => {
+      res.json().then((data) => {
+        setAssetDatabase(data);
+      });
+    });
+  }, []);
 
+  asset_database.forEach((element) => {
+    if (element.transaction_type === "sell") {
+      sellArr.push(element);
+    } else {
+      buyArr.push(element);
+    }
+  });
+
+  let buyTotalPrice = [];
+  buyArr.reduce(function (res, value) {
+    if (!res[value.currency]) {
+      res[value.currency] = {
+        currency: value.currency,
+        total_price: 0,
+        count: 0,
+      };
+      buyTotalPrice.push(res[value.currency]);
+    }
+    res[value.currency].total_price += value.current_price;
+    res[value.currency].count += 1;
+
+    return res;
+  }, {});
+
+  let databaseAvgPrice = [];
+  buyTotalPrice.forEach((element) => {
+    let tempObj = {};
+    tempObj["currency"] = element.currency;
+    let calc = element.total_price / element.count;
+    tempObj["avg_price"] = calc;
+    databaseAvgPrice.push(tempObj);
+  });
+
+  const sellArrWithAvg = () => {
+    sellArr.map((item) => {
+      databaseAvgPrice.map((subItem) => {
+        if (item.currency === subItem.currency) {
+          item.average_price = subItem.avg_price;
+        }
+      });
+    });
+
+    return sellArr;
+  };
+
+  const profitnLoss = (price, avg) => {
+    let calculation1 = ((price - avg) / avg) * 100;
+    if (calculation1 > 0) {
+      profitArr.push(calculation1);
+    } else {
+      lossArr.push(Math.abs(calculation1));
+    }
+  };
+
+  sellArrWithAvg().forEach((element) => {
+    profitnLoss(element.current_price, element.average_price);
+  });
+
+  const sumProfit = profitArr.reduce(
+    (totalProfit, number) => totalProfit + number,
+    0
+  );
+  const sumLoss = lossArr.reduce((totalLoss, number) => totalLoss + number, 0);
+  const profitPercent = (sumProfit / (sumLoss + sumProfit)) * 100;
+  const lossPercent = (sumLoss / (sumLoss + sumProfit)) * 100;
+
+  const sumCoinValue = buyTotalPrice
+    .filter((c) => c.currency !== "USD")
+    .map((b) => b.total_price)
+    .reduce((a, number) => a + number, 0);
+
+  // Check if user_data is ready
   if (!is_data_ready) {
     return <h1>Loading..</h1>;
   }
 
   return (
     <div className="DashBG">
-      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <WalletReloadModal display={display} setDisplay={setDisplay} />
       <div className="Layout">
         <div className="dash-top">
@@ -59,8 +141,7 @@ function Dashboard(props) {
             <span>Bought Assets</span>
           </div>
           <div className="wrap">
-            <Slider />
-            {/* <Carousel /> */}
+            <Slider backendData={buyArr} />
           </div>
         </div>
         <div className="Profile">
@@ -73,7 +154,9 @@ function Dashboard(props) {
               <p className="p3">
                 Asset's Balance as on {curr_date.toDateString()}
               </p>
-              <p id="prof-bal">USD {Math.round(total_asset * 100) / 100}</p>
+              <p id="prof-bal">
+                USD &nbsp; {sumCoinValue.toLocaleString("en-US") || "0"}
+              </p>
             </div>
           </div>
           <div className="profile-avatar">
@@ -183,7 +266,7 @@ function Dashboard(props) {
                   <MenuItem
                     onClick={() => {
                       setLabel(["Loss", "Profit"]);
-                      setDataSets([35, 65]);
+                      setDataSets([lossPercent, profitPercent]);
                     }}
                     sx={{
                       height: 30,
@@ -195,15 +278,16 @@ function Dashboard(props) {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      // api = something
-                      // push from api to arr=[]
-                      // setLabel = arr
-
-                      // api = something
-                      // push from api.data to some_arr=[]
-                      // setData = arr
-                      setLabel(["BTC", "ETH", "SHIBA"]);
-                      setDataSets([10, 10, 10, 10, 10, 10, 10, 10, 10, 10]);
+                      setLabel(
+                        buyTotalPrice
+                          .filter((c) => c.currency !== "USD")
+                          .map((a) => a.currency)
+                      );
+                      setDataSets(
+                        buyTotalPrice
+                          .filter((c) => c.currency !== "USD")
+                          .map((b) => b.total_price)
+                      );
                     }}
                     sx={{ fontSize: 12 }}
                     value={10}
@@ -217,31 +301,32 @@ function Dashboard(props) {
           <div className="c-mid">
             <div id="donut">
               <Doughnut
-                options={
-                  theme === "dark"
-                    ? {
-                        plugins: {
-                          legend: {
-                            display: false,
-                          },
-                          tooltip: {
-                            backgroundColor: "rgba(255, 255, 255, 0.9)",
-                            bodyColor: "black",
-                          },
+                options={{
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                    tooltip: {
+                      backgroundColor: "rgba(255, 255, 255, 0.9)",
+                      bodyColor: "black",
+                      callbacks: {
+                        label: function (context) {
+                          var label = context.label,
+                            currentValue = context.raw,
+                            total =
+                              context.chart._metasets[context.datasetIndex]
+                                .total;
+
+                          var percentage = parseFloat(
+                            ((currentValue / total) * 100).toFixed(1)
+                          );
+
+                          return label + ":" + " (" + percentage + "%)";
                         },
-                      }
-                    : {
-                        plugins: {
-                          legend: {
-                            display: false,
-                          },
-                          tooltip: {
-                            backgroundColor: "rgba(0, 0, 0, 0.9)",
-                            bodyColor: "white",
-                          },
-                        },
-                      }
-                }
+                      },
+                    },
+                  },
+                }}
                 data={{
                   labels: getLabel,
                   datasets: [
@@ -277,14 +362,25 @@ function Dashboard(props) {
               />
             </div>
             <div className="c-bot">
-              <p id="c-footer">Total Profit:</p>
-              <p>Total Loss:</p>
+              <p id="c-footer">
+                Total Profit:{" "}
+                {sumProfit ? Number.parseFloat(sumProfit).toFixed(2) : "0.00"}
+                USD
+              </p>
+              <p>
+                Total Loss:
+                {sumLoss ? Number.parseFloat(sumLoss).toFixed(2) : "0.00"} USD
+              </p>
             </div>
           </div>
         </div>
         <div className="Table-header">Transaction History </div>
         <div className="Table">
-          <TransTable theme={theme} setTheme={setTheme} />
+          <TransTable
+            theme={theme}
+            setTheme={setTheme}
+            transData={asset_database}
+          />
         </div>
       </div>
     </div>

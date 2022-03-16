@@ -8,9 +8,9 @@ import BuySellTabs from "./BuySellTabs";
 import Candlestickchart from "./Candlestickchart";
 
 function Market() {
-  const [theme, setTheme] = React.useState("dark");
-  const [date, setDate] = React.useState("");
-  const [time, setTime] = React.useState("");
+  const [theme, setTheme] = useState("dark");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {

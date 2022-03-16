@@ -38,6 +38,13 @@ const headerColumn = [
     format: (value) => value.toLocaleString("en-US"),
   },
   {
+    id: "transaction-type",
+    label: "Type",
+    minWidth: 10,
+    align: "left",
+    format: (value) => value.toLocaleString("en-US"),
+  },
+  {
     id: "coin-quantity",
     label: "Amount",
     minWidth: 10,
@@ -51,13 +58,7 @@ const headerColumn = [
     align: "left",
     format: (value) => value.toFixed(2),
   },
-  {
-    id: "trans-charge",
-    label: "Charge",
-    minWidth: 0,
-    align: "left",
-    format: (value) => value.toFixed(2),
-  },
+
   {
     id: "total-price",
     label: "Total",
@@ -65,39 +66,6 @@ const headerColumn = [
     align: "left",
     format: (value) => value.toFixed(2),
   },
-];
-
-function createData(
-  transactionNumber,
-  coinName,
-  datePurchase,
-  coinQuantity,
-  coinPrice,
-  transactionCharge,
-  totalPrice
-) {
-  return {
-    transactionNumber,
-    coinName,
-    datePurchase,
-    coinQuantity,
-    coinPrice,
-    transactionCharge,
-    totalPrice,
-  };
-}
-
-const rows = [
-  createData(1, 159, 6.0, 24, 4.0, 2, 2),
-  createData(2, 237, 9.0, 37, 4.3, 2, 2),
-  createData(3, 262, 16.0, 24, 6.0, 2, 2),
-  createData(4, 305, 3.7, 67, 4.3, 2, 2),
-  createData(5, 356, 16.0, 49, 3.9, 2, 2),
-  createData(6, 159, 6.0, 24, 4.0, 2, 2),
-  createData(7, 237, 9.0, 37, 4.3, 2, 2),
-  createData(8, 262, 16.0, 24, 6.0, 2, 2),
-  createData(9, 305, 3.7, 67, 4.3, 2, 2),
-  createData(10, 356, 16.0, 49, 3.9, 2, 2),
 ];
 
 export default function CustomizedTables(props) {
@@ -148,32 +116,34 @@ export default function CustomizedTables(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {props.transData.map((row, index) => (
               <StyledTableRow key={index}>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.transactionNumber}
+                  {index + 1}
                 </StyledTableCell>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.coinName}
+                  {row.currency}
                 </StyledTableCell>
                 <StyledTableCell
                   className="table-cell"
                   sx={{ width: "fit-content" }}
                   align="left"
                 >
-                  {row.datePurchase}
+                  {row.transaction_time}
                 </StyledTableCell>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.coinQuantity}
+                  {row.transaction_type}
                 </StyledTableCell>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.coinPrice}
+                  {row.quantity}
                 </StyledTableCell>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.transactionCharge}
+                  {row.current_price}
                 </StyledTableCell>
                 <StyledTableCell className="table-cell" align="left">
-                  {row.totalPrice}
+                  {Number.parseFloat(row.current_price * row.quantity).toFixed(
+                    10
+                  )}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

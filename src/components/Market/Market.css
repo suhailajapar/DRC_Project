@@ -133,7 +133,7 @@
 }
 
 .gain-section {
-  grid-column: 2/6;
+  grid-column: 1/5;
   grid-row: 8/10;
   margin-top: 20px;
 }
@@ -145,7 +145,7 @@
 }
 
 .loss-section {
-  grid-column: 2/6;
+  grid-column: 1/5;
   grid-row: 10/12;
   margin-top: -10px;
 }
@@ -173,15 +173,21 @@
   color: #11d811;
 }
 
-/* @media only screen and (max-height: 852px) {
-  .marketBG {
-    background-attachment: fixed;
-    height: 1000px;
-  }
+@media only screen and (max-height: 729px) {
   .market-layout {
-    overflow: visible;
+    height: 900px;
+    overflow: hidden;
   }
-} */
+  .marketBG {
+    background-color: #1f1f1f;
+    height: 900px;
+    background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .marketBG {
