@@ -65,10 +65,6 @@ const crypto_list = [
 ];
 
 function Candlestickchart() {
-<<<<<<< HEAD
-  const [display, setDisplay] = useState("none");
-=======
->>>>>>> 74d4bfc7393af035d4c166f958ed4fc7066161b1
   const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
