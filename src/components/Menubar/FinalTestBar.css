@@ -9,7 +9,6 @@
   top: 0;
   left: 0;
   background-color: #373737;
-  /* box-shadow: 2px 0px 4px rgba(255, 255, 255, 0.19); */
   overflow-y: hidden;
   overflow-x: hidden;
   border-radius: 0 10px 10px 0;
@@ -29,9 +28,6 @@
 }
 
 #DP {
-  /* width: 45px;
-  padding: 5px 0 5px 0;
-  margin-left: 3px; */
   display: flex;
   align-items: center;
   width: 35px;
@@ -39,9 +35,6 @@
 }
 
 #Market {
-  /* width: 35px;
-  padding: 5px 0 5px 0;
-  margin-left: 5px; */
   display: flex;
   align-items: center;
   width: 35px;
@@ -49,9 +42,6 @@
 }
 
 #Dashboard {
-  /* width: 35px;
-  padding: 5px 0 5px 0;
-  margin-left: 5px; */
   display: flex;
   align-items: center;
   width: 35px;
@@ -59,18 +49,14 @@
 }
 
 #Logout {
-  /* width: 35px;
-  padding: 5px 0 5px 0;
-  margin-left: 5px; */
   display: flex;
   align-items: center;
   width: 35px;
   padding: 5px 0 5px 0;
+  margin-top: 50px;
 }
 
 #logo {
-  /* width: 70px;
-  margin-left: -10px; */
   display: flex;
   align-items: center;
   width: fit-content;
@@ -91,10 +77,7 @@
   margin-bottom: 20px;
   padding: 1px 6px;
 }
-/* .test-bar a {
-  padding: 6px 0 6px 5px;
-  display: block;
-} */
+
 
 /* Style links on mouse-over */
 .DP:hover,
@@ -104,9 +87,7 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
 }
-/* .test-bar a:hover {
-  background: rgba(255, 255, 255, 0.2);
-} */
+
 
 .responsive-nav-drop {
   display: flex;

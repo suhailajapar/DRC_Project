@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Candlestickchart.css";
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
-import TradeViewChart from "react-crypto-chart";
-import LoaderImg from "../../assets/Market Asset/Loader.svg";
 import useBinanceData from "../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import Btc from "./../../assets/Icon_symbol/btc.png";
@@ -12,13 +9,13 @@ import Shib from "./../../assets/Icon_symbol/shiba.png";
 import Bnb from "./../../assets/Icon_symbol/bnb.png";
 import Slp from "./../../assets/Icon_symbol/slp.png";
 import Sol from "./../../assets/Icon_symbol/sol.png";
-import Avax from "./../../assets/Icon_symbol/avax.png";
+import Ltc from "./../../assets/Icon_symbol/ltc.png";
 import Xrp from "./../../assets/Icon_symbol/xrp.png";
 import Ada from "./../../assets/Icon_symbol/ada.png";
 import Nul from "./../../assets/Icon_symbol/nuls.png";
 import Clv from "./../../assets/Icon_symbol/clv.png";
 import Matic from "./../../assets/Icon_symbol/matic.png";
-import Dia from "./../../assets/Icon_symbol/dia.png";
+import Doge from "./../../assets/Icon_symbol/doge.png";
 import Beta from "./../../assets/Icon_symbol/beta.png";
 import Anc from "./../../assets/Icon_symbol/anc.png";
 import Luna from "./../../assets/Icon_symbol/luna.png";
@@ -35,37 +32,44 @@ import { SiteDataContext } from "../../SiteData";
 Chart.register(...registerables, annotationPlugin);
 
 const crypto_list = [
-  { src: Btc, id: "BTCUSDT", name: "BTC/USDT" },
-  { src: Eth, id: "ETHUSDT", name: "ETH/USDT" },
-  { src: Shib, id: "SHIBUSDT", name: "SHIB/USDT" },
-  { src: Bnb, id: "BNBUSDT", name: "BNB/USDT" },
-  { src: Slp, id: "SLPUSDT", name: "SLP/USDT" },
-  { src: Sol, id: "SOLUSDT", name: "SOL/USDT" },
-  { src: Avax, id: "AVAXUSDT", name: "AVAX/USDT" },
-  { src: Xrp, id: "XRPUSDT", name: "XRP/USDT" },
-  { src: Ada, id: "ADAUSDT", name: "ADA/USDT" },
-  { src: Nul, id: "NULSUSDT", name: "NULS/USDT" },
-  { src: Clv, id: "CLVUSDT", name: "CLV/USDT" },
-  { src: Matic, id: "MATICUSDT", name: "MATIC/USDT" },
-  { src: Dia, id: "DIAUSDT", name: "DIA/USDT" },
-  { src: Beta, id: "BETAUSDT", name: "BETA/USDT" },
-  { src: Anc, id: "ANCUSDT", name: "ANC/USDT" },
-  { src: Luna, id: "LUNAUSDT", name: "LUNA/USDT" },
-  { src: Knc, id: "KNCUSDT", name: "KNC/USDT" },
-  { src: Jst, id: "JSTUSDT", name: "JST/USDT" },
-  { src: Bnx, id: "BNXUSDT", name: "BNX/USDT" },
-  { src: Xvs, id: "XVSUSDT", name: "XVS/USDT" },
+  { src: Btc, id: "BTCUSDT", name: "BTC/USDT", fullname: "Bitcoin" },
+  { src: Eth, id: "ETHUSDT", name: "ETH/USDT", fullname: "Ethereum" },
+  { src: Shib, id: "SHIBUSDT", name: "SHIB/USDT", fullname: "Shiba-Inu" },
+  { src: Bnb, id: "BNBUSDT", name: "BNB/USDT", fullname: "BinanceCoin" },
+  { src: Slp, id: "SLPUSDT", name: "SLP/USDT", fullname: "Smooth-Love-Potion" },
+  { src: Sol, id: "SOLUSDT", name: "SOL/USDT", fullname: "Solana" },
+  { src: Ltc, id: "LTCUSDT", name: "LTC/USDT", fullname: "Litecoin" },
+  { src: Xrp, id: "XRPUSDT", name: "XRP/USDT", fullname: "Ripple" },
+  { src: Ada, id: "ADAUSDT", name: "ADA/USDT", fullname: "Cardano" },
+  { src: Nul, id: "NULSUSDT", name: "NULS/USDT", fullname: "Nuls" },
+  { src: Clv, id: "CLVUSDT", name: "CLV/USDT", fullname: "Clover" },
+  {
+    src: Matic,
+    id: "MATICUSDT",
+    name: "MATIC/USDT",
+    fullname: "Matic-Network",
+  },
+  { src: Doge, id: "DOGEUSDT", name: "DOGE/USDT", fullname: "Dogecoin" },
+  { src: Beta, id: "BETAUSDT", name: "BETA/USDT", fullname: "Beta-Finance" },
+  { src: Anc, id: "ANCUSDT", name: "ANC/USDT", fullname: "Anchor-Protocol" },
+  { src: Luna, id: "LUNAUSDT", name: "LUNA/USDT", fullname: "Terra-Luna" },
+  {
+    src: Knc,
+    id: "KNCUSDT",
+    name: "KNC/USDT",
+    fullname: "Kyber-Network-Crystal",
+  },
+  { src: Jst, id: "JSTUSDT", name: "JST/USDT", fullname: "Just" },
+  { src: Bnx, id: "BNXUSDT", name: "BNX/USDT", fullname: "BinaryX" },
+  { src: Xvs, id: "XVSUSDT", name: "XVS/USDT", fullname: "Venus" },
 ];
 
 function Candlestickchart() {
-  // const [pair, setPair] = useState("BTCUSDT");
-  const [display, setDisplay] = useState("none");
   const { pair, setPair } = useContext(SiteDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [interval, setInterval] = useState("1m");
-  const [ask, bid, open, low, high, close, volume, , percent] =
-    useBinanceData(pair);
+  const [, , , , , close, , , percent] = useBinanceData(pair);
 
   const getName = (id) => crypto_list.find((c) => c.id === id).name;
   const getSrc = (id) => crypto_list.find((c) => c.id === id).src;
@@ -83,9 +87,6 @@ function Candlestickchart() {
 
   return (
     <div className="app">
-      {/* Ask: {parseFloat(ask).toFixed(2)} Bid: {parseFloat(bid).toFixed(2)} Open:
-      {parseFloat(open).toFixed(2)} Low: {parseFloat(low).toFixed(2)} High:
-      {parseFloat(high).toFixed(2)} Close: {parseFloat(close).toFixed(2)} */}
       <div>
         <div
           onClick={() => {
@@ -131,7 +132,7 @@ function Candlestickchart() {
       <div className="mchart-title-and-filter">
         <div className="market-chart-title">
           <span>
-            <img src={getSrc(pair)} className="crypto_logo" />
+            <img src={getSrc(pair)} className="crypto_logo" alt="crypto" />
           </span>
           <span id="mchart-title-name">{getName(pair)}</span>
           <span id="mchart-title-price">
@@ -188,26 +189,9 @@ function Candlestickchart() {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        {/* <div className="interval-filter">
-          <div className="mins" onClick={() => handleInterval("1m")}>
-            Min
-          </div>
-          <div onClick={() => handleInterval("1h")}>Hr</div>
-          <div onClick={() => handleInterval("1d")}>Day</div>
-          <div onClick={() => handleInterval("1w")}>Week</div>
-          <div className="mos" onClick={() => handleInterval("1M")}>
-            Month
-          </div>
-        </div> */}
       </div>
 
-      {loading ? (
-        <div className="loader">
-          <img src={LoaderImg} alt="loading" />
-        </div>
-      ) : (
-        <LightWeightChart symbol={pair} interval={interval} />
-      )}
+      <LightWeightChart symbol={pair} interval={interval} />
     </div>
   );
 }

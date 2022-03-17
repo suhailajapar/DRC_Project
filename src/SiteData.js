@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { BASE_URL } from "./components/ApiBinance/HikersAPI";
-export const SiteDataContext = createContext();
+import jwt_decode from "jwt-decode";
+
+export const SiteDataContext = createContext({});
 
 const SiteData = ({ children }) => {
   const [user_data, setUserData] = useState();
@@ -18,6 +20,25 @@ const SiteData = ({ children }) => {
     }
   }, []);
 
+  const fetchWalleList = async () => {
+    try {
+      if (user_data) {
+        const { loginid, token } = user_data;
+        const result = await fetch(`${BASE_URL}/wallet/${loginid}`, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+          body: JSON.stringify({ token }),
+        });
+        const data = await result.json();
+        setWalletList(data);
+      }
+    } catch (e) {
+      setErrorMessage("Something bad happened. Please try again.");
+    }
+  };
+
   useEffect(() => {
     setDataReady(false);
     fetchWalleList().then(() => {
@@ -25,28 +46,13 @@ const SiteData = ({ children }) => {
     });
   }, [user_data]);
 
-  const fetchWalleList = async () => {
-    if (user_data) {
-      console.log("wallet" + user_data);
-      const { loginid, token } = user_data;
-      const result = await fetch(`${BASE_URL}/wallet/${loginid}`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ token }),
-      });
-      const data = await result.json();
-      setWalletList(data);
-    }
-  };
-
   const handleLogin = async (user_data) => {
-    if (!user_data) return;
+    setDataReady(false);
+    localStorage.removeItem("user_data");
     const login_credentials = {
       ...user_data,
     };
-    setDataReady(false);
+
     const req = new Request(`${BASE_URL}/user/login`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
@@ -69,11 +75,29 @@ const SiteData = ({ children }) => {
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     localStorage.removeItem("user_data");
     setUserData(null);
     setWalletList([]);
     window.location.pathname = "/";
+  };
+
+  const checkJWT = () => {
+    const stored_user_data = localStorage.getItem("user_data");
+    if (!stored_user_data) {
+      return false;
+    }
+    const { token } = JSON.parse(stored_user_data);
+    const decodedToken = jwt_decode(token);
+    const currentDate = new Date();
+
+    // JWT exp is in seconds
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
+      localStorage.removeItem("user_data");
+      return false;
+    } else {
+      return true;
+    }
   };
 
   return (
@@ -88,6 +112,7 @@ const SiteData = ({ children }) => {
         fetchWalleList,
         pair,
         setPair,
+        checkJWT,
       }}
     >
       {children}

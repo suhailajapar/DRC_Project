@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/PropagateLoader";
-import "./MSlider.css";
+import "./Market.css";
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`

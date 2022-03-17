@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { Avatar } from "@mui/material";
-import ProfilePic from "../../assets/DashboardAsset/profile-placeholder.png";
-import WalletIconDark from "../../assets/DashboardAsset/WalletIconDark.svg";
-import WalletIconLight from "../../assets/DashboardAsset/WalletIconLight.svg";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -12,14 +9,8 @@ import { Chart, registerables } from "chart.js";
 import Slider from "./DSlider";
 import Dashbar from "../Menubar/HeaderBar";
 import Linechart from "./Linechart";
-import SideBar from "../Menubar/FinalTestBar";
-import Menubar from "./../Menubar/Menubar";
-import Footer from "./../Footer/Footer";
 import TransTable from "./TransacHist";
-import mathSum from "math-sum";
-
 import { SiteDataContext } from "../../SiteData";
-import { useNavigate } from "react-router-dom";
 import WalletReloadModal from "../Modal/WalletReloadModal";
 import {
   EventBusyOutlined,
@@ -36,19 +27,19 @@ function Dashboard(props) {
   const [getLabel, setLabel] = React.useState(["Loss", "Profit"]);
   const [dataSets, setDataSets] = React.useState([0, 0]);
   const { user_data, is_data_ready, wallet_list } = useContext(SiteDataContext);
-  const [doughnutType, setDoughnutType] = React.useState("");
-  const [display, setDisplay] = React.useState("none");
+  const [doughnutType, setDoughnutType] = useState("");
+  const [display, setDisplay] = useState("none");
+  const [asset_database, setAssetDatabase] = useState([]);
+
   const WalletPopupHandler = () => {
     setDisplay("unset");
   };
 
-  const handleChange = (event) => {
-    setDoughnutType(event.target.value);
+  const handleChange = (e) => {
+    setDoughnutType(e.target.value);
   };
 
   let curr_date = new Date();
-
-  const [asset_database, setAssetDatabase] = React.useState([]);
 
   React.useEffect(() => {
     const base_url = "https://api.tradehikers.xyz";
@@ -60,7 +51,6 @@ function Dashboard(props) {
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
-        console.log(data); //JSON FROM BE
         setAssetDatabase(data);
       });
     });
@@ -173,8 +163,6 @@ function Dashboard(props) {
 
   let profitnLoss = (price, avg) => {
     let calculation1 = ((price - avg) / avg) * 100;
-
-    // console.log(calculation1, price, avg);
     if (calculation1 > 0) {
       profitArr.push(calculation1);
     } else {
@@ -213,7 +201,6 @@ function Dashboard(props) {
 
   return (
     <div className="DashBG">
-      {/* <Menubar theme={theme} setTheme={setTheme} /> */}
       <WalletReloadModal display={display} setDisplay={setDisplay} />
       <div className="Layout">
         <div className="dash-top">
@@ -225,7 +212,6 @@ function Dashboard(props) {
           </div>
           <div className="wrap">
             <Slider backendData={buyArr} />
-            {/* <Carousel /> */}
           </div>
         </div>
         <div className="Profile">
@@ -387,13 +373,6 @@ function Dashboard(props) {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      // api = something
-                      // push from api to arr=[]
-                      // setLabel = arr
-
-                      // api = something
-                      // push from api.data to some_arr=[]
-                      // setData = arr
                       setLabel(
                         currentAsset()
                           .filter((c) => c.currency !== "USD")
