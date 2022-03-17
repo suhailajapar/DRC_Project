@@ -120,6 +120,7 @@ function Home() {
           <a
             href="https://github.com/farhan-besquare/DRC_Project.git"
             target="_blank"
+            rel="noreferrer"
           >
             <img
               src={GithubLink}

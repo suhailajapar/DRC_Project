@@ -62,6 +62,10 @@ section {
   align-items: center;
   justify-content: center;
   height: 90vh;
+  background-image: url("./Media/lines.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .last_part {
@@ -109,8 +113,7 @@ section {
 
 .feature_title {
   font-size: 28px;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-weight: bold;
+  font-family: "Red Hat Display", sans-serif;
   margin-bottom: 20px;
 }
 
@@ -119,7 +122,7 @@ section {
   font-family: "IBM Plex Sans", sans-serif;
   line-height: 42px;
   width: 500px;
-  color: #4dff00;
+  color: #4bcc13;
 }
 
 .feature_one,
@@ -318,12 +321,6 @@ section {
   }
 
   /* first section */
-  .title {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-left: 5%;
-  }
   .illustration_one {
     height: 700px;
     width: auto;
@@ -334,16 +331,16 @@ section {
     width: 100%;
   }
   .dboard_img,
-  .rocket_img {
-    width: 60%;
-    height: auto;
-    padding-left: 5vw;
-  }
+  .rocket_img,
   .profit_loss_img {
-    width: 60%;
+    width: 45%;
     height: auto;
-    padding-right: 5vw;
   }
+
+  .features {
+    padding: 0 50px;
+  }
+
   .feature_one,
   .feature_three {
     width: auto;
@@ -369,14 +366,40 @@ section {
 @media only screen and (max-width: 940px) {
   /* first sec */
   .main_title {
-    font-size: 40px;
+    font-size: 28px;
   }
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .features {
+    padding: 0 50px;
+  }
+
   .illustration_one {
-    height: 600px;
+    height: 500px;
     width: auto;
   }
+
   .lpage_btn {
     padding: 10px 30px;
+    font-size: 18px;
+  }
+
+  .dboard_img,
+  .rocket_img,
+  .profit_loss_img {
+    width: 40%;
+    height: auto;
+  }
+
+  .feature_title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 20px;
+    width: 90%;
   }
 
   /* second section */
@@ -402,30 +425,34 @@ section {
   .lpage_btn {
     padding: 10px 20px;
   }
+
   .lpage_btn > a {
-    font-size: medium;
-  }
-  .main_title {
-    margin-bottom: 20px;
-  }
-  .subtitle {
-    margin: 10px;
+    font-size: 18px;
   }
 
-  /* first sec */
   .main_title {
-    font-size: 30px;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
+
+  .subtitle {
+    margin-bottom: 10px;
+  }
+
   .illustration_one {
-    height: 500px;
+    height: 380px;
     width: auto;
-    margin-top: 100px;
   }
 
   /* second section screen max 736*/
+  .top_part {
+    gap: 50px;
+  }
+
   .second_part {
     flex-direction: column;
-    margin-top: 10%;
+    margin-top: 200px;
+    gap: 100px;
   }
   .crypto_news {
     text-align: center;
@@ -478,6 +505,10 @@ section {
   .fourth_part {
     height: 60vh;
   }
+
+  .third_part {
+    margin-top: 100px;
+  }
 }
 
 /* 600px and smaller */
@@ -485,14 +516,27 @@ section {
   /* first sec */
   .top_part {
     flex-direction: column-reverse;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
   }
-  .main_title {
-    width: 90vw;
+
+  .illustration_one {
+    margin-top: 50px;
   }
+
   .title {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: auto;
     margin-top: -10%;
+  }
+
+  .main_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* second section */
@@ -514,6 +558,7 @@ section {
   /* fourth sect */
   .fourth_part {
     flex-direction: column;
+    background-position: top;
   }
   .last_part {
     text-align: center;
@@ -527,6 +572,19 @@ section {
 
 /* 510px and smaller */
 @media only screen and (max-width: 510px) {
+  .illustration_one {
+    margin-top: 0;
+  }
+
+  .features {
+    gap: 50px;
+  }
+
+  .third_part,
+  .fourth_part {
+    margin-top: 50px;
+  }
+
   /* second section */
   /* eth */
   .coin_logo {
@@ -542,23 +600,74 @@ section {
   .shadow {
     width: 100%;
   }
+
+  .description {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 416px) {
   /* first section */
   .illustration_one {
-    height: 420px;
+    height: 400px;
     width: auto;
-    margin-top: 100px;
+  }
+
+  .shadow {
+    width: 85%;
+  }
+
+  .features {
+    gap: 40px;
+  }
+
+  .feature_one,
+  .feature_two,
+  .feature_three {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .dboard_img,
+  .rocket_img,
+  .profit_loss_img {
+    width: 300px;
+    height: auto;
+  }
+
+  .first_feature,
+  .third_feature {
+    flex-direction: column-reverse;
+  }
+  .second_feature {
+    flex-direction: column;
+  }
+
+  .fourth_part {
+    background-position: top;
   }
 }
 
 @media only screen and (max-width: 350px) {
+  .landingPage {
+    width: calc(100vw + 35px);
+  }
+
+  .subtitle {
+    width: 90%;
+    text-align: center;
+  }
   /* first section */
   .illustration_one {
-    height: 350px;
+    height: 300px;
     width: auto;
-    margin-top: 100px;
   }
 
   /* second section */
@@ -575,5 +684,8 @@ section {
   /* shadows */
   .shadow {
     width: 80%;
+  }
+  .home_footer {
+    font-size: 12px;
   }
 }

@@ -19,10 +19,6 @@ const LightWeightChart = ({ symbol, interval }) => {
   const [chart_data, setChartData] = useState([]);
   const socket = React.useRef(null);
 
-  // useEffect(() => {
-  //   setWidth(window.visualViewport.width - 1000);
-  // }, [window.visualViewport.width]);
-
   useEffect(() => {
     setMounted(false);
     setChartData([]);
@@ -114,7 +110,7 @@ const LightWeightChart = ({ symbol, interval }) => {
   return (
     <div className="chartz">
       {is_loading || !is_mounted ? (
-        <div className="loader"></div>
+        <div className="loaders"></div>
       ) : (
         <Chart
           options={options}

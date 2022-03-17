@@ -54,7 +54,6 @@ const crypto_list = [
 //API Call -------------------------------------------------------------------------------
 
 export default function MLosslider({ theme, setTheme }) {
-  const [gldata, setGldata] = useState("BTCUSDT");
   const [intervalCount, setIntervalCount] = useState(0);
   const [cryptoCurrencies, setCryptoCurrencies] = useState([
     { id: "", name: "", percentage: "", price: "", src: "" },
@@ -141,7 +140,7 @@ export default function MLosslider({ theme, setTheme }) {
     dots: false,
     infinite: true,
     arrows: false,
-    speed: 2000,
+    speed: 5000,
     slidesToShow: 4,
     slidesToScroll: -1,
     autoplay: true,

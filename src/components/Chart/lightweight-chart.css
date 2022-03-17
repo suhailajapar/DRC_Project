@@ -5,7 +5,7 @@
   height: 450px;
 }
 
-.loader {
+.loaders {
   border: 16px solid rgba(243, 243, 243, 0.5); /* Light grey */
   border-top: 16px solid #138d08; /* Blue */
   border-radius: 50%;
