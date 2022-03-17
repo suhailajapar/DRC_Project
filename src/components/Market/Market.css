@@ -1,3 +1,5 @@
+/* ------------------------------------ Market Page ----------------------------------------- */
+
 /* Market list */
 
 .coin-market {
@@ -227,3 +229,89 @@
     display: none;
   }
 }
+/* ------------------------------------ =========== ----------------------------------------- */
+
+/* --------------------------------- Candlestick Chart ---------------------------------------*/
+
+/* ------------------------------------ =========== ----------------------------------------- */
+
+/* ----------------------------------- Buy Sell Tabs -----------------------------------------*/
+
+/* ------------------------------------ =========== ----------------------------------------- */
+
+/* --------------------------------------- Slider --------------------------------------------*/
+
+/* GainLoss Slider Styling -----------------------------*/
+.m-card-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card {
+  min-width: 16vw;
+  display: flex;
+}
+
+/* Card Styling ----------------------------------------*/
+.card-view {
+  background-color: #2d2c56;
+  width: 70%;
+  height: 12vh;
+  justify-content: space-between;
+  border-radius: 25px;
+  box-shadow: 0 24px 9px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  width: 100%;
+  display: -webkit-inline-flex;
+  align-items: center;
+}
+
+.card-name {
+  font-size: 1.1vw;
+  width: 65%;
+  color: white;
+  text-align: center;
+}
+
+.card-arrow {
+  width: 5%;
+  margin-right: 0%;
+}
+
+.card-percentage {
+  font-size: 0.9vw;
+  width: 30%;
+  text-align: center;
+}
+
+.card-body {
+  width: 100%;
+  display: -webkit-inline-flex;
+  align-items: center;
+}
+
+.card-img {
+  width: 50%;
+}
+.img {
+  width: 2.2vw;
+  margin-left: 30%;
+}
+
+.card-price {
+  font-size: 1.2vw;
+  width: 50%;
+  text-align: center;
+  color: white;
+}
+
+/* Loader Styling ------------------------------------------*/
+.sweet-loading {
+  width: 100%;
+  display: flex;
+}
+
+/* ------------------------------------ =========== ----------------------------------------- */

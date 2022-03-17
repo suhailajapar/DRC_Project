@@ -1,10 +1,3 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import CardContent from "@mui/material/CardContent";
-import "./MSlider.css";
-import { styled } from "@mui/material/styles";
 import Btc from "./../../assets/Icon_symbol/btc.png";
 import Eth from "./../../assets/Icon_symbol/eth.png";
 import Shib from "./../../assets/Icon_symbol/shiba.png";
@@ -25,10 +18,18 @@ import Knc from "./../../assets/Icon_symbol/knc.png";
 import Jst from "./../../assets/Icon_symbol/jst.png";
 import Bnx from "./../../assets/Icon_symbol/bnx.png";
 import Xvs from "./../../assets/Icon_symbol/xvs.png";
+import { styled } from "@mui/material/styles";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+import CardContent from "@mui/material/CardContent";
+import "./Market.css";
 import GainLossCards from "./GainLossCard";
 import axios from "axios";
 import Loader from "./Loader";
 
+//Market List ----------------------------------------------------------------------------
 const crypto_list = [
   { src: Btc, id: "BTCUSDT", name: "BTC/USDT" },
   { src: Eth, id: "ETHUSDT", name: "ETH/USDT" },
@@ -51,6 +52,7 @@ const crypto_list = [
   { src: Bnx, id: "BNXUSDT", name: "BNX/USDT" },
   { src: Xvs, id: "XVSUSDT", name: "XVS/USDT" },
 ];
+//----------------------------------------------------------------------------------------
 //API Call -------------------------------------------------------------------------------
 
 export default function MGainSlider({ theme, setTheme }) {
@@ -78,6 +80,7 @@ export default function MGainSlider({ theme, setTheme }) {
 
     crypto_list.forEach((element, index) => {
       let cryptoObj = {};
+      //Push data from crypto_list into object
       cryptoObj["src"] = element.src;
       cryptoObj["name"] = element.name;
       axios
@@ -86,9 +89,11 @@ export default function MGainSlider({ theme, setTheme }) {
         )
         .then((res) => {
           const data = res.data;
+          //Push data from API into object
           cryptoObj["price"] = data[0].askPrice;
           cryptoObj["id"] = data[0].symbol;
           cryptoObj["percentage"] = data[0].priceChangePercent;
+          //Push object into array
           cryptoData.push(cryptoObj);
         })
         .catch((err) => {
@@ -98,19 +103,24 @@ export default function MGainSlider({ theme, setTheme }) {
     setCryptoCurrencies(cryptoData);
 
     // Calculation ------------------------------------------------------------------------
-
+    //Push the percentage
     for (var i in cryptoCurrencies) {
       tempCrypArr.push(cryptoCurrencies[i].percentage);
     }
+
+    //Sort in ascending
     tempCrypArr.sort(function (a, b) {
       return a - b;
     });
 
+    //Select the top 5
     top5Arr = tempCrypArr.reverse().slice(0, 5);
 
     for (var i in top5Arr) {
       for (var j in cryptoCurrencies) {
+        //Compare percentage of top 5 and with 20
         if (top5Arr[i] === cryptoCurrencies[j].percentage) {
+          //Push all data from each top 5 object
           filteredCrypto.push(cryptoCurrencies[j]);
         } else {
           console.log("");
@@ -120,7 +130,7 @@ export default function MGainSlider({ theme, setTheme }) {
     setTopCryptoCurrencies(filteredCrypto);
   }, [intervalCount]);
 
-  //Loader
+  //Loader Setting
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

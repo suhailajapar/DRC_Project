@@ -24,12 +24,6 @@ function Market() {
   const month = currentDate.toLocaleString("default", { month: "long" });
   const date = `${month} ${""} ${currentDate.getDate()},${currentDate.getFullYear()}`;
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 10000);
-  // }, []);
-
   return (
     <div className="marketBG">
       {/* <Menubar theme={theme} setTheme={setTheme} /> */}

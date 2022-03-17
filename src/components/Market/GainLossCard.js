@@ -1,9 +1,7 @@
-// import useBinanceRest from "./../ApiBinance/binance-rest";
-import "./MSlider.css";
+import "./Market.css";
 
+//Card for MGainSlider & MLossSlider
 const GainLossCards = ({ src, name, price, percentage }) => {
-  // const [price, percentage] = useBinanceRest(gldata);
-
   return (
     <div className="card-view">
       <div className="card-header">
