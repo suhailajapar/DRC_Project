@@ -49,19 +49,19 @@ export const GlobalStyles = createGlobalStyle`
 
 
 .login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu {
-  background-color: ${(props) => props.theme.body};
-  color: ${(props) => props.theme.fontColor};
-  background-image: ${(props) => props.theme.backgroundImg};
+  background-color: ${(props) => props.theme.body} !important;
+  color: ${(props) => props.theme.fontColor} !important;
+  background-image: ${(props) => props.theme.backgroundImg} !important;
 }
 
 .Profile, .BoughtAssets, .Wallet, .Chart, .LiveCharts, .Table {
-  background-color: ${(props) => props.theme.cardBody};
-  color: ${(props) => props.theme.fontColor};
-  border: ${(props) => props.theme.cardBorder}
+  background-color: ${(props) => props.theme.cardBody} !important;
+  color: ${(props) => props.theme.fontColor} !important;
+  border: ${(props) => props.theme.cardBorder} !important;
 }
 
 .MuiTableRow-root:nth-of-type(odd) {
-  background-color: ${(props) => props.theme.tableCellOdd};
+  background-color: ${(props) => props.theme.tableCellOdd} !important;
   
 }
 
@@ -70,33 +70,32 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .w-icon {
-  cursor: pointer;
-  content: ${(props) => props.theme.walletIcon};
+  content: ${(props) => props.theme.walletIcon} !important;
 }
 
 .MuiTableRow-root:nth-of-type(even), .MuiTableHead-root th {
-  background-color: ${(props) => props.theme.tableCellEven};
+  background-color: ${(props) => props.theme.tableCellEven} !important;
 }
 
-.css-pv6s8w-MuiTableRow-root td, .MuiTableCell-root:hover, .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root, .MuiTableHead-root th {
+.css-pv6s8w-MuiTableRow-root td, input, .MuiTable-root, .MuiTableCell-root:hover, .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, .MuiOutlinedInput-root .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root, .MuiTableHead-root th {
     color: ${(props) => props.theme.fontColor} !important;
 
 }
 
 .dropdown-icon {
-  content: ${(props) => props.theme.dropdownIcon};
+  content: ${(props) => props.theme.dropdownIcon} !important;
  
 }
 
 .headerBarLogo {
-  content: ${(props) => props.theme.headerLogo}
+  content: ${(props) => props.theme.headerLogo} !important;
 }
 
 .Profile, .footer, .DashHead, .MarketHead, .buy-sell-input, .LiveCharts-header, .Table-header, .login-input, .signup-input, .Profile_main_wrapper__-PDi6, .Profile_InputBox__o4OoZ {
-  color: ${(props) => props.theme.fontColor} !important
+  color: ${(props) => props.theme.fontColor} !important;
 }
 
 .links {
-  color: ${(props) => props.theme.linkColor}
+  color: ${(props) => props.theme.linkColor} !important;
 }
 `;
