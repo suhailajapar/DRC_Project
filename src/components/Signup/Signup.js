@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Footer from "./../Footer/Footer";
 import Menubar from "../Menubar/Menubar";
 import { useForm } from "react-hook-form";
 import ToLoginModal from "../Modal/ToLoginModal";
-import classes from "../Home/Home.module.css";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 
 const Signup = () => {
@@ -19,6 +18,7 @@ const Signup = () => {
     clearErrors,
     formState,
   } = useForm({ mode: "onchange" });
+  const [is_ready, setReady] = useState(false);
   const [message, setMessage] = useState("");
   const [err_message, setErrorMessage] = useState("");
   const [display, setDisplay] = useState("none");
@@ -28,6 +28,7 @@ const Signup = () => {
 
   //Send to backend for registration
   const userRegister = (data) => {
+    setReady(false);
     const userInfo = {
       ...data,
       date_joined: new Date().toLocaleString(),
@@ -40,6 +41,7 @@ const Signup = () => {
     });
     fetch(req).then((res) => {
       res.json().then((data) => {
+        setReady(true);
         if (data.message) {
           return setMessage(data.message);
         } else {
@@ -58,12 +60,14 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <ToLoginModal
-        display={display}
-        setDisplay={setDisplay}
-        onMessage={message}
-        onErrorMessage={err_message}
-      />
+      {is_ready && (
+        <ToLoginModal
+          display={display}
+          setDisplay={setDisplay}
+          onMessage={message}
+          onErrorMessage={err_message}
+        />
+      )}
       <Menubar theme={theme} setTheme={setTheme} />
       <div className="signbox">
         <div className="signup-inner-container">
@@ -137,7 +141,8 @@ const Signup = () => {
                 className="signup-input"
                 placeholder="Email"
                 {...register("email", {
-                  pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
+                  pattern:
+                    /^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                   required: "This field is required.",
                 })}
               />
@@ -243,7 +248,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer className={classes.home_footer} />
+      <Footer className="signup-footer" />
     </div>
   );
 };

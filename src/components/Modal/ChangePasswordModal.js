@@ -4,12 +4,13 @@ import classes from "./ChangePasswordModal.module.css";
 import { useForm } from "react-hook-form";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
+import { useNavigate } from "react-router-dom";
 
 const ChangePasswordModal = (props) => {
-  const { user_data, is_data_ready } = useContext(SiteDataContext);
-  const [old_password, setOldPassword] = useState("");
-  const [new_password, setNewPassword] = useState("");
+  const { user_data, is_data_ready, checkJWT } = useContext(SiteDataContext);
   const [message, setMessage] = useState("");
+  const [error_msg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -22,21 +23,30 @@ const ChangePasswordModal = (props) => {
   } = useForm();
 
   const passwordChangeHandler = (data) => {
-    const loginid = user_data.loginid;
-    const userPassword = {
-      ...data,
-      token: user_data.token,
-    };
-    const req = new Request(`${BASE_URL}/user/update-password/${loginid}`, {
-      method: "POST",
-      headers: new Headers({ "Content-Type": "application/json" }),
-      body: JSON.stringify(userPassword),
-    });
-    fetch(req).then((res) => {
-      res.json().then((data) => {
-        return console.log(data.message);
+    let is_authenticated = checkJWT();
+    if (is_authenticated) {
+      const loginid = user_data.loginid;
+      const userPassword = {
+        ...data,
+        token: user_data.token,
+      };
+      const req = new Request(`${BASE_URL}/user/update-password/${loginid}`, {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(userPassword),
       });
-    });
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          if (data.error) {
+            setErrorMsg(data.error);
+          } else {
+            setMessage(data.message);
+          }
+        });
+      });
+    } else {
+      navigate("/login");
+    }
   };
 
   //Check if user_data is ready
@@ -49,6 +59,8 @@ const ChangePasswordModal = (props) => {
     console.log(data);
     passwordChangeHandler(data);
     reset();
+    setErrorMsg("");
+    setMessage("");
   };
 
   return (
@@ -171,15 +183,14 @@ const ChangePasswordModal = (props) => {
               >
                 Cancel
               </span>
-              <button
-                className={classes.pwd_btn}
-                type="submit"
-                // disabled={validateForm()}
-              >
+              <button className={classes.pwd_btn} type="submit">
                 Change password
               </button>
             </div>
           </form>
+          <div className={error_msg ? classes.err_msgs : classes.messages}>
+            {error_msg ? error_msg : message}
+          </div>
         </Card>
       </div>
     </div>
