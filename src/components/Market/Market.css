@@ -255,12 +255,11 @@
 
 /* Card Styling ----------------------------------------*/
 .card-view {
-  background-color: #2d2c56;
+  background-color: #1f1f1f;
   width: 70%;
   height: 12vh;
   justify-content: space-between;
   border-radius: 25px;
-  box-shadow: 0 24px 9px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-header {

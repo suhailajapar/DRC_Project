@@ -1,7 +1,7 @@
 import "./Market.css";
 
 //Card for MGainSlider & MLossSlider
-const GainLossCards = ({ src, name, price, percentage }) => {
+const GainLossCards = ({ src, name, price, percentage, fullname }) => {
   return (
     <div className="card-view">
       <div className="card-header">
@@ -27,12 +27,15 @@ const GainLossCards = ({ src, name, price, percentage }) => {
         <div className="card-img">
           <img src={src} className="img" />
         </div>
-        <div className="card-price">
-          {price === 0 ? (
-            <p>Loading...</p>
-          ) : (
-            Number.parseFloat(price).toFixed(2)
-          )}
+        <div>
+          <div className="card-fullname">{fullname}</div>
+          <div className="card-price">
+            {price === 0 ? (
+              <p>Loading...</p>
+            ) : (
+              Number.parseFloat(price).toFixed(2)
+            )}
+          </div>
         </div>
       </div>
     </div>
