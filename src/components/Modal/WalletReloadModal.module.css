@@ -18,8 +18,8 @@ font-family: 'Red Hat Display', sans-serif;
 .popup {
   position: absolute;
   top: 30%;
-  left: 35%;
-  width: 30%;
+  left: 25%;
+  width: 50%;
   font-family: "Red Hat Display", sans-serif;
   z-index: 100;
 }
@@ -36,6 +36,7 @@ font-family: 'Red Hat Display', sans-serif;
 .title {
   margin-bottom: 20px;
   color: black !important;
+  text-align: center;
 }
 
 .info {
@@ -51,7 +52,7 @@ font-family: 'Red Hat Display', sans-serif;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding: 4px 0;
   color: black;
 }
@@ -102,7 +103,7 @@ font-family: 'Red Hat Display', sans-serif;
 }
 
 .reload_btn {
-  width: 30%;
+  width: 40%;
   height: 40px;
   color: white;
   background-color: green;

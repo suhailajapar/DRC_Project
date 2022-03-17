@@ -22,3 +22,11 @@
   width: 50%;
   box-sizing: border-box;
 }
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #11d811;
+}
