@@ -15,15 +15,14 @@ const Navbar = () => {
         <Link to="/market">
           <div>Market</div>
         </Link>
-        <Link to="/dashboard">
+        {/* <Link to="/dashboard">
           <div>Dashboard Sample</div>
-        </Link>
+        </Link> */}
 
         <div className="login-signup">
           <Link to="/login">
             <div className="login-btn">Login</div>
           </Link>
-          <div className="divider"></div>
           <Link to="/signup">
             <div className="signup-btn">Sign Up</div>
           </Link>

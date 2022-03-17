@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import "./BuySellTabs.css";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
+import useBinanceData from "../ApiBinance/binance-data";
 
 const BuySellInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
@@ -39,9 +40,6 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           "& fieldset": {
             borderColor: "#BDBDBD",
           },
-          "&:hover fieldset": {
-            borderColor: "#BDBDBD",
-          },
           "&.Mui-focused fieldset": {
             borderColor: "#BDBDBD",
           },
@@ -50,9 +48,6 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           borderRadius: 10,
           color: "#000000",
           "& fieldset": {
-            borderColor: "#616161",
-          },
-          "&:hover fieldset": {
             borderColor: "#616161",
           },
           "&.Mui-focused fieldset": {
@@ -97,52 +92,95 @@ function a11yProps(index) {
 export default function FullWidthTabs(props) {
   const { theme } = props;
   const [value, setValue] = React.useState(0);
-  const { user_data, is_data_ready, fetchWalleList, pair, handleLogout } =
+  const { user_data, is_data_ready, fetchWalleList, pair, checkJWT } =
     useContext(SiteDataContext);
+  const [ask, , , , , , , , ,] = useBinanceData(pair);
   const [quantity, setQuantity] = useState(0);
   const [error_message, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  const [transaction_details, setTransactionDetails] = useState(null);
 
-  //REQ TO BE FOR RELOAD/TRANSFER PROCESS
+  //REQ TO BE FOR BUY TRANSACTION
   const buyCrypto = () => {
-    const buy_info = {
-      token: user_data.token,
-      loginid: user_data.loginid,
-      quantity: quantity,
-      currency: pair.substr(0, pair.length - 4),
-    };
-    console.log(buy_info);
-    const req = new Request(`${BASE_URL}/transaction/buy`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(buy_info),
-    });
-    fetch(req).then((res) => {
-      res.json().then((data) => {
-        // if (data.name) {
-        //   setErrorMessage("token expired, please re-login");
-        //   // handleLogout();
-        // }
-        if (data.error) {
-          if (data.error.name) {
-            setErrorMessage("token expired, please re-login");
-          }
-          setErrorMessage(data.error);
-        } else {
-          console.log(data);
-          setErrorMessage(
-            ` SUCCESS! buy:${pair.substr(
-              0,
-              pair.length - 4
-            )} quantity:${quantity} price:${data.current_price} total:${
-              quantity * data.current_price
-            }`
-          );
-          fetchWalleList();
-        }
+    let is_authenticated = checkJWT();
+    console.log(is_authenticated);
+    if (is_authenticated) {
+      const buy_info = {
+        token: user_data.token,
+        loginid: user_data.loginid,
+        quantity: Number.parseFloat(quantity),
+        currency: pair.substr(0, pair.length - 4),
+      };
+      const req = new Request(`${BASE_URL}/transaction/buy`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(buy_info),
       });
-    });
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          if (data.error) {
+            if (data.error.name) {
+              setErrorMessage("token expired, please re-login");
+            }
+            return setErrorMessage(data.error);
+          } else {
+            setErrorMessage("Transaction successful.");
+            fetchWalleList();
+            setTransactionDetails((prev) => {
+              return {
+                ...prev,
+                ...data,
+              };
+            });
+          }
+        });
+      });
+    } else {
+      navigate("/login");
+    }
+  };
+
+  //REQ TO BE FOR SELL TRANSACTION
+  const sellCrypto = () => {
+    let is_authenticated = checkJWT();
+    if (is_authenticated) {
+      const sell_info = {
+        token: user_data.token,
+        loginid: user_data.loginid,
+        quantity: Number.parseFloat(quantity),
+        currency: pair.substr(0, pair.length - 4),
+      };
+      const req = new Request(`${BASE_URL}/transaction/sell`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(sell_info),
+      });
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          if (data.error) {
+            if (data.error.name) {
+              setErrorMessage("token expired, please re-login");
+            }
+            return setErrorMessage(data.error);
+          } else {
+            setErrorMessage("Transaction successful.");
+            fetchWalleList();
+            setTransactionDetails((prev) => {
+              return {
+                ...prev,
+                ...data,
+              };
+            });
+          }
+        });
+      });
+    } else {
+      navigate("/login");
+    }
   };
 
   //Check if user_data is ready
@@ -152,17 +190,14 @@ export default function FullWidthTabs(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
+    setErrorMessage("");
   };
 
   return (
     <Box
       sx={{
         "& .MuiBox-root": {
-          padding: "24px 0px",
+          padding: "10px 0px",
         },
       }}
     >
@@ -209,17 +244,20 @@ export default function FullWidthTabs(props) {
         />
       </Tabs>
 
-      {/* <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      > */}
       <TabPanel value={value} index={0}>
-        <div>{error_message}</div>
+        <div
+          className={`txn_message ${
+            error_message === "Transaction successful."
+              ? "txn-green"
+              : "txn-red"
+          }`}
+        >
+          {error_message}
+        </div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
-            value={quantity}
+            value={quantity === 0 ? "" : quantity}
             onChange={(e) => setQuantity(e.target.value)}
             InputProps={{
               endAdornment: (
@@ -235,7 +273,9 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
-            label="Price"
+            disabled={true}
+            label="Estimated Price"
+            value={Number.parseFloat(ask).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -250,7 +290,11 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
-            label="Total"
+            disabled={true}
+            label="Estimated Total"
+            value={(
+              Number.parseFloat(quantity) * Number.parseFloat(ask)
+            ).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -266,7 +310,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
-            // color="success"
+            disabled={!user_data ? true : false}
             sx={{
               bgcolor: "#498e2c",
               height: "54px",
@@ -288,13 +332,23 @@ export default function FullWidthTabs(props) {
           >
             BUY
           </Button>
-          {/* <input type="submit" className="buy-button" value="BUY" /> */}
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
+        <div
+          className={`txn_message ${
+            error_message === "Transaction successful."
+              ? "txn-green"
+              : "txn-red"
+          }`}
+        >
+          {error_message}
+        </div>
         <div className="buy-input-container">
           <BuySellInput
-            label="Amount"
+            label="Quantity"
+            value={quantity === 0 ? "" : quantity}
+            onChange={(e) => setQuantity(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -309,7 +363,9 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
-            label="Price"
+            disabled={true}
+            label="Estimated Price"
+            value={Number.parseFloat(ask).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -324,7 +380,11 @@ export default function FullWidthTabs(props) {
           />
           <div className="buy-spacing"></div>
           <BuySellInput
-            label="Total"
+            disabled={true}
+            label="Estimated Total"
+            value={(
+              Number.parseFloat(quantity) * Number.parseFloat(ask)
+            ).toFixed(2)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -340,7 +400,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <Button
             variant="contained"
-            // color="success"
+            disabled={!user_data ? true : false}
             sx={{
               bgcolor: "red",
               height: "54px",
@@ -358,16 +418,25 @@ export default function FullWidthTabs(props) {
               },
             }}
             fullWidth
-            onClick={() => {
-              alert("sell is clicked");
-            }}
+            onClick={sellCrypto}
           >
             SELL
           </Button>
-          {/* <input type="submit" className="sell-button" value="SELL" /> */}
         </div>
       </TabPanel>
-      {/* </SwipeableViews> */}
+      {transaction_details && (
+        <div>
+          <div>
+            Type:{transaction_details.transaction_type} Currency:{" "}
+            {transaction_details.currency} Status:
+            {transaction_details.status}
+          </div>
+          <div>
+            Quantity: {transaction_details.quantity} Price:{" "}
+            {transaction_details.current_price}
+          </div>
+        </div>
+      )}
     </Box>
   );
 }

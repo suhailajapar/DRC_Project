@@ -1,31 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import ImageUpload from "../ImageUpload/ImageUpload";
+import React, { useContext, useState } from "react";
 import ChangePasswordModal from "../Modal/ChangePasswordModal";
 import classes from "./Profile.module.css";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useForm } from "react-hook-form";
 import ProfBar from "../Menubar/HeaderBar";
-import Menubar from "../Menubar/Menubar";
 import { SiteDataContext } from "../../SiteData";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
+import { useNavigate } from "react-router-dom";
 
 const Profile = (props) => {
   const [theme, setTheme] = React.useState("dark");
-  const { user_data, is_data_ready } = useContext(SiteDataContext);
+  const { user_data, is_data_ready, checkJWT } = useContext(SiteDataContext);
   const [display, setDisplay] = useState("none");
   const pwdPopupHandler = () => {
     setDisplay("unset");
   };
-  // const [changeAvatar, setChangeAvatar] = React.useState(genConfig({}));
-  const [click, setClick] = React.useState(0);
-
-  // React.useEffect(() => {
-  //   console.log(onClick);
-  //   if (onClick === 0) {
-  //     // setChangeAvatar(null);
-  //   } else if (onClick >= 1) {
-  //     // setChangeAvatar(null);
-  //   }
-  // }, [onClick]);
+  const [error_message, setErrorMessage] = useState("");
+  const [messages, setMessages] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -33,9 +25,46 @@ const Profile = (props) => {
     formState: { errors },
   } = useForm();
 
+  //REQ TO BE FOR UPDATE USER DETAILS
+  const updateUser = (data) => {
+    let is_authenticated = checkJWT();
+    console.log(is_authenticated);
+    if (is_authenticated) {
+      const { loginid } = user_data;
+      const user_info = {
+        token: user_data.token,
+        loginid: user_data.loginid,
+        ...data,
+      };
+      console.log(user_info);
+      const req = new Request(`${BASE_URL}/user/profile/update/${loginid}`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(user_info),
+      });
+      fetch(req).then((res) => {
+        res.json().then((data) => {
+          if (data.error) {
+            setErrorMessage(data.error);
+          } else {
+            console.log(data);
+            setMessages(
+              "Data sucessfully saved. Changes will take effect on your next login."
+            );
+          }
+        });
+      });
+    } else {
+      navigate("/login");
+    }
+  };
+
   const onSubmit = (data) => {
+    updateUser(data);
     alert(JSON.stringify(data));
-  }; // your form submit function which will invoke after successful validation
+  };
 
   //Check if user_data is ready
   if (!is_data_ready) {
@@ -49,31 +78,10 @@ const Profile = (props) => {
           <ProfBar titleName={"Profile"} theme={theme} setTheme={setTheme} />
         </div>
         <ChangePasswordModal display={display} setDisplay={setDisplay} />
-
-        {/* <Menubar
-          theme={theme}
-          setTheme={setTheme}
-          className={classes.profile_menubar}
-        /> */}
-
         <div className={classes.user_container}>
           <div className={classes.photo_box}>
-            <img
-              src={props.avatarSample}
-              id={classes.avatar}
-              // style={{ width: "160px", height: "160px" }}
-            />
+            <img src={props.avatarSample} id={classes.avatar} alt="avatar" />
           </div>
-          {/* <ImageUpload className={classes.photo_box} />
-          <button
-            type="button"
-            onClick={() => {
-              setClick(click + 1);
-              console.log(click);
-            }}
-          >
-            Hello
-          </button> */}
           <div className={classes.container1}>
             <div className={classes.username}>@{user_data.username}</div>
             <div className={classes.date_joined}>
@@ -83,92 +91,82 @@ const Profile = (props) => {
               </span>
             </div>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <span className={classes.error_message}>
-              {errors?.fullname?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
-              {errors?.fullname?.type === "maxLength" && (
-                <p id={classes.warning}>
-                  Full name cannot exceed 50 characters
-                </p>
-              )}
-              {errors?.fullname?.type === "pattern" && (
-                <p id={classes.warning}>Alphabetical characters only</p>
-              )}
-            </span> */}
 
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <span className={classes.error_message}>
+              {errors?.full_name && <p>{errors?.full_name.message}</p>}
+              {errors?.full_name?.type === "pattern" && (
+                <p>Alphabetical characters only</p>
+              )}
+            </span>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Full Name :</div>
               <input
                 className={classes.InputBox}
-                placeholder={user_data.full_name}
-                {...register("fullname", {
-                  required: true,
-                  maxLength: 50,
+                defaultValue={!user_data.full_name ? "" : user_data.full_name}
+                placeholder="Name..."
+                {...register("full_name", {
+                  required: "This field is required.",
+                  maxLength: {
+                    value: 50,
+                    message: "Full name cannot exceed 50 characters",
+                  },
                   pattern: /^[a-zA-Z ]*$/,
                 })}
               />
             </div>
 
+            <div className={classes.form_spacing} />
             <span className={classes.error_message}>
-              {errors?.fullname?.type === "required" && (
-                <p>This field is required</p>
+              {errors?.email?.type === "pattern" && (
+                <p>Enter valid email only</p>
               )}
-              {errors?.fullname?.type === "maxLength" && (
-                <p>Full name cannot exceed 50 characters</p>
-              )}
-              {errors?.fullname?.type === "pattern" && (
-                <p>Alphabetical characters only</p>
-              )}
+              {errors?.email && <p>{errors?.email.message}</p>}
             </span>
-            <div className={classes.form_spacing}></div>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Email :</div>
               <input
                 className={classes.InputBox}
-                placeholder={user_data.email}
-                {...register("Email", {
+                defaultValue={!user_data.email ? "" : user_data.email}
+                placeholder="Email..."
+                {...register("email", {
+                  required: "This field is required.",
                   pattern: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
-                  required: true,
                 })}
               />
             </div>
 
-            <span className={classes.error_message}>
-              {errors?.Email?.type === "pattern" && (
-                <p id={classes.warning}>Enter valid email only</p>
-              )}
-              {errors?.Email?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
-            </span>
             <div className={classes.form_spacing}></div>
 
+            <span className={classes.error_message}>
+              {errors?.phone?.type === "pattern" && (
+                <p>Valid Mobile Number only.</p>
+              )}
+              {errors?.phone && <p>{errors?.phone.message}</p>}
+            </span>
             <div className={classes.form_boxes}>
               <div className={classes.headers}>Mobile Number :</div>
               <input
                 className={classes.InputBox}
-                placeholder={
-                  user_data.phone ? user_data.phone : "Phone number..."
-                }
-                {...register("MobileNumber", {
-                  required: true,
-                  minlegth: 10,
-                  maxlength: 15,
-                  pattern: /\d+/,
+                defaultValue={!user_data.phone ? "" : user_data.phone}
+                placeholder={"Phone number..."}
+                {...register("phone", {
+                  minLength: {
+                    value: 9,
+                    message:
+                      "Ops! format should be +6012345678910 or 609876543123456789",
+                  },
+                  maxLength: {
+                    value: 17,
+                    message:
+                      "Ops! format should be +6012345678910 or 609876543123456789",
+                  },
+                  pattern:
+                    /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/,
                 })}
               />
             </div>
-            <span className={classes.error_message}>
-              {errors?.MobileNumber?.type === "pattern" && (
-                <p id={classes.warning}>Valid Mobile Number only</p>
-              )}
-              {errors.MobileNumber && <p>Min 10 digits</p>}
-              {errors?.MobileNumber?.type === "required" && (
-                <p id={classes.warning}>This field is required</p>
-              )}
-            </span>
+
             <div className={classes.form_spacing}></div>
 
             <div className={classes.form_boxes}>
@@ -192,6 +190,9 @@ const Profile = (props) => {
               <button className={classes.Save_Button}>Save </button>
             </div>
           </form>
+          <div className={`${classes.backend_error} ${classes.backend_msg}`}>
+            {error_message ? error_message : messages}
+          </div>
         </div>
       </div>
     </div>
