@@ -11,7 +11,6 @@ import Rocket from "./Media/feat_gainerloser.png";
 import TheGuy from "./Media/tradeWithUsGuy.png";
 import GithubLink from "./Media/github.svg";
 import classes from "./Home.module.css";
-// import Marketpage from "./../Market/Market";
 
 function Home() {
   return (
@@ -57,6 +56,7 @@ function Home() {
             <p className={classes.subtitle}>The currency of the future</p>
           </div>
           <iframe
+            title="crypto-news"
             scrolling="yes"
             allowtransparency="true"
             frameBorder="0"
@@ -88,7 +88,7 @@ function Home() {
                 Trade with better understanding
               </div>
               <div className={classes.description}>
-                Track your progress of profitting and make note of your losses
+                Track your progress of profiting and make note of your losses
                 for future planning.
               </div>
             </div>
@@ -120,6 +120,7 @@ function Home() {
           <a
             href="https://github.com/farhan-besquare/DRC_Project.git"
             target="_blank"
+            rel="noreferrer"
           >
             <img
               src={GithubLink}

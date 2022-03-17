@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 import Home from "./Home";
 import Login from "../Login/Login";
@@ -12,15 +17,23 @@ import WithSideBar from "./WithSideBar";
 import { SiteDataContext } from "../../SiteData";
 import avatarSample from "../../assets/Logo/avatar_sample.png";
 
-// TODO
-const LoggedIn = ({ children, is_logged_in }) => {
-  if (is_logged_in) return children;
-  window.location.href = "/";
+// Check if user  is logged in
+const RequireLogIn = ({ children }) => {
+  const { checkJWT, user_data, is_data_ready } =
+    React.useContext(SiteDataContext);
+  if (!is_data_ready) {
+    return <h1>Loading...</h1>;
+  }
+  if (!user_data) {
+    return <Navigate to="/login/?error=login" />;
+  }
+  if (!checkJWT()) {
+    return <Navigate to="/login/?error=expired" />;
+  }
+  return children;
 };
 
 function Navigation() {
-  const { user_data } = React.useContext(SiteDataContext);
-
   return (
     <Router>
       <Routes>
@@ -35,9 +48,9 @@ function Navigation() {
           <Route
             path="/dashboard"
             element={
-              <LoggedIn is_logged_in={!!user_data}>
+              <RequireLogIn>
                 <Dashboard dashDP={avatarSample} />
-              </LoggedIn>
+              </RequireLogIn>
             }
           />
         </Route>
@@ -47,9 +60,9 @@ function Navigation() {
           <Route
             path="/profile"
             element={
-              <LoggedIn is_logged_in={!!user_data}>
+              <RequireLogIn>
                 <Profile avatarSample={avatarSample} />
-              </LoggedIn>
+              </RequireLogIn>
             }
           />
         </Route>
@@ -65,7 +78,11 @@ function Navigation() {
         >
           <Route
             path="/dashboard"
-            element={<Dashboard dashDP={avatarSample} />}
+            element={
+              <RequireLogIn>
+                <Dashboard dashDP={avatarSample} />
+              </RequireLogIn>
+            }
           />
         </Route>
         <Route element={<WithoutNav />}>

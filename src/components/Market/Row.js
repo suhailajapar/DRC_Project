@@ -1,7 +1,6 @@
 import useBinanceData from "./../ApiBinance/binance-data";
 import "./Candlestickchart.css";
 
-//Row for crypto dropdown list
 const Row = ({ pair, src, name }) => {
   const [, , , , , close, , , percent] = useBinanceData(pair);
 

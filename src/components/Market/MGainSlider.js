@@ -66,7 +66,6 @@ const crypto_list = [
 //API Call -------------------------------------------------------------------------------
 
 export default function MGainSlider({ theme, setTheme }) {
-  const [gldata, setGldata] = useState("BTCUSDT");
   const [intervalCount, setIntervalCount] = useState(0);
   const [cryptoCurrencies, setCryptoCurrencies] = useState([
     { fullname: "", id: "", name: "", percentage: "", price: "", src: "" },
@@ -163,7 +162,7 @@ export default function MGainSlider({ theme, setTheme }) {
     dots: false,
     infinite: true,
     arrows: false,
-    speed: 2000,
+    speed: 5000,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,

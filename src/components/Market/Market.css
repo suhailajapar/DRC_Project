@@ -44,23 +44,9 @@
   width: 100%;
 }
 
-/* th {
-  text-align: center;
-  border-bottom: 1px solid aqua;
-  color: aqua;
-  width: 25%;
-} */
-
 .list-row > td {
   text-align: center;
-  /* border-bottom: 1px solid aqua;
-  color: beige;
-  width: 25%; */
 }
-
-/* tr td:hover {
-  color: black;
-} */
 
 .table-body tr:hover {
   background-color: dimgray;
@@ -108,22 +94,6 @@
   overflow: hidden;
 }
 
-@media only screen and (max-height: 729px) {
-  .market-layout {
-    height: 900px;
-    overflow: hidden;
-  }
-  .marketBG {
-    background-color: #1f1f1f;
-    height: 900px;
-    background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-  }
-}
-
 .box {
   background-color: darkgray;
   border: 5px black;
@@ -133,6 +103,12 @@
 .market-bar-section {
   grid-column: 1/7;
   grid-row: 1;
+}
+
+.mini-message {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
 }
 
 .title-section {
@@ -199,15 +175,21 @@
   color: #11d811;
 }
 
-/* @media only screen and (max-height: 852px) {
-  .marketBG {
-    background-attachment: fixed;
-    height: 1000px;
-  }
+@media only screen and (max-height: 729px) {
   .market-layout {
-    overflow: visible;
+    height: 900px;
+    overflow: hidden;
   }
-} */
+  .marketBG {
+    background-color: #1f1f1f;
+    height: 900px;
+    background-image: url("../../assets/DashboardAsset/Wave\ \(Dark\).svg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .marketBG {

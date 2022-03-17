@@ -1,5 +1,7 @@
 import Chart from "@qognicafinance/react-lightweight-charts";
 import React, { useState, useEffect, useRef, memo } from "react";
+import "./lightweight-chart.css";
+import Logo from "../../assets/Logo/L_menulogo.svg";
 
 const LightWeightChart = ({ symbol, interval }) => {
   // const [symbol, setSymbol] = useState("BTCUSDT");
@@ -16,10 +18,6 @@ const LightWeightChart = ({ symbol, interval }) => {
   //CHARTS
   const [chart_data, setChartData] = useState([]);
   const socket = React.useRef(null);
-
-  // useEffect(() => {
-  //   setWidth(window.visualViewport.width - 1000);
-  // }, [window.visualViewport.width]);
 
   useEffect(() => {
     setMounted(false);
@@ -79,10 +77,10 @@ const LightWeightChart = ({ symbol, interval }) => {
     },
     priceScale: {
       borderVisible: true,
-      borderColor: "##404043",
+      borderColor: "#404043",
     },
     watermark: {
-      color: "rgba(255, 255, 255, 0.1)",
+      color: "rgba(0, 179, 60, 0.2)",
       visible: true,
       text: "Hikers",
       fontSize: 32,
@@ -97,46 +95,46 @@ const LightWeightChart = ({ symbol, interval }) => {
     },
     grid: {
       vertLines: {
-        color: "#404043",
+        color: "rgba(64, 64, 67, 0.4)",
         style: 1,
         visible: true,
       },
       horzLines: {
-        color: "#404043",
+        color: "rgba(64, 64, 67, 0.4)",
         style: 1,
         visible: true,
       },
     },
   };
 
-  if (is_loading || !is_mounted) {
-    return <h1>Loading..</h1>;
-  }
-
   return (
-    <div>
-      <Chart
-        options={options}
-        candlestickSeries={[
-          {
-            options: {
-              upColor: "#2EB689",
-              downColor: "#D05757",
-              borderVisible: false,
-              wickVisible: true,
-              borderColor: "#000000",
-              wickColor: "#404043",
-              borderUpColor: "#2EB689",
-              borderDownColor: "#D05757",
-              wickUpColor: "#2EB689",
-              wickDownColor: "#D05757",
+    <div className="chartz">
+      {is_loading || !is_mounted ? (
+        <div className="loaders"></div>
+      ) : (
+        <Chart
+          options={options}
+          candlestickSeries={[
+            {
+              options: {
+                upColor: "#2EB689",
+                downColor: "#D05757",
+                borderVisible: false,
+                wickVisible: true,
+                borderColor: "#000000",
+                wickColor: "#404043",
+                borderUpColor: "#2EB689",
+                borderDownColor: "#D05757",
+                wickUpColor: "#2EB689",
+                wickDownColor: "#D05757",
+              },
+              data: chart_data,
             },
-            data: chart_data,
-          },
-        ]}
-        autoWidth={true}
-        height={400}
-      />
+          ]}
+          autoWidth={true}
+          height={450}
+        />
+      )}
     </div>
   );
 };
