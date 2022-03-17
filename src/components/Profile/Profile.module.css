@@ -11,38 +11,25 @@ font-family: 'IBM Plex Sans', sans-serif;
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   overflow: hidden;
 }
 
 .main_wrapper {
-  /* color: white; */
-  /* background-color: #1f1f1f;
-  background-image: url("../../assets/Waves/wave_dark.svg"); */
-  /* background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom; */
   font-family: "IBM Plex Sans", sans-serif;
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(11, 1fr);
   margin: 0 50px 0 110px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
-
-/* .profile_menubar {
-  width: 85%;
-  padding-top: 0px;
-  margin-top: 30px;
-} */
 
 .user_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   grid-column: 3;
+  margin-top: 100px;
 }
 
 .photo_box {
@@ -146,7 +133,6 @@ font-family: 'IBM Plex Sans', sans-serif;
 #pass_placeholder {
   white-space: nowrap;
   overflow: hidden;
-  /* text-overflow: ellipsis; */
 }
 
 .pwd_bullet {
@@ -155,7 +141,6 @@ font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: inherit; */
 }
 
 input {
@@ -189,7 +174,6 @@ input::placeholder {
 }
 
 /* Responsive Design */
-
 /* Laptops & Small Screens ----------- */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .main_wrapper {
@@ -217,7 +201,6 @@ input::placeholder {
   }
 
   .headers {
-    /* width: 600px; */
     font-size: 20px;
   }
 
@@ -267,17 +250,14 @@ input::placeholder {
     flex-direction: column;
     margin: 0px 20px 0 20px;
     padding-top: 10px;
-    /* height: 100%; */
   }
   .user_container {
     margin-left: -50px;
-    /* grid-row: 4; */
-    margin-top: 70px;
+    margin-top: 100px;
   }
   .photo_box {
     width: 140px;
     height: 140px;
-    /* margin-bottom: 20px; */
   }
 
   .username {
@@ -290,7 +270,6 @@ input::placeholder {
   }
 
   .headers {
-    /* width: 400px; */
     font-size: 17px;
   }
 
@@ -326,11 +305,8 @@ input::placeholder {
     flex-direction: column;
     margin: 0px 20px 0 20px;
     padding-top: 10px;
-    /* height: 100; */
   }
   .user_container {
-    /* margin-left: -50px; */
-    /* grid-row: 4; */
     margin-top: 70px;
   }
 
@@ -342,7 +318,6 @@ input::placeholder {
     width: 130px;
     height: 130px;
     padding-left: 50px;
-    /* margin-bottom: 20px; */
   }
 
   .username {
@@ -354,7 +329,6 @@ input::placeholder {
   }
 
   .headers {
-    /* width: 270px; */
     font-size: 14px;
   }
 

@@ -274,7 +274,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <BuySellInput
             disabled={true}
-            label="Price"
+            label="Estimated Price"
             value={Number.parseFloat(ask).toFixed(2)}
             InputProps={{
               endAdornment: (
@@ -291,7 +291,7 @@ export default function FullWidthTabs(props) {
           <div className="buy-spacing"></div>
           <BuySellInput
             disabled={true}
-            label="Total"
+            label="Estimated Total"
             value={(
               Number.parseFloat(quantity) * Number.parseFloat(ask)
             ).toFixed(2)}
@@ -335,7 +335,15 @@ export default function FullWidthTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        <div className="txn_message">{error_message}</div>
+        <div
+          className={`txn_message ${
+            error_message === "Transaction successful."
+              ? "txn-green"
+              : "txn-red"
+          }`}
+        >
+          {error_message}
+        </div>
         <div className="buy-input-container">
           <BuySellInput
             label="Quantity"
