@@ -46,7 +46,7 @@ const headerColumn = [
   },
   {
     id: "coin-quantity",
-    label: "Amount",
+    label: "Quantity",
     minWidth: 10,
     align: "left",
     format: (value) => value.toLocaleString("en-US"),
