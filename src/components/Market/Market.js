@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Market.css";
+import "./MSlider.css";
 import Marketbar from "../Menubar/HeaderBar";
 import MGainSlider from "./MGainSlider";
 import MLossSlider from "./MLossSlider";
