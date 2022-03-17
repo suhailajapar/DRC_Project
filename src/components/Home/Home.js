@@ -88,7 +88,7 @@ function Home() {
                 Trade with better understanding
               </div>
               <div className={classes.description}>
-                Track your progress of profitting and make note of your losses
+                Track your progress of profiting and make note of your losses
                 for future planning.
               </div>
             </div>
