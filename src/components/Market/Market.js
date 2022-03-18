@@ -12,7 +12,8 @@ function Market() {
   const [theme, setTheme] = useState("dark");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const { user_data, wallet_list } = React.useContext(SiteDataContext);
+  const { user_data, wallet_list, checkJWT } =
+    React.useContext(SiteDataContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -84,17 +85,19 @@ function Market() {
             <MLossSlider theme={theme} setTheme={setTheme} />
           </div>
         </div>
-        <div className="balance-section">
-          <div className="w-value">
-            <p>Wallet's Balance</p>
-            <h1 id="wal-bal">
-              USD
-              {wallet_list
-                .find((w) => w.currency === "USD")
-                ?.balance.toLocaleString("en-US") || "0"}
-            </h1>
+        {wallet_list && user_data && checkJWT() && (
+          <div className="balance-section">
+            <div className="w-value">
+              <p>Wallet's Balance</p>
+              <h1 id="wal-bal">
+                USD
+                {wallet_list
+                  .find((w) => w.currency === "USD")
+                  ?.balance.toLocaleString("en-US") || "0"}
+              </h1>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
