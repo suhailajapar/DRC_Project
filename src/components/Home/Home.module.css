@@ -369,6 +369,13 @@ section {
     font-size: 20px;
   }
 
+  .second_part {
+    height: 70vh;
+  }
+
+  .fourth_part {
+    height: 70vh;
+  }
   .features {
     padding: 0 50px;
   }
@@ -498,11 +505,11 @@ section {
 
   /* fourth sect */
   .fourth_part {
-    height: 60vh;
+    height: 100vh;
   }
 
   .third_part {
-    margin-top: 100px;
+    margin-top: 250px;
   }
 }
 
@@ -573,6 +580,7 @@ section {
 
   .features {
     gap: 50px;
+    padding: 0;
   }
 
   .third_part,
@@ -597,7 +605,7 @@ section {
   }
 
   .description {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -606,6 +614,11 @@ section {
   .illustration_one {
     height: 400px;
     width: auto;
+  }
+
+  .subtitle {
+    width: 90%;
+    text-align: center;
   }
 
   .shadow {
@@ -645,8 +658,13 @@ section {
     flex-direction: column;
   }
 
+  .third_part {
+    margin-top: 200px;
+  }
+
   .fourth_part {
     background-position: top;
+    height: 60vh;
   }
 }
 
