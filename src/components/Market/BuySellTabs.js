@@ -127,7 +127,7 @@ function a11yProps(index) {
 export default function FullWidthTabs(props) {
   const { theme } = props;
   const [value, setValue] = React.useState(0);
-  const { user_data, is_data_ready, fetchWalleList, pair, checkJWT } =
+  const { user_data, is_data_ready, fetchWalletList, pair, checkJWT } =
     useContext(SiteDataContext);
   const [ask, , , , , , , , ,] = useBinanceData(pair);
   const [quantity, setQuantity] = useState(0);
@@ -162,7 +162,7 @@ export default function FullWidthTabs(props) {
             return setErrorMessage(data.error);
           } else {
             setErrorMessage("Transaction successful.");
-            fetchWalleList();
+            fetchWalletList();
             setTransactionDetails((prev) => {
               return {
                 ...prev,
@@ -203,7 +203,7 @@ export default function FullWidthTabs(props) {
             return setErrorMessage(data.error);
           } else {
             setErrorMessage("Transaction successful.");
-            fetchWalleList();
+            fetchWalletList();
             setTransactionDetails((prev) => {
               return {
                 ...prev,

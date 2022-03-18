@@ -12,7 +12,8 @@ function Market() {
   const [theme, setTheme] = useState("dark");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const { user_data, wallet_list } = React.useContext(SiteDataContext);
+  const { user_data, wallet_list, checkJWT } =
+    React.useContext(SiteDataContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
