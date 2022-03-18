@@ -52,7 +52,7 @@ export const GlobalStyles = createGlobalStyle`
 
 .login, .signup-container, .DashBG, .marketBG, .Profile_profile_bg__vVrLu {
   background-color: ${(props) => props.theme.body} !important;
-  color: ${(props) => props.theme.fontColor} !important;
+  color: ${(props) => props.theme.fontColor};
   background-image: ${(props) => props.theme.backgroundImg} !important;
 }
 
@@ -79,7 +79,7 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${(props) => props.theme.tableCellEven} !important;
 }
 
-.css-pv6s8w-MuiTableRow-root td, .MuiTable-root, .MuiTableCell-root, .MuiOutlinedInput-input, .MuiTableCell-root:hover, .MuiTypography-root, .MuiTableHead-root th {
+.css-pv6s8w-MuiTableRow-root td, .MuiTable-root, .MuiTableCell-root, .MuiOutlinedInput-input, .MuiTableCell-root:hover, .css-ahj2mt-MuiTypography-root, .MuiTableHead-root th {
     color: ${(props) => props.theme.fontColor} !important;
 
 }

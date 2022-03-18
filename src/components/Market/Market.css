@@ -190,7 +190,7 @@
   }
 }
 
-@media only screen and (max-height: 729px) {
+@media only screen and (max-height: 900px) {
   .market-layout {
     height: 900px;
     overflow: hidden;

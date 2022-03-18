@@ -35,27 +35,32 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
           color: "black",
         },
   "& .MuiOutlinedInput-root":
-    theme === "dark"
-      ? {
-          borderRadius: 10,
-          color: "#E5E5E5",
-          "& fieldset": {
-            borderColor: "#BDBDBD",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "#BDBDBD",
-          },
-        }
-      : {
-          borderRadius: 10,
-          color: "#000000",
-          "& fieldset": {
-            borderColor: "#616161",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "#7E7E7E",
-          },
-        },
+    // theme === "dark"
+    //   ?
+    {
+      borderRadius: 10,
+      color: "#E5E5E5",
+      "& fieldset": {
+        borderColor: "#BDBDBD",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#BDBDBD",
+      },
+      "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+        border: "2px solid",
+        borderColor: "yellow",
+      },
+    },
+  // : {
+  //     borderRadius: 10,
+  //     color: "#000000",
+  //     "& fieldset": {
+  //       borderColor: "#616161",
+  //     },
+  //     "&.Mui-focused fieldset": {
+  //       borderColor: "#7E7E7E",
+  //     },
+  //   },
   "& .MuiOutlinedInput-root":
     theme === "dark"
       ? {
