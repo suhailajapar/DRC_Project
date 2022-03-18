@@ -23,6 +23,7 @@ export const lightTheme = {
   dropdownIcon: `url(${DropdownImgLight})`,
   walletIcon: `url(${WalletIconLight})`,
   chartSelect: "#609D45",
+  dropdownColor: "#fff",
 };
 
 export const darkTheme = {
@@ -38,6 +39,7 @@ export const darkTheme = {
   dropdownIcon: `url(${DropdownImgDark})`,
   walletIcon: `url(${WalletIconDark})`,
   chartSelect: "#193460",
+  dropdownColor: "#fff",
 };
 
 //base styling (for entire document)
@@ -77,14 +79,17 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${(props) => props.theme.tableCellEven} !important;
 }
 
-.css-pv6s8w-MuiTableRow-root td, input, .MuiTable-root, .MuiTableCell-root:hover, .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, .MuiOutlinedInput-root .css-i4bv87-MuiSvgIcon-root, .css-1d159sf-MuiSvgIcon-root, .css-ahj2mt-MuiTypography-root, .MuiTableHead-root th {
+.css-pv6s8w-MuiTableRow-root td, .MuiTable-root, .MuiTableCell-root, .MuiOutlinedInput-input, .MuiTableCell-root:hover, .MuiTypography-root, .MuiTableHead-root th {
     color: ${(props) => props.theme.fontColor} !important;
 
 }
 
+.MuiSelect-select {
+  color: ${(props) => props.theme.dropdownColor} !important;
+}
+
 .dropdown-icon {
   content: ${(props) => props.theme.dropdownIcon} !important;
- 
 }
 
 .headerBarLogo {

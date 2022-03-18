@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
+import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -13,10 +14,11 @@ import "./BuySellTabs.css";
 import { SiteDataContext } from "../../SiteData";
 import { BASE_URL } from "../ApiBinance/HikersAPI";
 import useBinanceData from "../ApiBinance/binance-data";
+import { red } from "@mui/material/colors";
 
 const BuySellInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
-    color: "#727272",
+    color: "#727272 !important",
   },
   "& label.Mui-focused":
     theme === "dark"
@@ -54,6 +56,39 @@ const BuySellInput = styled(TextField)(({ theme }) => ({
             borderColor: "#7E7E7E",
           },
         },
+  "& .MuiOutlinedInput-root":
+    theme === "dark"
+      ? {
+          "& .Mui-disabled": {
+            borderRadius: 10,
+            color: "#E5E5E5",
+            "& fieldset": {
+              borderColor: "#BDBDBD",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#BDBDBD",
+            },
+          },
+        }
+      : {
+          borderRadius: 10,
+          color: "#000000",
+          "& fieldset": {
+            borderColor: "#616161",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#7E7E7E",
+          },
+        },
+  "& .Mui-disabled": {
+    "-webkit-text-fill-color": "rgba(114, 114, 114, 1)!important",
+    "& fieldset": {
+      borderColor: "#727272 !important",
+    },
+  },
+  // "& .MuiTypography-root": {
+  //   "-webkit-text-fill-color": "rgba(255, 255, 255, 1)!important",
+  // },
 }));
 
 function TabPanel(props) {
@@ -267,7 +302,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important" },
             }}
             fullWidth
           />
@@ -284,7 +319,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important" },
             }}
             fullWidth
           />
@@ -303,7 +338,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important" },
             }}
             fullWidth
           />
@@ -357,7 +392,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important" },
             }}
             fullWidth
           />
@@ -374,7 +409,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important" },
             }}
             fullWidth
           />
@@ -393,7 +428,7 @@ export default function FullWidthTabs(props) {
               ),
             }}
             InputLabelProps={{
-              style: { color: "#727272" },
+              style: { color: "#727272 !important " },
             }}
             fullWidth
           />
