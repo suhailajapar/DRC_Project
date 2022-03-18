@@ -32,14 +32,14 @@ const headerColumn = [
   { id: "coin-name", label: "Name", minWidth: 10 },
   {
     id: "date-purchase",
-    label: "Transaction date",
+    label: "Date Purchase",
     minWidth: 10,
     align: "left",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "transaction-type",
-    label: "Transaction type",
+    label: "Type",
     minWidth: 10,
     align: "left",
     format: (value) => value.toLocaleString("en-US"),

@@ -251,7 +251,8 @@ font-family: 'Red Hat Display', sans-serif;
   font-size: 14px;
 }
 #c-subtitle {
-  font-size: 10px;
+  font-size: 11px;
+  margin-block-end: 0.5em;
 }
 .c-top-dropdown {
   padding: 10px 20px 0 15px;
@@ -266,12 +267,19 @@ font-family: 'Red Hat Display', sans-serif;
 }
 
 #donut {
-  width: 180px;
+  width: 160px;
   height: 100%;
+}
+#donut-alt {
+  height: 100%;
+  width: 230px;
+  /* margin-right: -150px; */
+  /* margin-top: -40px; */
+  /* margin-bottom: -35px; */
 }
 
 .c-bot {
-  font-size: 12px;
+  font-size: 13px;
   width: 90%;
 }
 
@@ -397,7 +405,7 @@ font-family: 'Red Hat Display', sans-serif;
     font-size: 0.8125em;
   } */
   .c-top-dropdown {
-    padding: 10px 0px 0 0px;
+    padding: 10px 10px 0 0px;
     box-sizing: border-box;
   }
 }
@@ -581,7 +589,7 @@ font-family: 'Red Hat Display', sans-serif;
   }
   .Chart {
     padding: 0px 0 20px 30px;
-    height: 100%;
+    height: 240px;
   }
   .c-mid {
     display: flex;
@@ -591,13 +599,21 @@ font-family: 'Red Hat Display', sans-serif;
   #donut {
     width: 11.25rem;
     height: 100%;
+    padding-right: 50px;
+  }
+  #donut-alt {
+    height: 100%;
+    width: 310px;
+    margin-top: -100px;
+    margin-right: -150px;
+    /* margin-bottom: -35px; */
   }
   .c-bot {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    font-size: 0.75rem;
-    line-height: 3;
+    /* font-size: 1rem;
+    line-height: 3; */
     padding: 10px 0 0 10px;
   }
   #c-title {
@@ -624,6 +640,14 @@ font-family: 'Red Hat Display', sans-serif;
   } */
 }
 
+@media only screen and (max-width: 450px) {
+  #donut {
+    width: 11.25rem;
+    height: 100%;
+    padding-right: 0px;
+  }
+}
+
 @media only screen and (max-width: 420px) {
   #donut {
     width: 10rem;
@@ -641,6 +665,18 @@ font-family: 'Red Hat Display', sans-serif;
   }
   #wal-bal {
     font-size: 1.3rem;
+  }
+  #c-footer {
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+    font-size: 14px;
+    line-height: 2;
+    padding-right: 10px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  #donut-alt {
+    width: 250px;
   }
 }
 @media only screen and (max-width: 320px) {
