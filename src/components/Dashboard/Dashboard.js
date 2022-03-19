@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
-import { Avatar } from "@mui/material";
+import { BASE_URL } from "../ApiBinance/HikersAPI";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -12,6 +12,7 @@ import Linechart from "./Linechart";
 import TransTable from "./TransacHist";
 import { SiteDataContext } from "../../SiteData";
 import WalletReloadModal from "../Modal/WalletReloadModal";
+import Logo from "../../assets/Icon_symbol/btc.png";
 import {
   EventBusyOutlined,
   PhotoSizeSelectLargeRounded,
@@ -44,7 +45,7 @@ function Dashboard(props) {
   React.useEffect(() => {
     const base_url = "https://api.tradehikers.xyz";
     const { loginid, token } = user_data;
-    const req = new Request(`${base_url}/transaction/${loginid}`, {
+    const req = new Request(`${BASE_URL}/transaction/${loginid}`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify({ token }),
@@ -256,6 +257,10 @@ function Dashboard(props) {
         </div>
         <div className="LiveCharts-header">Current Trend (Since buy Price)</div>
         <div className="LiveCharts">
+          <div>
+            <img src={Logo} alt="hello test" style={{ width: "50px" }} />{" "}
+            BTCUSDT
+          </div>
           <Linechart />
         </div>
         <div className="Wallet">

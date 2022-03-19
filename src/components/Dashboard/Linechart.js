@@ -54,7 +54,7 @@ function App() {
         },
       },
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       zoom: {
         zoom: {
           wheel: {
