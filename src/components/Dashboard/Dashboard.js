@@ -43,7 +43,6 @@ function Dashboard(props) {
   let curr_date = new Date();
 
   React.useEffect(() => {
-    const base_url = "https://api.tradehikers.xyz";
     const { loginid, token } = user_data;
     const req = new Request(`${BASE_URL}/transaction/${loginid}`, {
       method: "POST",
@@ -231,7 +230,7 @@ function Dashboard(props) {
             </div>
           </div>
           <div className="profile-avatar">
-            <Avatar
+            {/* <Avatar
               alt="user's pic"
               src={props.dashDP}
               sx={[
@@ -252,7 +251,7 @@ function Dashboard(props) {
                   height: 65,
                 },
               ]}
-            />
+            /> */}
           </div>
         </div>
         <div className="LiveCharts-header">Current Trend (Since buy Price)</div>

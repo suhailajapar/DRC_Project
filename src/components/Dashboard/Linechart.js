@@ -2,24 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./Linechart.css";
+import useGeckoData from "./../ApiBinance/Gecko-data";
 import UseBinanceData from "./../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import zoomPlugin from "chartjs-plugin-zoom";
 Chart.register(...registerables, annotationPlugin, zoomPlugin);
 
 function App() {
-  const [pair, setPair] = useState("BTCUSDT");
-  const [, , , , , , , , , lineChart] = UseBinanceData(pair);
+  const [pair, setPair] = useState("bitcoin");
+  const [time, price] = useGeckoData(pair);
 
-  let time_label = lineChart.map((lineChart) =>
-    new Date(lineChart.time).toLocaleTimeString()
-  );
-  let price_data = lineChart.map((lineChart) => parseFloat(lineChart.close));
+  let time_label = time;
+  let price_data = price;
+
   const options = {
     scales: {
       x: {
-        //LIMIT TO 12 DATA AT A TIME
-        min: time_label[time_label.length - 12],
+        //LIMIT TO 10 DATA AT A TIME
+        min: time_label[time_label.length - 10],
       },
       y: {
         min: () => {
@@ -46,6 +46,7 @@ function App() {
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
+              //Displaying bought price
               content: 38140.12,
               enabled: true,
               position: "right",
@@ -56,6 +57,16 @@ function App() {
       responsive: true,
       maintainAspectRatio: false,
       zoom: {
+        pan: {
+          enabled: true,
+          drag: true,
+          mode: "x",
+          speed: 10,
+          threshold: 10,
+          rangeMin: {
+            x: -365,
+          },
+        },
         zoom: {
           wheel: {
             enabled: true,

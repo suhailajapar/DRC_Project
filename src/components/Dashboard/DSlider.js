@@ -63,7 +63,7 @@ const SimpleSlider = () => {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 2000,
+    speed: 5000,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
