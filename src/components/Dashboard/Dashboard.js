@@ -420,7 +420,7 @@ function Dashboard(props) {
                               .filter(
                                 (c) => c.currency === chart.data.labels[i]
                               )
-                              .map((b) => b.quantity)}`,
+                              .map((b) => b.quantity.toFixed(2))}`,
                             fillStyle: datasets[0].backgroundColor[i],
                           }));
                         },
