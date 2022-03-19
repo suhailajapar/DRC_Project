@@ -94,11 +94,7 @@ export default function AccountMenu(props) {
           </Link>
         </Tooltip>
         <Tooltip
-          title={
-            <Typography fontSize={15} sx={{ color: "white! important" }}>
-              Market
-            </Typography>
-          }
+          title={<Typography fontSize={15}>Market</Typography>}
           placement="right"
           arrow
         >
