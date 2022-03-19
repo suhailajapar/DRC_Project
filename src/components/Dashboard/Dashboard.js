@@ -13,6 +13,7 @@ import TransTable from "./TransacHist";
 import { SiteDataContext } from "../../SiteData";
 import WalletReloadModal from "../Modal/WalletReloadModal";
 import Logo from "../../assets/Icon_symbol/btc.png";
+
 import {
   EventBusyOutlined,
   PhotoSizeSelectLargeRounded,
@@ -230,28 +231,11 @@ function Dashboard(props) {
             </div>
           </div>
           <div className="profile-avatar">
-            {/* <Avatar
+            <img 
               alt="user's pic"
               src={props.dashDP}
-              sx={[
-                {
-                  "@media (max-width: 1720px)": {
-                    width: 55,
-                    height: 55,
-                  },
-                  "@media (max-width: 1070px)": {
-                    width: 50,
-                    height: 50,
-                  },
-                  "@media (max-width: 1024px)": {
-                    width: 50,
-                    height: 50,
-                  },
-                  width: 65,
-                  height: 65,
-                },
-              ]}
-            /> */}
+              className="profile_pic"
+            />
           </div>
         </div>
         <div className="LiveCharts-header">Current Trend (Since buy Price)</div>
