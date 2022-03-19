@@ -3,7 +3,6 @@ import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./Linechart.css";
 import useGeckoData from "./../ApiBinance/Gecko-data";
-import UseBinanceData from "./../ApiBinance/binance-data";
 import annotationPlugin from "chartjs-plugin-annotation";
 import zoomPlugin from "chartjs-plugin-zoom";
 Chart.register(...registerables, annotationPlugin, zoomPlugin);
