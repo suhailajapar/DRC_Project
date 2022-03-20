@@ -163,7 +163,7 @@ const WalletReloadModal = (props) => {
                 Reload
               </button>
             ) : (
-              <button type="submit" className={classes.reload_btn}>
+              <button type="submit" disabled className={classes.reload_btn}>
                 Transfer
               </button>
             )}

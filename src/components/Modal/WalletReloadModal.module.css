@@ -119,6 +119,16 @@ font-family: 'Red Hat Display', sans-serif;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+.reload_btn:disabled {
+  color: gray;
+  background-color: #c4c4c4;
+  box-shadow: unset;
+}
+
+.reload_btn:disabled:hover {
+  background-color: #c4c4c4;
+}
+
 .reload_btn:hover {
   background-color: rgb(7, 116, 7);
 }
