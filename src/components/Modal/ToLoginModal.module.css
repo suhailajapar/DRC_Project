@@ -16,7 +16,7 @@ font-family: 'Red Hat Display', sans-serif;
 }
 
 .popup {
-  position: absolute;
+  position: fixed;
   top: 30%;
   left: 35%;
   width: 30%;
@@ -94,4 +94,30 @@ p.msg_desc {
 
 .home_btn:hover {
   color: green;
+}
+
+@media only screen and (max-width: 1024px) {
+  .popup {
+    left: 25%;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .popup {
+    left: 30%;
+  }
+}
+
+@media only screen and (max-width: 486px) {
+  .popup {
+    left: 23%;
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .popup {
+    left: 16%;
+  }
 }
