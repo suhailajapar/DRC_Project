@@ -25,7 +25,7 @@ const TimeBar = () => {
 
   return (
     <div className="time-date-section">
-      <span id="current-date-display">{date}</span>
+      <span id="current-date-display">{date}</span> &nbsp;
       <span>{time}</span>
     </div>
   );
