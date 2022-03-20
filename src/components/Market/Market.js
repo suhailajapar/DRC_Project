@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BuySellTabs from "./BuySellTabs";
 import ChartControls from "./ChartControls/ChartControls";
 import HeaderBar from "../Menubar/HeaderBar";
@@ -15,7 +16,7 @@ import TransactionLogs from "./TransactionLogs";
 const TXN_COUNT = 2;
 
 const Market = () => {
-  const { pair, setPair } = React.useContext(SiteDataContext);
+  const { pair, setPair, user_data } = React.useContext(SiteDataContext);
   const [is_complete, setComplete] = React.useState(false);
   const [theme, setTheme] = React.useState("dark");
   const [interval, setInterval] = React.useState("1m");
@@ -42,6 +43,12 @@ const Market = () => {
             interval={interval}
             onLoadComplete={setComplete}
           />
+          {is_complete && (
+            <div className="market-trends-section">
+              <TopGainerList />
+              <TopLoserList />
+            </div>
+          )}
         </div>
         <div className="transaction">
           <TimeBar />
@@ -53,6 +60,20 @@ const Market = () => {
             setTransactionType={setTransactionType}
             pair={pair}
           />
+          {!user_data ? (
+            <div className="login-signup-section">
+              Please{" "}
+              <Link to="/login" className="market-links">
+                Log In
+              </Link>{" "}
+              or&nbsp;
+              <Link to="/signup" className="market-links">
+                Register
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
           <TransactionLogs
             details={txn_details}
             type={transaction_type}
@@ -60,12 +81,12 @@ const Market = () => {
           />
         </div>
       </div>
-      {is_complete && (
+      {/* {is_complete && (
         <div className="market-trends-section">
           <TopGainerList />
           <TopLoserList />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

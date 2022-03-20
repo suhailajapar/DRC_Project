@@ -83,7 +83,6 @@ function App({ crypto, bought_price }) {
         },
       };
 
-
       setOptions((prev) => ({ ...prev, ...new_options }));
     }
   }, [crypto]);
@@ -107,7 +106,7 @@ function App({ crypto, bought_price }) {
                 fill: true,
                 backgroundColor: "rgba(75,192,192,0.1)",
                 borderColor: "rgba(75,192,192,1)",
-                pointRadius: 0.5,
+                pointRadius: 4,
               },
             ],
           }}

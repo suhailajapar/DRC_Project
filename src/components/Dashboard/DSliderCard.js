@@ -67,8 +67,6 @@ const DSliderCard = ({ pair, src, name, data, onCardClick }) => {
         <div className="details">
           {pair}
           <br />
-          {name}
-          <br />
           <strong>{price} USD</strong>
         </div>
       </div>

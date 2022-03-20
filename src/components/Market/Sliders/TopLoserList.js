@@ -148,7 +148,7 @@ const TopLoserList = ({ theme, setTheme }) => {
         <div className="list-container">
           <div className="slider-title">Top Loser</div>
           <div className="slider">
-            <Ticker speed={8}>
+            <Ticker>
               {() => (
                 <div style={{ display: "flex" }}>
                   {topCryptoCurrencies.map((c) => {

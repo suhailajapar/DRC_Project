@@ -41,6 +41,10 @@
   margin-right: 7px;
 }
 
+.change-indicator.loss > .icon {
+  transform: rotate(180deg);
+}
+
 .slider-card > .body {
   width: 100%;
   display: inline-flex;
@@ -74,4 +78,13 @@
   line-height: 22px;
   font-weight: 700;
   color: white;
+}
+
+.login-signup-section {
+  text-align: center;
+}
+
+.market-links {
+  text-decoration: none;
+  color: #00ff40;
 }
