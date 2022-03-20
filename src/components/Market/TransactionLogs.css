@@ -53,10 +53,12 @@
 
 @keyframes slideLeft {
   from {
-    transform: translate(340px, 0);
+    transform: translate(15px, 0);
+    opacity: 0;
   }
   to {
     transform: translate(0, 0);
+    opacity: 1;
   }
 }
 

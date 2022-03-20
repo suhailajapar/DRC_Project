@@ -62,7 +62,6 @@ const Profile = (props) => {
 
   const onSubmit = (data) => {
     updateUser(data);
-    alert(JSON.stringify(data));
   };
 
   //Check if user_data is ready
