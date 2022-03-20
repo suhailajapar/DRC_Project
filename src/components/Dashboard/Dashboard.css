@@ -5,6 +5,19 @@ font-family: 'Poppins', sans-serif;
 font-family: 'Red Hat Display', sans-serif;
 */
 
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-wrapper > img {
+  margin-right: 8px;
+}
+
+.icon-wrapper > h2 {
+  font-family: "Red Hat Display", sans-serif;
+}
+
 .Amountbox {
   display: "block";
   direction: "column";
@@ -103,11 +116,6 @@ font-family: 'Red Hat Display', sans-serif;
   margin: 0;
   padding: 10px 0 10px 0;
 }
-
-/* .wrap {
-  width: 100%;
-} */
-
 /* Dark Mode */
 .Profile {
   grid-column: 6/8;
