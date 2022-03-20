@@ -154,13 +154,19 @@ const WalletReloadModal = (props) => {
             >
               Cancel
             </span>
-            <button
-              type="submit"
-              className={classes.reload_btn}
-              onClick={walletReloadHandler}
-            >
-              {selected_wallet?.currency === "USD" ? "Reload" : "Transfer"}
-            </button>
+            {selected_wallet?.currency === "USD" ? (
+              <button
+                type="submit"
+                className={classes.reload_btn}
+                onClick={walletReloadHandler}
+              >
+                Reload
+              </button>
+            ) : (
+              <button type="submit" className={classes.reload_btn}>
+                Transfer
+              </button>
+            )}
           </div>
         </Card>
       </div>
