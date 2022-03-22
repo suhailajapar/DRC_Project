@@ -15,7 +15,6 @@ const Signup = () => {
     handleSubmit,
     getValues,
     setError,
-    // reset,
     clearErrors,
     formState,
   } = useForm({ mode: "onchange" });
@@ -32,9 +31,9 @@ const Signup = () => {
     setReady(false);
     const userInfo = {
       ...data,
-      date_joined: new Date().toLocaleString(),
+      date_joined: new Date().toUTCString(),
     };
-
+    console.log(userInfo);
     const req = new Request(`${BASE_URL}/user/register`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
@@ -45,8 +44,12 @@ const Signup = () => {
         setReady(true);
         if (data.message) {
           return setMessage(data.message);
-        } else {
+        } else if (data.error) {
           return setErrorMessage(data.error);
+        } else {
+          return setErrorMessage(
+            "An internal error occurred. Please try again later."
+          );
         }
       });
     });
@@ -55,7 +58,6 @@ const Signup = () => {
   // FOR VALIDATION
   const onSubmit = (data, e) => {
     userRegister(data);
-    // reset();
     toLoginHandler();
   };
 
