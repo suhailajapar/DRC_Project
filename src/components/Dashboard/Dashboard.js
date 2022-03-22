@@ -69,6 +69,7 @@ function Dashboard(props) {
     fetch(req).then((res) => {
       res.json().then((data) => {
         setAssetDatabase(data);
+        //fetch & calculate
         const buy_arr = data.filter((d) => d.transaction_type === "buy");
         const sell_arr = data.filter((d) => d.transaction_type === "sell");
 

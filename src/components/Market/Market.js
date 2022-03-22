@@ -81,12 +81,6 @@ const Market = () => {
           />
         </div>
       </div>
-      {/* {is_complete && (
-        <div className="market-trends-section">
-          <TopGainerList />
-          <TopLoserList />
-        </div>
-      )} */}
     </div>
   );
 };

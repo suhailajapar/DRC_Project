@@ -12,6 +12,7 @@ const TransactionLogs = ({ count, details, type }) => {
 
   return (
     <div className="transaction">
+      {/* showing only latest 2 of the txn log */}
       {filtered_logs.slice(0, count).map((log, index) => {
         const { id, currency, current_price, quantity, wallet_id } = log;
         const balance =
