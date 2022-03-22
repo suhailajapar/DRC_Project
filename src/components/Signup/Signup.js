@@ -33,7 +33,6 @@ const Signup = () => {
       ...data,
       date_joined: new Date().toUTCString(),
     };
-    console.log(userInfo);
     const req = new Request(`${BASE_URL}/user/register`, {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
